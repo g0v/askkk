@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <!-- Site Properities -->
+    <title>six city beta</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../packaged/css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.js"></script>
+    <script src="../packaged/javascript/semantic.js"></script>
+    <script src="../packaged/javascript/semantic.min.js"></script>
+    <script src="main.js"></script>
+
+    <!-- for progress -->
+
+    <link href="../src/nv.d3.css" rel="stylesheet" type="text/css">
+
+<style>
+
+body {
+  overflow-y:scroll;
+  margin: 0;
+  padding: 0;
+}
+
+svg {
+  overflow: hidden;
+}
+
+div {
+  border: 0;
+  margin: 0;
+}
+
+/*
+#offsetDiv {
+  margin-left: 100px;
+  margin-top: 100px;
+}
+*/
+
+
+#test1 {
+  margin: 0;
+}
+
+#test1 svg {
+  height: 500px;
+}
+
+</style>
+    </script>
+
+
+  </head>
+  <body>
+    <div id="city">
+      改變你的城市
+      <div class="ui pointing below blue label">
+
+
+        <div class="ui dropdown">
+          <p>change your city</p>
+          <div class="text">---</div>
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <div class="item">台北市</div>
+            <div class="item">新北市</div>
+            <div class="item">桃園市</div>
+            <div class="item">台中市</div>
+            <div class="item">台南市</div>
+            <div class="item">高雄市</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+     <div id="candidate_login">
+       <div class="ui pointing below label">
+       <a href="candidate-login.html">候選人登入</a>
+       </div>
+    </div>
+    <div id="user_count">
+       <div class="ui pointing below green label">> join us!</div>
+       <div class="ui pointing below label">
+
+       1,985 人次 <br/>203 問題<br/> 2,213 響應
+
+       </div>
+      
+    </div>
+    <div id="wrapper">
+
+      <div id="top">
+        <div id="header">
+          <div class="main_title">
+            <h1> 市長，給問嗎</h1>
+            <div class="ui pointing below label">一個直接民意，對話溝通的平台。</div>
+          </div>
+        </div>
+
+       
+
+
+      </div> <!-- END of TOP -->
+
+
+      <!-- ////////////////////////////////////////////////////////////// -->
+
+      <div id="navigation">
+        <div class="ui inverted menu">
+          <a class="item" href="index.html">
+            <i class="home icon"></i>
+          </a>
+          <a class="item" href="#">發問</a>
+          <a class="active item" href="petition-list.html">提問</a>
+          <a class="item" href="response-list.html">回應</a>
+          <a class="item" href="#">候選人</a>
+          <div class="right menu">
+            <div class="item">
+              <a href="#">登入</a>
+            </div>
+
+
+          </div>
+
+        </div>
+
+</div>
+
+      <!-- ////////////////////////////////////////////////////////////// -->
+
+
+      <div id="content">
+
+        <div class="ui right floated tiny black button"><i class="arrow sign down icon"></i>
+          filter
+        </div>
+        <div class="ui right floated tiny black button"><i class="arrow sign down icon"></i>
+          search
+        </div>
+
+        <div class="ui right floated tiny active button">
+          <i class="tasks icon"></i>進度
+        </div>
+        <div class="ui right floated tiny button"><a href="petition-map.html">
+          <i class="map marker icon"></i>地圖</a>
+        </div>
+        <div class="ui right floated tiny button"><a href="petition-list.html">
+          <i class="list layout icon"></i>列表</a>
+        </div>
+
+
+
+        <div class="ui tabular filter menu">
+          <a class="active item" data-tab="all">all</a>
+          <a class="item" data-tab="popular">popular</a>
+          <a class="item" data-tab="new">new</a>
+        </div>
+
+        <div class="ui divided list tab" data-tab="all">
+
+
+         
+
+        </div>
+
+
+
+
+        <div class="ui divided list tab" data-tab="popular">
+
+
+
+        </div>
+
+
+
+        <div class="ui divided list tab" data-tab="new">
+
+        </div>
+
+<div id="offsetDiv">
+  <div id="test1" class='with-3d-shadow with-transitions'>
+    <svg></svg>
+  </div>
+</div>
+
+<script src="../lib/d3.v3.js"></script>
+<!--<script src="../lib/fisheye.js"></script>-->
+<script src="../nv.d3.js"></script>
+<script src="../src/tooltip.js"></script>
+<script src="../src/utils.js"></script>
+<script src="../src/models/legend.js"></script>
+<script src="../src/models/axis.js"></script>
+<script src="../src/models/distribution.js"></script>
+<script src="../src/models/scatter.js"></script>
+<script src="../src/models/scatterChart.js"></script>
+<script>
+
+
+
+
+
+//Format A
+var chart;
+nv.addGraph(function() {
+  chart = nv.models.scatterChart()
+                .showDistX(false)
+                .showDistY(false)
+                .useVoronoi(false)
+                .color(d3.scale.category10().range())
+                .transitionDuration(300)
+                ;
+
+  chart.xAxis.tickFormat(d3.format('.02f'));
+  //chart.xAxis.tickFormat(function(d) {  return d3.time.format('%m/%d')(new Date(d));  });
+  
+  chart.yAxis.tickFormat(d3.format('.00f'));
+  chart.tooltipContent(function(key,x,y) {
+      return '<p>' + "如何解決房價問題？<a href='#'>see more</a>" +'</p>';
+  });
+
+
+
+  d3.select('#test1 svg')
+  .datum(randomData(4,10))
+
+      .call(chart);
+      
+
+  nv.utils.windowResize(chart.update);
+
+  chart.dispatch.on('stateChange', function(e) { ('New State:', JSON.stringify(e)); });
+
+  return chart;
+});
+
+
+/**************************************
+ * Simple test data generator
+  */
+ 
+ function randomData(groups, points) { //# groups,# points per group
+   var data = [],
+       shapes = ['circle', 'cross', 'triangle-up', 'triangle-down', 'diamond', 'square'],
+       random = d3.random.normal();
+ 
+   for (i = 0; i < groups; i++) {
+     data.push({
+       key: 'Group ' + i,
+       values: []
+     });
+ 
+     for (j = 0; j < points; j++) {
+       data[i].values.push({
+         x: random()
+       , y: random()
+       , size: Math.random()
+       //, shape: shapes[j % 6]
+       });
+     }
+   }
+ 
+   return data;
+ }
+
+
+
+</script>
+
+
+
+
+
+        <div class="ui divider"></div>
+      </div>
+    </div>
+    </body>
+  </html>
