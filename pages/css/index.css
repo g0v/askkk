@@ -39,10 +39,83 @@ height:100px;
 
 .candidate{
 
-  float:right;
+  float:left;
   display: block;
   margin:2px;
 
+
+}
+.candidate_name{
+  text-align: center;
+  margin-bottom: 5px;
+}
+#candidate_wrapper{
+  
+  padding: 1px;
+  width:998px;
+  
+}
+.candidate_segment{
+  /*
+  background: gray;
+  height:180px;
+  padding:10px;
+  */
+  width:998px;
+  height:300px;
+  /*background: rgba(200,200,200,.8) !important;*/
+  border:solid rgba(155,155,155,1) 1px;
+  
+}
+#why_and_how_segment{
+  width:998px;
+  height:550px;
+  margin-bottom: 80px;
+ 
+}
+#why_and_how_content{
+  margin-left:20px;
+
+}
+.candidate_info{
+  
+}
+.candidate_list{
+  
+  margin-bottom:20px;
+  
+}
+.candidate_list h4{
+  margin:2px;
+}
+.candidate_info a, .candidate_info a:hover{
+  color:#555;
+}
+
+.city_info{
+  float:left;
+  width:300px;
+  margin:20px;
+}
+.pressure_candidate{
+  background: rgba(0,0,0,.8) !important;
+  color:white;
+  position:absolute;
+  display:none;
+  padding:5px;
+  top: 0px;
+  left: 0px;
+  width:90px;
+  height:90px;
+  z-index:1001;
+  -moz-opacity: 0.8;
+  text-align: center;
+  
+  padding-top:20px;
+}
+
+.ask_to_join_button{
+  margin:20px;
 }
 #city{
   margin-left:15px;
@@ -91,16 +164,30 @@ width:100%;
   width:700px;
   float:left;
 }
+.f-nav{  /* To fix main menu container */
+  
+  position: fixed;
+  top:0px;
+    
+}
+.f-fix{
+  position: absolute;
+  top:0px;
+}
 #sign-petition{
   width:300px;
-  margin-left:700px;
+  margin-left:687px;
   float:right;
   display: block;
-  position: fixed;
+  
   /*background-color: #fef0d9;*/
   
   z-index: 888;
 }
+
+
+
+
 #map { height: 300px; }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -130,7 +217,9 @@ width:100%;
   
   width:100%;
   display:block;
+
 }
+
 
 .sign-num{
   float:right;
@@ -161,7 +250,7 @@ width:100%;
   color:gray;
 }
 .petition_sign_area{
-  margin-left:10px;
+  
 }
 .petition_name{
   width:140px;
@@ -178,18 +267,63 @@ width:100%;
 
 float:left;  
 }
-.support_reason_order_by{
-  
+.pointing{
+  border:red;
   
 }
-#comment_area{
-  margin:10px;
+.comment_item{
+  border-bottom:1px solid #CCC;
+  padding-bottom:30px;
+  padding-top:20px;
+  padding-right: 10px;
+
+  
+}
+.comment_vote{
+  width:80px;
+  margin-top: 20px;
+  float:left;
+  text-align: center;
+}
+.comment_vote img{
+  margin:0px;
+  cursor: pointer;
+}
+.comment_vote_num{
+  margin:0px;
+  font-size: 30px;
+  font-family: Cabin bold;
+}
+.comment_content{
+  
+  padding-left:5px;
+  margin-left:85px;
+  width:580px;
+
+  
+  margin-top: 10px;
+}
+.comment_description{
+  margin-bottom: 20px;
+}
+.share_comment{
  
+  font-size: 10px;
+  width:90px;
+  float:left;
+  cursor: pointer;
+  
 }
-#comment_area .metadata{
-  margin-bottom:25px;
-  margin-left:130px;
+
+.comment_meta{
+  text-align: right;
+  float:right;
+  width:480px;
+  font-size: 10px;
+  cursor: pointer;
 }
+
+
 .date{
   color:gray;
   
@@ -200,20 +334,25 @@ float:left;
     background: #bdbdbd;
     position: relative;
     margin-top:5px;
+    margin-bottom: 35px;
 }
 .bar {
     background: #43a2ca;
     height: 10px;
     color: white;
+
 } 
 .ask_to_join_bar {
     background: #de2d26;
     height: 10px;
     color: white;
+
 }
+
 span {
     position: absolute;
     top: 10px;
+
     z-index: 2;
     color: black;
     text-align: center;
