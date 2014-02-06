@@ -1,6 +1,9 @@
 $(document)
 .ready(function() {
 
+  //bad way to do this
+  $("#propose_petition_button").on("click",proposePetition);
+
   //menu
   $('.filter.menu .item').tab();
   $('.dropdown').dropdown();
@@ -29,6 +32,20 @@ $(document)
     $('.pressure_candidate').hide();
     
   });
+
+  // ask who
+  $('.ask_who').on("mouseenter",function(event){
+    $('#ask_who_box').offset({ top: event.pageY, left: event.pageX});
+    $('#ask_who_box').show();
+   
+  });
+  $('#ask_who_close').on("click",function(event){
+    $('#ask_who_box').offset({ top: 0, left: 0});
+    $('#ask_who_box').hide();
+   
+  });
+  
+
   
   // adjustLeftMenu();
   
@@ -87,6 +104,7 @@ function adjustLeftMenu(){
   
   
 
+
 }
 
 function askToJoin(){
@@ -95,9 +113,16 @@ function askToJoin(){
 function showProfile(){
   console.log("show profile: but file is not ready!...yet...");
 }
+function response(){
+  location.href=('response01.html');
+}
 function petition(){
 
   location.href=('petition01.html');
+}
+function proposePetition(){
+
+  location.href=('create_petition.html');
 }
 function semanticAccordingReady(){
 
