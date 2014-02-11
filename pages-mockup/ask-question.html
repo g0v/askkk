@@ -82,11 +82,11 @@
      
         <div id="navigation">
           <div class="ui inverted menu">
-            <a class="active item" href="index.html">
+            <a class="item" href="index.html">
               <i class="home icon"></i>
             </a>
             
-            <a class="item" href="ask-question.html">發問</a>
+            <a class="active item" href="ask-question.html">發問</a>
             <a class="item" href="petition-list.html">瀏覽問題</a>
             <a class="item" href="response-list.html">瀏覽回應</a>
           
@@ -111,37 +111,59 @@
 
          
       
-       <div class="ui raised segment" id="why_and_how_segment">
-          <h3 class="ui black block header">
-           關於「遇望城市 six and the city」
-          </h3>
-          <div id="why_and_how_content">
-          <br/>
-          <p>2014 年，公民參與要創造出新的選舉文化。</p>
+      
           
-          <p>我們不要傳統的口水戰、文宣戰、旗海戰；<br/>
-             不依賴投票前兩個禮拜才舉辦的政見辯論會；<br/>
-             不單單只是憑藉著黨籍、省籍、性別、或者外表，就決定要投給誰；<br/>
-             更不當只負責投票的「一日公民」。<br/></p>
+            <div class="ui form segment">
+        <h2 class="ui header">
+          公民提問
+        </h2>
+      
 
-          <p>2014 年，你不必是媒體代表、知名人士，才能對候選人提問。<br>
-             每一個市井小民，都有一樣的發言權；<br/>
-             當你說出了市民共同的心聲，候選人就必須嚴肅看待、認真回應。</p>
-
-          <p>提問和回應都將被公開檢視與討論。<br/>
-             有別於過往的電話或投書反應，<br/>
-             一個公開的平台，<br/>
-             讓市民聲音得以串聯、共鳴，形成更大的力量。</p>
-
-          <p>我們相信，你有權利也有義務參與這一次的討論，選出最符合你價值理念的候選人。<br/>
-             因為政治不是「政治人物」或「社運人士」的事，<br/>
-             政治關乎你我的生活，政治是我們的事。</p>
-
-
-             
-
+        <div class="ui divider"></div>
+        <div class="field">
+          <h4>1. 問題簡述</h4>
+          <div class="ui pointing below label">一個簡短清楚的問題簡述，將有助於其他人瀏覽及連署你的提問！</div>
+          <div class="ui input">
+            <input type="text"
+            placeholder="例如：請問是否有綠卡？"
+            ng-model="newQuestion.title">
           </div>
-       </div><!-- end of ui raised segment-->
+        </div>
+
+        <div class="field">
+          <h4>2. 問題分類</h4>
+          <div class="ui pointing below label">至多選擇三個相關分類</div>
+          <div class="ui ten column divided grid">
+            <div class="row">
+              <!--ISSUE:should be 'ui checkbox' but semantic ui block the on-click handler.-->
+              <div class="column" ng-repeat="category in categories">
+                <div class="ui checkbox category">
+                  <input
+                  type="radio"
+                  name="category"
+                  value="{{category}}"
+                  > <label>{{category}}</label>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+    
+      <div class="field">
+        <h4>3. 完整說明</h4>
+        <div class="ui pointing below label">您可以在這裡進一步說明您的問題</div>
+        <textarea ng-model="newQuestion.content"></textarea>
+      </div>
+
+     
+        <div class="ui small black submit button" ng-click="postQuestion()">提出問題</div>
+    
+
+
+
+    </div>
+      
 
 
 
