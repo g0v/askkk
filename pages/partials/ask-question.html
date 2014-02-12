@@ -1,0 +1,131 @@
+<div id="city">
+  改變你的城市
+  <div class="ui pointing below blue label">
+    <div class="ui dropdown">
+      <p>change your city</p>
+      <div class="text">---</div>
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <div class="item">台北市</div>
+        <div class="item">新北市</div>
+        <div class="item">桃園市</div>
+        <div class="item">台中市</div>
+        <div class="item">台南市</div>
+        <div class="item">高雄市</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="candidate_login">
+  <div class="ui pointing below label">
+    <a href="candidate-login.html">候選人登入</a>
+  </div>
+</div>
+<div id="user_count">
+  <div class="ui pointing below green label">> join us!</div>
+  <div class="ui pointing below label">
+
+    1,985 人次 <br/>203 問題<br/> 2,213 響應
+
+  </div>
+
+</div>
+<div id="wrapper">
+
+  <div id="top">
+    <div id="header">
+      <div class="main_title">
+        <h1> 市長，給問嗎</h1>
+        <div class="ui pointing below label">整個城市，都是我的質詢台</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ////////////////////////////////////////////////////////////// -->
+
+  <div id="navigation">
+    <div class="ui inverted menu">
+      <a class="item" href="index.html">
+        <i class="home icon"></i>
+      </a>
+
+      <a class="active item" href="#/ask-question">發問</a>
+      <a class="item" href="#/question-list">瀏覽問題</a>
+      <a class="item" href="#/response-list">瀏覽回應</a>
+      <a class="item" href="#/candidate-list">候選人</a>
+      <div class="right menu">
+        <div class="item">
+          <a href="#">登入</a>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ////////////////////////////////////////////////////////////// -->
+
+
+  <div id="content">
+
+
+
+
+
+    <div class="ui form segment">
+      <h2 class="ui header">
+        公民提問
+      </h2>
+
+
+      <div class="ui divider"></div>
+      <div class="field">
+        <h4>1. 問題簡述</h4>
+        <div class="ui pointing below label">一個簡短清楚的問題簡述，將有助於其他人瀏覽及連署你的提問！</div>
+        <div class="ui input">
+          <input type="text"
+          placeholder="例如：請問是否有綠卡？"
+          ng-model="newQuestion.title">
+        </div>
+      </div>
+
+      <div class="field question_field">
+        <h4>2. 問題分類</h4>
+        <div class="ui pointing below label">至多選擇三個相關分類</div>
+
+        <div class="category_item_collection">
+        <!--ISSUE:should be 'ui checkbox' but semantic ui block the on-click handler.-->
+            <div class="column category_item" ng-repeat="category in categories">
+              <div class="ui checkbox category">
+                <input
+                type="radio"
+                value="{{category}}"
+                > <label>{{category}}</label>
+              </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="field question_field">
+        <h4>3. 完整說明</h4>
+        <div class="ui pointing below label">您可以在這裡進一步說明您的問題</div>
+        <textarea ng-model="newQuestion.content"></textarea>
+      </div>
+
+
+      <div class="ui small black submit button" ng-click="postQuestion()">提出問題</div>
+
+
+
+
+    </div>
+
+
+
+
+  </div> <!-- end of content -->
+</div> <!--end of wrapper -->
+

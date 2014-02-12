@@ -279,7 +279,22 @@ padding-bottom: 15px;
 
 
 #map { height: 300px; }
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+.question_list_a,.question_list_a:hover,.question_list_a:visited{
+  color:white;
+}
+.quesiton_field{
+  margin-top: 200px;
+}
+.category_item_collection{
+ margin-left: 20px;
+ height:220px;
+}
+.category_item{
+  width:200px;
+  float:left;
+}
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 .main_title{
   margin-bottom:0px;
