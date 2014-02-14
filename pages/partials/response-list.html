@@ -21,7 +21,7 @@
            ng-src="images/{{n.partyEng}}.png"></img>
       </div>
     </div>
-
+    
     <div class="header_candidate" 
          ng-repeat="n in candidates | filter:'pending'">
       <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
@@ -88,8 +88,8 @@
         <i class="home icon"></i>
       </a>
       <a class="item" href="#/ask-question">發問</a>
-      <a class="active item" href="#">瀏覽問題</a>
-      <a class="item" href="#/response-list">瀏覽回應</a>
+      <a class="item" href="#/question-list">瀏覽問題</a>
+      <a class="active item" href="#/reponse-list">瀏覽回應</a>
       <a class="item" href="#/candidate-list">候選人</a>
       <div class="right menu">
         <div class="item">
@@ -135,7 +135,7 @@
         <div ng-show="({{n.votes}}>=1000)" class="question_list_bow">爆</div>
         <div class="question_list_date">{{n.date}}</div>
         <!-- <img class="ui avatar image ask_who" src="images/logo.png"></img> -->
-        <div class="question_list_asker">{{n.asker}}</div>
+        <div class="question_list_asker">{{n.responser}}</div>
         <div class="question_list_title">{{n.title}}</div>
         <div class="right floated tiny ui black button qustion_list_push_button">
           推

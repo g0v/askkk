@@ -20,9 +20,22 @@ askApp.config(['$routeProvider','$locationProvider',
       templateUrl: 'partials/question-detail.html',
       controller: 'questionDetailCtrl'
     }).
+      when('/response-list',{
+      templateUrl: 'partials/response-list.html',
+      controller: 'responseListCtrl'
+    }).
+      when('/candidate-list',{
+      templateUrl: 'partials/candidate-list.html',
+      controller: 'candidateListCtrl'
+    }).
+      when('/login',{
+      templateUrl: 'partials/login.html',
+      controller: 'loginCtrl'
+    }).
       otherwise({
       redirectTo:'/',
       templateUrl: 'partials/index.html',
+      controller: 'indexCtrl'
     });
   }]);
 

@@ -2,20 +2,7 @@ askControllers.controller('askQuestionCtrl', function($scope){
 
   semanticMenuReady();
   semanticAccordingReady();
-
-
-$scope.candidates = [
-{"id":1,"name":"楊實秋", "party":"中國國民黨"},
-{"id":2,"name":"秦慧珠", "party":"中國國民黨"},
-{"id":3,"name":"丁守中", "party":"中國國民黨"},
-{"id":4,"name":"蔡正元", "party":"中國國民黨"},
-{"id":5,"name":"鍾小平", "party":"中國國民黨"},
-{"id":6,"name":"周柏雅", "party":"民主進步黨"},
-{"id":7,"name":"許添財", "party":"民主進步黨"},
-{"id":8,"name":"顧立雄", "party":"民主進步黨"},
-{"id":9,"name":"呂秀蓮", "party":"民主進步黨"},
-{"id":10,"name":"姚文智", "party":"民主進步黨"},
-{"id":11,"name":"柯文哲", "party":"無黨籍"}];
+  $scope.candidates = global.candidates;
 
 
   $scope.candidateSelection = [];

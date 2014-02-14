@@ -1,0 +1,20 @@
+ 
+
+        <div id="footer">
+          <div class="ui divider"></div>
+
+          <div class="ui horizontal bulleted list">
+            <div class="item">
+              about
+            </div>
+            <div class="item">
+              contact
+            </div>
+            <div class="item">
+              advertise
+            </div>
+            <div class="item">
+              developers
+            </div>
+          </div>
+        </div><!-- End of footer -->
