@@ -21,7 +21,7 @@
            ng-src="images/{{n.partyEng}}.png"></img>
       </div>
     </div>
-
+    
     <div class="header_candidate" 
          ng-repeat="n in candidates | filter:'pending'">
       <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
@@ -89,7 +89,7 @@
       </a>
       <a class="item" href="#/ask-question">發問</a>
       <a class="active item" href="#">瀏覽問題</a>
-      <a class="item" href="#/response-list">瀏覽回應</a>
+      <a class="item" href="#/response-list-latest">瀏覽回應</a>
       <a class="item" href="#/candidate-list">候選人</a>
       <div class="right menu">
         <div class="item">

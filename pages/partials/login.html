@@ -1,13 +1,4 @@
 ﻿<div id="wrapper">
-
-
-<div id="candidate_login">
-  <div class="ui label">
-    <a href="candidate-login.html">候選人登入</a>
-  </div>
-</div>
-
-
   <div id="top">
     <div id="header">
       <div class="main_title">
@@ -16,30 +7,77 @@
       </div>
     </div>
 
+  <div id="announce_board">
+ 
+    <div class="header_candidate_collection">
+    <div class="header_candidate" 
+         ng-repeat="n in candidates | filter:'join'">
+      <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
+      <div class="header_candidate_photo">
+      <div class="header_candidate_circleborder_{{n.state}}">
+      <img class="circular ui image header_candidate_face" ng-src="images/candidates_avatar/{{n.id}}.jpg"></img>
+      </div>
+      <img class="circular ui image header_candidate_party header_candidate_party_{{n.partyEng}}" 
+           ng-src="images/{{n.partyEng}}.png"></img>
+      </div>
+    </div>
+
+    <div class="header_candidate" 
+         ng-repeat="n in candidates | filter:'pending'">
+      <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
+      <div class="header_candidate_photo">
+      <div class="header_candidate_circleborder_{{n.state}}">
+      <img class="circular ui image header_candidate_face" ng-src="images/candidates_avatar/{{n.id}}.jpg"></img>
+      </div>
+      <img class="circular ui image header_candidate_party header_candidate_party_{{n.partyEng}}" 
+           ng-src="images/{{n.partyEng}}.png"></img>
+      </div>
+    </div>
 
 
-<div id="city">
-  改變你的城市
-  <div class="ui pointing below blue label">
+     
+    <div class="header_candidate" 
+         ng-repeat="n in candidates | filter:'refused'">
+      <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
+      <div class="header_candidate_photo">
+      <div class="header_candidate_circleborder_{{n.state}}">
+      <img class="circular ui image header_candidate_face" ng-src="images/candidates_avatar/{{n.id}}.jpg"></img>
+      </div>
+      <img class="circular ui image header_candidate_party header_candidate_party_{{n.partyEng}}" 
+           ng-src="images/{{n.partyEng}}.png"></img>
+      </div>
+    </div>
+
+
+
+
     
-      change your city
-      <div class="city_name">台北市</div>
+     
+     
+     
+
+  </div><!-- end of header_candidate_collection -->
+
+<div class="header_candidate_info header_candidate_info_join">
+      願意加入：{{(candidates | filter:'join').length}} 名
+    </div>
+
+<div class="header_candidate_info header_candidate_info_pending">
+      意向不明：{{(candidates | filter:'pending').length}} 名
+    </div>
+
+     <div class="header_candidate_info header_candidate_info_refused">
+      拒絕加入：{{(candidates | filter:'refused').length}} 名
+    </div>
+
+
+  </div><!-- end of announce_board -->
+
+
+
+
+
   </div>
-    
-</div>
-
-<div id="user_count">
-  <div class="ui pointing below green label">> join us!</div>
-  <div class="ui pointing below label">
-    1,985 人次 <br/>203 問題<br/> 2,213 響應
-  </div>
-</div>
-
-
-
-
-  </div>
-
   <!-- ////////////////////////////////////////////////////////////// -->
 
   <div id="navigation">
@@ -50,7 +88,7 @@
 
       <a class="item" href="#/ask-question">發問</a>
       <a class="item" href="#/question-list">瀏覽問題</a>
-      <a class="item" href="#/response-list">瀏覽回應</a>
+      <a class="item" href="#/response-list-latest">瀏覽回應</a>
       <a class="item" href="#/candidate-list">候選人</a>
      <div class="right menu">
         <div class="item">

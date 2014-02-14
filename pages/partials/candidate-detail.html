@@ -112,52 +112,14 @@
   <div class="ui raised segment" id="candidate_segment" >
 
       <div class="right_menu fc-fix" id="taipei_candidates">
-        <div class="right_menu_city_header"><h3>台北市長候選人參與情況</h3></div>
+        <div class="right_menu_city_header"><h3>候選人摘要</h3></div>
 
       <div class="right_menu_list">
       <div class="ui divided list">
+        
         <div class="item">
-          <i class="user icon"></i>
-          <div class="content">
-            <a class="header">候選人：{{candidates.length}} 名</a>  
-          </div>
-        </div>
-        <div class="item">
-          <i class="sun icon"></i>
-          <div class="content">
-            <a class="header">願意加入：{{(candidates | filter:join).length}} 名</a>
-            <div><div class="right_menu_candidate_name" ng-repeat="n in candidates | filter:join">{{n.name}}{{$last ? '' : '、'}}</div></div>
-          </div>
-        </div>
-        <div class="item">
-          <i class="unhide icon"></i>
-          <div class="content">
-            <a class="header">意向不明：{{(candidates | filter:pending).length}} 名</a>
-            <div><div class="right_menu_candidate_name" ng-repeat="n in candidates | filter:pending">{{n.name}}{{$last ? '' : '、'}}</div></div>
-          </div>
-        </div>
-        <div class="item">
-          <i class="plane icon"></i>
-          <div class="content">
-            <a class="header">拒絕加入：{{(candidates | filter:refused).length}} 名</a>
-            <div><div class="right_menu_candidate_name" ng-repeat="n in candidates | filter:refused">{{n.name}}{{$last ? '' : '、'}}</div></div>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div><!-- end of city_info -->
 
-
-    
-    <div class="candidate_list"><!-- join -->
-      
-      <div class="candidate_list_title">
-         <h4 class="candidate_list_header">願意加入：我願意接受市民提問</h4>
-      </div>
-
-      <div class="candidate_collection">
-      <div class="candidate"
-           ng-repeat="n in candidates | filter:join"> 
+           <div class="candidate"> 
           <a href="#/candidate/{{n.id}}">
           <img class="rounded ui image candidate_img" ng-src="images/candidates/{{n.id}}.jpg" id="candidate_{{n.id}}" ng-click="candidateChoose()"></a>
           
@@ -179,74 +141,42 @@
 
 
       </div>
+
+
+
+         
+        </div>
       </div>
+      </div>
+    </div><!-- end of city_info -->
 
 
-    </div><!--end of candidate_list //joing -->
     
-    <div class="candidate_list"><!-- pending -->
+    <div class="candidate_list"><!-- join -->
       
-      <div class="candidate_list_title">
-         <h4 class="candidate_list_header">意向不明：尚未回覆</h4>
+      <div class="ui tabular filter menu">
+        <a class="active item">所有</a>
+        <a class="item">已回答</a>
+        <a class="item">未回答</a>
       </div>
 
-      <div class="candidate_collection">
-      <div class="candidate"
-           ng-repeat="n in candidates | filter:pending">
-          <a href="#/candidate/{{n.id}}">
-          <img class="rounded ui image candidate_img" ng-src="images/candidates/{{n.id}}.jpg"
-               id="candidate_{{n.id}}" ng-click="candidateChoose()"></a>
-      
-          <div class="progress_info_floating">
-            <a href="#/candidate/{{n.id}}">
-            <div class="progress_info_floating_text" 
-                 id="candidateName_{{n.id}}"
-            ng-click="candidateChoose()">{{n.name}}</div></a>
-          </div>
-
-          <div class="ask_to_join_button">要求{{n.name}}參賽</div>
-
-          <div class="progress_info_askToJoin">要求參賽
-            <div class="progress_info_askToJoin_text">{{n.askToJoin|number:0}}人</div>
-          </div>
-          <img class="circular ui image candidate_list_party" 
-           ng-src="images/{{n.partyEng}}.png"></img>
-   
-      </div>
-      </div>
-
-    </div><!--end of candidate_list //pending -->
-    
-    <div class="candidate_list"><!-- refused -->
-      
-      <div class="candidate_list_title">
-         <h4 class="candidate_list_header">拒絕加入：表示不願在此回答市民提問</h4>
-      </div>
- 
-      <div class="candidate_collection">
-      <div class="candidate"
-           ng-repeat="n in candidates | filter:refused">
-          <a href="#/candidate/{{n.id}}">
-          <img class="rounded ui image candidate_img" ng-src="images/candidates/{{n.id}}.jpg" id="candidate_{{n.id}}" ng-click="candidateChoose()"></a>
-      
-          <div class="progress_info_floating">
-            <a href="#/candidate/{{n.id}}">
-            <div class="progress_info_floating_text" 
-                 id="candidateName_{{n.id}}"
-                 ng-click="candidateChoose()">{{n.name}}</div></a>
-          </div>
-
-          <div class="ask_to_join_button">要求{{n.name}}參賽</div>
-
-          <div class="progress_info_askToJoin">要求參賽
-            <div class="progress_info_askToJoin_text">{{n.askToJoin|number:0}}人</div>
-          </div>
-          <img class="circular ui image candidate_list_party" 
-           ng-src="images/{{n.partyEng}}.png"></img>
-      </div>
-      </div>
-
-    </div><!--end of candidate_list //refused -->
+      <div class="question_list_item" ng-repeat="n in data | filter:query">
+        <div class="question_list_votes"  
+             ng-show="({{n.votes}}<1000)">{{n.votes}}</div>
+        <div ng-show="({{n.votes}}>=1000)" class="question_list_bow">爆</div>
+        <div class="question_list_date">{{n.date}}</div>
+        <!-- <img class="ui avatar image ask_who" src="images/logo.png"></img> -->
+        <div class="question_list_asker">{{n.asker}}</div>
+        <div class="question_list_title">{{n.title}}</div>
+        <div class="right floated tiny ui black button qustion_list_push_button">
+          推
+        </div>
+         <div class="right floated tiny ui button qustion_list_button">
+          <a href="#/question/{{n.id}}" class="question_list_a">完整內容</a>
+        </div>
+        
+        </div> <!-- end of question_list_item -->
+    </div><!--end of candidate_list -->
 
 
 

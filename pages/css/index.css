@@ -53,7 +53,7 @@
 }
 #announce_board{
   float:right;
-  width:500px;
+  width:550px;
   height: 150px;
   /*background: rgba(0,0,0,0.8) !important;*/
   
@@ -120,7 +120,9 @@
 /* ------------------------------------------------------------ */
 /* header */
 /* ------------------------------------------------------------ */
-
+.header_candidate_collection{
+  margin-top:20px;
+}
 .header_candidate{
   float:left;
   display: inline-block;
@@ -218,22 +220,18 @@ display: inline-block;
 
 .header_candidate_info{
   float:left;
+  font-size: 10px;
+  margin: 2px;
   width:100px;
-  height:18px;
+  background: rgba(255,255,255,0.9);
   color:white;
-  margin: 1px;
-  font-size: 14px;
-  
   padding-left:10px;
- 
   border-radius: 10px;
-  -webkit-box-shadow: #666 0px 2px 3px;
-  -moz-box-shadow: #666 0px 2px 3px;
-  box-shadow: #666 0px 2px 3px;
-  border:solid white 2px;
+  
   
 }
 .header_candidate_info_join{
+  margin-top:10px;
   background: #A1CF64;
 }
 .header_candidate_info_pending{
@@ -297,8 +295,79 @@ display: inline-block;
 .question_list_title{
   margin-top: 5px;
   float:left;
+  width:500px;
 
 }
+
+
+
+/* ------------------------------------------------------ */
+/* quesitoin_list_all */
+/* ------------------------------------------------------ */
+
+.question_list_candidate_response_state{
+  float:left;
+}
+.candidate_state{
+  display: inline-block;
+  float:left;
+  width:30px;
+  height:30px;
+  margin: 3px;
+  
+}
+.question_list_candidate_face{
+  border-radius: 3px;
+  width:30px;
+  height:30px;
+}
+.candidate_state_notAsked{
+  background: yellow;
+}
+.candidate_state_pending{
+  background:gray;
+}
+.candidate_state_responded{
+  background:green;
+}
+
+.state_bar_holder{
+  border-bottom: gray 1px solid;
+  width:1000px;
+  height:40px;
+  display: block;
+  top:0px;
+  left:0px;
+  position: relative;
+}
+.list_title_date{
+  display: inline;
+  margin-left: 50px;
+  font-size: 18px;
+}
+.list_title_question{
+  display: inline;
+  margin-left: 10px;
+  font-size: 18px;
+}
+.question_list_candidate_response_state2{
+  margin-left: 2px;
+  z-index: 1003; 
+}
+
+.candidate_state_notAsked{
+  background: white;
+}
+.candidate_state_pending{
+  background:#ef8a62;
+}
+.candidate_state_responded{
+  background:#91cf60;
+}
+
+
+/* ------- */
+
 .question_list_a,.question_list_a:hover,.question_list_a:visited{
   color:gray; 
 }
@@ -402,6 +471,7 @@ display: inline-block;
   margin:4px;
   position: relative;
 
+
 }
 .candidate_name{ 
   text-align: center;
@@ -422,9 +492,15 @@ display: inline-block;
 }
 .progress_info_floating_text{
   margin-left: 35px;
+  color:black;
+}
+.progress_info_floating_text:hover,.progress_info_floating_text:visited{
+  color:black;
 }
 .candidate_img{
   width:100px;
+  cursor: pointer;
+
 }
 
 .candidate_list_party{
@@ -580,10 +656,13 @@ display: inline-block;
 
 }
 
+/* ------------------------------------------------------------ */
+/*  response-detail */
+/* ------------------------------------------------------------ */
 
 #response-content{
   width:700px;
-  float:left;
+  height:1200px;
 }
 .response_main_text{
   width:650px;
@@ -592,38 +671,69 @@ display: inline-block;
   margin-bottom: 60px;
 
 }
+.response_header{
+  margin-bottom: 30px;
+  margin-left: 5px;
+  background: rgba(212,212,212,0.5);
+  padding: 5px;
+  border-radius: 5px;
+  height:60px;
+}
+.response_title{
+  margin-left:10px;
+  display: inline-block;
+}
+.response_header h2{
+  margin: 0px;
+}
+.response_subtitle{
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.response_photo{
+  float:left;
+}
+.response_candidate_face{
+  height: 60px;
+  width: 60px;
+}
+.face {
+  border-radius: 100%;
+}
+.circleborder {
+  border: 4px solid #d6d6d6;
+  padding:4px;
+  border-radius: 100%;
+  display: inline-block;
+  background: white;
+}
 
 
-.response_petition_item {
-margin-top: 10px;
-border:1px solid #d9d9d9;
-border-bottom:2px solid #bdbdbd;
-border-radius:5px;
-padding:10px;
-padding-bottom: 15px;
+.response_text a:hover{
+  color:yellow;
 }
-.response_petition_item .content{
-  margin-top: 5px;
-}
-.full_petition{
+.response_meta{
+  font-size: 10px;
   float:right;
-  
 }
-.float_right{
+#response_detail_right_menu{
+  width:300px;
+  margin-left:686px;
   float:right;
-  margin-right: 8px;
-  margin-top: 3px;
+  display: block;
+  z-index: 888;
 }
 
-
-
-#response_righ_menu{
-  margin-top: 20px;
-}
 #response_righ_menu a, #response_righ_menu a:hover, #response_righ_menu a:visited{
   color:#636363;
 }
-#propose_petition_button{
+
+.fr-fix{
+  position: absolute;
+  top:0px;
+}
+#i_wanna_ask_button{
   text-align: center;
 }
 
@@ -635,7 +745,41 @@ padding-bottom: 15px;
 #question_content{
   width:700px;
 }
+.question_sign_block{
+  width:100%;
+  margin:2px;
+  font-size: 10px;
+  border-bottom:  1px solid rgba(200,200,200,0.5);
+  float:left;
+  
+}
+.question_sign_order_block{
+  float:left;
+  width:80px;
+  
+}
+.question_sign_push{
+  color:yellow;
+  display: inline-block;
+  font-size: 14px;
+  background: rgba(89,94,99,1);
+  background: black;
+  padding: 2px;
+  border-radius: 5px;
+  width:18px;
+  height:18px;
+  text-align: center;
+}
+.question_sign_order{
+ font-size: 10px;
+ display: inline-block;
+}
 
+.question_sign_name{
+  width:100%;
+  padding-top:4px; 
+  
+}
 #sign-question{
   width:300px;
   margin-left:686px;
@@ -651,7 +795,7 @@ padding-bottom: 15px;
 }
 .f-fix{
   position: absolute;
-  top:-10px;
+  top:0px;
 }
 
 .question-progress {
@@ -667,7 +811,7 @@ padding-bottom: 15px;
     height: 10px;
     color: white;
 } 
-.promote_question{
+.promote_question{/* 分享這個提問 */
   width:100%;
   display:block;
 
@@ -682,9 +826,7 @@ padding-bottom: 15px;
   float:right;
   margin:2px;
 }
-.sign_rule{
-  color:gray;
-}
+
 .sign_rule:hover{
   /*color:#feb24c; */
 }
@@ -738,7 +880,7 @@ padding-bottom: 15px;
   text-transform:none;
 }
 .ask_question_candidate_block{
-  height:330px;
+  height:160px;
   width:1000px;
   display: block;
 }
@@ -772,7 +914,6 @@ padding-bottom: 15px;
   left:5;
   display: inline-block;
 }
-
 .ask_question_candidate:hover{
   
 }
@@ -782,183 +923,7 @@ padding-bottom: 15px;
  
 }
 
-
-/* SOIDID */
-.petition_name{
-  width:140px;
-  height:100px;
-
-}
-.petition_name p{
-  margin:1px;
-}
-#signature_end_divider{
-  margin-bottom:30px;
-}
-.support_reason{
-
-float:left;  
-}
-.pointing{
-  border:red;
-  
-}
-.comment_item{
-  border-bottom:1px solid #CCC;
-  padding-bottom:30px;
-  padding-top:20px;
-  padding-right: 10px;
-
-  
-}
-.comment_vote{
-  width:80px;
-  margin-top: 20px;
-  float:left;
-  text-align: center;
-}
-
-.response_header{
-  margin-bottom: 30px;
-}
-.response_header h2{
-  margin: 5px;
-}
-.response_photo{
-
-float:left;
-width:80px;
-
-}
-
-.face {
-border-radius: 100%;
-}
-
-.circleborder {
-border: 4px solid #A1CF64;
-padding:2px;
-border-radius: 100%;
-display: inline-block;
-}
-
-.response_info{
-
-height:40px;
-margin-left:60px;
-  width:600px;
-  vertical-align: middle;
-  
-  padding-top: 25px;
- 
-}
-.response_text{
-  /*border:solid 2px #A1CF64;*/
-  background: #A1CF64;
-  padding-left: 15px;
-  margin-left: 8px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-
-
-  
-}
-.response_text a, .response_text a:visited{
-  color:#636363;
-  
-}
-.response_text a:hover{
-  color:yellow;
-}
-.response_rate{
-  float:right;
-  margin-top: 5px;
-  vertical-align: middle;
-}
-.response_rate_stars{
-  float:left;
-  margin-right:8px;
-}
-
-
-
-.response_meta{
-  font-size: 10px;
-  float:right;
-
-
-}
-
-
-
-.response_comment_vote{
-
-  width:80px;
-  margin-top: 10px;
-  float:left;
-  text-align: center;
-
-}
-.vote_up,.vote_down{
-  cursor: pointer;
-}
-.add_comment{
-  margin-top: 20px;
-}
-.post_comment_button{
-  margin-top: 20px;
-}
-.comment_vote img{
-  margin:0px;
-  cursor: pointer;
-}
-.comment_vote_num{
-  margin:0px;
-  font-size: 30px;
-  font-family: Cabin bold;
-}
-.comment_content{
-  
-  padding-left:5px;
-  margin-left:85px;
-  width:580px;
-
-  
-  margin-top: 10px;
-}
-.comment_description{
-  margin-bottom: 20px;
-}
-.share_comment{
- 
-  font-size: 10px;
-  width:90px;
-  float:left;
-  cursor: pointer;
-  
-}
-
-.comment_meta{
-  text-align: right;
-  float:right;
-  width:480px;
-  font-size: 10px;
-  cursor: pointer;
-}
-
-
-.date{
-  color:gray;
-  
-}
-
-.ask_to_join_bar {
-    background: #de2d26;
-    height: 10px;
-    color: white;
-
-}
-
+/*
 span {
     position: absolute;
     top: 10px;
@@ -968,15 +933,7 @@ span {
     text-align: center;
     width: 100%;
 }
-.support_num{
-   color:#302C29;
-   vertical-align:bottom;
-
-}
-.more_botton{
-   color:green;
-   vertical-align:bottom;
-}
+*/
 
 /*******************************
             Global

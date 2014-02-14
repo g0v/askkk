@@ -79,6 +79,7 @@
 
   </div>
 
+
   <!-- ////////////////////////////////////////////////////////////// -->
 
   <div id="navigation">
@@ -86,108 +87,86 @@
       <a class="item" href="index.html">
         <i class="home icon"></i>
       </a>
-
-      <a class="active item" href="#/ask-question">發問</a>
+      <a class="item" href="#/ask-question">發問</a>
       <a class="item" href="#/question-list">瀏覽問題</a>
-      <a class="item" href="#/response-list-latest">瀏覽回應</a>
+      <a class="active item" href="#/reponse-list">瀏覽回應</a>
       <a class="item" href="#/candidate-list">候選人</a>
       <div class="right menu">
         <div class="item">
           <a href="#/login">登入</a>
-        </div>
-
-
+        </div>       
       </div>
-
     </div>
-
   </div>
 
 
   <!-- ////////////////////////////////////////////////////////////// -->
 
 
+
   <div id="content">
 
-
-
-
-
-    <div class="ui form segment">
-      <h2 class="ui header">
-        公民提問
-      </h2>
-
-
-      <div class="ui divider"></div>
-      <form name="form">
-      <div class="field">
-        <h4>1. 提問對象</h4>
-        <div class="ui pointing below label">想對哪位候選人提問呢？</div>
-        <div class="ask_question_candidate_block">
-
-          <div class="ask_question_candidate" 
-               id="candidate_{{n.id}}"
-               ng-repeat="n in candidates" ng-click="toggleCandidate($index)">
-            <div class="ask_question_text" id="candidateName_{{n.id}}">{{n.name}}</div>
-            <img class="rounded ui image candidate_img" ng-src="images/candidates/{{n.id}}.jpg" width="80px">
-            <img class="ask_question_check" src="images/check.png" width="30px">
-            <div class="ask_question_text">{{n.party}}</div>
-
-          </div>
-           <div class="ask_question_candidate" 
-               id="candidate_all"
-               ng-click="toggleAllCandidate()">
-            <div class="ask_question_text" id="ask_all_candidate_hint_1">每個都想問</div>
-            <img class="rounded ui image candidate_img" src="images/watchout_animal.jpg" width="80px">
-            <div class="ask_question_text" id="ask_all_candidate_hint_2">按我全選吧</div>
-
-          </div>
-
-        </div>
-        
-
-        </div>
-      <div class="field">
-        <h4>2. 問題簡述</h4>
-        <div class="ui pointing below label">一個簡短清楚的問題簡述，將有助於其他人瀏覽及連署你的提問！
-        <span class="error" 
-              ng-show="form.questionTitle.$error.required && !form.questionTitle.$pristine">
-          為必填欄位</span><br>
-        </div>
-        <div class="ui input">
-          <input type="text" 
-                 placeholder="例如：請問是否有綠卡？"
-                 name="questionTitle"
-                 ng-model="newQuestionTitle" 
-                 required>
-        </div>
-        
-      </div>
-
-      <div class="field question_field">
-        <h4>3. 問題分類</h4>
-        <div class="ui pointing below label">至多選擇三個相關分類</div>
-
-        <div class="category_item_collection">
-            <div class="column category_item" ng-repeat="category in categories">
-              <div class="category_div">
-                <input type="checkbox" class="category" value="{{category}}">{{category}}
-              </div>
-        </div>
-        </div>
-      </div>
-
-      <div class="field question_field">
-        <h4>4. 完整說明</h4>
-        <div class="ui pointing below label">您可以在這裡進一步說明您的問題</div>
-        <textarea ng-model="newQuestionContent"></textarea>
-      </div>
-
-
-      <div class="ui small black submit button" ng-click="postQuestion()">提出問題</div>
-    </div><!-- end of form -->
+    <div class="ui right floated tiny black button" id="category_field">
+      <i class="arrow sign down icon"></i>類別
     </div>
-  </div> <!-- end of content -->
-</div> <!--end of wrapper -->
+    <div class="ui small icon input" id="search_field">
+        <input type="text" placeholder="關鍵字搜尋" ng-model="query">
+    </div>
+
+    <div class="ui tabular filter menu">
+      <a class="active item">最新</a>
+      <a class="item" href="#/response-list">所有</a>
+      <a class="item">熱門</a>
+      <a class="item">置頂</a>
+      
+    </div>
+
+    <div class="ui segment" >
+        <div class="question_list_item" ng-repeat="n in data | filter:query">
+        <!-- 
+        <div class="right floated tiny teal ui button">
+          <a href="#/question/{{n.id}}" class="question_list_a">完整內容</a>
+        </div>
+        -->
+       
+  
+        <div class="question_list_votes"  
+             ng-show="({{n.votes}}<1000)">{{n.votes}}</div>
+        <div ng-show="({{n.votes}}>=1000)" class="question_list_bow">爆</div>
+        <div class="question_list_date">{{n.date}}</div>
+        <!-- <img class="ui avatar image ask_who" src="images/logo.png"></img> -->
+        <div class="question_list_asker">{{n.responser}}</div>
+        <div class="question_list_title">{{n.title}}</div>
+        <div class="right floated tiny ui black button qustion_list_push_button">
+          推
+        </div>
+         <div class="right floated tiny ui button qustion_list_button">
+          <a href="#/response/{{n.id}}" class="question_list_a">完整內容</a>
+        </div>
+        
+        </div> <!-- end of question_list_item -->
+      
+    </div>
+
+    <div class="ui divider"></div>
+    <center>
+
+      <div class="ui pagination menu">
+        <a class="icon item"><i class="icon left arrow"></i></a>
+        <a class="active item">1</a>
+        <a class="item">2</a>
+        <a class="item">3</a>
+        <a class="item">4</a>
+        <a class="item">5</a>
+        <div class="disabled item">...</div>
+        <a class="item">10</a>
+        <a class="item">11</a>
+        <a class="item">12</a>
+        <a class="icon item"><i class="icon right arrow"></i></a>
+      </div>
+    </center>
+  </div>
+
+
+
 

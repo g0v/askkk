@@ -88,7 +88,7 @@
       </a>
       <a class="item" href="#/ask-question">發問</a>
       <a class="active item" href="#/question-list">瀏覽問題</a>
-      <a class="item" href="#/response-list">瀏覽回應</a>
+      <a class="item" href="#/response-list-latest">瀏覽回應</a>
       <a class="item" href="#/candidate-list">候選人</a>
       <div class="right menu">
         <div class="item">
@@ -111,20 +111,31 @@
           <div class="ui divider"></div>
 
           <div class="question_sign_area">
-            <h2>簽名</h2>
-            <p>Signatures: {{data.signature.length}} of {{data.signature.length}}</p>
-             <div class="ui pointing below blac label petition_name">
-              <p>提問人</p>
-              <p>{{data.asker.lastName}}{{data.asker.firstName}}</p>
-              <p>{{data.asker.city}}/{{data.asker.district}}</p>
-              <p>{{data.date}}</p>
-              <p>Signature #1</p>
+            <h2>共同發問者 / 推文支持者
+              <div class="ui pointing below label">{{data.signature.length}}</div>
+            </h2>
+          
+             <div class="question_sign_block">
+              <div class="question_sign_order_block">
+                <div class="question_sign_push">推</div>
+                <div class="question_sign_order">#1</div>
+              </div>
+              <div class="question_sign_name"><b>提問人</b>
+                   {{data.asker.lastName}}{{data.asker.firstName}} |
+                   {{data.asker.city}}/{{data.asker.district}} | 
+                   {{data.date}}
+              </div>
             </div>
-            <div class="ui pointing below blac label petition_name" ng-repeat="n in data.signature">
-              <p>{{n.lastName}}{{n.firstName}}</p>
-              <p>{{n.city}}/{{n.district}}</p>
-              <p>{{n.date}}</p>
-              <p>Signature #{{n.order}}</p>
+            <div class="question_sign_block" ng-repeat="n in data.signature">
+              <div class="question_sign_order_block">
+                <div class="question_sign_push">推</div>
+                <div class="question_sign_order">#{{n.order|number:0}}</div>
+              </div>
+              <div class="question_sign_name">
+              {{n.lastName}}{{n.firstName}} |
+              {{n.city}}/{{n.district}} |
+              {{n.date}}
+              </div>
             </div>
            
 
@@ -140,25 +151,24 @@
 <div id="sign-question" class="f-fix">
 
           <div class="ui small form segment sign-penal">
-            <h1>連署這個提問</h1>
-            <p>已有 2,533 人支持</p>
-            <div class="sign-num"><p>截至 2014 年 6 月 3 日前，尚需 1,233 人連署</p>
-              <p><a href="#" class="sign_rule">連署門檻說明</a></p></div>
+            <h1>支持這個提問</h1>
+            <p>已有 {{data.signature.length}} 人推文支持</p>
+            <div class="sign-num">
+              <p>截至 {{data.deadline}}前，尚需 {{1000-data.signature.length}} 人推文</p>
+            </div>
             <div class="question-progress">
-              <div class="question-bar" style="width: 65%;"></div>
+              <div class="question-bar" 
+                   style="width: {{data.signature.length/1000*100|number:0}}%;"></div>
 
             </div>
 
             <div class="sign_area">
-
-
-
               <div class="field">
                 <div class="ui red button">
                   <i class="check icon"></i>
-                  我要連署
+                  我要推文支持
                 </div>
-                <div class="sign_note">Note: When you sign this petition, your first name, last initial and city and state will be publicly displayed on the petition page. Once you sign a petition, your signature cannot be removed.</div>
+                <div class="sign_note">每則提問有 30 天的時間可被連署，若提問在期限內達到 1,000 人次連署支持，候選人就必須回應。</div>
 
                 <div class="promote_question">
                   分享這個提問：

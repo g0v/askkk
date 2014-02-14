@@ -114,37 +114,63 @@
     </div>
 
     <div class="ui tabular filter menu">
-      <a class="active item" data-tab="all">所有</a>
-      <a class="item" data-tab="new">最新</a>
-      <a class="item" data-tab="popular">熱門</a>
-      <a class="item" data-tab="fix-top">置頂</a>
+      <a class="item" href="#/response-list-latest">最新</a>
+      <a class="active item">所有</a>
+      <a class="item">熱門</a>
+      <a class="item">置頂</a>
       
     </div>
 
-    <div class="ui segment" >
+
+    
+
+
+    <div class="ui segment">
+      <!-- -->
+      <div class="state_bar_holder">
+    <div class="question_list_candidate_response_state">
+      <div class="candidate_state" ng-repeat="n in candidates">
+         <img class="question_list_candidate_face" 
+              ng-src="images/candidates_avatar/{{n.id}}.jpg"></img>
+      </div>
+          <div class="list_title_date">日期</div>
+          <div class="list_title_question">問題</div>
+    </div>
+
+    </div>
+    
+    <!-- -->
+
+
+     
         <div class="question_list_item" ng-repeat="n in data | filter:query">
-        <!-- 
-        <div class="right floated tiny teal ui button">
-          <a href="#/question/{{n.id}}" class="question_list_a">完整內容</a>
-        </div>
-        -->
        
+        <div class="question_list_candidate_response_state">
+          <div ng-repeat="a in n.state"
+               class="candidate_state candidate_state_{{a.item}}" 
+               >
+          </div>
+
   
         <div class="question_list_votes"  
              ng-show="({{n.votes}}<1000)">{{n.votes}}</div>
         <div ng-show="({{n.votes}}>=1000)" class="question_list_bow">爆</div>
         <div class="question_list_date">{{n.date}}</div>
         <!-- <img class="ui avatar image ask_who" src="images/logo.png"></img> -->
-        <div class="question_list_asker">{{n.responser}}</div>
         <div class="question_list_title">{{n.title}}</div>
+
+
+
+        </div>
         <div class="right floated tiny ui black button qustion_list_push_button">
           推
         </div>
          <div class="right floated tiny ui button qustion_list_button">
-          <a href="#/question/{{n.id}}" class="question_list_a">完整內容</a>
+          <a href="#/response/{{n.id}}" class="question_list_a">完整內容</a>
         </div>
         
         </div> <!-- end of question_list_item -->
+      
       
     </div>
 

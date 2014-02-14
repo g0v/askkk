@@ -20,13 +20,25 @@ askApp.config(['$routeProvider','$locationProvider',
       templateUrl: 'partials/question-detail.html',
       controller: 'questionDetailCtrl'
     }).
+      when('/response-list-latest',{
+      templateUrl: 'partials/response-list-latest.html',
+      controller: 'responseListLatestCtrl'
+    }).
       when('/response-list',{
       templateUrl: 'partials/response-list.html',
       controller: 'responseListCtrl'
     }).
+      when('/response/:responseId',{
+      templateUrl: 'partials/response-detail.html',
+      controller: 'responseDetailCtrl'
+    }).
       when('/candidate-list',{
       templateUrl: 'partials/candidate-list.html',
       controller: 'candidateListCtrl'
+    }).
+      when('/candidate/:candidateId',{
+      templateUrl: 'partials/candidate-detail.html',
+      controller: 'candidateDetailCtrl'
     }).
       when('/login',{
       templateUrl: 'partials/login.html',
