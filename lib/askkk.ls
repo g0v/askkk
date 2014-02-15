@@ -1,3 +1,4 @@
+{keys} = require 'prelude-ls'
 Firebase = require \firebase
 
 class AskKK
@@ -6,8 +7,8 @@ class AskKK
     if not base-url
       throw new Error "Invalid base URL provided."
     @_firebase = new Firebase base-url
-
-  login: ->
+    @_user-id = 1
+    @_candidate-id = 1
 
   /**
    * Set candidate info.  If there is a candidate of the
@@ -80,11 +81,26 @@ class AskKK
       on-complete!
 
   /**
-   * Ask a question on behalf of the login user.
-   * Example: askKK.ask({title: 'Why not eat cake?', candidates: [1, 2, 3], description: 'If they cannot eat bread, why not eat cake?'})
+   * Post a question.
    */
-  ask: ({title, candidates, description}) ->
-    candidates-ref = @_firebase.child '/candidates'
+  post: ({title, candidates, story}, on-complete) ->
+    unless @_user-id
+      throw new Error "Need to be a user to post question."
+    question-ref = @_firebase.child \questions .push!
+    user-posts-ref = @_firebase.child \user_posts .child @_user-id
+    candidate-posts-ref = @_firebase.child \candidate_posts
+
+    data = {
+      id: question-ref.name!
+      author: @_user-id,
+      title, candidates, story}
+
+    (error) <- question-ref.set data
+    throw new Error "Error posting question: #{error}" if error
+    <- user-posts-ref.child question-ref.name! .set true
+    for c in keys candidates
+      <- candidate-posts-ref.child c .child question-ref.name! .set true
+    on-complete data
 
   /**
    * Sign a question to agree that it should be answered.
@@ -92,7 +108,7 @@ class AskKK
   sign: ->
 
   /**
-   * Answer a question on behalf of the login candidate.
+   * Answer a question.
    */
   answer: ->
 
