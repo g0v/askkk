@@ -6,10 +6,7 @@ newPetition = function(onComplete){
   return ask.createPetition({
     title: 'hello, world!',
     story: 'Let us all say hello!',
-    candidates: {
-      1: true,
-      2: true
-    }
+    candidates: ["-JFuCKMKOH_eCspPxRe1", "-JFuCJcAoUNFQY9NEHZ4"]
   }, function(data){
     return onComplete(data.id);
   });

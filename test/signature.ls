@@ -5,9 +5,7 @@ new-petition = (on-complete) ->
   data <- ask.create-petition {
     title: 'hello, world!',
     story: 'Let us all say hello!',
-    candidates:
-      1: true
-      2: true
+    candidates: ["-JFuCKMKOH_eCspPxRe1" "-JFuCJcAoUNFQY9NEHZ4"]
   }
   on-complete data.id
 

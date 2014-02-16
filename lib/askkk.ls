@@ -96,14 +96,15 @@ class AskKK
 
     data = {
       id: petition-ref.name!
-      author: @_user-id,
-      title, candidates, story
+      author: @_user-id
+      candidates: (candidates.map -> [it, true]) |> pairs-to-obj
+      title, story
     }
 
     (error) <- petition-ref.set data
     throw new Error "Error created a petition: #{error}" if error
     user-petition-ref.child petition-ref.name! .set true
-    for ca in keys candidates
+    for ca in candidates
       candidate-meta-ref.child ca .child \petitions .child petition-ref.name! .set true
     petition-index-ref.child \open .child petition-ref.name! .set true
 
