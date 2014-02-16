@@ -81,36 +81,39 @@ class AskKK
       on-complete!
 
   /**
-   * Post a question.
+   * Create a petition.
    */
-  post: ({title, candidates, story}, on-complete) ->
-    unless @_user-id
-      throw new Error "Need to be a user to post question."
-    question-ref = @_firebase.child \questions .push!
-    user-posts-ref = @_firebase.child \user_posts .child @_user-id
-    candidate-posts-ref = @_firebase.child \candidate_posts
+  create-petition: ({title, candidates, story}, on-complete) ->
+    throw new Error "Need to be a user to create a petition." unless @_user-id
 
-    data = {
-      id: question-ref.name!
+    petition-ref = @_firebase.child \petitions .push!
+    user-petition-ref = @_firebase.child \user_meta .child @_user-id .child \petitions
+    candidate-meta-ref = @_firebase.child \candidate_meta
+    petition-index-ref = @_firebase.child \petition_index
+
+    data =
+      id: petition-ref.name!
       author: @_user-id,
-      title, candidates, story}
+      title, candidates, story
 
-    (error) <- question-ref.set data
-    throw new Error "Error posting question: #{error}" if error
-    <- user-posts-ref.child question-ref.name! .set true
-    for c in keys candidates
-      <- candidate-posts-ref.child c .child question-ref.name! .set true
+    (error) <- petition-ref.set data
+    throw new Error "Error created a petition: #{error}" if error
+    user-petition-ref.child petition-ref.name! .set true
+    for ca in keys candidates
+      candidate-meta-ref.child ca .child \petitions .child petition-ref.name! .set true
+    petition-index-ref.child \open .child petition-ref.name! .set true
+
     on-complete data
 
   /**
-   * Sign a question to agree that it should be answered.
+   * Sign an open petition to agree that it should be answered.
    */
   sign: ->
 
   /**
-   * Answer a question.
+   * Respond to a petition.
    */
-  answer: ->
+  respond: ->
 
   /**
    * Vote an answer as good/not good.
