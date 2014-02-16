@@ -163,6 +163,16 @@ class AskKK
   /**
    * Vote an answer as good/not good.
    */
-  vote: ->
+  vote: (response-id, updown = null, on-complete) ->
+    response-ref = @_firebase.child "responses/#{response-id}/votes" .child if updown == \up
+    then \up
+    else \down
+    response-meta-ref = @_firebase.child "response_meta/#{response-id}/votes/#{updown}/#{@_user-id}"
+    user-meta-ref = @_firebase.child "user_meta/#{@_user-id}/votes/#{response-id}"
+    error, committed, snapshot <- response-ref.transaction (current-value) -> current-value + 1
+    return on-complete error if error
+    error <- response-meta-ref.set true
+    error <- user-meta-ref.set updown
+    on-complete error
 
 module.exports.AskKK = AskKK
