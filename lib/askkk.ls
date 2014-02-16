@@ -11,6 +11,7 @@ class AskKK
       throw new Error "No Firebase provided."
     @_user-id = 1
     @_candidate-id = 1
+    @_petition-threshold = 1000
 
   /**
    * Set candidate info.  If there is a candidate of the
@@ -121,17 +122,24 @@ class AskKK
    */
   sign: (id, on-complete) ->
     throw new Error "Need to be a user to sign a petition." unless @_user-id
+    petition-ref = @_firebase.child \petitions .child id
     petition-meta-ref = @_firebase.child \petition_meta .child id
     signature-ref = petition-meta-ref.child \signatures .child @_user-id
+    passed-ref = @_firebase.child \petition_index/passed .child id
 
-    (snapshot) <- signature-ref.on \value
+    (snapshot) <- signature-ref.once \value
     return on-complete null if snapshot.val!
 
     (error) <- signature-ref .set true
     on-complete error if error
 
-    error, committed, snapshot <- petition-meta-ref.child \signatures/total .transaction (current-value) -> current-value + 1
-    on-complete snapshot.val!
+    error, committed, snapshot <- petition-ref.child \signatures .transaction (current-value) -> current-value + 1
+    return on-complete error if error
+    return on-complete null if snapshot.val! < @_petition-threshold
+    error <- passed-ref.set true
+    return on-complete error if error
+    error <- petition-ref.child \status/passed .set true
+    on-complete error
 
   /**
    * Respond to a petition.
