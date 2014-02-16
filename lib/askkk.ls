@@ -1,4 +1,4 @@
-{keys} = require 'prelude-ls'
+{keys, pairs-to-obj} = require 'prelude-ls'
 Firebase = require \firebase
 
 class AskKK
@@ -144,7 +144,20 @@ class AskKK
   /**
    * Respond to a petition.
    */
-  respond: ->
+  respond: ({content, petitions}, on-complete) ->
+    response-ref = @_firebase.child \responses .push!
+    petitions-ref = @_firebase.child \petitions
+    data = {
+      id: response-ref.name!
+      cantitate: @_candidate-id
+      petitions: (petitions.map -> [it, true]) |> pairs-to-obj
+      content
+    }
+    error <- response-ref.set data
+    on-complete error if error
+    for p in petitions
+      petitions-ref.child p .child \responses .child response-ref.name! .set true
+    on-complete null, data
 
   /**
    * Vote an answer as good/not good.
