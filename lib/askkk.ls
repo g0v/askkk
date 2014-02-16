@@ -2,11 +2,13 @@
 Firebase = require \firebase
 
 class AskKK
-  (base-url) ->
-    @_firebase = null
-    if not base-url
-      throw new Error "Invalid base URL provided."
-    @_firebase = new Firebase base-url
+  ({firebase-url = null, firebase = null}) ->
+    if firebase
+      @_firebase = firebase
+    else if firebase-url
+      @_firebase = new Firebase base-url
+    else
+      throw new Error "No Firebase provided."
     @_user-id = 1
     @_candidate-id = 1
 
@@ -91,10 +93,11 @@ class AskKK
     candidate-meta-ref = @_firebase.child \candidate_meta
     petition-index-ref = @_firebase.child \petition_index
 
-    data =
+    data = {
       id: petition-ref.name!
       author: @_user-id,
       title, candidates, story
+    }
 
     (error) <- petition-ref.set data
     throw new Error "Error created a petition: #{error}" if error
@@ -106,9 +109,29 @@ class AskKK
     on-complete data
 
   /**
-   * Sign an open petition to agree that it should be answered.
+   * Get petition info
    */
-  sign: ->
+  get-petition: (id, on-complete) ->
+    (snapshot) <- @_firebase.child \petitions .child id .on \value
+    on-complete snapshot.val!
+
+  /**
+   * Sign an open petition to agree that it should be answered.
+   * Example: sign('-JFsstiW6QzJkRG3kh09', function (error) {})
+   */
+  sign: (id, on-complete) ->
+    throw new Error "Need to be a user to sign a petition." unless @_user-id
+    petition-meta-ref = @_firebase.child \petition_meta .child id
+    signature-ref = petition-meta-ref.child \signatures .child @_user-id
+
+    (snapshot) <- signature-ref.on \value
+    return on-complete null if snapshot.val!
+
+    (error) <- signature-ref .set true
+    on-complete error if error
+
+    error, committed, snapshot <- petition-meta-ref.child \signatures/total .transaction (current-value) -> current-value + 1
+    on-complete snapshot.val!
 
   /**
    * Respond to a petition.
