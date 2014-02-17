@@ -7,17 +7,19 @@ describe('Candidate', function(){
   return describe('get', function(){
     var x$;
     x$ = it;
-    x$('should get candidate info for given id.', function(){
+    x$('should get candidate info for given id.', function(done){
       return ask.getCandidate("-JFxrKQo3Qg19zsW73b1", function(data){
         assert.equal(data["state"], 'join');
-        return assert.equal(data["partyEng"], 'NONE');
+        assert.equal(data["partyEng"], 'NONE');
+        return done();
       });
     });
-    x$('should get all candidate info when id is null', function(){
+    x$('should get a list of all candidate info when id is null', function(done){
       return ask.getCandidate(null, function(data){
         assert.equal(keys(data).length, 6);
-        assert.equal(data["-JFuCKMKOH_eCspPxRe1"].name, '連勝文');
-        return assert.equal(data["-JFxrKQo3Qg19zsW73b1"].name, '馮光遠');
+        assert.equal(data[0].name, '柯文哲');
+        assert.equal(data[1].name, '連勝文');
+        return done();
       });
     });
     return x$;

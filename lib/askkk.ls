@@ -1,4 +1,4 @@
-{keys, pairs-to-obj} = require 'prelude-ls'
+{keys, values, pairs-to-obj} = require 'prelude-ls'
 Firebase = require \firebase
 
 class AskKK
@@ -6,7 +6,7 @@ class AskKK
     if firebase
       @_firebase = firebase
     else if firebase-url
-      @_firebase = new Firebase base-url
+      @_firebase = new Firebase firebase-url
     else
       throw new Error "No Firebase provided."
     @_user-id = 1
@@ -25,10 +25,14 @@ class AskKK
    * Get candidate info from id.
    * Candidates ID are maintained by administrators.
    */
-  get-candidate: (id, on-complete) ->
-    candidate-ref = @_firebase.child \/candidates .child id
+  get-candidate: (id = null, on-complete) ->
+    candidate-ref = if id
+      then @_firebase.child \/candidates .child id
+      else @_firebase.child \/candidates
     snapshot <- candidate-ref.on \value
-    on-complete snapshot.val!
+    on-complete if id
+      then snapshot.val!
+      else values snapshot.val!
 
   /**
    * Update candidate info.  If there is a candidate of the

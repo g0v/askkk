@@ -4,13 +4,15 @@ require! \assert
 
 describe \Candidate, ->
   describe \get, (,) -> it
-    .. 'should get candidate info for given id.', ->
+    .. 'should get candidate info for given id.', (done) ->
       data <- ask.get-candidate "-JFxrKQo3Qg19zsW73b1"
       assert.equal data["state"], \join
       assert.equal data["partyEng"], \NONE
+      done!
 
-    .. 'should get all candidate info when id is null', ->
+    .. 'should get a list of all candidate info when id is null', (done) ->
       data <- ask.get-candidate null
       assert.equal (keys data).length, 6
-      assert.equal data["-JFuCKMKOH_eCspPxRe1"].name, \連勝文
-      assert.equal data["-JFxrKQo3Qg19zsW73b1"].name, \馮光遠
+      assert.equal data[0].name, \柯文哲
+      assert.equal data[1].name, \連勝文
+      done!
