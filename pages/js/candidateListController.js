@@ -33,13 +33,6 @@ $scope.setCandidateJS = function(){
   
   
 }
-$scope.candidateChoose = function(id){
-  var id_number = $(this);
-  console.log(id);
-  //attr("id").split('_')[1];
-
-  //window.location = ("#/candidate/"+id);
-}
 
 
 

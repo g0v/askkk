@@ -1,0 +1,248 @@
+﻿<div id="wrapper">
+  <div id="top">
+    <div id="header">
+      <div class="main_title">
+        <h1> 市長，給問嗎？</h1>
+        <div class="ui pointing below label">整個城市，都是我的質詢台</div>
+      </div>
+    </div>
+
+  <div id="announce_board">
+ 
+    <div class="header_candidate_collection">
+    <div class="header_candidate" 
+         ng-repeat="n in candidates | filter:'join'">
+      <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
+      <div class="header_candidate_photo">
+      <div class="header_candidate_circleborder_{{n.state}}">
+      <img class="circular ui image header_candidate_face" ng-src="images/candidates_avatar/{{n.id}}.jpg"></img>
+      </div>
+      <img class="circular ui image header_candidate_party header_candidate_party_{{n.partyEng}}" 
+           ng-src="images/{{n.partyEng}}.png"></img>
+      </div>
+    </div>
+    
+    <div class="header_candidate" 
+         ng-repeat="n in candidates | filter:'pending'">
+      <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
+      <div class="header_candidate_photo">
+      <div class="header_candidate_circleborder_{{n.state}}">
+      <img class="circular ui image header_candidate_face" ng-src="images/candidates_avatar/{{n.id}}.jpg"></img>
+      </div>
+      <img class="circular ui image header_candidate_party header_candidate_party_{{n.partyEng}}" 
+           ng-src="images/{{n.partyEng}}.png"></img>
+      </div>
+    </div>
+
+
+     
+    <div class="header_candidate" 
+         ng-repeat="n in candidates | filter:'refused'">
+      <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
+      <div class="header_candidate_photo">
+      <div class="header_candidate_circleborder_{{n.state}}">
+      <img class="circular ui image header_candidate_face" 
+      ng-src="images/candidates_avatar/{{n.id}}.jpg"></img>
+      </div>
+      <img class="circular ui image header_candidate_party header_candidate_party_{{n.partyEng}}" 
+           ng-src="images/{{n.partyEng}}.png"></img>
+      </div>
+    </div>
+
+
+
+
+    
+     
+     
+     
+
+  </div><!-- end of header_candidate_collection -->
+
+<div class="header_candidate_info header_candidate_info_join">
+      願意加入：{{(candidates | filter:'join').length}} 名
+    </div>
+
+<div class="header_candidate_info header_candidate_info_pending">
+      意向不明：{{(candidates | filter:'pending').length}} 名
+    </div>
+
+     <div class="header_candidate_info header_candidate_info_refused">
+      拒絕加入：{{(candidates | filter:'refused').length}} 名
+    </div>
+
+
+  </div><!-- end of announce_board -->
+
+
+
+
+
+  </div>
+
+
+      <!-- ////////////////////////////////////////////////////////////// -->
+
+      <div id="navigation">
+    <div class="ui inverted menu">
+      <a class="item" href="index.html">
+        <i class="home icon"></i>
+      </a>
+      <a class="item" href="#/ask-question">發問</a>
+      <a class="item" href="#/question-list">集氣中</a>
+      <a class="item" href="#/response-list">已達門檻</a>
+      <a class="item" href="#/candidate-list">候選人表現</a>
+      <a class="active item" href="#/candidate-list">候選人登入</a>
+      <div class="right menu">
+        <div class="item">
+          <a href="#/login">登入</a>
+        </div>       
+      </div>
+    </div>
+  </div>
+      
+
+      <!-- ////////////////////////////////////////////////////////////// -->
+
+<div class="ui large inverted vertical sidebar menu">
+    <div class="item">
+      <b>科文哲</b>
+       <div class="menu">
+        <a class="item">
+          臺北市長參選人
+        </a>
+      </div>
+    </div>
+
+    <div class="item">
+      <b><i class="settings icon"></i>修改密碼</b>
+      
+
+     <div class="ui form segment">
+      <div class="field">
+        <label>原密碼</label>
+        <div class="ui left labeled icon input">
+          <input type="password">
+          <i class="lock icon"></i>
+        </div>
+      </div>
+      <div class="field">
+        <label>新密碼</label>
+        <div class="ui left labeled icon input">
+          <input type="password">
+          <i class="lock icon"></i>
+        </div>
+      </div>
+      <div class="field">
+        <label>確認新密碼</label>
+        <div class="ui left labeled icon input">
+          <input type="password">
+          <i class="lock icon"></i>
+        </div>
+      </div>
+      <div class="ui submit tiny teal button" ng-click="changePassword()">確認修改</div>
+    </div>
+    </div>
+   
+  </div><!-- end of side menu -->
+
+  <!-- //////////// -->
+
+  <div class="ui celled grid">
+    <div class="seven wide middle column">
+      <div class="ui right floated black launch tiny button">
+        <i class="list layout icon"></i> Menu
+      </div>
+      <h2 class="ui header">
+        <i class="inbox icon"></i>
+        Inbox / 市民心聲
+      </h2>
+      <div class="ui tabular filter menu">
+        <a class="active item">尚未回覆</a>
+        <div class="candidate_detail_tab" ng-click="inboxAnswered()"><a class="item">已回覆</a></div>
+      </div>
+
+      <div id="unreplied">
+        <div class="candidate_inbox_list_item" ng-repeat="n in data | filter:query">
+           <div class="candidate_inbox_list_votes">{{n.votes|number:0}}</div>
+           <div class="candidate_inbox_list_date">{{n.date}}</div>
+           <div class="candidate_inbox_list_title">{{n.title}}</div>
+         </div>
+      </div> <!-- end of question_list_item -->
+
+
+      <div id="replied">
+        <div class="candidate_inbox_list_item" ng-repeat="n in replied_data | filter:query">
+           <div class="candidate_inbox_list_votes">{{n.votes|number:0}}</div>
+           <div class="candidate_inbox_list_date">{{n.date}}</div>
+          <div class="candidate_inbox_list_title">{{n.title}}</div>
+         </div>
+       </div>
+
+      <div class="candidate_inbox_page">
+           <div class="ui pagination menu">
+             <a class="icon item"><i class="icon left arrow"></i></a>
+             <a class="active item">1</a>
+             <a class="item">2</a>
+             <a class="item">3</a>
+             <a class="icon item"><i class="icon right arrow"></i></a>
+           </div>
+      </div>
+    </div>
+
+<!-- 內容 -->
+    <div class="nine wide right column">
+
+       <div class="addressed_to_candidate_text">本題詢問市長候選人：</div>
+          <div class="addressed_to_candidate_collection">
+          <div ng-repeat="k in detail.addressedTo | filter:'answered'"
+               class="addressed_to_candidate">
+               <a href="#/candidate/{{k.id}}">
+               <img class="ui image addressed_to" 
+                    ng-src="images/candidates_avatar/{{k.id}}.jpg"></img></a>
+          </div>
+          <div ng-repeat="k in detail.addressedTo | filter:'pending'"
+               class="addressed_to_candidate">
+               <a href="#/candidate/{{k.id}}">
+               <img class="ui image addressed_to" 
+                    ng-src="images/candidates_avatar_bw/{{k.id}}.jpg"></img></a>
+          </div>
+          </div>
+ 
+      <div class='candidate_inbox_detail_title'>
+          <h3 class="ui header">{{detail.title}}</h3>
+      </div>
+      類別：<a class="ui label" ng-repeat="n in detail.categories">{{n}}</a> 
+
+      <p ng-repeat="n in detail.content">{{n}}</p>
+
+      <div class="question_detail_meta">
+      <p>提出人： {{detail.asker.name}} | 提出日期： {{detail.date}} | 共同提問人數：{{detail.votes|number:0}} </p>
+      </div>
+
+     
+      
+      <div class="ui divider"></div>
+
+      <div class="ui form">
+           <div class="field">
+           <label>您對此問題的回答</label>
+           <textarea></textarea>
+           </div>
+           <div class="ui teal small button">回覆</div>
+      </div>
+
+      <div class="back_to_top" ng-click="goToTop()">
+        <i class="angle up icon"></i> 回到頁首
+      </div>
+
+      
+     </div>
+<!--  -->
+  </div>
+</div>
+
+
+
+
+

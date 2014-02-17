@@ -2,7 +2,7 @@
   <div id="top">
     <div id="header">
       <div class="main_title">
-        <h1> 市長，給問嗎</h1>
+        <h1> 市長，給問嗎？</h1>
         <div class="ui pointing below label">整個城市，都是我的質詢台</div>
       </div>
     </div>
@@ -88,9 +88,9 @@
         <i class="home icon"></i>
       </a>
       <a class="item" href="#/ask-question">發問</a>
-      <a class="active item" href="#">瀏覽問題</a>
-      <a class="item" href="#/response-list-latest">瀏覽回應</a>
-      <a class="item" href="#/candidate-list">候選人</a>
+      <a class="active item" href="#/question-list">集氣中</a>
+      <a class="item" href="#/response-list">已達門檻</a>
+      <a class="item" href="#/candidate-list">候選人表現</a>
       <div class="right menu">
         <div class="item">
           <a href="#/login">登入</a>
@@ -101,42 +101,70 @@
 
 
   <!-- ////////////////////////////////////////////////////////////// -->
+<div id="content">
+    
+    <div class="ui thin sidebar page_sidebar">
+      <div class="ui tertiary inverted segment">
+         
+        <div class="item" ng-repeat="n in categories">
+        <div class="ui checkbox category_checkbox" >
+        
+           <input type="checkbox">
+           <label>{{n}}</label>
+
+         </div>
+       </div>
+
+      </div>
+    </div><!-- end of ui sidebar -->
+
+    
 
 
-
-  <div id="content">
-
-    <div class="ui right floated tiny black button" id="category_field">
-      <i class="arrow sign down icon"></i>類別
-    </div>
-    <div class="ui small icon input" id="search_field">
-        <input type="text" placeholder="關鍵字搜尋" ng-model="query">
-    </div>
-
-    <div class="ui tabular filter menu">
-      <a class="active item" data-tab="all">所有</a>
-      <a class="item" data-tab="new">最新</a>
-      <a class="item" data-tab="popular">熱門</a>
-      <a class="item" data-tab="fix-top">置頂</a>
+<div class="ui segment">
+    <div class="tool_bar_holder">
+       <div class="ui small black launch button">
+           <i class="list layout icon"></i>類別
+       </div>
+       <div class="ui small icon input" id="tool_bar_seach">
+         <input type="text" placeholder="關鍵字搜尋" ng-model="query">
+       </div>
       
+       <div class="tool_bar_candidate_filter">
+       候選人：
+       <div class="ui checkbox candidate_filter"  ng-repeat="n in candidates">
+           <input type="checkbox">
+           <label>{{n.name}}</label>
+       </div>
+       </div>
+
+    </div><!-- end of tool_bar_holder-->
+
+     <div class="ui tabular filter menu">
+      <a class="active item">依時間排序</a>
+      <a class="item">依熱門程度</a>
     </div>
 
-    <div class="ui segment" >
-        <div class="question_list_item" ng-repeat="n in data | filter:query">
-        <!-- 
-        <div class="right floated tiny teal ui button">
-          <a href="#/question/{{n.id}}" class="question_list_a">完整內容</a>
-        </div>
-        -->
-       
-  
+
+    <div class="question_list_item" ng-repeat="n in data | filter:query">
+        
+        <div class="question_list_bow"><div ng-show="({{n.votes}}>=800)">HOT</div></div>
         <div class="question_list_votes"  
              ng-show="({{n.votes}}<1000)">{{n.votes}}</div>
-        <div ng-show="({{n.votes}}>=1000)" class="question_list_bow">爆</div>
+        
+        
         <div class="question_list_date">{{n.date}}</div>
-        <!-- <img class="ui avatar image ask_who" src="images/logo.png"></img> -->
         <div class="question_list_asker">{{n.asker}}</div>
         <div class="question_list_title">{{n.title}}</div>
+
+        <div class="candidate_state_block">
+          <div ng-repeat="k in n.candidateState|filter:'askedToJoin'"
+               class="candidate_state">
+               <img class="ui image addressed_to" 
+                    ng-src="images/candidates_avatar/{{k.candidateId}}.jpg"></img>
+          </div>
+        </div><!-- end of state_block -->
+
         <div class="right floated tiny ui black button qustion_list_push_button">
           推
         </div>
@@ -144,13 +172,9 @@
           <a href="#/question/{{n.id}}" class="question_list_a">完整內容</a>
         </div>
         
-        </div> <!-- end of question_list_item -->
-      
-    </div>
+    </div> <!-- end of question_list_item -->
 
-    <div class="ui divider"></div>
-    <center>
-
+    <br/><br/><center>
       <div class="ui pagination menu">
         <a class="icon item"><i class="icon left arrow"></i></a>
         <a class="active item">1</a>
@@ -165,8 +189,11 @@
         <a class="icon item"><i class="icon right arrow"></i></a>
       </div>
     </center>
-  </div>
 
 
+
+</div><!-- end of ui segment-->
+</div><!-- end of content-->
+</div><!-- end of wrapper-->
 
 

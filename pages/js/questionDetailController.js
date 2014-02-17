@@ -39,22 +39,23 @@ $scope.data =
 'date':'2014-01-30',
 'deadline':'2014 年 3 月 1 日',
 'category':['網路','自由','隱私'],
-'asker':{"lastName":"王","firstName":"小曼","city":"台北市","district":"大安區"},
+'votes':6,
+'asker':{"name":"soidid","city":"台北市","district":"大安區"},
 'signature':[
-{"lastName":"王","firstName":"靜","city":"台北市","district":"大安區","date":"2014-02-01","order":1211},
-{"lastName":"張","firstName":"同一","city":"台北市","district":"萬華區","date":"2014-01-31","order":1210},
-{"lastName":"高","firstName":"洪偉","city":"台北市","district":"大同區","date":"2014-01-31","order":1109},
-{"lastName":"黃","firstName":"耕農","city":"台北市","district":"中正區","date":"2014-01-30","order":1108},
-{"lastName":"李","firstName":"秉其","city":"台北市","district":"文山區","date":"2014-01-29","order":1107},
-{"lastName":"林","firstName":"書煜","city":"台北市","district":"士林區","date":"2014-01-28","order":1106}
-]
-
+{"name":"afike0123","city":"台北市","district":"大安區","date":"2014-02-01","order":6},
+{"name":"bee","city":"台北市","district":"萬華區","date":"2014-01-31","order":5},
+{"name":"洪偉","city":"台北市","district":"大同區","date":"2014-01-31","order":4},
+{"name":"g0ver","city":"台北市","district":"中正區","date":"2014-01-30","order":3},
+{"name":"hello","city":"台北市","district":"文山區","date":"2014-01-29","order":2},
+{"name":"soidid","city":"台北市","district":"文山區","date":"2014-01-29","order":1}
+],
+'addressedTo':[
+{"id":1,"name":"丁守中"},
+{"id":2,"name":"馮光遠"},
+{"id":4,"name":"顧立雄"},
+{"id":6,"name":"柯文哲"}]
 
 };
-
-
-
-
 
 });
 

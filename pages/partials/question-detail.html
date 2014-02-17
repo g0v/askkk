@@ -2,7 +2,7 @@
   <div id="top">
     <div id="header">
       <div class="main_title">
-        <h1> 市長，給問嗎</h1>
+        <h1> 市長，給問嗎？</h1>
         <div class="ui pointing below label">整個城市，都是我的質詢台</div>
       </div>
     </div>
@@ -87,13 +87,13 @@
         <i class="home icon"></i>
       </a>
       <a class="item" href="#/ask-question">發問</a>
-      <a class="active item" href="#/question-list">瀏覽問題</a>
-      <a class="item" href="#/response-list-latest">瀏覽回應</a>
-      <a class="item" href="#/candidate-list">候選人</a>
+      <a class="active item" href="#/question-list">集氣中</a>
+      <a class="item" href="#/response-list">已達門檻</a>
+      <a class="item" href="#/candidate-list">候選人表現</a>
       <div class="right menu">
         <div class="item">
-          <a href="#">登入</a>
-        </div>
+          <a href="#/login">登入</a>
+        </div>       
       </div>
     </div>
   </div>
@@ -102,46 +102,65 @@
   <!-- ////////////////////////////////////////////////////////////// -->
   <div id="question_content">
     <div class="ui segment">
-      <h2>{{data.title}}</h2>
-      <p ng-repeat="n in data.content">{{n}}</p>
+      
+       <div class="addressed_to_block">
 
-      <p>提出日期： {{data.date}}</p>
-      <p>類別： <a class="link" href="#" ng-repeat="n in data.category">{{n}}{{$last ? '' : ', '}}<a></p>
+          <div class="addressed_to_candidate_text">請問市長候選人：</div>
+          <div class="addressed_to_candidate_collection">
+          <div ng-repeat="k in data.addressedTo"
+               class="addressed_to_candidate">
+               <img class="ui image addressed_to" 
+                    src="images/candidates_avatar/{{k.id}}.jpg"></img>
+          </div>
+          </div>
+         
+       </div><!-- end of state_block -->
+       <div class="question_detail_votes">
+          <div class="ui pointing left label">
+          <div class="question_detail_push">推</div>
+          <div class="question_detail_text">{{data.votes|number:0}}</div>
+          </div>
+       </div>
+
+       <div class="question_detail_header">
+          <h2 class="question_detail_title">{{data.title}}</h2>
+       </div>
+       <div class="question_detail_content">
+          <p ng-repeat="n in data.content">{{n}}</p>
+       </div>
+      
+      <div class="question_detail_meta">
+      <p>提出人：{{data.asker.name}} | 提出日期： {{data.date}} </p>
+      類別：
+      <div class="question_detail_category" ng-repeat="n in data.category">
+        <a class="link" href="#" >{{n}}{{$last ? '' : ', '}} <a>
+      </div>
+      </div>
+    
 
           <div class="ui divider"></div>
 
           <div class="question_sign_area">
-            <h2>共同發問者 / 推文支持者
+            <h2>共同發問者
               <div class="ui pointing below label">{{data.signature.length}}</div>
             </h2>
           
-             <div class="question_sign_block">
-              <div class="question_sign_order_block">
-                <div class="question_sign_push">推</div>
-                <div class="question_sign_order">#1</div>
-              </div>
-              <div class="question_sign_name"><b>提問人</b>
-                   {{data.asker.lastName}}{{data.asker.firstName}} |
-                   {{data.asker.city}}/{{data.asker.district}} | 
-                   {{data.date}}
-              </div>
-            </div>
-            <div class="question_sign_block" ng-repeat="n in data.signature">
-              <div class="question_sign_order_block">
-                <div class="question_sign_push">推</div>
-                <div class="question_sign_order">#{{n.order|number:0}}</div>
-              </div>
-              <div class="question_sign_name">
-              {{n.lastName}}{{n.firstName}} |
-              {{n.city}}/{{n.district}} |
-              {{n.date}}
-              </div>
-            </div>
            
+             <div class="question_sign_block" ng-repeat="n in data.signature">
+                <div class="question_sign_order_block">
+                  <div class="question_sign_push">推</div>
+                  <div class="question_sign_order">#{{n.order|number:0}}</div>
+                </div>
+                <div class="question_sign_name">{{n.name}} | {{n.date}}</div>
+             </div>
+           
+           </div><!-- end of question_sign_area -->
 
-            <p><i class="add icon"></i>load more signatures...</p>
+            <div class="load_signature">
+              <a class="link"><i class="add icon"></i>load more signatures...</a>
+            </div>
           
-        </div><!-- end of petition conent-->
+       
 
 
 
@@ -164,7 +183,7 @@
 
             <div class="sign_area">
               <div class="field">
-                <div class="ui red button">
+                <div class="ui red small button">
                   <i class="check icon"></i>
                   我要推文支持
                 </div>
@@ -181,13 +200,13 @@
             </div><!-- end of sign_area -->
           </div> <!-- end of ui small form segment sign-penal -->
           <div class="back_to_top" ng-click="goToTop()">
-            <i class="angle up icon"></i> back to top
+            <i class="angle up icon"></i> 回到頁首
           </div>
 
         </div><!-- end of sign-petition -->
 
      
-
+ </div><!-- end of question conent-->
 
 
 

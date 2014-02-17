@@ -40,6 +40,18 @@ askApp.config(['$routeProvider','$locationProvider',
       templateUrl: 'partials/candidate-detail.html',
       controller: 'candidateDetailCtrl'
     }).
+      when('/candidate/:candidateId/pending',{
+      templateUrl: 'partials/candidate-detail-pending.html',
+      controller: 'candidateDetailPendingCtrl'
+    }).
+      when('/candidate-inbox',{
+      templateUrl: 'partials/candidate-inbox.html',
+      controller: 'candidateInboxCtrl'
+    }).
+      when('/candidate-inbox-replied',{
+      templateUrl: 'partials/candidate-inbox-replied.html',
+      controller: 'candidateInboxRepliedCtrl'
+    }).
       when('/login',{
       templateUrl: 'partials/login.html',
       controller: 'loginCtrl'

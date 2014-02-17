@@ -80,17 +80,17 @@
   </div>
 
 
-  <!-- ////////////////////////////////////////////////////////////// -->
+      <!-- ////////////////////////////////////////////////////////////// -->
 
-  <div id="navigation">
+      <div id="navigation">
     <div class="ui inverted menu">
       <a class="item" href="index.html">
         <i class="home icon"></i>
       </a>
       <a class="item" href="#/ask-question">發問</a>
-      <a class="item" href="#/question-list">瀏覽問題</a>
-      <a class="active item" href="#/reponse-list">瀏覽回應</a>
-      <a class="item" href="#/candidate-list">候選人</a>
+      <a class="item" href="#/question-list">集氣中</a>
+      <a class="item" href="#/response-list">已達門檻</a>
+      <a class="active item" href="#/candidate-list">候選人表現</a>
       <div class="right menu">
         <div class="item">
           <a href="#/login">登入</a>
@@ -100,73 +100,93 @@
   </div>
 
 
-  <!-- ////////////////////////////////////////////////////////////// -->
+      <!-- ////////////////////////////////////////////////////////////// -->
+
+<div id="content">
+  <div class="ui raised segment" id="candidate_segment" >
+
+      <div class="right_menu fc-fix" id="taipei_candidates">
+        <div class="right_menu_city_header"><h3>候選人摘要</h3></div>
+
+      <div class="right_menu_list">
+      <div class="ui divided list">
+        
+        <div class="item">
+
+           <div class="candidate"> 
+          <a href="#/candidate/{{n.id}}">
+          <img class="rounded ui image candidate_img" ng-src="images/candidates/{{n.id}}.jpg" id="candidate_{{n.id}}" ng-click="candidateChoose()"></a>
+          
+          <div class="progress_info_floating">
+            <a href="#/candidate/{{n.id}}">
+            <div class="progress_info_floating_text" 
+                 id="candidateName_{{n.id}}"
+                ng-click="candidateChoose()">{{n.name}}</div></a>
+          </div>
+          <div class="progress">
+              <div class="bar" style="width: {{n.answered / n.asked * 100}}%;"> 
+          </div>
+          </div>
+          <div class="progress_info_rate">回覆率：{{n.answered / n.asked * 100 | number:0}}%</div>
+          <div class="progress_info_answered">已回答：{{n.answered}} </div>
+          <div class="progress_info_asked">被提問：{{n.asked}}</div>
+          <img class="circular ui image candidate_list_party_join" 
+           ng-src="images/{{n.partyEng}}.png"></img>
+
+
+      </div>
 
 
 
-  <div id="content">
+         
+        </div>
+      </div>
+      </div>
+    </div><!-- end of city_info -->
 
-    <div class="ui right floated tiny black button" id="category_field">
-      <i class="arrow sign down icon"></i>類別
-    </div>
-    <div class="ui small icon input" id="search_field">
-        <input type="text" placeholder="關鍵字搜尋" ng-model="query">
-    </div>
 
-    <div class="ui tabular filter menu">
-      <a class="active item">最新</a>
-      <a class="item" href="#/response-list">所有</a>
-      <a class="item">熱門</a>
-      <a class="item">置頂</a>
+    
+    <div class="candidate_list"><!-- join -->
       
-    </div>
+      <div class="ui tabular filter menu">
+        <div class="candidate_detail_tab" ng-click="answered()"><a class="item">已回答</a></div>
+        <a class="active item">未回答</a>
+      </div>
 
-    <div class="ui segment" >
-        <div class="question_list_item" ng-repeat="n in data | filter:query">
-        <!-- 
-        <div class="right floated tiny teal ui button">
-          <a href="#/question/{{n.id}}" class="question_list_a">完整內容</a>
-        </div>
-        -->
-       
-  
-        <div class="question_list_votes"  
-             ng-show="({{n.votes}}<1000)">{{n.votes}}</div>
-        <div ng-show="({{n.votes}}>=1000)" class="question_list_bow">爆</div>
-        <div class="question_list_date">{{n.date}}</div>
+
+ 
+       <div class="ui small icon input" id="candidate_detail_searchbar">
+         <input type="text" placeholder="關鍵字搜尋" ng-model="query">
+       </div>
+      
+
+
+      <div class="candidate_detail_list_item" ng-repeat="n in data | filter:query">
+          <div ng-show="({{n.votes}}>=1000)" class="question_list_bow">爆</div>
+          <div class="candidate_detail_votes">{{n.votes|number:0}}</div>
+          <div class="candidate_detail_date">{{n.date}}</div>
+          <div class="candidate_detail_asker">{{n.asker}}</div>
         <!-- <img class="ui avatar image ask_who" src="images/logo.png"></img> -->
-        <div class="question_list_asker">{{n.responser}}</div>
-        <div class="question_list_title">{{n.title}}</div>
-        <div class="right floated tiny ui black button qustion_list_push_button">
-          推
-        </div>
-         <div class="right floated tiny ui button qustion_list_button">
+          <div class="candidate_detail_title candidate_detail_title_pending">{{n.title}}</div>
+       
+
+        
+        <div class="right floated tiny ui button candidate_detail_button">
           <a href="#/response/{{n.id}}" class="question_list_a">完整內容</a>
         </div>
+         
         
-        </div> <!-- end of question_list_item -->
-      
-    </div>
-
-    <div class="ui divider"></div>
-    <center>
-
-      <div class="ui pagination menu">
-        <a class="icon item"><i class="icon left arrow"></i></a>
-        <a class="active item">1</a>
-        <a class="item">2</a>
-        <a class="item">3</a>
-        <a class="item">4</a>
-        <a class="item">5</a>
-        <div class="disabled item">...</div>
-        <a class="item">10</a>
-        <a class="item">11</a>
-        <a class="item">12</a>
-        <a class="icon item"><i class="icon right arrow"></i></a>
-      </div>
-    </center>
-  </div>
+        </div> <!-- end of candidate_detail_list_item -->
+    </div><!--end of candidate_list #/question/{{n.id}}-->
 
 
 
 
+
+
+
+
+                
+    </div> <!-- end of tertiary inverted segment  (taipei)-->
+  </div> <!-- end of content -->
+</div> <!--end of wrapper -->

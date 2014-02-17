@@ -1,41 +1,37 @@
-askControllers.controller('responseDetailCtrl', function($scope){
+
+askControllers.controller('candidateInboxRepliedCtrl',['$scope','$routeParams',
+
+function($scope,$routeParams){
 
   semanticMenuReady();
   semanticAccordingReady();
+  semanticSidebarReday();
   $scope.candidates = global.candidates;
+  $scope.inboxUnreplied = function(){
+    window.location = "#/candidate-inbox"
+  }
 
   $scope.goToTop = function(){
-
      var body = $("html, body");
      body.animate({scrollTop:0}, '500', 'swing');
   };
 
-  $scope.data =
-    {'title':'如何解決醫療五大皆空問題？', 
-     'questionId':7, 
-     'votes':1801,
-     'content':['面對醫師及護理人員不斷出走，各界說法都把矛頭指向台灣整體醫療制度的缺陷，讓吃力不討好的醫療人員如廉價勞工，台北榮民總醫院院長林芳郁24日表示，內、外、婦、兒、急診五大皆空已是事實，若不立即重建醫療制度，「醫療體制將在5年到10年內瓦解。」',
-           '醫療費用占GDP(國內生產毛額)不到6%，醫護人力被當成便宜勞工或外勞運作，所以就只好走出醫院另尋其他跑道。他說，整體制度需要重新檢討，一起討論如何建立好的制度，現在重建還來得及，「否則在可預見的5年到10年間，醫療體制將會瓦解。」',
-           '林芳郁指出，健保局解決五大皆空問題的方法是加碼健保給付與相關費用，但健保費用是固定的，加碼的費用只是拿別科別的來補，「這是揩別人的油，非腳踏實地的方法。'],
-
-     'date':'2014-01-30',
-     'category':['醫療','五大皆空','全民健保'],
-     'asker':{"name":"soidid","city":"台北市","district":"大安區"},
-     'signature':[
-             {"name":"afike0123","city":"台北市","district":"大安區","date":"2014-02-01","order":6},
-             {"name":"bee","city":"台北市","district":"萬華區","date":"2014-01-31","order":5},
-             {"name":"洪偉","city":"台北市","district":"大同區","date":"2014-01-31","order":4},
-             {"name":"g0ver","city":"台北市","district":"中正區","date":"2014-01-30","order":3},
-             {"name":"hello","city":"台北市","district":"文山區","date":"2014-01-29","order":2},
-             {"name":"soidid","city":"台北市","district":"文山區","date":"2014-01-29","order":1}
-             ],
-     'addressedTo':
+  $scope.detail = {
+  'title':'國際醫療生意經 社會公平疑慮',
+  'categories':['醫療','自由貿易','公平正義'],
+  'date':'2014-01-30',
+  'votes':9527,
+  'asker':{"name":"soidid","city":"台北市","district":"大安區"},
+  'addressedTo':
      [{"name":'丁守中',"id":1,"state":"answered"},
       {"name":'顧立雄',"id":2,"state":"pending","pendingDays":12},
       {"name":'呂秀蓮',"id":5,"state":"pending","pendingDays":2},
       {"name":'柯文哲',"id":6,"state":"answered"}
      ],
-     'responses':
+  'content':["自經區專題系列報導（中央社記者陳清芳台北20日電）去年12月下旬，香港女子易小玲來台動手術，她在菲律賓旅遊遭挾持受到槍擊，3年多歷經30多次手術，仍終日口罩遮面，在林口長庚醫院醫生魏福全領軍，成功重建下顎缺損。",
+  "香港媒體報導易小玲露出笑容、吃蛋糕的畫面，為長庚整形重建外科團隊做了最佳國際宣傳，DISCOVERY頻道打算6月播出手術實錄，打響台灣的醫療美名。就在這時，在台北、桃園、台中及高雄4個國際機場同步揭牌「國際醫療服務中心」，向國際旅客行銷台灣45家醫院的醫技。",
+  "國際醫療是「自由經濟示範區規劃方案」的一道小菜，行政院規劃下一階段成立一、二個「國際健康產業園區」，區內特許設立營利性質的醫療「社團法人醫院」專辦國際醫療，放寬外國人入主醫院董事會，也招徠製藥、醫材、健康養生與健康資訊等產業共同進駐，形成聚落。"],
+  'responses':
      [ 
        {'responseId':7, 
         'responseDate':'2014-01-30',
@@ -61,28 +57,18 @@ askControllers.controller('responseDetailCtrl', function($scope){
          'responser':{'name':'丁守中','id':1}
         
        }
-     ]
+     ]};
 
-    };
-    
-  // for sign peition area keep floating
-  var nav = $('#response_detail_right_menu');
+  $scope.data =
+   [{'title':'是否有美國綠卡？', 'voteUp':1299,'voteDown':32, 'id':1, 'date':'02/15','asker':'匿名'},
+    {'title':'如何解決炒房問題？', 'voteUp':9299,'voteDown':2,'id':2, 'date':'02/14','asker':'農陣'},
+    {'title':'是否支持廢死？為什麼？', 'voteUp':183,'voteDown':9102, 'id':3, 'date':'02/01','asker':'廢死聯盟'},
+    {'title':'對同志婚姻及多元成家的看法？', 'voteUp':1153,'voteDown':32, 'id':4, 'date':'01/31','asker':'伴侶盟'},
+    {'title':'對樂生問題的回應？', 'voteUp':14, 'voteDown':765,'id':5, 'date':'01/30','asker':'鄉民'},
+    {'title':'如何解決生育率的問題？', 'voteUp':756,'voteDown':132, 'id':6, 'date':'01/30','asker':'婦女新知'},
+    {'title':'如何解決醫療五大皆空問題？', 'voteUp':801,'voteDown':643, 'id':7, 'date':'01/31','asker':'柳林瑋'},
+    {'title':'如何解決台北市空氣品質的問題？', 'voteUp':2000,'voteDown':1, 'id':8, 'date':'01/31','asker':'郭俊麟'}];
+  
 
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 230) {
-            nav.addClass("f-nav");
-            nav.removeClass("fr-fix");
-
-        } else {
-            nav.removeClass("f-nav");
-            nav.addClass("fr-fix");
-
-        }
-    });
-
-
-
-
-
-});
+}]);
 
