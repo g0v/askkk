@@ -12,7 +12,7 @@ describe \Candidate, ->
 
     .. 'should get a list of all candidate info when id is null', (done) ->
       data <- ask.get-candidate null
-      assert.equal (keys data).length, 6
+      assert.equal (keys data).length, 5
       assert.equal data[0].name, \柯文哲
       assert.equal data[1].name, \連勝文
       done!
