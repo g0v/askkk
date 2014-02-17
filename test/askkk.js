@@ -10,19 +10,3 @@ module.exports.resetPetitions = function(onComplete){
     return onComplete();
   });
 };
-module.exports.resetCandidates = function(onComplete){
-  return firebase.child('candidates').set({
-    "-JFuCKMKOH_eCspPxRe1": {
-      "name": "連勝文",
-      "email": "lsw@gov.tw",
-      "id": "-JFuCKMKOH_eCspPxRe1"
-    },
-    "-JFuCJcAoUNFQY9NEHZ4": {
-      "name": "柯文哲",
-      "email": "kk@med.ntu.edu.tw",
-      "id": "-JFuCJcAoUNFQY9NEHZ4"
-    }
-  }, function(error){
-    return onComplete();
-  });
-};
