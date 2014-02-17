@@ -1,0 +1,38 @@
+{
+  "-JFuCKMKOH_eCspPxRe1" : {
+    "state" : "refused",
+    "name" : "連勝文",
+    "partyEng" : "KMT",
+    "id" : "-JFuCKMKOH_eCspPxRe1"
+  },
+  "-JFxrKQo3Qg19zsW73b1" : {
+    "state" : "join",
+    "partyEng" : "NONE",
+    "name" : "馮光遠",
+    "id" : "-JFxrKQo3Qg19zsW73b1"
+  },
+  "-JFxrLIuBPRNQOhjjc_s" : {
+    "state" : "pending",
+    "partyEng" : "DPP",
+    "name" : "呂秀蓮",
+    "id" : "-JFxrLIuBPRNQOhjjc_s"
+  },
+  "-JFxrLFtnbu79YNmJR0M" : {
+    "state" : "pending",
+    "partyEng" : "KMT",
+    "name" : "丁守中",
+    "id" : "-JFxrLFtnbu79YNmJR0M"
+  },
+  "-JFxrLALbptrJBMly0oT" : {
+    "state" : "pending",
+    "partyEng" : "DPP",
+    "name" : "顧立雄",
+    "id" : "-JFxrLALbptrJBMly0oT"
+  },
+  "-JFuCJcAoUNFQY9NEHZ4" : {
+    "state" : "join",
+    "name" : "柯文哲",
+    "partyEng" : "NONE",
+    "id" : "-JFuCJcAoUNFQY9NEHZ4"
+  }
+}

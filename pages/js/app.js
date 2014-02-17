@@ -2,7 +2,8 @@
 
 var askApp = angular.module("askApp", [
   'ngRoute',
-  'askControllers'
+  'askControllers',
+  'askkkService'
 ]);
 
 askApp.config(['$routeProvider','$locationProvider',
