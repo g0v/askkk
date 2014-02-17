@@ -1,5 +1,5 @@
 {keys, values, pairs-to-obj} = require 'prelude-ls'
-Firebase = require \firebase
+#Firebase = require \firebase
 
 class AskKK
   ({firebase-url = null, firebase = null}) ->
@@ -179,4 +179,4 @@ class AskKK
     error <- user-meta-ref.set updown
     on-complete error
 
-module.exports.AskKK = AskKK
+#module.exports.AskKK = AskKK
