@@ -1,8 +1,5 @@
-{AskKK} = require \../lib/askkk
 require! \assert
-firebase = new (require \firebase) 'https://askkkkk.firebaseio.com/'
-
-ask = new AskKK {firebase}
+{ask, firebase} = require \./askkk
 
 reset-users = (on-complete) ->
   (error) <- firebase.child \users/-JFpHNE3D4AIERz6lo_4 .set {
