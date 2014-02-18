@@ -2,10 +2,14 @@
 
 askServices = angular.module \askServices, <[firebase]>
 
+ref = new Firebase 'https://askkkkk.firebaseio.com/'
+
 askServices.factory \candidateService, [\$firebase, ($firebase) ->
-  ref = new Firebase 'https://askkkkk.firebaseio.com/candidates'
-  $firebase ref
-  ]
+  $firebase ref.child \candidates
+]
+
+askServices.factory \askLoginService, [\$firebase, ($firebase) ->
+]
 
 askServices.filter \toArray, ->
   (input, attributes) ->
