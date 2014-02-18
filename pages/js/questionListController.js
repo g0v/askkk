@@ -4,6 +4,17 @@ askControllers.controller('questionListCtrl', ['$scope', 'askKK', function($scop
   semanticAccordingReady();
   semanticSidebarReday();
 
+  
+
+  askKK.getCandidate(null, function (data) {
+    $scope.$apply(function () {
+      $scope.candidates = data;
+    });
+  });
+  $scope.categories = global.categories;
+  $scope.data = global.questionData;
+
+  
   $scope.flag = true;
   $scope.$watch(function(){
   return document.body.innerHTML
@@ -13,13 +24,6 @@ askControllers.controller('questionListCtrl', ['$scope', 'askKK', function($scop
     $scope.flag = false;
   }
   });
-
-  askKK.getCandidate(null, function (data) {
-    $scope.$apply(function () {
-      $scope.candidates = data;
-    });
-  });
-  $scope.categories = global.categories;
-  $scope.data = global.questionData;
+  
 
 }]);

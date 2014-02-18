@@ -53,9 +53,13 @@ askApp.config(['$routeProvider','$locationProvider',
       templateUrl: 'partials/candidate-inbox-replied.html',
       controller: 'candidateInboxRepliedCtrl'
     }).
-      when('/login',{
-      templateUrl: 'partials/login.html',
-      controller: 'loginCtrl'
+      when('/register',{
+      templateUrl: 'partials/register.html',
+      controller: 'registerCtrl'
+    }).
+      when('/user-list',{
+      templateUrl: 'partials/user-list.html',
+      controller: 'userListCtrl'
     }).
       otherwise({
       redirectTo:'/',
