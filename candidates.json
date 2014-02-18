@@ -1,32 +1,37 @@
 {
   "-JFuCKMKOH_eCspPxRe1" : {
     "state" : "refused",
-    "name" : "連勝文",
     "partyEng" : "KMT",
+    "name" : "連勝文",
+    "party" : "中國國民黨",
     "id" : "-JFuCKMKOH_eCspPxRe1"
   },
   "-JFxrKQo3Qg19zsW73b1" : {
     "state" : "join",
     "partyEng" : "NONE",
     "name" : "馮光遠",
+    "party" : "無黨籍",
     "id" : "-JFxrKQo3Qg19zsW73b1"
   },
   "-JFxrLFtnbu79YNmJR0M" : {
-    "state" : "pending",
+    "state" : "join",
     "partyEng" : "KMT",
     "name" : "丁守中",
+    "party" : "中國國民黨",
     "id" : "-JFxrLFtnbu79YNmJR0M"
   },
   "-JFxrLALbptrJBMly0oT" : {
     "state" : "pending",
     "partyEng" : "DPP",
     "name" : "顧立雄",
+    "party" : "民主進步黨",
     "id" : "-JFxrLALbptrJBMly0oT"
   },
   "-JFuCJcAoUNFQY9NEHZ4" : {
     "state" : "join",
-    "name" : "柯文哲",
     "partyEng" : "NONE",
+    "name" : "柯文哲",
+    "party" : "無黨籍",
     "id" : "-JFuCJcAoUNFQY9NEHZ4"
   }
 }
