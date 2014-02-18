@@ -172,19 +172,13 @@
                 {{n.voteDown|number:0}}
               </div>
            </div>
-           <div class="candidate_inbox_list_date">{{n.date}}</div>
+           <div class="candidate_inbox_list_date">{{n.date.month}}/{{n.date.day}}</div>
            <div class="candidate_inbox_list_title">{{n.title}}</div>
          </div>
       </div> <!-- end of question_list_item -->
 
 
-      <div id="replied">
-        <div class="candidate_inbox_list_item" ng-repeat="n in replied_data | filter:query">
-           <div class="candidate_inbox_list_votes">{{n.votes|number:0}}</div>
-           <div class="candidate_inbox_list_date">{{n.date}}</div>
-          <div class="candidate_inbox_list_title">{{n.title}}</div>
-         </div>
-       </div>
+     
 
       <div class="candidate_inbox_page">
            <div class="ui pagination menu">
@@ -224,7 +218,7 @@
       <p ng-repeat="n in detail.content">{{n}}</p>
 
       <div class="question_detail_meta">
-      <p>提出人： {{detail.asker.name}} | 提出日期： {{detail.date}} | 共同提問人數：{{detail.votes|number:0}} </p>
+      <p>提出人： {{detail.asker.name}} | 提出日期： {{detail.date.year}}-{{detail.date.month}}-{{detail.date.day}} | 共同提問人數：{{detail.votes|number:0}} </p>
       </div>
 
      
@@ -254,7 +248,7 @@
       <div class="response_main_text_short">
           <p ng-repeat="i in n.responseContent">{{i}}</p>
           <div class="response_meta_short">
-            回應日期： {{n.responseDate}} ｜ 
+            回應日期： {{n.responseDate.year}}-{{n.responseDate.month}}-{{n.responseDate.day}} ｜ 
             <div class="candidate_inbox_meta_push">推：{{n.responseVoteUp|number:0}}</div> | 
             <div class="candidate_inbox_meta_booing">噓：{{n.responseVoteDown|number:0}}</div>
           

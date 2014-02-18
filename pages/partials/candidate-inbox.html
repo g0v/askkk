@@ -165,19 +165,12 @@
       <div id="unreplied">
         <div class="candidate_inbox_list_item" ng-repeat="n in data | filter:query">
            <div class="candidate_inbox_list_votes">{{n.votes|number:0}}</div>
-           <div class="candidate_inbox_list_date">{{n.date}}</div>
+           <div class="candidate_inbox_list_date">{{n.date.month}}/{{n.date.day}}</div>
            <div class="candidate_inbox_list_title">{{n.title}}</div>
          </div>
       </div> <!-- end of question_list_item -->
 
 
-      <div id="replied">
-        <div class="candidate_inbox_list_item" ng-repeat="n in replied_data | filter:query">
-           <div class="candidate_inbox_list_votes">{{n.votes|number:0}}</div>
-           <div class="candidate_inbox_list_date">{{n.date}}</div>
-          <div class="candidate_inbox_list_title">{{n.title}}</div>
-         </div>
-       </div>
 
       <div class="candidate_inbox_page">
            <div class="ui pagination menu">
@@ -217,7 +210,7 @@
       <p ng-repeat="n in detail.content">{{n}}</p>
 
       <div class="question_detail_meta">
-      <p>提出人： {{detail.asker.name}} | 提出日期： {{detail.date}} | 共同提問人數：{{detail.votes|number:0}} </p>
+      <p>提出人： {{detail.asker.name}} | 提出日期： {{detail.date.year}}-{{detail.date.month}}-{{detail.date.day}} | 共同提問人數：{{detail.votes|number:0}} </p>
       </div>
 
      
