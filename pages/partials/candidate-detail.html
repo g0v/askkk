@@ -127,9 +127,10 @@
               <div class="bar" style="width: {{n.answered / n.asked * 100}}%;"> 
           </div>
           </div>
-          <div class="progress_info_rate">回覆率：{{n.answered / n.asked * 100 | number:0}}%</div>
-          <div class="progress_info_answered">已回答：{{n.answered}} </div>
-          <div class="progress_info_asked">被提問：{{n.asked}}</div>
+          <div class="progress_info_rate">
+            回覆率：{{n.repliedQuestion / n.addressedQuestion * 100 | number:0}}%</div>
+          <div class="progress_info_answered">已回答：{{n.repliedQuestion}} </div>
+          <div class="progress_info_asked">被提問：{{n.addressedQuestion}}</div>
           <img class="circular ui image candidate_list_party_join" 
            ng-src="images/{{n.partyEng}}.png"></img>
 
@@ -168,7 +169,7 @@
           </div>
         </div>
 
-        <div class="candidate_detail_date">{{n.date}}</div>
+        <div class="candidate_detail_date">{{n.date.month}}/{{n.date.day}}</div>
         <!-- <img class="ui avatar image ask_who" src="images/logo.png"></img> -->
         <div class="candidate_detail_title">{{n.title}}</div>
        

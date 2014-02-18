@@ -33,8 +33,6 @@
            ng-src="images/{{n.partyEng}}.png"></img>
       </div>
     </div>
-
-
      
     <div class="header_candidate" 
          ng-repeat="n in candidates | filter:'refused'">
@@ -48,13 +46,6 @@
       </div>
     </div>
 
-
-
-
-    
-     
-     
-     
 
   </div><!-- end of header_candidate_collection -->
 
@@ -127,18 +118,12 @@
               <div class="bar" style="width: {{n.answered / n.asked * 100}}%;"> 
           </div>
           </div>
-          <div class="progress_info_rate">回覆率：{{n.answered / n.asked * 100 | number:0}}%</div>
-          <div class="progress_info_answered">已回答：{{n.answered}} </div>
-          <div class="progress_info_asked">被提問：{{n.asked}}</div>
+          <div class="progress_info_rate">回覆率：{{n.repliedQuestion / n.addressedQuestion * 100 | number:0}}%</div>
+          <div class="progress_info_answered">已回答：{{n.repliedQuestion}} </div>
+          <div class="progress_info_asked">被提問：{{n.addressedQuestion}}</div>
           <img class="circular ui image candidate_list_party_join" 
            ng-src="images/{{n.partyEng}}.png"></img>
-
-
-      </div>
-
-
-
-         
+        </div>
         </div>
       </div>
       </div>
@@ -164,8 +149,8 @@
       <div class="candidate_detail_list_item" ng-repeat="n in data | filter:query">
           <div ng-show="({{n.votes}}>=1000)" class="question_list_bow">爆</div>
           <div class="candidate_detail_votes">{{n.votes|number:0}}</div>
-          <div class="candidate_detail_date">{{n.date}}</div>
-          <div class="candidate_detail_asker">{{n.asker}}</div>
+          <div class="candidate_detail_date">{{n.date.month}}/{{n.date.day}}</div>
+          <div class="candidate_detail_asker">{{n.asker.name}}</div>
         <!-- <img class="ui avatar image ask_who" src="images/logo.png"></img> -->
           <div class="candidate_detail_title candidate_detail_title_pending">{{n.title}}</div>
        

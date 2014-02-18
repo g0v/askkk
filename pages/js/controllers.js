@@ -7,13 +7,46 @@ $(document)
 var global = {};
 global.candidates = [
 
-{"id":1,"name":"丁守中", "party":"中國國民黨","partyEng":"KMT","state":"pending","askToJoin":257},
-{"id":2,"name":"馮光遠", "party":"無黨籍","partyEng":"NONE","state":"join","asked":23,"answered":19},
-{"id":3,"name":"連勝文", "party":"中國國民黨","partyEng":"KMT","state":"pending","askToJoin":143430},
-{"id":4,"name":"顧立雄", "party":"民主進步黨","partyEng":"DPP","state":"join","asked":10,"answered":7},
-{"id":5,"name":"呂秀蓮", "party":"民主進步黨","partyEng":"DPP","state":"refused","askToJoin":3098},
-{"id":6,"name":"柯文哲", "party":"無黨籍","partyEng":"NONE","state":"join","asked":93,"answered":21}];
+{"id":1,"name":"丁守中", "party":"中國國民黨","partyEng":"KMT",
+ "state":"pending","askToJoin":257,
+ "addressedQuestion":233,
+ "addressedQuestionList":[],
+ "repliedQuestion":0,
+ "repliedQuestionList":[]
+},
+{"id":2,"name":"馮光遠", "party":"無黨籍","partyEng":"NONE",
+ "state":"join","asked":23,"answered":19,
+ "addressedQuestion":73,
+ "addressedQuestionList":[],
+ "repliedQuestion":23,
+ "repliedQuestionList":[]
+},
+{"id":3,"name":"連勝文", "party":"中國國民黨","partyEng":"KMT",
+ "state":"pending","askToJoin":143430,
+ "addressedQuestion":3233,
+ "addressedQuestionList":[],
+ "repliedQuestion":0,
+ "repliedQuestionList":[]},
+{"id":4,"name":"顧立雄", "party":"民主進步黨","partyEng":"DPP",
+"state":"join",
+"addressedQuestion":233,
+ "addressedQuestionList":[],
+ "repliedQuestion":0,
+ "repliedQuestionList":[]},
+{"id":5,"name":"柯文哲", "party":"無黨籍","partyEng":"NONE",
+"state":"join",
+"addressedQuestion":233,
+ "addressedQuestionList":[],
+ "repliedQuestion":0,
+ "repliedQuestionList":[]}];
 
+global.oneCandidate = 
+{"id":'-JFuCJcAoUNFQY9NEHZ4',"name":"柯文哲", "party":"無黨籍","partyEng":"NONE",
+"state":"join",
+"addressedQuestion":233,
+ "addressedQuestionList":[],
+ "repliedQuestion":0,
+ "repliedQuestionList":[]};
 
 /* https://watchouttw.hackpad.com/oXPyRx5NQfX */
 global.categories = ['農業','藝術與人文','預算和稅收','公民權利和自由','氣候變化',
@@ -210,6 +243,24 @@ global.categories = ['農業','藝術與人文','預算和稅收','公民權利�
       {"name":'柯文哲',"id":'-JFuCJcAoUNFQY9NEHZ4',"state":"responded"},
       {"name":'丁守中',"id":'-JFxrLFtnbu79YNmJR0M',"state":"pending"}]
    }];
+ 
+    global.responseDataCandidate = 
+     [{'title':'是否有美國綠卡？', 'voteUp':1299,'voteDown':32, 'id':1, 
+       'date':{'year':'2014','month':'01','day':'30'},'asker':{'name':'匿名','id':233}},
+      {'title':'如何解決炒房問題？', 'voteUp':9299,'voteDown':2,'id':2, 
+       'date':{'year':'2014','month':'01','day':'31'},'asker':{'name':'農陣','id':234}},
+      {'title':'是否支持廢死？為什麼？', 'voteUp':183,'voteDown':9102, 'id':3, 
+       'date':{'year':'2014','month':'02','day':'01'},'asker':{'name':'廢死聯盟','id':235}},
+      {'title':'對同志婚姻及多元成家的看法？', 'voteUp':1153,'voteDown':32, 'id':4, 
+       'date':{'year':'2014','month':'02','day':'02'},'asker':{'name':'伴侶盟','id':236}},
+      {'title':'對樂生問題的回應？', 'voteUp':14, 'voteDown':765,'id':5, 
+       'date':{'year':'2014','month':'02','day':'02'},'asker':{'name':'鄉民','id':237}},
+      {'title':'如何解決生育率的問題？', 'voteUp':756,'voteDown':132, 'id':6, 
+       'date':{'year':'2014','month':'02','day':'03'},'asker':{'name':'婦女新知','id':238}},
+      {'title':'如何解決醫療五大皆空問題？', 'voteUp':801,'voteDown':643, 'id':7, 
+       'date':{'year':'2014','month':'02','day':'04'},'asker':{'name':'柳林瑋','id':239}},
+      {'title':'如何解決台北市空氣品質的問題？', 'voteUp':2000,'voteDown':1, 'id':8, 
+       'date':{'year':'2014','month':'02','day':'05'},'asker':{'name':'郭俊麟','id':240}}];
 
 
 
