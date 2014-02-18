@@ -1,14 +1,9 @@
-//askControllers.controller('askQuestionCtrl', function($scope){
-askControllers.controller('askQuestionCtrl', ['$scope', 'askKK', function($scope, askKK){
+askControllers.controller('askQuestionCtrl', ['$scope', 'candidateService', function($scope, candidateService){
   semanticMenuReady();
   semanticAccordingReady();
   
 
-  askKK.getCandidate(null, function (data) {
-    $scope.$apply(function () {
-      $scope.candidates = data;
-    });
-  });
+  $scope.candidates = candidateService;
  
 
 

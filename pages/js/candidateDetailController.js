@@ -1,6 +1,6 @@
-askControllers.controller('candidateDetailCtrl', ['$scope','$routeParams', 'askKK', 
+askControllers.controller('candidateDetailCtrl', ['$scope','$routeParams', 'candidateService', 
 
-function($scope,$routeParams,askKK){
+function($scope,$routeParams,candidateService){
 
   semanticMenuReady();
   semanticAccordingReady();
@@ -8,13 +8,7 @@ function($scope,$routeParams,askKK){
   
   $scope.data = global.responseDataCandidate;
   $scope.n = global.oneCandidate;
-
-  askKK.getCandidate(null, function (data) {
-    $scope.$apply(function () {
-      $scope.candidates = data;
-
-    });
-  });
+  $scope.candidates = candidateService;
 
   $scope.pending=function(){
     window.location = "#/candidate/"+$routeParams.candidateId+"/pending";

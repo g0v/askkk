@@ -1,16 +1,11 @@
-askControllers.controller('indexCtrl', ['$scope', 'askKK', function($scope, askKK){
+askControllers.controller('indexCtrl', ['$scope', 'candidateService', function($scope, candidateService){
 
   semanticMenuReady();
   semanticAccordingReady();
  
 
  
-  askKK.getCandidate(null, function (data) {
-    $scope.$apply(function () {
-      $scope.candidates = data;
-    });
-  });
-
+  $scope.candidates = candidateService;
   $scope.tabChoose = function(chosed_tab){
   	
   	$(".tab").hide();

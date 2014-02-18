@@ -11,7 +11,7 @@
  
     <div class="header_candidate_collection">
     <div class="header_candidate" 
-         ng-repeat="n in candidates | filter:'join'">
+         ng-repeat="n in candidates | toArray | filter:'join'">
       <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
       <div class="header_candidate_photo">
       <div class="header_candidate_circleborder_{{n.state}}">
@@ -23,7 +23,7 @@
     </div>
     
     <div class="header_candidate" 
-         ng-repeat="n in candidates | filter:'pending'">
+         ng-repeat="n in candidates | toArray | filter:'pending'">
       <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
       <div class="header_candidate_photo">
       <div class="header_candidate_circleborder_{{n.state}}">
@@ -37,7 +37,7 @@
 
      
     <div class="header_candidate" 
-         ng-repeat="n in candidates | filter:'refused'">
+         ng-repeat="n in candidates | toArray | filter:'refused'">
       <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
       <div class="header_candidate_photo">
       <div class="header_candidate_circleborder_{{n.state}}">
@@ -59,15 +59,15 @@
   </div><!-- end of header_candidate_collection -->
 
 <div class="header_candidate_info header_candidate_info_join">
-      願意加入：{{(candidates | filter:'join').length}} 名
+      願意加入：{{(candidates | toArray | filter:'join').length}} 名
     </div>
 
 <div class="header_candidate_info header_candidate_info_pending">
-      意向不明：{{(candidates | filter:'pending').length}} 名
+      意向不明：{{(candidates | toArray | filter:'pending').length}} 名
     </div>
 
      <div class="header_candidate_info header_candidate_info_refused">
-      拒絕加入：{{(candidates | filter:'refused').length}} 名
+      拒絕加入：{{(candidates | toArray | filter:'refused').length}} 名
     </div>
 
 
