@@ -244,6 +244,42 @@ display: inline-block;
 
 
 /* ------------------------------------------------------------ */
+/* indext.html */
+/* ------------------------------------------------------------ */
+/* 關於「市長，給問嗎？」*/
+
+#why_and_how_segment{
+  width:998px;
+  height:650px;
+  margin-bottom: 80px;
+}
+.index_tab{
+  border-bottom: 5px solid rgba(200,200,200,0.8);
+  /*background: rgba(200,200,200,0.2);*/
+  border-top-left-radius: 5px;
+  border-top-right-radius:5px;
+  cursor: pointer;
+
+}
+.index_tab_active{
+  border-bottom: 5px solid rgba(100,100,100,1);
+
+}
+.why_and_how_title{
+  /*border-bottom: 1px solid rgba(200,200,200,0.4);*/
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-top: 10px;
+  height:35px;
+  font-size: 18px;
+}
+.why_and_how_content{
+  padding-top: 5px;
+  margin-left:10px;
+}
+
+
+/* ------------------------------------------------------------ */
 /* question-list.html */
 /* ------------------------------------------------------------ */
 
@@ -650,7 +686,6 @@ display: inline-block;
   width:100%;
   margin-bottom: 10px;
 }
-
 .candidate_detail_button{
   float:right;
   display: inline-block;
@@ -658,19 +693,39 @@ display: inline-block;
   height:28px;
   width:78px;
 }
+/* right menu */
+#response_nav_segment{
+  padding-bottom: 30px;
+
+}
+.response_nav_title{
+  width:100%;
+}
+.response_nav_block{
+  margin-top:20px;
+
+}
+.response_nav_sub_title{
+  padding-bottom: 5px;
+  border-bottom: 1px rgb(222,222,222) solid;
+}
+.right_menu_go_to_candidate{
+  cursor: pointer;
+}
+.right_menu_go_to_candidate:hover{
+  color: #00BAFF;
+}
+#i_wanna_ask_button{
+  border-top: 1px gray solid;
+  padding: 10px;
+  text-align: center;
+  display: inline-block;
+  background: rgba(200,200,200,0.4);
+  cursor: pointer;
+}
 
 
 /* ------------------------------------------------------------ */
-#why_and_how_segment{
-  width:998px;
-  height:550px;
-  margin-bottom: 80px;
- 
-}
-#why_and_how_content{
-  margin-left:20px;
-
-}
 
 
 .candidate_list h4{
@@ -811,9 +866,6 @@ display: inline-block;
 .fr-fix{
   position: absolute;
   top:0px;
-}
-#i_wanna_ask_button{
-  text-align: center;
 }
 
 
@@ -1001,6 +1053,7 @@ display: inline-block;
   margin:0px;
   text-align: right;
   cursor: pointer;
+  font-size: 12px;
 
 }
 

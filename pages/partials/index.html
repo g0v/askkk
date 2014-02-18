@@ -105,50 +105,97 @@
 
 
       <!-- ////////////////////////////////////////////////////////////// -->
+<div id="content">
+<div class="ui raised segment" id="why_and_how_segment">
+
+<div class="ui horizontal list">
+  <div class="item index_tab index_tab_active" id="about_tab" ng-click="tabChoose('about')">
+    <img class="ui avatar image" src="images/logo.png">
+    <div class="content">
+      <div class="header">關於「市長，給問嗎？」</div>
+       why we did this?
+    </div>
+  </div>
+  <div class="item index_tab" id="how_to_use_user_tab" ng-click="tabChoose('how_to_use_user')">
+    <img class="ui avatar image" src="images/logo.png">
+    <div class="content">
+      <div class="header">如何使用這個網站？</div>
+       how to participate?
+    </div>
+  </div>
+  <div class="item index_tab" id="how_to_use_candidate_tab" ng-click="tabChoose('how_to_use_candidate')">
+    <img class="ui avatar image" src="images/logo.png">
+    <div class="content">
+      <div class="header">候選人會如何回答？</div>
+       how do candidates answer?
+    </div>
+  </div>
+  <div class="item index_tab" id="diff_tab" ng-click="tabChoose('diff')">
+    <img class="ui avatar image" src="images/logo.png">
+    <div class="content">
+      <div class="header">和其他平台不同之處？</div>
+       what's the difference?
+    </div>
+  </div>
+</div>
+ 
+<div class="ui bottom attached segment active tab" id="about">
+  
+  
+  <div class="why_and_how_title">關於「市長，給問嗎？」</div>
+  <div class="why_and_how_content">
+       <p>2014 年，公民參與要創造出新的選舉文化。</p>
+
+       <p>我們不要傳統的口水戰、文宣戰、旗海戰；<br/>
+          不依賴投票前兩個禮拜才舉辦的政見辯論會；<br/>
+          不單單只是憑藉著黨籍、省籍、性別、或者外表，就決定要投給誰；<br/>
+          更不當只負責投票的「一日公民」。<br/></p>
+
+       <p>2014 年，你不必是媒體代表、知名人士，才能對候選人提問。<br>
+          每一個市井小民，都有一樣的發言權；<br/>
+          當你說出了市民共同的心聲，候選人就必須嚴肅看待、認真回應。</p>
+
+       <p>提問和回應都將被公開檢視與討論。<br/>
+          有別於過往的電話或投書反應，<br/>
+          一個公開的平台，<br/>
+          讓市民聲音得以串聯、共鳴，形成更大的力量。</p>
+
+       <p>我們相信，你有權利也有義務參與這一次的討論，選出最符合你價值理念的候選人。<br/>
+          因為政治不是「政治人物」或「社運人士」的事，<br/>
+          政治關乎你我的生活，政治是我們的事。</p>
+
+        <a href="#/candidate-inbox" class="link">candidate-inbox</a> /
+        <a href="#/user-list" class="link">user-list</a>
+  </div>
+</div> <!-- end of about data-tab -->
+  
+<div class="ui bottom attached segment tab" id="how_to_use_user">
+  <div class="why_and_how_title">如何使用？</div>
+  <div class="why_and_how_content">
+     <div class="ui label">1. 提出問題</div>
+
+     <div class="ui label">2. 開始集氣</div>
 
 
-       <div id="content">
+  </div>
+</div> <!-- end of how to use user tab -->
 
 
+<div class="ui bottom attached segment tab" id="how_to_use_candidate">
+  <div class="why_and_how_title">candidate use？</div>
+  <div class="why_and_how_content">
+    
 
-       <div class="ui raised segment" id="why_and_how_segment">
+  </div>
+</div> <!-- end of how to use candidate tab -->
 
-          <a href="#/candidate-inbox" class="link">candidate-inbox</a>
-          <br/><a href="#/user-list" class="link">user-list</a>
-
-          <h3 class="ui black block header">
-           關於「市長，給問嗎？」
-          </h3>
-          <div id="why_and_how_content">
-         
-          <p>2014 年，公民參與要創造出新的選舉文化。</p>
-
-          <p>我們不要傳統的口水戰、文宣戰、旗海戰；<br/>
-             不依賴投票前兩個禮拜才舉辦的政見辯論會；<br/>
-             不單單只是憑藉著黨籍、省籍、性別、或者外表，就決定要投給誰；<br/>
-             更不當只負責投票的「一日公民」。<br/></p>
-
-          <p>2014 年，你不必是媒體代表、知名人士，才能對候選人提問。<br>
-             每一個市井小民，都有一樣的發言權；<br/>
-             當你說出了市民共同的心聲，候選人就必須嚴肅看待、認真回應。</p>
-
-          <p>提問和回應都將被公開檢視與討論。<br/>
-             有別於過往的電話或投書反應，<br/>
-             一個公開的平台，<br/>
-             讓市民聲音得以串聯、共鳴，形成更大的力量。</p>
-
-          <p>我們相信，你有權利也有義務參與這一次的討論，選出最符合你價值理念的候選人。<br/>
-             因為政治不是「政治人物」或「社運人士」的事，<br/>
-             政治關乎你我的生活，政治是我們的事。</p>
+<div class="ui bottom attached segment tab" id="diff">
+  <div class="why_and_how_title">和其他平台有什麼不同？</div>
+  <div class="why_and_how_content"></div>
+</div> <!-- end of diff tab -->
 
 
-
-
-          </div>
-       </div><!-- end of ui raised segment-->
-
-
-
+</div> <!-- end of ui raised segment-->
 </div> <!-- end of content -->
 </div> <!--end of wrapper -->
 

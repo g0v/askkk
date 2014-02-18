@@ -11,6 +11,16 @@ askControllers.controller('responseDetailCtrl', ['$scope', 'askKK', function($sc
   });
   $scope.data = global.responseData[0];
 
+  $scope.goToCandidate = function(id){
+     var body = $("html, body");
+    
+    
+     var p = $('#response_item_'+id).position();
+     var o = $('#response_item_'+id).offset();
+     body.animate({scrollTop:o.top}, '500', 'swing');
+
+  };
+
 
   $scope.goToTop = function(){
 

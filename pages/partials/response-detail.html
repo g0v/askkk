@@ -175,8 +175,9 @@
 
 <!-- Dispaly responses -->  
     <div class="response_start_divider"></div>   
-    <div class="response_item" ng-repeat="n in data.responses" 
-         id="response_item_{{n.responser.id}}">
+    <div class="response_item" 
+         ng-repeat="n in data.responses" 
+         id="response_item_{{n.responseId}}">
       <div class="response_header">
         <div class="response_title">
              <h2>{{data.title}}</h2>
@@ -217,28 +218,32 @@
 
 <!-- Right menu -->  
       <div id="response_detail_right_menu" class="fr-fix">
-        <div class="ui small form segment">
-          提問：{{data.title}}
-          <br/><br/>
+        <div class="ui small form segment" id="response_nav_segment">
+          <div class="response_nav_title">
+               <div class="ui large label">提問：{{data.title}}</div></div>
 
-          已回答
+          <div class="response_nav_block">     
+          <div class="response_nav_sub_title">已回答</div>
           <ul>
             <li ng-repeat="n in data.responses">
-               {{n.responser.name}}：{{n.responseAbstract}}
+               <div class="right_menu_go_to_candidate" id="right_menu_{{n.responseId}}"
+                ng-click="goToCandidate(n.responseId)">
+                {{n.responser.name}}：{{n.responseAbstract}}
+               </div>
             </li>
           </ul>
-          <br/>尚未回答
-          <ul>
-          <li ng-repeat="n in data.addressedTo|filter:'pending'">
-               {{n.name}}
-          </li>
-          </ul>
-          <br/><br/>
-         
-
-          <div class="active title" id="i_wanna_ask_button">
-              我要提問
           </div>
+
+          <div class="response_nav_block">
+             <div class="response_nav_sub_title">尚未回答</div>
+             <ul>
+             <li ng-repeat="n in data.addressedTo|filter:'pending'">{{n.name}}</li>
+             </ul>
+          </div>
+         
+         
+          
+       
 
         </div> <!-- end of ui small form segment sign-penal -->
          <div class="back_to_top" ng-click="goToTop()">
