@@ -111,7 +111,7 @@
      <div class="addressed_to_block">
           <div class="addressed_to_candidate_text">請問市長候選人：</div>
           <div class="addressed_to_candidate_collection">
-          <div ng-repeat="k in data.addressedTo|filter:'answered'"
+          <div ng-repeat="k in data.addressedTo|filter:'responded'"
                class="addressed_to_candidate">
                <a href="#/candidate/{{k.id}}">
                <img class="ui image addressed_to" 
@@ -141,7 +141,7 @@
        </div>
       
       <div class="question_detail_meta">
-      <p>提出人：{{data.asker.name}} | 提出日期： {{data.date}} </p>
+      <p>提出人：{{data.asker.name}} | 提出日期： {{data.date.year}}-{{data.date.month}}-{{data.date.day}} </p>
       類別：
       <div class="question_detail_category" ng-repeat="n in data.category">
         <a class="link" href="#" >{{n}}{{$last ? '' : ', '}} <a>
@@ -162,7 +162,7 @@
                   <div class="question_sign_push">推</div>
                   <div class="question_sign_order">#{{n.order|number:0}}</div>
                 </div>
-                <div class="question_sign_name">{{n.name}} | {{n.date}}</div>
+                <div class="question_sign_name">{{n.name}} | {{n.date.year}}-{{n.date.month}}-{{n.date.day}}</div>
              </div>
            
            </div><!-- end of question_sign_area -->
@@ -208,7 +208,7 @@
       <div class="response_main_text">
           <p ng-repeat="i in n.responseContent">{{i}}</p>
           <div class="response_meta">
-          <p>回應日期： {{n.responseDate}} ｜ <a href="#" class="link">分享</a></p>
+          <p>回應日期： {{n.responseDate.year}}-{{n.responseDate.month}}-{{n.responseDate.day}} ｜ <a href="#" class="link">分享</a></p>
           </div>
 
       </div>
@@ -230,7 +230,7 @@
           <br/>尚未回答
           <ul>
           <li ng-repeat="n in data.addressedTo|filter:'pending'">
-               {{n.name}}：已讀未回 {{n.pendingDays}} 天
+               {{n.name}}
           </li>
           </ul>
           <br/><br/>
