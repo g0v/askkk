@@ -1,9 +1,15 @@
-askControllers.controller('questionDetailCtrl', function($scope){
+askControllers.controller('questionDetailCtrl', ['$scope', 'askKK', function($scope, askKK){
+
+
 
   semanticMenuReady();
   semanticAccordingReady();
 
-  $scope.candidates = global.candidates;
+  askKK.getCandidate(null, function (data) {
+    $scope.$apply(function () {
+      $scope.candidates = data;
+    });
+  });
   $scope.data = global.questionData[0];
 
   $scope.goToTop = function(){
@@ -28,11 +34,6 @@ askControllers.controller('questionDetailCtrl', function($scope){
 
         }
     });
-
-
-
-
-
-
-});
+ 
+}]);
 
