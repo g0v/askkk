@@ -3,10 +3,14 @@ askControllers.controller('indexCtrl', ['$scope', 'askKK', function($scope, askK
   semanticMenuReady();
   semanticAccordingReady();
 
+ 
   askKK.getCandidate(null, function (data) {
     $scope.$apply(function () {
       $scope.candidates = data;
     });
   });
+ 
+
+
 
 }]);

@@ -1161,11 +1161,11 @@ display: inline-block;
 .ask_question_candidate_block{
   height:160px;
   width:1000px;
-  display: block;
+  
+
 }
 .ask_question_candidate{
   display: inline-block;
-
   margin:5px;
   height:140px;
   width:80px;
@@ -1175,6 +1175,7 @@ display: inline-block;
   cursor: pointer;
   position: relative;
   border-radius: 10px;
+  
 }
 .ask_question_candidate img{
   

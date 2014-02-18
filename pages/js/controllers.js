@@ -26,6 +26,84 @@ global.categories = ['農業','藝術與人文','預算和稅收','公民權利�
   ];
 
 
+ /* used in questioin-list */
+ global.questionData =
+   [{'title':'是否有美國綠卡？', 'votes':819, 'id':1, 
+     'date':{'year':'2014','month':'02','day':'15'},
+     'asker':{'name':'spicycop','id':7},
+     'addressedTo':
+     [{"name":'馮光遠',"id":'-JFxrKQo3Qg19zsW73b1',"state":"pending"},
+      {"name":'顧立雄',"id":'-JFxrLALbptrJBMly0oT',"state":"pending"},
+      {"name":'柯文哲',"id":'-JFuCJcAoUNFQY9NEHZ4',"state":"pending"},
+      {"name":'丁守中',"id":'-JFxrLFtnbu79YNmJR0M',"state":"pending"}],
+      /*  --- used in question-detail --- */  
+    'content':
+     ['經濟部智慧財產局欲修法封鎖海外侵權網站，引發網友持續震怒，除日前BBS網站批踢踢（PTT）發起百萬連署抗議，更有網友發起「六四網路全黑日」，並揚言留言「灌爆」總統馬英九的臉書粉絲專頁，以示抗議決心！',
+      '「搞什麼，『制裁』都不『智財』了！」批踢踢鄉民開設反智財局討論專版（StopIPO），發起「反對智財局研議封鎖重大境外侵權網站」的網路連署，號召百萬民眾維護網路自主，公開向智財局嗆聲。鄉民直指網路自由不容侵犯，「智慧財產局侵犯我言論自由的圖謀，我無法接受。」',
+      '更有網友於臉書（Facebook）發起「斷然反對鎖國，堅決主張百分之百網路自由」連署，訂定明天為「網路全黑日」，盼網友把大頭貼、封面相片都換成黑色，以示抗議智財局決心。發起人更說，除換上全黑照片外，更要民眾前往總統馬英九臉書，向總統表達最沉痛的怒吼，迄今已有超過4萬人加入。'],
+    'deadline':{'year':2014,'month':3,'day':1},
+    'category':['網路','自由','隱私'],
+    'signature':[
+      {"id":10,"name":"afike0123","date":{'year':'2014','month':'01','day':'31'},"order":6},
+      {"id":11,"name":"bee","date":{'year':'2014','month':'01','day':'31'},"order":5},
+      {"id":12,"name":"洪偉","date":{'year':'2014','month':'01','day':'31'},"order":4},
+      {"id":13,"name":"g0ver","date":{'year':'2014','month':'01','day':'30'},"order":3},
+      {"id":14,"name":"hello","date":{'year':'2014','month':'01','day':'29'},"order":2},
+      {"id":15,"name":"soidid","date":{'year':'2014','month':'01','day':'29'},"order":1}],
+
+      /*  ------------------------------- */  
+    },
+    {'title':'如何解決炒房問題？', 'votes':299,'id':2, 
+     'date':{'year':'2014','month':'02','day':'14'},
+     'asker':{'name':'永和林志玲','id':6},
+     'addressedTo':
+     [{"name":'連勝文',"id":'-JFuCKMKOH_eCspPxRe1',"state":"pending"},
+      {"name":'丁守中',"id":'-JFxrLFtnbu79YNmJR0M',"state":"pending"}]
+    },
+    {'title':'是否支持廢死？為什麼？', 'votes':183, 'id':3, 
+     'date':{'year':'2014','month':'02','day':'01'},
+     'asker':{'name':'廢死聯盟','id':5},
+     'addressedTo':
+     [{"name":'馮光遠',"id":'-JFxrKQo3Qg19zsW73b1',"state":"pending"},
+      {"name":'顧立雄',"id":'-JFxrLALbptrJBMly0oT',"state":"pending"},
+      {"name":'柯文哲',"id":'-JFuCJcAoUNFQY9NEHZ4',"state":"pending"},
+      {"name":'丁守中',"id":'-JFxrLFtnbu79YNmJR0M',"state":"pending"}]
+    },
+    {'title':'對同志婚姻及多元成家的看法？', 'votes':153, 'id':4, 
+     'date':{'year':'2014','month':'01','day':'31'},
+     'asker':{'name':'伴侶盟','id':4},
+     'addressedTo':
+     [{"name":'馮光遠',"id":'-JFxrKQo3Qg19zsW73b1',"state":"pending"},
+      {"name":'顧立雄',"id":'-JFxrLALbptrJBMly0oT',"state":"pending"},
+      {"name":'丁守中',"id":'-JFxrLFtnbu79YNmJR0M',"state":"pending"}]
+    },
+    {'title':'對樂生問題的回應？', 'votes':154, 'id':5, 
+     'date':{'year':'2014','month':'01','day':'30'},
+     'asker':{'name':'tantamount','id':3},
+     'addressedTo':
+     [{"name":'馮光遠',"id":'-JFxrKQo3Qg19zsW73b1',"state":"pending"},
+      {"name":'顧立雄',"id":'-JFxrLALbptrJBMly0oT',"state":"pending"},
+      {"name":'丁守中',"id":'-JFxrLFtnbu79YNmJR0M',"state":"pending"}]
+    },
+    {'title':'如何解決生育率的問題？', 'votes':756, 'id':6, 
+     'date':{'year':'2014','month':'01','day':'30'},
+     'asker':{'name':'婦女新知','id':2},
+     'addressedTo':
+     [{"name":'連勝文',"id":'-JFuCKMKOH_eCspPxRe1',"state":"pending"},
+      {"name":'丁守中',"id":'-JFxrLFtnbu79YNmJR0M',"state":"pending"}]
+    },
+    {'title':'如何解決醫療五大皆空問題？', 'votes':801, 'id':7, 
+     'date':{'year':'2014','month':'01','day':'29'},
+     'asker':{'name':'拎杯骨科','id':1},
+     'addressedTo':
+     [{"name":'連勝文',"id":'-JFuCKMKOH_eCspPxRe1',"state":"pending"},
+      {"name":'顧立雄',"id":'-JFxrLALbptrJBMly0oT',"state":"pending"},
+      {"name":'柯文哲',"id":'-JFuCJcAoUNFQY9NEHZ4',"state":"pending"},
+      {"name":'丁守中',"id":'-JFxrLFtnbu79YNmJR0M',"state":"pending"}]
+   }];
+
+
+
 var askControllers = angular.module('askControllers',[]);
 
 function semanticSidebarReday(){
