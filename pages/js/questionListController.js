@@ -1,4 +1,4 @@
-askControllers.controller('questionListCtrl', function($scope){
+askControllers.controller('questionListCtrl', ['$scope', 'askKK', function($scope, askKK){
 
   semanticMenuReady();
   semanticAccordingReady();
@@ -14,11 +14,12 @@ askControllers.controller('questionListCtrl', function($scope){
   }
   });
 
-  $scope.candidates = global.candidates;
+  askKK.getCandidate(null, function (data) {
+    $scope.$apply(function () {
+      $scope.candidates = data;
+    });
+  });
   $scope.categories = global.categories;
   $scope.data = global.questionData;
 
-
-
-});
-
+}]);
