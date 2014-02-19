@@ -10,6 +10,18 @@ askServices.factory('candidateService', ['$firebase'].concat(function($firebase)
 askServices.factory('questionService', ['$firebase'].concat(function($firebase){
   var x$, service;
   x$ = service = $firebase(ref.child('questions'));
+  x$.$on('child_added', function(arg$){
+    var snapshot, prevChild, c;
+    snapshot = arg$.snapshot, prevChild = arg$.prevChild;
+    return service[snapshot.name].addressing = (function(){
+      var i$, ref$, len$, results$ = [];
+      for (i$ = 0, len$ = (ref$ = snapshot.value.addressing).length; i$ < len$; ++i$) {
+        c = ref$[i$];
+        results$.push($firebase(ref.child("candidates/" + c)));
+      }
+      return results$;
+    }());
+  });
   x$.post = function(arg$, onComplete){
     var title, content, category, addressing, post_date, deadline;
     title = arg$.title, content = arg$.content, category = arg$.category, addressing = arg$.addressing, post_date = arg$.post_date, deadline = arg$.deadline;
@@ -20,8 +32,12 @@ askServices.factory('questionService', ['$firebase'].concat(function($firebase){
       addressing: addressing,
       post_date: post_date,
       deadline: deadline,
-      state: 'collecting',
-      signatures_count: 0
+      state: {
+        collecting: 'collecting'
+      },
+      responses_count: 0,
+      signatures_count: 0,
+      votes_count: 0
     }).then(function(postRef){
       (function(meta){
         meta.$child("collecting/" + postRef.name()).$set(true);

@@ -11,11 +11,19 @@ askServices.factory \candidateService, <[$firebase]> ++ ($firebase) ->
 
 askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
   service = $firebase ref.child \questions
+    # XXX arguments of `child_added` callback is different from doc
+    ..$on \child_added, ({snapshot, prevChild}) ->
+      service[snapshot.name].addressing = for c in snapshot.value.addressing
+        $firebase ref.child "candidates/#{c}"
+
     ..post = ({title, content, category, addressing, post_date, deadline}, on-complete) ->
       post-ref <- service.$add {
         title, content, category, addressing, post_date, deadline,
-        state: \collecting
+        state:
+          collecting: \collecting
+        responses_count: 0
         signatures_count: 0
+        votes_count: 0
       } .then
       let meta = $firebase ref.child \question_index
         meta.$child "collecting/#{post-ref.name!}" .$set true
