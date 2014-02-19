@@ -1018,7 +1018,8 @@ display: inline-block;
   margin:0px;
   padding:0px;
 }
-.question_detail_votes{
+.question_detail_votes,
+.question_detail_signatures {
   text-align: center;
   float:right;
   position: absolute;

@@ -1,4 +1,4 @@
-askControllers.controller('questionDetailCtrl', ['$scope', '$routeParams', 'candidateService', 'questionService', function($scope, $routeParams, candidateService, questionService){
+askControllers.controller('questionDetailCtrl', ['$scope', '$routeParams', 'candidateService', 'questionService', 'signService', function($scope, $routeParams, candidateService, questionService, signService){
 
   semanticMenuReady();
   semanticAccordingReady();
@@ -6,10 +6,10 @@ askControllers.controller('questionDetailCtrl', ['$scope', '$routeParams', 'cand
   $scope.candidates = candidateService;
   $scope.data = questionService.get($routeParams.questionId);
 
-  $scope.voteQuestion = function(){
-    event.stopPropagation();
-    console.log("vote for this detail, id:"+$routeParams.questionId);
-
+  $scope.signQuestion = function(id){
+    //event.stopPropagation();
+    console.log("sign for this detail, id:"+id);
+    signService.sign(1, id);
   };
   
   $scope.goToTop = function(){

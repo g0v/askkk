@@ -115,10 +115,11 @@
           </div>
          
        </div><!-- end of state_block -->
-       <div class="question_detail_votes">
+       <div class="question_detail_signatures">
           <div class="ui pointing left label">
-          <div class="question_detail_push" ng-click="voteQuestion()">推</div>
-          <div class="question_detail_text">{{data.vote.total}}</div>
+          <div class="question_detail_push" ng-hide="data.signatures.1" ng-click="signQuestion(data.$id)">推</div>
+          <div class="question_detail_push" ng-show="data.signatures.1">已推</div>
+          <div class="question_detail_text">{{data.signatures_count}}</div>
           </div>
        </div>
 
@@ -142,11 +143,11 @@
 
           <div class="question_sign_area">
             <h2>共同發問者
-              <div class="ui pointing below label">{{data.signature.length}}</div>
+              <div class="ui pointing below label">{{data.signatures_count}}</div>
             </h2>
           
            
-             <div class="question_sign_block" ng-repeat="n in data.signature">
+             <div class="question_sign_block" ng-repeat="n in data.signatures | orderByPriority">
                 <div class="question_sign_order_block">
                   <div class="question_sign_push">推</div>
                   <div class="question_sign_order">#{{n.order|number:0}}</div>
@@ -171,21 +172,25 @@
 
           <div class="ui small form segment sign-penal">
             <h1>支持這個提問</h1>
-            <p>已有 {{data.signature.length}} 人推文支持</p>
+            <p>已有 {{data.signatures_count}} 人推文支持</p>
             <div class="sign-num">
-              <p>截至 {{data.deadline.year}} 年 {{data.deadline.month}} 月 {{data.deadline.day}} 日之前，尚需 {{500-data.signature.length}} 人推文</p>
+              <p>截至 {{data.deadline.year}} 年 {{data.deadline.month}} 月 {{data.deadline.day}} 日之前，尚需 {{500-data.signatures_count}} 人推文</p>
             </div>
             <div class="question-progress">
               <div class="question-bar" 
-                   style="width: {{data.signature.length/1000*100|number:0}}%;"></div>
+                   style="width: {{data.signatures_count/1000*100|number:0}}%;"></div>
 
             </div>
 
             <div class="sign_area">
               <div class="field">
-                <div class="ui red small button" ng-click="voteQuestion()">
+                <div class="ui red small button" ng-click="signQuestion(data.$id)" ng-hide="data.signatures.1">
                   <i class="check icon"></i>
                   我要推文支持
+                </div>
+                <div class="ui green small button" ng-show="data.signatures.1">
+                  <i class="check icon"></i>
+                  我支持
                 </div>
                 <div class="sign_note">每則提問有 30 天的時間可被連署，若提問在期限內達到 500 人次連署支持，候選人就必須回應。</div>
 

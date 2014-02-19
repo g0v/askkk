@@ -1,4 +1,4 @@
-askControllers.controller('responseListCtrl', ['$scope', 'candidateService', function($scope, candidateService){
+askControllers.controller('responseListCtrl', ['$scope', 'candidateService', 'questionService', function($scope, candidateService, questionService){
 
 
   semanticMenuReady();

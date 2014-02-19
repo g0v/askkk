@@ -1,5 +1,7 @@
 {values} = require 'prelude-ls'
 
+user-id = 1
+
 askServices = angular.module \askServices, <[firebase]>
 
 ref = new Firebase 'https://askkkkk.firebaseio.com/'
@@ -15,8 +17,7 @@ askServices.factory \questionService, [\$firebase, ($firebase) ->
     post-ref <- service.$add({
       title, content, category, addressing, post_date, deadline,
       state: \open
-      vote: { length: 0 }
-      signature: { length: 0 }
+      signatures_count: 0
     }).then
     let meta-ref = $firebase ref.child \question_index
       meta-ref.$child "open/#{post-ref.name!}" .$set true
@@ -36,12 +37,30 @@ askServices.factory \questionService, [\$firebase, ($firebase) ->
   service.get = (id) ->
     post-ref = service.$child id
     post-ref.$on \loaded, (snap) ->
+      post-ref.$id = id
       post-ref.addressing = for c in post-ref.addressing
         $firebase ref.child "candidates/#{c}"
     post-ref
 
   service
 ]
+
+askServices.factory \signService, <[$firebase]> ++ ($firebase) ->
+  {
+    sign: (user-id, question-id) ->
+      snapshot <- ref.child "questions/#{question-id}/signatures/#{user-id}" .once \value
+      if snapshot.val! then return
+      today = new Date!
+      ref.child "questions/#{question-id}/signatures/#{user-id}"
+        ..set-with-priority {
+          date:
+            year: today.get-full-year!
+            month: today.get-month! + 1
+            day: today.get-date!
+        }, today.get-time!
+      ref.child "questions/#{question-id}/signatures_count"
+        ..transaction (current-value) -> current-value + 1
+  }
 
 /**
  * Filter an object to an array of its keys (properties) except those given be AngularFire.
