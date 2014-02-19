@@ -139,11 +139,12 @@
 
 
     <div class="question_list_item" 
-         ng-repeat="n in data | orderByPriority | filter:query">
+         ng-repeat="n in data | orderByPriority | filter:query"
+         ng-click="showQuestionDetail(n.$id)">
         
-        <div class="question_list_bow"><div ng-show="(n.vote.length>=800)">HOT</div></div>
+        <div class="question_list_bow"><div ng-show="(n.vote.length>=100)">HOT</div></div>
         <div class="question_list_votes"  
-             ng-show="(n.vote.length < 1000)">{{n.vote.length}}</div>
+             ng-show="(n.vote.length < 500)">{{n.vote.length}}</div>
         
         <div class="question_list_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
         <div class="question_list_asker">{{n.asker.name}}</div>
