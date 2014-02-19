@@ -42,6 +42,7 @@ askControllers.controller('askQuestionCtrl', ['$scope', '$location', 'candidateS
   $scope.toggleAllCandidate = function(){
 
       console.log($scope.candidateSelection.length);
+      console.log($scope.candidates.length);
       
       if($scope.candidateSelection.length<$(".ask_question_candidate_data").length){
 
@@ -49,7 +50,7 @@ askControllers.controller('askQuestionCtrl', ['$scope', '$location', 'candidateS
          $scope.candidateSelection = [];
 
          $(".ask_question_candidate_data").each(function( index ) {
-            var id = $(this).attr("id").split("_")[1];
+            var id = $(this).attr("id");
             $scope.candidateSelection.push(id);
          });
 
