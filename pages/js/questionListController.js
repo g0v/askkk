@@ -1,4 +1,4 @@
-askControllers.controller('questionListCtrl', ['$scope', '$location', 'candidateService', 'questionService', function($scope, $location, candidateService, questionService){
+askControllers.controller('questionListCtrl', ['$scope', '$location', 'candidateService', 'questionService', 'signService', function($scope, $location, candidateService, questionService, signService){
 
   semanticMenuReady();
   semanticAccordingReady();
@@ -11,10 +11,8 @@ askControllers.controller('questionListCtrl', ['$scope', '$location', 'candidate
   $scope.showQuestionDetail = function(questionId){
     $location.path("/question/" + questionId)
   };
-  $scope.voteQuestion = function(questionId){
-    //event.stopPropagation();
-    console.log("vote for this detail, id:"+questionId);
-
+  $scope.signQuestion = function(questionId){
+    signService.sign(1, questionId);
   };
   $scope.sortByTime = function(){
     console.log("sort by time");

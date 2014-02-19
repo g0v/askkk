@@ -6,10 +6,8 @@ askControllers.controller('questionDetailCtrl', ['$scope', '$routeParams', 'cand
   $scope.candidates = candidateService;
   $scope.data = questionService.get($routeParams.questionId);
 
-  $scope.signQuestion = function(id){
-    //event.stopPropagation();
-    console.log("sign for this detail, id:"+id);
-    signService.sign(1, id);
+  $scope.signQuestion = function(questionId){
+    signService.sign(1, questionId);
   };
   
   $scope.goToTop = function(){

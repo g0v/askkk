@@ -350,7 +350,8 @@ display: inline-block;
 .question_list_item:hover{
   background: rgba(200,200,200,0.8);
 }
-.question_list_votes{
+.question_list_votes,
+.question_list_signatures{
   margin-top: 5px;
   width:40px;
   margin-right: 10px;

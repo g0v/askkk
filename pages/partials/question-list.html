@@ -142,9 +142,9 @@
          ng-repeat="n in data | orderByPriority | filter:query"
          ng-click="showQuestionDetail(n.$id)">
         
-        <div class="question_list_bow"><div ng-show="(n.vote.length>=100)">HOT</div></div>
-        <div class="question_list_votes"  
-             ng-show="(n.vote.length < 500)">{{n.vote.length}}</div>
+        <div class="question_list_bow"><div ng-show="(n.signatures_count >= 100)">HOT</div></div>
+        <div class="question_list_signatures"
+             ng-show="(n.signatures_count < 500)">{{n.signatures_count}}</div>
         
         <div class="question_list_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
         <div class="question_list_asker">{{n.asker.name}}</div>
@@ -158,9 +158,12 @@
           </div>
         </div><!-- end of state_block -->
 
-        <div class="right floated tiny ui black button qustion_list_push_button"
-             ng-click="voteQuestion(n.$id)">
+        <div class="right floated tiny ui black button qustion_list_push_button" ng-click="signQuestion(n.$id)" ng-hide="n.signatures.1">
           推
+        </div>
+        <div class="right floated tiny ui black button qustion_list_push_button"
+             ng-show="n.signatures.1">
+          已推
         </div>
          <div class="right floated tiny ui button qustion_list_button"
               ng-click="showQuestionDetail(n.$id)">
