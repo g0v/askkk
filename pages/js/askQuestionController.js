@@ -11,7 +11,7 @@ askControllers.controller('askQuestionCtrl', ['$scope', '$location', 'candidateS
   $scope.toggleCandidate = function(selectedId){
    
    var name = $("#candidateName_"+selectedId).text();
-   var current = $("#candidate_"+selectedId);
+   var current = $("#"+selectedId);
    //var idx = current.attr("class").indexOf("ask_question_candidate_selected");
    var idx = $scope.candidateSelection.indexOf(selectedId);
    // is currently selected
