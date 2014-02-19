@@ -1,6 +1,7 @@
 {values} = require 'prelude-ls'
 
 user-id = 1
+candidate-id = \-JFxrKQo3Qg19zsW73b1
 
 askServices = angular.module \askServices, <[firebase]>
 

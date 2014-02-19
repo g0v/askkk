@@ -1,12 +1,10 @@
-askControllers.controller('indexCtrl', ['$scope', 'candidateService', function($scope, candidateService){
+askControllers.controller('indexCtrl', ['$scope', '$firebaseSimpleLogin', 'candidateService', function($scope, $firebaseSimpleLogin, candidateService){
 
   semanticMenuReady();
   semanticAccordingReady();
  
-
- 
+  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.candidates = candidateService;
-
   
   $scope.tabChoose = function(chosed_tab){
   	

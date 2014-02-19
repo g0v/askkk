@@ -1,11 +1,12 @@
-askControllers.controller('responseDetailCtrl', ['$scope', 'candidateService', function($scope, candidateService){
+askControllers.controller('responseDetailCtrl', ['$scope', '$firebaseSimpleLogin', '$routeParams', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, $routeParams, candidateService, questionService){
 
 
   semanticMenuReady();
   semanticAccordingReady();
   
+  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.candidates = candidateService;
-  $scope.data = global.responseData[0];
+  $scope.data = questionService.get($routeParams['responseId']);
 
   $scope.voteQuestion = function(questionId){
     event.stopPropagation();

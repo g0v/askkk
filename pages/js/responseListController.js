@@ -1,10 +1,11 @@
-askControllers.controller('responseListCtrl', ['$scope', '$location', 'candidateService', 'questionService', function($scope, $location, candidateService, questionService){
+askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin', '$location', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, $location, candidateService, questionService){
 
 
   semanticMenuReady();
   semanticAccordingReady();
   semanticSidebarReday();
 
+  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.candidates = candidateService;
   $scope.categories = global.categories;
   $scope.questions = questionService;

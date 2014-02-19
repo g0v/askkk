@@ -96,7 +96,9 @@
       <a class="item" href="#/candidate-list">候選人表現</a>
       <div class="right menu">
         <div class="item">
-          <a href="#/login">登入</a>
+          <span ng-show="auth.user">{{auth.user.displayName}} | </span>
+          <a href="#" ng-click="auth.$login('facebook')" ng-hide="auth.user">登入</a>
+          <a href="#" ng-click="auth.$logout()" ng-show="auth.user">登出</a>
         </div>       
       </div>
     </div>
@@ -137,11 +139,11 @@
           <h2 class="question_detail_title">{{data.title}}</h2>
        </div>
        <div class="question_detail_content">
-          <p ng-repeat="n in data.content">{{n}}</p>
+          <p>{{data.content}}</p>
        </div>
       
       <div class="question_detail_meta">
-      <p>提出人：{{data.asker.name}} | 提出日期： {{data.date.year}}-{{data.date.month}}-{{data.date.day}} </p>
+      <p>提出人：{{data.asker.name}} | 提出日期： {{data.post_date.year}}-{{data.post_date.month}}-{{data.post_date.day}} </p>
       類別：
       <div class="question_detail_category" ng-repeat="n in data.category">
         <a class="link" href="#" >{{n}}{{$last ? '' : ', '}} <a>
@@ -158,10 +160,10 @@
 <div class="ui basic accordion">
   <div class="title">
     <i class="dropdown icon"></i>
-    <span class="question_sign_title">共同發問者</span><div class="ui pointing left label">{{data.signature.length}}</div>
+    <span class="question_sign_title">共同發問者</span><div class="ui pointing left label">{{data.signatures_count}}</div>
   </div>
   <div class="content">
-    <div class="question_sign_block" ng-repeat="n in data.signature">
+    <div class="question_sign_block" ng-repeat="n in data.signatures | orderByPriority">
       <div class="question_sign_order_block">
         <div class="question_sign_push">推</div>
         <div class="question_sign_order">#{{n.order|number:0}}</div>
@@ -178,13 +180,13 @@
 <!-- Dispaly responses -->  
     <div class="response_start_divider"></div>   
     <div class="response_item" 
-         ng-repeat="n in data.responses" 
-         id="response_item_{{n.responseId}}">
+         ng-repeat="n in data.responses | orderByPriority" 
+         id="response_item_{{n.$id}}">
       <div class="response_header">
         <div class="response_title">
-             <h2>{{data.title}}</h2>
+             <h2>{{n.title}}</h2>
              <div class="response_subtitle">
-             臺北市長候選人<a class="link" href="#/candidate/{{n.responser.id}}">{{n.responser.name}}</a>的回應
+             臺北市長候選人<a class="link" href="#/candidate/{{n.candidate}}">{{candidates(n.candidate).name}}</a>的回應
              </div>
         </div>
 

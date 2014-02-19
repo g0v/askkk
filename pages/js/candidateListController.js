@@ -1,9 +1,10 @@
-askControllers.controller('candidateListCtrl', ['$scope', 'candidateService', function($scope, candidateService){
+askControllers.controller('candidateListCtrl', ['$scope', '$firebaseSimpleLogin', 'candidateService', function($scope, $firebaseSimpleLogin, candidateService){
 
   semanticMenuReady();
   semanticAccordingReady();
 
   $scope.candidates = candidateService;
+  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
 
   $scope.askCandidateJoin = function(candidateId){
     console.log("ask candidate join, id:"+candidateId);

@@ -1,14 +1,13 @@
 
-askControllers.controller('candidateInboxRepliedCtrl',['$scope','$routeParams','candidateService',
+askControllers.controller('candidateInboxRepliedCtrl',['$scope','$firebaseSimpleLogin', '$routeParams','candidateService',
 
-function($scope,$routeParams,candidateService){
+function($scope,$firebaseSimpleLogin, $routeParams,candidateService){
 
   semanticMenuReady();
   semanticAccordingReady();
   semanticSidebarReday();
   
-
-
+  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.inboxUnreplied = function(){
     window.location = "#/candidate-inbox"
   }

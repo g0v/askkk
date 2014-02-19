@@ -1,10 +1,11 @@
-askControllers.controller('userListCtrl', ['$scope', 'candidateService', function($scope, candidateService){
+askControllers.controller('userListCtrl', ['$scope', '$firebaseSimpleLogin', 'candidateService', function($scope, $firebaseSimpleLogin, candidateService){
 
 
   semanticMenuReady();
   semanticAccordingReady();
   semanticSidebarReday();
 
+  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.showQuestionDetail = function(questionId){
     event.stopPropagation();
     console.log("show question detail, id:"+questionId);

@@ -93,7 +93,9 @@
       <a class="active item" href="#/candidate-list">候選人表現</a>
       <div class="right menu">
         <div class="item">
-          <a href="#/login">登入</a>
+          <span ng-show="auth.user">{{auth.user.displayName}} | </span>
+          <a href="#" ng-click="auth.$login('facebook')" ng-hide="auth.user">登入</a>
+          <a href="#" ng-click="auth.$logout()" ng-show="auth.user">登出</a>
         </div>       
       </div>
     </div>
