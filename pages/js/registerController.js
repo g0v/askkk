@@ -1,13 +1,9 @@
-askControllers.controller('registerCtrl',['$scope','$routeParams','askKK',
+askControllers.controller('registerCtrl',['$scope','$routeParams','candidateService',
 
 
- function($scope,$routeParams,askKK){
+ function($scope,$routeParams,candidateService){
 
-   askKK.getCandidate(null, function (data) {
-    $scope.$apply(function () {
-      $scope.candidates = data;
-    });
-   });
+      $scope.candidates = candidateService;
 
 
  }]);

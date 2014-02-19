@@ -1,4 +1,4 @@
-askControllers.controller('userListCtrl', ['$scope', 'askKK', function($scope, askKK){
+askControllers.controller('userListCtrl', ['$scope', 'candidateService', function($scope, candidateService){
 
 
   semanticMenuReady();
@@ -6,11 +6,7 @@ askControllers.controller('userListCtrl', ['$scope', 'askKK', function($scope, a
   semanticSidebarReday();
 
 
-  askKK.getCandidate(null, function (data) {
-    $scope.$apply(function () {
-      $scope.candidates = data;
-    });
-  });
+  $scope.candidates = candidateService;
   $scope.categories = global.categories;
   $scope.data = global.responseData;
    

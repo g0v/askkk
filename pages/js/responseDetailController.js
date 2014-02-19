@@ -1,14 +1,10 @@
-askControllers.controller('responseDetailCtrl', ['$scope', 'askKK', function($scope, askKK){
+askControllers.controller('responseDetailCtrl', ['$scope', 'candidateService', function($scope, candidateService){
 
 
   semanticMenuReady();
   semanticAccordingReady();
   
-  askKK.getCandidate(null, function (data) {
-    $scope.$apply(function () {
-      $scope.candidates = data;
-    });
-  });
+  $scope.candidates = candidateService;
   $scope.data = global.responseData[0];
 
   $scope.goToCandidate = function(id){

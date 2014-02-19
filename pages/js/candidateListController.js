@@ -1,16 +1,9 @@
-askControllers.controller('candidateListCtrl', ['$scope', 'askKK', function($scope, askKK){
+askControllers.controller('candidateListCtrl', ['$scope', 'candidateService', function($scope, candidateService){
 
   semanticMenuReady();
   semanticAccordingReady();
 
-  askKK.getCandidate(null, function (data) {
-    $scope.$apply(function () {
-      $scope.candidates = data;
-    });
-  });
- 
-
-
+  $scope.candidates = candidateService;
 // for sign question area keep floating
   var nav = $('#taipei_candidates');
     $(window).scroll(function () {

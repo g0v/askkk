@@ -16,7 +16,7 @@ describe('Candidate', function(){
     });
     x$('should get a list of all candidate info when id is null', function(done){
       return ask.getCandidate(null, function(data){
-        assert.equal(keys(data).length, 6);
+        assert.equal(keys(data).length, 5);
         assert.equal(data[0].name, '柯文哲');
         assert.equal(data[1].name, '連勝文');
         return done();

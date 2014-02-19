@@ -1,7 +1,7 @@
 
-askControllers.controller('candidateInboxRepliedCtrl',['$scope','$routeParams','askKK',
+askControllers.controller('candidateInboxRepliedCtrl',['$scope','$routeParams','candidateService',
 
-function($scope,$routeParams,askKK){
+function($scope,$routeParams,candidateService){
 
   semanticMenuReady();
   semanticAccordingReady();
@@ -18,11 +18,7 @@ function($scope,$routeParams,askKK){
      body.animate({scrollTop:0}, '500', 'swing');
   };
   
-  askKK.getCandidate(null, function (data) {
-    $scope.$apply(function () {
-      $scope.candidates = data;
-    });
-  });
+  $scope.candidates = candidateService;
   $scope.detail = global.responseData[0];
   $scope.data = global.responseDataCandidate;
 
