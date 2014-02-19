@@ -163,7 +163,9 @@
       </div>
 
       <div id="unreplied">
-        <div class="candidate_inbox_list_item" ng-repeat="n in data | filter:query">
+        <div class="candidate_inbox_list_item" 
+             ng-click="displayQuestionDetail(n.id)"
+             ng-repeat="n in data | filter:query">
            <div class="candidate_inbox_list_votes">
               <div class="candidate_inbox_list_push">
                 {{n.voteUp|number:0}}

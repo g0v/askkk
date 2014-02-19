@@ -12,6 +12,9 @@ function($scope,$routeParams,candidateService){
   $scope.inboxUnreplied = function(){
     window.location = "#/candidate-inbox"
   }
+  $scope.displayQuestionDetail = function(questionId){
+    console.log(questionId);
+  }
 
   $scope.goToTop = function(){
      var body = $("html, body");

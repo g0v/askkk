@@ -10,7 +10,11 @@ function($scope,$routeParams,candidateService){
   $scope.inboxAnswered = function(){
     window.location = "#/candidate-inbox-replied";
   }
-   $scope.goToTop = function(){
+  $scope.displayQuestionDetail = function(questionId){
+    console.log(questionId);
+  }
+
+  $scope.goToTop = function(){
      var body = $("html, body");
      body.animate({scrollTop:0}, '500', 'swing');
   };

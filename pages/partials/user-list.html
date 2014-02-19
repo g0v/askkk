@@ -106,11 +106,13 @@
 <div class="ui segment">
 
     <div class="ui tabular filter menu">
-      <a class="active item">我發起的問題</a>
-      <a class="item">我連署的問題</a>
+      <a class="active item" ng-click="myQuestion()">我發起的問題</a>
+      <a class="item" ng-click="myFollowedQuestion()">我連署的問題</a>
     </div>
 
-    <div class="question_list_item" ng-repeat="n in data | filter:query">
+    <div class="question_list_item" 
+         ng-click="showQuestionDetail(n.id)"
+         ng-repeat="n in data | filter:query">
         
         <div ng-show="({{n.votes}}>=1000)" class="question_list_bow">爆</div>
         <div class="question_list_votes">{{n.votes|number:0}}</div>
@@ -132,11 +134,13 @@
           </div>
         </div><!-- end of state_block -->
 
-        <div class="right floated tiny ui black button qustion_list_push_button">
+        <div class="right floated tiny ui black button qustion_list_push_button"
+          ng-click="voteQuestion(n.id)">
           推
         </div>
-         <div class="right floated tiny ui button qustion_list_button">
-          <a href="#/response/{{n.id}}" class="question_list_a">完整內容</a>
+         <div class="right floated tiny ui button qustion_list_button"
+          ng-click="showQuestionDetail(n.id)">
+          完整內容
         </div>
         
     </div> <!-- end of question_list_item -->
