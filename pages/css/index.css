@@ -699,6 +699,12 @@ display: inline-block;
   width:100px;
   position: absolute;
 }
+.askedToJoin_candidate_right_menu{
+  display: block;
+  margin-top: 14px;
+  font-size: 12px;
+  text-align: center;
+}
 /* */
 .candidate_detail_list_item{
 

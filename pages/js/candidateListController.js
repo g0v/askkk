@@ -4,7 +4,12 @@ askControllers.controller('candidateListCtrl', ['$scope', 'candidateService', fu
   semanticAccordingReady();
 
   $scope.candidates = candidateService;
-// for sign question area keep floating
+
+  $scope.askCandidateJoin = function(candidateId){
+    console.log("ask candidate join, id:"+candidateId);
+  };
+
+  // for sign question area keep floating
   var nav = $('#taipei_candidates');
     $(window).scroll(function () {
         if ($(this).scrollTop() > 230) {

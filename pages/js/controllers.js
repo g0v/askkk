@@ -47,6 +47,7 @@ global.oneCandidate =
  "addressedQuestionList":[],
  "repliedQuestion":0,
  "repliedQuestionList":[],
+ "askedToJoin":123124,
  "bio":"綽號柯P、KP，生於臺灣新竹市，為台灣知名外科醫師，現任台大醫院創傷醫學部主任，亦是台大醫學院教授，專長包括外傷、外科重症醫學、急救、器官移植 、ECMO 、人工器官等。除醫療專業外，柯文哲也多次接受媒體採訪、參與政論節目，2013年起參與台北市長競選，走入政治。",
  "bioWiki":"http://zh.wikipedia.org/wiki/%E6%9F%AF%E6%96%87%E5%93%B2"}
 /* https://watchouttw.hackpad.com/oXPyRx5NQfX */
