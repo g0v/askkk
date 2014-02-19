@@ -35,16 +35,11 @@ askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
           meta.$child "#{c}/questions/#{post-ref.name!}" .$set true
       on-complete post-ref if on-complete
 
-    # XXX arguments of `child_added` callback is different from doc
-    ..$on \child_added, ({snapshot, prevChild}) ->
-      service[snapshot.name].addressing = for c in snapshot.value.addressing
-        $firebase ref.child "candidates/#{c}"
-
-    ..get = (id) ->
-      post-ref = service.$child id
+    ..get = (question-id) ->
+      question-ref = service.$child question-id
         ..$on \loaded, (snap) ->
-          post-ref.$id = id
-          post-ref.addressing = for c in post-ref.addressing
+          question-ref.$id = question-id
+          question-ref.addressing = for c in question-ref.addressing
             $firebase ref.child "candidates/#{c}"
 
 askServices.factory \signService, <[$firebase]> ++ ($firebase) ->

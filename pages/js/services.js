@@ -61,27 +61,15 @@ askServices.factory('questionService', ['$firebase'].concat(function($firebase){
       }
     });
   };
-  x$.$on('child_added', function(arg$){
-    var snapshot, prevChild, c;
-    snapshot = arg$.snapshot, prevChild = arg$.prevChild;
-    return service[snapshot.name].addressing = (function(){
-      var i$, ref$, len$, results$ = [];
-      for (i$ = 0, len$ = (ref$ = snapshot.value.addressing).length; i$ < len$; ++i$) {
-        c = ref$[i$];
-        results$.push($firebase(ref.child("candidates/" + c)));
-      }
-      return results$;
-    }());
-  });
-  x$.get = function(id){
-    var x$, postRef;
-    x$ = postRef = service.$child(id);
+  x$.get = function(questionId){
+    var x$, questionRef;
+    x$ = questionRef = service.$child(questionId);
     x$.$on('loaded', function(snap){
       var c;
-      postRef.$id = id;
-      return postRef.addressing = (function(){
+      questionRef.$id = questionId;
+      return questionRef.addressing = (function(){
         var i$, ref$, len$, results$ = [];
-        for (i$ = 0, len$ = (ref$ = postRef.addressing).length; i$ < len$; ++i$) {
+        for (i$ = 0, len$ = (ref$ = questionRef.addressing).length; i$ < len$; ++i$) {
           c = ref$[i$];
           results$.push($firebase(ref.child("candidates/" + c)));
         }
