@@ -9,7 +9,44 @@ askServices.factory('candidateService', [
     return service = $firebase(ref.child('candidates'));
   }
 ]);
-askServices.factory('askLoginService', ['$firebase', function($firebase){}]);
+askServices.factory('questionService', [
+  '$firebase', function($firebase){
+    var service;
+    service = $firebase(ref.child('questions'));
+    service.post = function(arg$){
+      var title, content, category, addressing, post_date;
+      title = arg$.title, content = arg$.content, category = arg$.category, addressing = arg$.addressing, post_date = arg$.post_date;
+      return service.$add({
+        title: title,
+        content: content,
+        category: category,
+        addressing: addressing,
+        post_date: post_date,
+        state: 'open'
+      }).then(function(postRef){
+        (function(metaRef){
+          metaRef.$child("open/" + postRef.name()).$set(true);
+        }.call(this, $firebase(ref.child('question_index'))));
+        (function(metaRef){
+          var i$, ref$, len$, c;
+          for (i$ = 0, len$ = (ref$ = category).length; i$ < len$; ++i$) {
+            c = ref$[i$];
+            metaRef.$child(c + "/" + postRef.name()).$set(true);
+          }
+        }.call(this, $firebase(ref.child('category'))));
+        return (function(metaRef){
+          var i$, ref$, len$, c, results$ = [];
+          for (i$ = 0, len$ = (ref$ = addressing).length; i$ < len$; ++i$) {
+            c = ref$[i$];
+            results$.push(metaRef.$child(c + "/questions/" + postRef.name()).$set(true));
+          }
+          return results$;
+        }.call(this, $firebase(ref.child('candidate_meta'))));
+      });
+    };
+    return service;
+  }
+]);
 /**
  * Filter an object to an array of its keys (properties) except those given be AngularFire.
  */

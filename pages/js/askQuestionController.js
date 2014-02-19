@@ -1,4 +1,4 @@
-askControllers.controller('askQuestionCtrl', ['$scope', 'candidateService', function($scope, candidateService){
+askControllers.controller('askQuestionCtrl', ['$scope', 'candidateService', 'questionService', function($scope, candidateService, questionService){
   semanticMenuReady();
   semanticAccordingReady();
   
@@ -131,14 +131,15 @@ $scope.$watch(function(){
   $scope.postQuestion = function(){
     if($scope.candidateSelection.length==0){ alert("請至少選擇一位候選人提問"); return false;}
     if($scope.newQuestionTitle==null){ alert("請輸入問題簡述"); return false;}
-    console.log("posting quesiton...");
-    console.log("address to: "+$scope.candidateSelection);
-    console.log("title: "+$scope.newQuestionTitle);
-    console.log("category: "+$scope.listSelection);
-    console.log("content: "+$scope.newQuestionContent);
-    console.log("date: "+$scope.getDate());
-    console.log("[user id]");
 
+    var question = {
+      post_date: $scope.getDate(),
+      title: $scope.newQuestionTitle,
+      content: $scope.newQuestionContent,
+      category: $scope.listSelection,
+      addressing: $scope.candidateSelection
+    };
+    questionService.post(question);
   }
 
 
