@@ -9,7 +9,67 @@ askServices.factory('candidateService', [
     return service = $firebase(ref.child('candidates'));
   }
 ]);
-askServices.factory('askLoginService', ['$firebase', function($firebase){}]);
+askServices.factory('questionService', [
+  '$firebase', function($firebase){
+    var service;
+    service = $firebase(ref.child('questions'));
+    service.post = function(arg$, onComplete){
+      var title, content, category, addressing, post_date, deadline;
+      title = arg$.title, content = arg$.content, category = arg$.category, addressing = arg$.addressing, post_date = arg$.post_date, deadline = arg$.deadline;
+      return service.$add({
+        title: title,
+        content: content,
+        category: category,
+        addressing: addressing,
+        post_date: post_date,
+        deadline: deadline,
+        state: 'open',
+        vote: {
+          length: 0
+        },
+        signature: {
+          length: 0
+        }
+      }).then(function(postRef){
+        (function(metaRef){
+          metaRef.$child("open/" + postRef.name()).$set(true);
+        }.call(this, $firebase(ref.child('question_index'))));
+        (function(metaRef){
+          var i$, ref$, len$, c;
+          for (i$ = 0, len$ = (ref$ = category).length; i$ < len$; ++i$) {
+            c = ref$[i$];
+            metaRef.$child(c + "/" + postRef.name()).$set(true);
+          }
+        }.call(this, $firebase(ref.child('category'))));
+        (function(metaRef){
+          var i$, ref$, len$, c;
+          for (i$ = 0, len$ = (ref$ = addressing).length; i$ < len$; ++i$) {
+            c = ref$[i$];
+            metaRef.$child(c + "/questions/" + postRef.name()).$set(true);
+          }
+        }.call(this, $firebase(ref.child('candidate_meta'))));
+        return onComplete(postRef);
+      });
+    };
+    service.get = function(id){
+      var postRef;
+      postRef = service.$child(id);
+      postRef.$on('loaded', function(snap){
+        var c;
+        return postRef.addressing = (function(){
+          var i$, ref$, len$, results$ = [];
+          for (i$ = 0, len$ = (ref$ = postRef.addressing).length; i$ < len$; ++i$) {
+            c = ref$[i$];
+            results$.push($firebase(ref.child("candidates/" + c)));
+          }
+          return results$;
+        }());
+      });
+      return postRef;
+    };
+    return service;
+  }
+]);
 /**
  * Filter an object to an array of its keys (properties) except those given be AngularFire.
  */

@@ -1,4 +1,4 @@
-askControllers.controller('askQuestionCtrl', ['$scope', 'candidateService', function($scope, candidateService){
+askControllers.controller('askQuestionCtrl', ['$scope', '$location', 'candidateService', 'questionService', function($scope, $location, candidateService, questionService){
   semanticMenuReady();
   semanticAccordingReady();
   
@@ -120,25 +120,36 @@ $scope.$watch(function(){
 
 
   /* posting question */
-  $scope.getDate = function(){
-     var d = new Date();
+  $scope.getDate = function(d){
+     if (!d) {
+       d = new Date();
+     }
      var month = d.getMonth()+1;
      var day = d.getDate();
      var output = d.getFullYear()+"-"+((''+month).length<2?'0':'')+month+"-"+((''+day).length<2?'0':'')+day;
      return output;
-
   }
+  $scope.getDeadline = function () {
+    var d = new Date();
+    var deadline = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 30); 
+    return $scope.getDate(deadline);
+  }
+
   $scope.postQuestion = function(){
     if($scope.candidateSelection.length==0){ alert("請至少選擇一位候選人提問"); return false;}
     if($scope.newQuestionTitle==null){ alert("請輸入問題簡述"); return false;}
-    console.log("posting quesiton...");
-    console.log("address to: "+$scope.candidateSelection);
-    console.log("title: "+$scope.newQuestionTitle);
-    console.log("category: "+$scope.listSelection);
-    console.log("content: "+$scope.newQuestionContent);
-    console.log("date: "+$scope.getDate());
-    console.log("[user id]");
 
+    var question = {
+      post_date: $scope.getDate(),
+      deadline: $scope.getDeadline(),
+      title: $scope.newQuestionTitle,
+      content: $scope.newQuestionContent,
+      category: $scope.listSelection,
+      addressing: $scope.candidateSelection
+    };
+    questionService.post(question, function (post) {
+      $location.path('/question/' + post.name()).replace();
+    });
   }
 
 
