@@ -42,12 +42,13 @@ global.candidates = [
 
 global.oneCandidate = 
 {"id":'-JFuCJcAoUNFQY9NEHZ4',"name":"柯文哲", "party":"無黨籍","partyEng":"NONE",
-"state":"join",
-"addressedQuestion":233,
+ "state":"pending",
+ "addressedQuestion":233,
  "addressedQuestionList":[],
  "repliedQuestion":0,
- "repliedQuestionList":[]};
-
+ "repliedQuestionList":[],
+ "bio":"綽號柯P、KP，生於臺灣新竹市，為台灣知名外科醫師，現任台大醫院創傷醫學部主任，亦是台大醫學院教授，專長包括外傷、外科重症醫學、急救、器官移植 、ECMO 、人工器官等。除醫療專業外，柯文哲也多次接受媒體採訪、參與政論節目，2013年起參與台北市長競選，走入政治。",
+ "bioWiki":"http://zh.wikipedia.org/wiki/%E6%9F%AF%E6%96%87%E5%93%B2"}
 /* https://watchouttw.hackpad.com/oXPyRx5NQfX */
 global.categories = ['農業','藝術與人文','預算和稅收','公民權利和自由','氣候變化',
 '消費者保護','刑事司法和執法','國防','殘疾','經濟','教育',

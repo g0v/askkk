@@ -97,34 +97,48 @@
   <div class="ui raised segment" id="candidate_segment" >
 
       <div class="right_menu fc-fix" id="taipei_candidates">
-        <div class="right_menu_city_header"><h3>候選人摘要</h3></div>
+        <div class="right_menu_city_header">候選人摘要</div>
 
       <div class="right_menu_list">
       <div class="ui divided list">
-        
-        <div class="item">
+        <div class="candidate_right_menu_state" 
+             ng-show="{{(n.state=='join')}}">已加入「市長，給問嗎？」</div>
+        <div class="candidate_right_menu_state" 
+             ng-hide="{{(n.state=='join')}}">尚未加入「市長，給問嗎？」</div>
 
-           <div class="candidate"> 
+        <div class="item candidate_right_menu_item">
+          <div class="candidate_right_menu_right_text">
+            <p>{{n.bio}}</p>
+            <p><a class="link" href="{{n.bioWiki}}" target="_new">在維基百科上瀏覽更多</a></p>
+          </div>
+
+          <div class="candidate"> 
           <a href="#/candidate/{{n.id}}">
-          <img class="rounded ui image candidate_img" ng-src="images/candidates/{{n.id}}.jpg" id="candidate_{{n.id}}" ng-click="candidateChoose()"></a>
+          <img class="rounded ui image candidate_img" 
+               ng-src="images/candidates/{{n.id}}.jpg" id="candidate_{{n.id}}"></a>
           
-          <div class="progress_info_floating">
+          <div class="progress_info_floating_candidate_detail">
             <a href="#/candidate/{{n.id}}">
             <div class="progress_info_floating_text" 
                  id="candidateName_{{n.id}}"
-                ng-click="candidateChoose()">{{n.name}}</div></a>
+                 ng-click="candidateChoose()">{{n.name}}</div></a>
           </div>
           <div class="progress">
-              <div class="bar" style="width: {{n.answered / n.asked * 100}}%;"> 
+              <div class="bar" style="width: {{n.repliedQuestion / n.addressedQuestion * 100}}%;"> 
           </div>
           </div>
-          <div class="progress_info_rate">回覆率：{{n.repliedQuestion / n.addressedQuestion * 100 | number:0}}%</div>
+
+          <div class="progress_info_rate">
+            回覆率：{{n.repliedQuestion / n.addressedQuestion * 100 | number:0}}%</div>
           <div class="progress_info_answered">已回答：{{n.repliedQuestion}} </div>
           <div class="progress_info_asked">被提問：{{n.addressedQuestion}}</div>
-          <img class="circular ui image candidate_list_party_join" 
+          <img class="circular ui image candidate_detail_party" 
            ng-src="images/{{n.partyEng}}.png"></img>
-        </div>
-        </div>
+          <div class="ask_to_join_button_candidate_detail"
+               ng-hide="{{(n.state=='join')}}"
+               ng-click="askCandidateJoin(n.id)">要求{{n.name}}參賽</div>
+          </div>
+        </div><!-- end of item -->
       </div>
       </div>
     </div><!-- end of city_info -->

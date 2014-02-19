@@ -7,12 +7,24 @@ function($scope,$routeParams,candidateService){
 
   
   $scope.data = global.responseDataCandidate;
-  $scope.n = global.oneCandidate;
+  
   $scope.candidates = candidateService;
+  $scope.n = global.oneCandidate;
+
 
   $scope.pending=function(){
     window.location = "#/candidate/"+$routeParams.candidateId+"/pending";
   }
+
+  $scope.showQuestionDetail = function(questionId){
+    event.stopPropagation();
+    console.log("show question detail, id:"+questionId);
+    window.location = "#/question/"+questionId;
+  };
+  $scope.askCandidateJoin = function(candidateId){
+    console.log("ask candidate join, id:"+candidateId);
+  };
+
 
 // for sign question area keep floating
   var nav = $('#taipei_candidates');

@@ -12,8 +12,6 @@ askControllers.controller('questionListCtrl', ['$scope', 'candidateService', fun
     event.stopPropagation();
     console.log("show question detail, id:"+questionId);
     window.location = "#/question/"+questionId;
-    
-
   };
   $scope.voteQuestion = function(questionId){
     event.stopPropagation();

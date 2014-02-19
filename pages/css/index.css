@@ -454,6 +454,7 @@ display: inline-block;
   padding-top: 5px;
   padding-bottom: 5px;
   margin:10px;
+  
 }
 
 .fc-fix{
@@ -462,6 +463,8 @@ display: inline-block;
 }
 .right_menu_city_header{
   text-align:center;
+  font-size: 18px;
+  margin-top: 10px;
 
 }
 .right_menu_candidate_name{
@@ -514,7 +517,7 @@ display: inline-block;
 .progress_info_floating{
   position: absolute;
   top:90px;
-  width:100%;
+  width:94px;
   /*background: rgba(251,106,74,0.85);*/
   background: rgba(255,255,255,0.8);
   z-index: 888;
@@ -625,6 +628,78 @@ display: inline-block;
 .candidate_detail_tab{
   display: inline-block;
 }
+/* 候選人個人頁面，右方個人資料 */
+.candidate_right_menu{
+  float:right;
+  width:150px;
+  margin-left: 760px;
+  border:1px solid #d5d5d5;
+  border-radius: 10px;
+  background: #d9d9d9;
+}
+.candidate_right_menu_state{
+  text-align: center;
+  margin-bottom: 5px;
+}
+.candidate_right_menu_item{
+ 
+}
+.candidate_right_menu_right_text p{
+  margin:5px;
+}
+.candidate_right_menu_right_text{
+  float:right;
+  display: inline-block;
+  width:150px;
+  font-size: 12px;
+
+}
+.progress_info_floating_candidate_detail{
+  position: absolute;
+  top:92px;
+  width:94px;
+  /*background: rgba(251,106,74,0.85);*/
+  background: rgba(255,255,255,0.8);
+  z-index: 888;
+  padding: 2px;
+  padding-left:3px;
+  padding-right:3px;
+  font-size: 14px;
+
+}
+.progress_info_floating_text_candidate_detail{
+   margin-left: 30px;
+   width:50px;
+}
+.candidate_detail_party{
+  float:left;
+  position: absolute;
+  top: -95px; 
+  left: 2px;
+  z-index: 1001;
+  width:30px;
+  height:30px;
+
+  -webkit-box-shadow: #666 0px 2px 3px;
+  -moz-box-shadow: #666 0px 2px 3px;
+  box-shadow: #666 0px 2px 3px;
+
+}
+.ask_to_join_button_candidate_detail{
+  background: rgba(251,106,74,0.9);/*red*/
+  border-radius: 5px;
+  color:white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  padding-top:5px;
+  padding-bottom: 5px;
+  width:100px;
+  position: absolute;
+}
+/* */
 .candidate_detail_list_item{
 
   display: block;

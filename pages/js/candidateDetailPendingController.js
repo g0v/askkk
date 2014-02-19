@@ -12,6 +12,10 @@ askControllers.controller('candidateDetailPendingCtrl', ['$scope','$routeParams'
     window.location = "#/candidate/"+$routeParams.candidateId;
   }
 
+  $scope.askCandidateJoin = function(candidateId){
+    console.log("ask candidate join, id:"+candidateId);
+  };
+
 
   // for sign question area keep floating
   var nav = $('#taipei_candidates');
