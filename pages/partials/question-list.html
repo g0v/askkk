@@ -139,7 +139,7 @@
 
 
     <div class="question_list_item" 
-         ng-repeat="n in data | orderByPriority | filter:query" ng-click="showQuestionDetail(n.id)">
+         ng-repeat="n in data | orderByPriority | filter:query">
         
         <div class="question_list_bow"><div ng-show="(n.vote.length>=800)">HOT</div></div>
         <div class="question_list_votes"  
@@ -159,11 +159,11 @@
         </div><!-- end of state_block -->
 
         <div class="right floated tiny ui black button qustion_list_push_button"
-             ng-click="voteQuestion(n.id)">
+             ng-click="voteQuestion(n.$id)">
           推
         </div>
          <div class="right floated tiny ui button qustion_list_button"
-              ng-click="showQuestionDetail(n.id)">
+              ng-click="showQuestionDetail(n.$id)">
           完整內容
         </div>
         
