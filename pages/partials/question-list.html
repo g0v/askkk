@@ -139,19 +139,19 @@
 
 
     <div class="question_list_item" 
-         ng-repeat="n in data | filter:query" ng-click="showQuestionDetail(n.id)">
+         ng-repeat="n in data | orderByPriority | filter:query" ng-click="showQuestionDetail(n.id)">
         
-        <div class="question_list_bow"><div ng-show="({{n.votes}}>=800)">HOT</div></div>
+        <div class="question_list_bow"><div ng-show="(n.vote.length>=800)">HOT</div></div>
         <div class="question_list_votes"  
-             ng-show="({{n.votes}}<1000)">{{n.votes}}</div>
+             ng-show="(n.vote.length < 1000)">{{n.vote.length}}</div>
         
         
-        <div class="question_list_date">{{n.date.month}}/{{n.date.day}}</div>
+        <div class="question_list_date">{{n.date}}</div>
         <div class="question_list_asker">{{n.asker.name}}</div>
         <div class="question_list_title">{{n.title}}</div>
 
         <div class="candidate_state_block">
-          <div ng-repeat="k in n.addressedTo"
+          <div ng-repeat="k in n.addressing"
                class="candidate_state">
                <img class="ui image addressed_to" 
                     ng-src="images/candidates_avatar/{{k.id}}.jpg"></img>

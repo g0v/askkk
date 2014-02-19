@@ -51,6 +51,18 @@ askServices.factory('questionService', [
         return onComplete(postRef);
       });
     };
+    service.$on('child_added', function(arg$){
+      var snapshot, prevChild, c;
+      snapshot = arg$.snapshot, prevChild = arg$.prevChild;
+      return service[snapshot.name].addressing = (function(){
+        var i$, ref$, len$, results$ = [];
+        for (i$ = 0, len$ = (ref$ = snapshot.value.addressing).length; i$ < len$; ++i$) {
+          c = ref$[i$];
+          results$.push($firebase(ref.child("candidates/" + c)));
+        }
+        return results$;
+      }());
+    });
     service.get = function(id){
       var postRef;
       postRef = service.$child(id);

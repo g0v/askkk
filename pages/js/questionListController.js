@@ -1,4 +1,4 @@
-askControllers.controller('questionListCtrl', ['$scope', 'candidateService', function($scope, candidateService){
+askControllers.controller('questionListCtrl', ['$scope', 'candidateService', 'questionService', function($scope, candidateService, questionService){
 
   semanticMenuReady();
   semanticAccordingReady();
@@ -6,7 +6,7 @@ askControllers.controller('questionListCtrl', ['$scope', 'candidateService', fun
 
   $scope.candidates = candidateService;
   $scope.categories = global.categories;
-  $scope.data = global.questionData;
+  $scope.data = questionService;
 
   $scope.showQuestionDetail = function(questionId){
     event.stopPropagation();
