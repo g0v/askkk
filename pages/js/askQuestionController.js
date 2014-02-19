@@ -8,12 +8,12 @@ askControllers.controller('askQuestionCtrl', ['$scope', 'candidateService', func
 
 
   $scope.candidateSelection = [];
-  $scope.toggleCandidate = function(row){
-   row = row+1;
-   var name = $("#candidateName_"+row).text();
-   var current = $("#candidate_"+row);
+  $scope.toggleCandidate = function(selectedId){
+   
+   var name = $("#candidateName_"+selectedId).text();
+   var current = $("#candidate_"+selectedId);
    //var idx = current.attr("class").indexOf("ask_question_candidate_selected");
-   var idx = $scope.candidateSelection.indexOf(name);
+   var idx = $scope.candidateSelection.indexOf(selectedId);
    // is currently selected
    if (idx > -1) {
        current.removeClass("ask_question_candidate_selected");
@@ -21,7 +21,7 @@ askControllers.controller('askQuestionCtrl', ['$scope', 'candidateService', func
       
    }else{
       current.addClass("ask_question_candidate_selected");
-      $scope.candidateSelection.push(name);
+      $scope.candidateSelection.push(selectedId);
    }
 
    if($scope.candidateSelection.length<$scope.candidates.length){
@@ -45,7 +45,9 @@ askControllers.controller('askQuestionCtrl', ['$scope', 'candidateService', func
          $(".ask_question_candidate").addClass("ask_question_candidate_selected");
          $scope.candidateSelection = [];
          for(var i=0;i<$scope.candidates.length;i++){
-             $scope.candidateSelection.push($scope.candidates[i].name);
+          console.log($scope.candidates[i].id);
+          console.log($scope.candidates[i].);
+             $scope.candidateSelection.push($scope.candidates[i].id);
          }
          $("#ask_all_candidate_hint_1").text("好像也...");
          $("#ask_all_candidate_hint_2").text("沒那麼想問");
