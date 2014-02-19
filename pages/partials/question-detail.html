@@ -107,7 +107,7 @@
 
           <div class="addressed_to_candidate_text">請問市長候選人：</div>
           <div class="addressed_to_candidate_collection">
-          <div ng-repeat="k in data.addressedTo"
+          <div ng-repeat="k in data.addressing"
                class="addressed_to_candidate">
                <img class="ui image addressed_to" 
                     src="images/candidates_avatar/{{k.id}}.jpg"></img>
@@ -118,7 +118,7 @@
        <div class="question_detail_votes">
           <div class="ui pointing left label">
           <div class="question_detail_push">推</div>
-          <div class="question_detail_text">{{data.votes|number:0}}</div>
+          <div class="question_detail_text">{{data.vote.total}}</div>
           </div>
        </div>
 
@@ -126,11 +126,11 @@
           <h2 class="question_detail_title">{{data.title}}</h2>
        </div>
        <div class="question_detail_content">
-          <p ng-repeat="n in data.content">{{n}}</p>
+          <p>{{data.content}}</p>
        </div>
       
       <div class="question_detail_meta">
-      <p>提出人：{{data.asker.name}} | 提出日期： {{data.date.year}}-{{data.date.month}}-{{data.date.day}} </p>
+      <p>提出人：{{data.asker.name}} | 提出日期： {{data.date}} </p>
       類別：
       <div class="question_detail_category" ng-repeat="n in data.category">
         <a class="link" href="#" >{{n}}{{$last ? '' : ', '}} <a>
@@ -173,7 +173,7 @@
             <h1>支持這個提問</h1>
             <p>已有 {{data.signature.length}} 人推文支持</p>
             <div class="sign-num">
-              <p>截至 {{data.deadline.year}} 年 {{data.deadline.month}} 月 {{data.deadline.day}} 日前，尚需 {{1000-data.signature.length}} 人推文</p>
+              <p>截至 {{data.deadline}} 之前，尚需 {{1000-data.signature.length}} 人推文</p>
             </div>
             <div class="question-progress">
               <div class="question-bar" 

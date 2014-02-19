@@ -4,7 +4,7 @@ askControllers.controller('questionDetailCtrl', ['$scope', '$routeParams', 'cand
   semanticAccordingReady();
 
   $scope.candidates = candidateService;
-  $scope.data = global.questionData[0];
+  $scope.data = questionService.get($routeParams.questionId);
 
   $scope.goToTop = function(){
     var body = $("html, body");
