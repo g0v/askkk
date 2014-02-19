@@ -4,81 +4,78 @@ values = require('prelude-ls').values;
 userId = 1;
 askServices = angular.module('askServices', ['firebase']);
 ref = new Firebase('https://askkkkk.firebaseio.com/');
-askServices.factory('candidateService', [
-  '$firebase', function($firebase){
-    var service;
-    return service = $firebase(ref.child('candidates'));
-  }
-]);
-askServices.factory('questionService', [
-  '$firebase', function($firebase){
-    var service;
-    service = $firebase(ref.child('questions'));
-    service.post = function(arg$, onComplete){
-      var title, content, category, addressing, post_date, deadline;
-      title = arg$.title, content = arg$.content, category = arg$.category, addressing = arg$.addressing, post_date = arg$.post_date, deadline = arg$.deadline;
-      return service.$add({
-        title: title,
-        content: content,
-        category: category,
-        addressing: addressing,
-        post_date: post_date,
-        deadline: deadline,
-        state: 'open',
-        signatures_count: 0
-      }).then(function(postRef){
-        (function(metaRef){
-          metaRef.$child("open/" + postRef.name()).$set(true);
-        }.call(this, $firebase(ref.child('question_index'))));
-        (function(metaRef){
-          var i$, ref$, len$, c;
-          for (i$ = 0, len$ = (ref$ = category).length; i$ < len$; ++i$) {
-            c = ref$[i$];
-            metaRef.$child(c + "/" + postRef.name()).$set(true);
-          }
-        }.call(this, $firebase(ref.child('category'))));
-        (function(metaRef){
-          var i$, ref$, len$, c;
-          for (i$ = 0, len$ = (ref$ = addressing).length; i$ < len$; ++i$) {
-            c = ref$[i$];
-            metaRef.$child(c + "/questions/" + postRef.name()).$set(true);
-          }
-        }.call(this, $firebase(ref.child('candidate_meta'))));
+askServices.factory('candidateService', ['$firebase'].concat(function($firebase){
+  return $firebase(ref.child('candidates'));
+}));
+askServices.factory('questionService', ['$firebase'].concat(function($firebase){
+  var x$, service;
+  x$ = service = $firebase(ref.child('questions'));
+  x$.post = function(arg$, onComplete){
+    var title, content, category, addressing, post_date, deadline;
+    title = arg$.title, content = arg$.content, category = arg$.category, addressing = arg$.addressing, post_date = arg$.post_date, deadline = arg$.deadline;
+    return service.$add({
+      title: title,
+      content: content,
+      category: category,
+      addressing: addressing,
+      post_date: post_date,
+      deadline: deadline,
+      state: 'open',
+      signatures_count: 0
+    }).then(function(postRef){
+      (function(meta){
+        meta.$child("open/" + postRef.name()).$set(true);
+      }.call(this, $firebase(ref.child('question_index'))));
+      (function(meta){
+        var i$, ref$, len$, c;
+        for (i$ = 0, len$ = (ref$ = category).length; i$ < len$; ++i$) {
+          c = ref$[i$];
+          meta.$child(c + "/" + postRef.name()).$set(true);
+        }
+      }.call(this, $firebase(ref.child('category'))));
+      (function(meta){
+        var i$, ref$, len$, c;
+        for (i$ = 0, len$ = (ref$ = addressing).length; i$ < len$; ++i$) {
+          c = ref$[i$];
+          meta.$child(c + "/questions/" + postRef.name()).$set(true);
+        }
+      }.call(this, $firebase(ref.child('candidate_meta'))));
+      if (onComplete) {
         return onComplete(postRef);
-      });
-    };
-    service.$on('child_added', function(arg$){
-      var snapshot, prevChild, c;
-      snapshot = arg$.snapshot, prevChild = arg$.prevChild;
-      return service[snapshot.name].addressing = (function(){
+      }
+    });
+  };
+  x$.$on('child_added', function(arg$){
+    var snapshot, prevChild, c;
+    snapshot = arg$.snapshot, prevChild = arg$.prevChild;
+    return service[snapshot.name].addressing = (function(){
+      var i$, ref$, len$, results$ = [];
+      for (i$ = 0, len$ = (ref$ = snapshot.value.addressing).length; i$ < len$; ++i$) {
+        c = ref$[i$];
+        results$.push($firebase(ref.child("candidates/" + c)));
+      }
+      return results$;
+    }());
+  });
+  x$.get = function(id){
+    var x$, postRef;
+    x$ = postRef = service.$child(id);
+    x$.$on('loaded', function(snap){
+      var c;
+      postRef.$id = id;
+      return postRef.addressing = (function(){
         var i$, ref$, len$, results$ = [];
-        for (i$ = 0, len$ = (ref$ = snapshot.value.addressing).length; i$ < len$; ++i$) {
+        for (i$ = 0, len$ = (ref$ = postRef.addressing).length; i$ < len$; ++i$) {
           c = ref$[i$];
           results$.push($firebase(ref.child("candidates/" + c)));
         }
         return results$;
       }());
     });
-    service.get = function(id){
-      var postRef;
-      postRef = service.$child(id);
-      postRef.$on('loaded', function(snap){
-        var c;
-        postRef.$id = id;
-        return postRef.addressing = (function(){
-          var i$, ref$, len$, results$ = [];
-          for (i$ = 0, len$ = (ref$ = postRef.addressing).length; i$ < len$; ++i$) {
-            c = ref$[i$];
-            results$.push($firebase(ref.child("candidates/" + c)));
-          }
-          return results$;
-        }());
-      });
-      return postRef;
-    };
-    return service;
-  }
-]);
+    return x$;
+  };
+  return x$;
+}));
 askServices.factory('signService', ['$firebase'].concat(function($firebase){
   return {
     sign: function(userId, questionId){
@@ -110,11 +107,13 @@ askServices.factory('signService', ['$firebase'].concat(function($firebase){
  */
 askServices.filter('toKeys', function(){
   return function(input, attributes){
-    if (!angular.isObject(input)) {
+    switch (false) {
+    case !!angular.isObject(input):
       return input;
+    default:
+      return keys(input).filter(function(it){
+        return it[0] !== '$';
+      });
     }
-    return keys(input).filter(function(it){
-      return it[0] !== '$';
-    });
   };
 });
