@@ -250,7 +250,7 @@ display: inline-block;
 
 #why_and_how_segment{
   width:998px;
-  height:650px;
+  height:800px;
   margin-bottom: 80px;
 }
 .index_tab{
@@ -258,11 +258,18 @@ display: inline-block;
   /*background: rgba(200,200,200,0.2);*/
   border-top-left-radius: 5px;
   border-top-right-radius:5px;
+ 
   cursor: pointer;
+  width:230px;
 
+}
+.index_tab img{
+  margin-left: 20px;
+  margin-top: 2px;
 }
 .index_tab_active{
   border-bottom: 5px solid rgba(100,100,100,1);
+  background: rgba(200,200,200,0.2);
 
 }
 .why_and_how_title{
@@ -276,6 +283,16 @@ display: inline-block;
 .why_and_how_content{
   padding-top: 5px;
   margin-left:10px;
+}
+.how_to_participate_text{
+
+}
+.hightlight{
+  display: inline;
+  margin:0px;
+  padding: 0px;
+  color:#a50f15;
+
 }
 
 

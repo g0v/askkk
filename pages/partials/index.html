@@ -112,22 +112,15 @@
   <div class="item index_tab index_tab_active" id="about_tab" ng-click="tabChoose('about')">
     <img class="ui avatar image" src="images/logo.png">
     <div class="content">
-      <div class="header">關於「市長，給問嗎？」</div>
+      <div class="header">關於這個網站</div>
        why we did this?
     </div>
   </div>
-  <div class="item index_tab" id="how_to_use_user_tab" ng-click="tabChoose('how_to_use_user')">
+  <div class="item index_tab" id="how_to_use_tab" ng-click="tabChoose('how_to_use')">
     <img class="ui avatar image" src="images/logo.png">
     <div class="content">
-      <div class="header">如何使用這個網站？</div>
+      <div class="header">如何使用及參與？</div>
        how to participate?
-    </div>
-  </div>
-  <div class="item index_tab" id="how_to_use_candidate_tab" ng-click="tabChoose('how_to_use_candidate')">
-    <img class="ui avatar image" src="images/logo.png">
-    <div class="content">
-      <div class="header">候選人會如何回答？</div>
-       how do candidates answer?
     </div>
   </div>
   <div class="item index_tab" id="diff_tab" ng-click="tabChoose('diff')">
@@ -135,6 +128,13 @@
     <div class="content">
       <div class="header">和其他平台不同之處？</div>
        what's the difference?
+    </div>
+  </div>
+  <div class="item index_tab" id="announcement_tab" ng-click="tabChoose('announcement')">
+    <img class="ui avatar image" src="images/logo.png">
+    <div class="content">
+      <div class="header">版規&公告</div>
+       announcement
     </div>
   </div>
 </div>
@@ -169,16 +169,80 @@
   </div>
 </div> <!-- end of about data-tab -->
   
-<div class="ui bottom attached segment tab" id="how_to_use_user">
-  <div class="why_and_how_title">如何使用？</div>
+<div class="ui bottom attached segment tab" id="how_to_use">
+  <div class="why_and_how_title">如何使用？——市民指南</div>
   <div class="why_and_how_content">
-     <div class="ui label">1. 提出問題</div>
+  
+  <div class="ui four column grid">
+  <div class="equal height row">
+    <div class="column how_to_participate_text">
+      
+      <div class="ui label">1. 提出問題</div>
+      <img src="images/test.jpg" width="200px">
+      <p>每位註冊的使用者都可以對候選人提問：你可以選擇詢問一位候選人、或者數位，當然，你也可以詢問所有候選人。</p>
+      <p>爲維持良好的討論品質，請務必閱讀並記得遵守<a class="link">版規</a>。</p>
+    </div>
+    <div class="column">
+      
+      <div class="ui label">2. 開始集氣</div>
+      <img src="images/test.jpg" width="200px">
+      <p>提問送出後，每則提問都有<span class="hightlight">一個月</span>的時間可以被連署（被推、尋找共同發問者）。</p>
+      <p><span class="hightlight">連署</span>一個問題，代表你也關注這個議題，並認為候選人對此提出看法及回答是重要的。</p>
 
-     <div class="ui label">2. 開始集氣</div>
+    </div>
+    <div class="column">
+      <div class="ui label">3. 達成門檻</div>
+      <img src="images/test.jpg" width="200px">
+      <p>當一個提問在時間內達到<span class="hightlight">1,000</span>連署數（被推爆了），候選人就必須回答此問題。</p>
+    </div>
+     <div class="column">
+      <div class="ui label">4. 候選人回答</div>
+      <img src="images/test.jpg" width="200px">
+      <p>針對候選人的回答，民眾可以投票支持（推）或反對（噓）。</p>
+      <p>回覆後，便無法修改回覆內容；若有不足或想補充說明之處，可針對同一問題再次回答。</p>
+
+    </div>
+  </div><!-- end of row -->
+ </div><!-- end of grid -->
+</div><!-- end of why_and_how_content -->
+
+<br/><br/>
+<div class="why_and_how_title">如何使用？——候選人指南</div>
+  <div class="why_and_how_content">
+  
+  <div class="ui four column grid">
+  <div class="equal height row">
+    <div class="column how_to_participate_text">
+      
+      <div class="ui label">1. Inbox / 市民心聲</div>
+      <img src="images/test.jpg" width="200px">
+      <p>候選人登入後，可以看到專屬於自己的「市民心聲」信箱，所有向此候選人提問且已達門檻的問題會出現在這裡。</p>
+      <p>你可以想像成這是你的 gmail 信箱，當連數人數達到門檻後，系統就會自動把這個問題寄到你的信箱。</p>
+    </div>
+    <div class="column">
+      
+      <div class="ui label">2. 已回覆 / 未回覆</div>
+      <img src="images/test.jpg" width="200px">
+      <p>在「市民心聲」信箱中，可以分別看到「已回覆」和「未回覆」的列表，方便候選人檢視還有哪些問題尚未回覆。</p>
+
+    </div>
+    <div class="column">
+      <div class="ui label">3. 回覆問題</div>
+      <img src="images/test.jpg" width="200px">
+      <p>回覆問題很簡單：在每個提問下方都有一欄輸入文字的欄位，候選人只需在此輸入回應後點選「回覆」，就可以完成回覆了。</p>
+    </div>
+     <div class="column">
+      <div class="ui label">4. 多次回覆</div>
+      <img src="images/test.jpg" width="200px">
+      <p>候選人回覆後，便無法修改回覆內容；若有不足或想補充說明之處，可針對同一問題再次回答。</p>
+
+    </div>
+  </div><!-- end of row -->
+ </div><!-- end of grid -->
+</div><!-- end of why_and_how_content -->
 
 
-  </div>
-</div> <!-- end of how to use user tab -->
+</div><!-- end of how to use user tab -->
 
 
 <div class="ui bottom attached segment tab" id="how_to_use_candidate">
@@ -193,6 +257,23 @@
   <div class="why_and_how_title">和其他平台有什麼不同？</div>
   <div class="why_and_how_content"></div>
 </div> <!-- end of diff tab -->
+
+<div class="ui bottom attached segment tab" id="announcement">
+  <div class="why_and_how_title">版規</div>
+  <div class="why_and_how_content">
+   
+    <p>下列事項為本網站規範，若經網友檢舉並經管理員確認明顯符合者，將不經警告逕行刪文：
+      <ul>
+       <li>請勿發表廣告、商業宣傳或競選文案</li>
+       <li>請勿留下任何自己或他人之電話、聯絡方式、個人頁面等之私人資訊</li>
+       <li>請勿發表涉及人身攻擊、謾罵、惡意攻訐與恐嚇等之言論</li>
+       <li>請勿詢問無關公共權益與社會議題之私人問題</li>
+       <li>請勿進行洗版與重複發問</li>
+       <li>請勿使用有關性別、民族、族群或國籍等歧視性用語</li>
+      </ul>
+    </p> 
+  </div>
+</div> <!-- end of announcement tab -->
 
 
 </div> <!-- end of ui raised segment-->
