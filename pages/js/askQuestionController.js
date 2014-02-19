@@ -24,7 +24,7 @@ askControllers.controller('askQuestionCtrl', ['$scope', 'candidateService', func
       $scope.candidateSelection.push(selectedId);
    }
 
-   if($scope.candidateSelection.length<$scope.candidates.length){
+   if($scope.candidateSelection.length<$(".ask_question_candidate_data").length){
       $("#candidate_all").removeClass("ask_question_candidate_selected");
       $("#ask_all_candidate_hint_1").text("每個都想問");
       $("#ask_all_candidate_hint_2").text("按我全選吧");
@@ -40,15 +40,19 @@ askControllers.controller('askQuestionCtrl', ['$scope', 'candidateService', func
   };
    
   $scope.toggleAllCandidate = function(){
-      if($scope.candidateSelection.length<$scope.candidates.length){
+
+      console.log($scope.candidateSelection.length);
+      
+      if($scope.candidateSelection.length<$(".ask_question_candidate_data").length){
 
          $(".ask_question_candidate").addClass("ask_question_candidate_selected");
          $scope.candidateSelection = [];
-         for(var i=0;i<$scope.candidates.length;i++){
-          console.log($scope.candidates[i].id);
-          console.log($scope.candidates[i].);
-             $scope.candidateSelection.push($scope.candidates[i].id);
-         }
+
+         $(".ask_question_candidate_data").each(function( index ) {
+            var id = $(this).attr("id").split("_")[1];
+            $scope.candidateSelection.push(id);
+         });
+
          $("#ask_all_candidate_hint_1").text("好像也...");
          $("#ask_all_candidate_hint_2").text("沒那麼想問");
       }else{
