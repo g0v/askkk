@@ -6,7 +6,7 @@ askControllers.controller('questionListCtrl', ['$scope', '$location', 'candidate
 
   $scope.candidates = candidateService;
   $scope.categories = global.categories;
-  $scope.data = questionService;
+  $scope.questions = questionService;
 
   $scope.showQuestionDetail = function(questionId){
     $location.path("/question/" + questionId)

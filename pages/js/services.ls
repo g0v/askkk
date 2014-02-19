@@ -14,11 +14,11 @@ askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
     ..post = ({title, content, category, addressing, post_date, deadline}, on-complete) ->
       post-ref <- service.$add {
         title, content, category, addressing, post_date, deadline,
-        state: \open
+        state: \collecting
         signatures_count: 0
       } .then
       let meta = $firebase ref.child \question_index
-        meta.$child "open/#{post-ref.name!}" .$set true
+        meta.$child "collecting/#{post-ref.name!}" .$set true
       let meta = $firebase ref.child \category
         for c in category
           meta.$child "#{c}/#{post-ref.name!}" .$set true

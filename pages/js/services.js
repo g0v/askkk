@@ -20,11 +20,11 @@ askServices.factory('questionService', ['$firebase'].concat(function($firebase){
       addressing: addressing,
       post_date: post_date,
       deadline: deadline,
-      state: 'open',
+      state: 'collecting',
       signatures_count: 0
     }).then(function(postRef){
       (function(meta){
-        meta.$child("open/" + postRef.name()).$set(true);
+        meta.$child("collecting/" + postRef.name()).$set(true);
       }.call(this, $firebase(ref.child('question_index'))));
       (function(meta){
         var i$, ref$, len$, c;

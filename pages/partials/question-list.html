@@ -139,7 +139,7 @@
 
 
     <div class="question_list_item" 
-         ng-repeat="n in data | orderByPriority | filter:query"
+         ng-repeat="n in questions | orderByPriority | filter:'collecting' | filter:query"
          ng-click="showQuestionDetail(n.$id)">
         
         <div class="question_list_bow"><div ng-show="(n.signatures_count >= 100)">HOT</div></div>

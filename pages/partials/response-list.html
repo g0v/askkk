@@ -138,9 +138,9 @@
     </div>
 
     <div class="question_list_item" ng-click="showQuestionDetail(n.id)"
-         ng-repeat="n in data | filter:query">
+         ng-repeat="n in questions | orderByPriority | filter:'passed' | filter:query">
         
-        <div ng-show="({{n.votes}}>=1000)" class="question_list_bow">爆</div>
+        <div ng-show="(n.votes >=1000 )" class="question_list_bow">爆</div>
         <div class="question_list_votes">{{n.votes|number:0}}</div>
         <!--
         <div class="question_list_votes"  

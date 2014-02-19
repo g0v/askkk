@@ -1,4 +1,4 @@
-askControllers.controller('responseListCtrl', ['$scope', 'candidateService', 'questionService', function($scope, candidateService, questionService){
+askControllers.controller('responseListCtrl', ['$scope', '$location', 'candidateService', 'questionService', function($scope, $location, candidateService, questionService){
 
 
   semanticMenuReady();
@@ -7,17 +7,17 @@ askControllers.controller('responseListCtrl', ['$scope', 'candidateService', 'qu
 
   $scope.candidates = candidateService;
   $scope.categories = global.categories;
-  $scope.data = global.responseData;
+  $scope.questions = questionService;
 
   $scope.showQuestionDetail = function(questionId){
-    event.stopPropagation();
+    //event.stopPropagation();
     console.log("show question detail, id:"+questionId);
-    window.location = "#/response/"+questionId;
+    $location.path("/response/"+questionId);
     
   };
   $scope.voteQuestion = function(questionId){
     console.log("vote for this detail, id:"+questionId);
-    event.stopPropagation();
+    //event.stopPropagation();
   };
   $scope.sortByTime = function(){
     console.log("sort by time");
