@@ -126,7 +126,13 @@ $scope.$watch(function(){
      }
      var month = d.getMonth()+1;
      var day = d.getDate();
-     var output = d.getFullYear()+"-"+((''+month).length<2?'0':'')+month+"-"+((''+day).length<2?'0':'')+day;
+     var output = {};
+     output.year = d.getFullYear();
+     output.month = ((''+month).length<2?'0':'')+month;
+     output.day = ((''+day).length<2?'0':'')+day;
+     console.log(output);
+
+     //d.getFullYear()+"-"+((''+month).length<2?'0':'')+month+"-"+((''+day).length<2?'0':'')+day;
      return output;
   }
   $scope.getDeadline = function () {

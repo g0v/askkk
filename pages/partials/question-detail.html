@@ -130,7 +130,7 @@
        </div>
       
       <div class="question_detail_meta">
-      <p>提出人：{{data.asker.name}} | 提出日期： {{data.date}} </p>
+      <p>提出人：{{data.asker.name}} | 提出日期： {{data.post_date.year}}-{{data.post_date.month}}-{{data.post_date.day}} </p>
       類別：
       <div class="question_detail_category" ng-repeat="n in data.category">
         <a class="link" href="#" >{{n}}{{$last ? '' : ', '}} <a>
@@ -173,7 +173,7 @@
             <h1>支持這個提問</h1>
             <p>已有 {{data.signature.length}} 人推文支持</p>
             <div class="sign-num">
-              <p>截至 {{data.deadline}} 之前，尚需 {{500-data.signature.length}} 人推文</p>
+              <p>截至 {{data.deadline.year}} 年 {{data.deadline.month}} 月 {{data.deadline.day}} 日之前，尚需 {{500-data.signature.length}} 人推文</p>
             </div>
             <div class="question-progress">
               <div class="question-bar" 
