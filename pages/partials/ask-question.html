@@ -121,9 +121,10 @@
         <div class="ui pointing below label">想對哪位候選人提問呢？</div>
         <div class="ask_question_candidate_block">
 
+          {{candidates | toKeys}}
           <div class="ask_question_candidate" 
                id="candidate_{{n.id}}"
-               ng-repeat="n in candidates" ng-click="toggleCandidate($index)">
+               ng-repeat="n in candidates | toKeys" ng-click="toggleCandidate($index)">
             <div class="ask_question_text" id="candidateName_{{n.id}}">{{n.name}}</div>
             <img class="rounded ui image candidate_img" ng-src="images/candidates/{{n.id}}.jpg" width="80px">
             <img class="ask_question_check" src="images/check.png" width="30px">
