@@ -250,8 +250,8 @@ display: inline-block;
 
 #why_and_how_segment{
   width:998px;
-  height:800px;
-  margin-bottom: 80px;
+  height:600px;
+  
 }
 .index_tab{
   border-bottom: 5px solid rgba(200,200,200,0.8);
@@ -1331,4 +1331,5 @@ a {
   text-decoration: none;
   -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
+  cursor: pointer;
 }
