@@ -10,8 +10,10 @@ askControllers.controller('responseListCtrl', ['$scope', 'candidateService', fun
   $scope.data = global.responseData;
 
   $scope.showQuestionDetail = function(questionId){
-    console.log("show question detail, id:"+questionId);
     event.stopPropagation();
+    console.log("show question detail, id:"+questionId);
+    window.location = "#/response/"+questionId;
+    
   };
   $scope.voteQuestion = function(questionId){
     console.log("vote for this detail, id:"+questionId);

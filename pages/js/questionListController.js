@@ -9,13 +9,15 @@ askControllers.controller('questionListCtrl', ['$scope', 'candidateService', fun
   $scope.data = global.questionData;
 
   $scope.showQuestionDetail = function(questionId){
-    console.log("show question detail, id:"+questionId);
     event.stopPropagation();
+    console.log("show question detail, id:"+questionId);
+    window.location = "#/question/"+questionId;
+    
 
   };
   $scope.voteQuestion = function(questionId){
-    console.log("vote for this detail, id:"+questionId);
     event.stopPropagation();
+    console.log("vote for this detail, id:"+questionId);
 
   };
   $scope.sortByTime = function(){
