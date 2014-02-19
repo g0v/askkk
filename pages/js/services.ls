@@ -10,8 +10,14 @@ askServices.factory \candidateService, [\$firebase, ($firebase) ->
 
 askServices.factory \questionService, [\$firebase, ($firebase) ->
   service = $firebase ref.child \questions
-  service.post = ({title, content, category, addressing, post_date}) ->
-    post-ref <- service.$add({title, content, category, addressing, post_date, state: \open}).then
+
+  service.post = ({title, content, category, addressing, post_date, deadline}) ->
+    post-ref <- service.$add({
+      title, content, category, addressing, post_date, deadline,
+      state: \open
+      vote: { length: 0 }
+      signature: { length: 0 }
+    }).then
     let meta-ref = $firebase ref.child \question_index
       meta-ref.$child "open/#{post-ref.name!}" .$set true
     let meta-ref = $firebase ref.child \category
@@ -20,6 +26,14 @@ askServices.factory \questionService, [\$firebase, ($firebase) ->
     let meta-ref = $firebase ref.child \candidate_meta
       for c in addressing
         meta-ref.$child "#{c}/questions/#{post-ref.name!}" .$set true
+
+  service.get = (id) ->
+    post-ref = service.$child id
+    post-ref.$on \loaded, (snap) ->
+      post-ref.addressing = for c in post-ref.addressing
+        $firebase ref.child "candidates/#{c}"
+    post-ref
+
   service
 ]
 

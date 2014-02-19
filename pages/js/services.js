@@ -14,15 +14,22 @@ askServices.factory('questionService', [
     var service;
     service = $firebase(ref.child('questions'));
     service.post = function(arg$){
-      var title, content, category, addressing, post_date;
-      title = arg$.title, content = arg$.content, category = arg$.category, addressing = arg$.addressing, post_date = arg$.post_date;
+      var title, content, category, addressing, post_date, deadline;
+      title = arg$.title, content = arg$.content, category = arg$.category, addressing = arg$.addressing, post_date = arg$.post_date, deadline = arg$.deadline;
       return service.$add({
         title: title,
         content: content,
         category: category,
         addressing: addressing,
         post_date: post_date,
-        state: 'open'
+        deadline: deadline,
+        state: 'open',
+        vote: {
+          length: 0
+        },
+        signature: {
+          length: 0
+        }
       }).then(function(postRef){
         (function(metaRef){
           metaRef.$child("open/" + postRef.name()).$set(true);
@@ -43,6 +50,22 @@ askServices.factory('questionService', [
           return results$;
         }.call(this, $firebase(ref.child('candidate_meta'))));
       });
+    };
+    service.get = function(id){
+      var postRef;
+      postRef = service.$child(id);
+      postRef.$on('loaded', function(snap){
+        var c;
+        return postRef.addressing = (function(){
+          var i$, ref$, len$, results$ = [];
+          for (i$ = 0, len$ = (ref$ = postRef.addressing).length; i$ < len$; ++i$) {
+            c = ref$[i$];
+            results$.push($firebase(ref.child("candidates/" + c)));
+          }
+          return results$;
+        }());
+      });
+      return postRef;
     };
     return service;
   }
