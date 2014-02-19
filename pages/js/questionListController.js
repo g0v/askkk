@@ -4,22 +4,26 @@ askControllers.controller('questionListCtrl', ['$scope', 'candidateService', fun
   semanticAccordingReady();
   semanticSidebarReday();
 
-  
-
   $scope.candidates = candidateService;
   $scope.categories = global.categories;
   $scope.data = global.questionData;
 
-  
-  $scope.flag = true;
-  $scope.$watch(function(){
-  return document.body.innerHTML
-  }, function(val){
-  if($scope.flag && ($(".category_checkbox").length===$scope.categories.length)){
-    semanticAccordingReady();
-    $scope.flag = false;
-  }
-  });
+  $scope.showQuestionDetail = function(questionId){
+    console.log("show question detail, id:"+questionId);
+    event.stopPropagation();
+
+  };
+  $scope.voteQuestion = function(questionId){
+    console.log("vote for this detail, id:"+questionId);
+    event.stopPropagation();
+
+  };
+  $scope.sortByTime = function(){
+    console.log("sort by time");
+  };
+  $scope.sortByVotes = function(){
+    console.log("sort by votes");
+  };
   
 
 }]);
