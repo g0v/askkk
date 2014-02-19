@@ -7,17 +7,26 @@ askControllers.controller('responseDetailCtrl', ['$scope', 'candidateService', f
   $scope.candidates = candidateService;
   $scope.data = global.responseData[0];
 
+  $scope.voteQuestion = function(questionId){
+    event.stopPropagation();
+    console.log("vote for this detail, id:"+questionId);
+
+  };
+  $scope.voteUpResponse = function(responseId){
+     console.log("vote up response, id:"+responseId);
+
+  };
+  $scope.voteDownResponse = function(responseId){
+    console.log("vote down response, id:"+responseId);
+
+  };
   $scope.goToCandidate = function(id){
      var body = $("html, body");
-    
-    
      var p = $('#response_item_'+id).position();
      var o = $('#response_item_'+id).offset();
      body.animate({scrollTop:o.top}, '500', 'swing');
 
   };
-
-
   $scope.goToTop = function(){
 
      var body = $("html, body");

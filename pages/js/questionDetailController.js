@@ -6,6 +6,12 @@ askControllers.controller('questionDetailCtrl', ['$scope', '$routeParams', 'cand
   $scope.candidates = candidateService;
   $scope.data = questionService.get($routeParams.questionId);
 
+  $scope.voteQuestion = function(){
+    event.stopPropagation();
+    console.log("vote for this detail, id:"+$routeParams.questionId);
+
+  };
+  
   $scope.goToTop = function(){
     var body = $("html, body");
     body.animate({scrollTop:0}, '500', 'swing');

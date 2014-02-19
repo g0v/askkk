@@ -128,7 +128,7 @@
        </div><!-- end of state_block -->
        <div class="question_detail_votes">
           <div class="ui pointing left label">
-          <div class="question_detail_push">推</div>
+          <div class="question_detail_push" ng-click="voteQuestion(data.id)">推</div>
           <div class="question_detail_text">{{data.votes|number:0}}</div>
           </div>
        </div>
@@ -188,11 +188,11 @@
 
        <div class="response_detail_votes">
           <div class="ui pointing below label">
-          <div class="response_detail_push">推</div>
+          <div class="response_detail_push" ng-click="voteUpResponse(n.responseId)">推</div>
           <div class="response_detail_text">{{n.responseVoteUp|number:0}}</div>
           </div>
           <div class="ui pointing below label">
-          <div class="response_detail_booing">噓</div>
+          <div class="response_detail_booing" ng-click="voteDownResponse(n.responseId)">噓</div>
           <div class="response_detail_text">{{n.responseVoteDown|number:0}}</div>
           </div>
        </div>

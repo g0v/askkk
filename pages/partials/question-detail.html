@@ -117,7 +117,7 @@
        </div><!-- end of state_block -->
        <div class="question_detail_votes">
           <div class="ui pointing left label">
-          <div class="question_detail_push">推</div>
+          <div class="question_detail_push" ng-click="voteQuestion()">推</div>
           <div class="question_detail_text">{{data.vote.total}}</div>
           </div>
        </div>
@@ -173,7 +173,7 @@
             <h1>支持這個提問</h1>
             <p>已有 {{data.signature.length}} 人推文支持</p>
             <div class="sign-num">
-              <p>截至 {{data.deadline}} 之前，尚需 {{1000-data.signature.length}} 人推文</p>
+              <p>截至 {{data.deadline}} 之前，尚需 {{500-data.signature.length}} 人推文</p>
             </div>
             <div class="question-progress">
               <div class="question-bar" 
@@ -183,11 +183,11 @@
 
             <div class="sign_area">
               <div class="field">
-                <div class="ui red small button">
+                <div class="ui red small button" ng-click="voteQuestion()">
                   <i class="check icon"></i>
                   我要推文支持
                 </div>
-                <div class="sign_note">每則提問有 30 天的時間可被連署，若提問在期限內達到 1,000 人次連署支持，候選人就必須回應。</div>
+                <div class="sign_note">每則提問有 30 天的時間可被連署，若提問在期限內達到 500 人次連署支持，候選人就必須回應。</div>
 
                 <div class="promote_question">
                   分享這個提問：

@@ -921,6 +921,7 @@ display: inline-block;
   display: inline-block;
   padding-bottom: 0px;
   margin-bottom: 0px;
+  cursor: pointer;
 
 }
 .response_detail_booing{
@@ -933,6 +934,7 @@ display: inline-block;
   display: inline-block;
   padding-bottom: 0px;
   margin-bottom: 0px;
+  cursor: pointer;
 
 }
 .response_detail_text{
@@ -1033,6 +1035,7 @@ display: inline-block;
   display: inline-block;
   padding-bottom: 0px;
   margin-bottom: 0px;
+  cursor: pointer;
 
 }
 .question_detail_text{
