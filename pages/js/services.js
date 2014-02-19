@@ -13,7 +13,7 @@ askServices.factory('questionService', [
   '$firebase', function($firebase){
     var service;
     service = $firebase(ref.child('questions'));
-    service.post = function(arg$){
+    service.post = function(arg$, onComplete){
       var title, content, category, addressing, post_date, deadline;
       title = arg$.title, content = arg$.content, category = arg$.category, addressing = arg$.addressing, post_date = arg$.post_date, deadline = arg$.deadline;
       return service.$add({
@@ -41,14 +41,14 @@ askServices.factory('questionService', [
             metaRef.$child(c + "/" + postRef.name()).$set(true);
           }
         }.call(this, $firebase(ref.child('category'))));
-        return (function(metaRef){
-          var i$, ref$, len$, c, results$ = [];
+        (function(metaRef){
+          var i$, ref$, len$, c;
           for (i$ = 0, len$ = (ref$ = addressing).length; i$ < len$; ++i$) {
             c = ref$[i$];
-            results$.push(metaRef.$child(c + "/questions/" + postRef.name()).$set(true));
+            metaRef.$child(c + "/questions/" + postRef.name()).$set(true);
           }
-          return results$;
         }.call(this, $firebase(ref.child('candidate_meta'))));
+        return onComplete(postRef);
       });
     };
     service.get = function(id){

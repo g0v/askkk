@@ -11,7 +11,7 @@ askServices.factory \candidateService, [\$firebase, ($firebase) ->
 askServices.factory \questionService, [\$firebase, ($firebase) ->
   service = $firebase ref.child \questions
 
-  service.post = ({title, content, category, addressing, post_date, deadline}) ->
+  service.post = ({title, content, category, addressing, post_date, deadline}, on-complete) ->
     post-ref <- service.$add({
       title, content, category, addressing, post_date, deadline,
       state: \open
@@ -26,6 +26,7 @@ askServices.factory \questionService, [\$firebase, ($firebase) ->
     let meta-ref = $firebase ref.child \candidate_meta
       for c in addressing
         meta-ref.$child "#{c}/questions/#{post-ref.name!}" .$set true
+    on-complete post-ref
 
   service.get = (id) ->
     post-ref = service.$child id

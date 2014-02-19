@@ -1,4 +1,4 @@
-askControllers.controller('askQuestionCtrl', ['$scope', 'candidateService', 'questionService', function($scope, candidateService, questionService){
+askControllers.controller('askQuestionCtrl', ['$scope', '$location', 'candidateService', 'questionService', function($scope, $location, candidateService, questionService){
   semanticMenuReady();
   semanticAccordingReady();
   
@@ -147,7 +147,9 @@ $scope.$watch(function(){
       category: $scope.listSelection,
       addressing: $scope.candidateSelection
     };
-    questionService.post(question);
+    questionService.post(question, function (post) {
+      $location.path('/question/' + post.name()).replace();
+    });
   }
 
 
