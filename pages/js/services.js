@@ -11,17 +11,6 @@ askServices.factory('candidateService', [
 ]);
 askServices.factory('askLoginService', ['$firebase', function($firebase){}]);
 /**
- * Filter an object to an array of its values except those given be AngularFire.
- */
-askServices.filter('toArray', function(){
-  return function(input, attributes){
-    if (!angular.isObject(input)) {
-      return input;
-    }
-    return values(input);
-  };
-});
-/**
  * Filter an object to an array of its keys (properties) except those given be AngularFire.
  */
 askServices.filter('toKeys', function(){
