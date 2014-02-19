@@ -55,7 +55,7 @@ askControllers.controller('questionListCtrl', ['$scope', 'candidateService', fun
     $(".category_checkbox").on("click",$scope.toggleCategory);
   }
   });
-
+  /* --------------------------------------------------- */
   
 
 }]);

@@ -848,7 +848,7 @@ display: inline-block;
 /* question 部分，和 question-detail 共用相同的 css */
 /* response */
 .response_start_divider{
-  margin-top:20px;
+  margin-top:5px;
   margin-bottom:20px;
   border-bottom:1px solid rgba(212,212,212,0.5);
 }
@@ -1062,12 +1062,21 @@ display: inline-block;
  display: block;
  
 }
+#question_sign_block_start{
+  margin:0px;
+  margin-top:10px;
+   margin-bottom:5px;
+}
 .question_sign_block{
   width:100%;
   margin:2px;
   font-size: 10px;
   border-bottom:  1px solid rgba(200,200,200,0.5);
   
+}
+.question_sign_title{
+  font-size: 18px;
+  font-weight: bold;
 }
 .question_sign_order_block{
   float:left;
@@ -1085,6 +1094,7 @@ display: inline-block;
 .question_sign_order{
  font-size: 10px;
  display: inline-block;
+
 }
 .question_sign_name{
   width:100%;
@@ -1092,8 +1102,9 @@ display: inline-block;
   
 }
 .load_signature{
-  margin-top:20px;
-  
+  font-size: 12px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 /* --- right menu --- */
 #sign-question{

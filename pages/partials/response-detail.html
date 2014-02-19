@@ -149,29 +149,31 @@
       </div>
     
 
-          <div class="ui divider"></div>
+      <div class="ui divider" id="question_sign_block_start"></div>
 
-          <div class="question_sign_area">
-            <h2>共同發問者
-              <div class="ui pointing below label">{{data.signature.length}}</div>
-            </h2>
           
-           
-             <div class="question_sign_block" ng-repeat="n in data.signature">
-                <div class="question_sign_order_block">
-                  <div class="question_sign_push">推</div>
-                  <div class="question_sign_order">#{{n.order|number:0}}</div>
-                </div>
-                <div class="question_sign_name">{{n.name}} | {{n.date.year}}-{{n.date.month}}-{{n.date.day}}</div>
-             </div>
-           
-           </div><!-- end of question_sign_area -->
-
-            <div class="load_signature">
-              <a class="link"><i class="add icon"></i>load more signatures...</a>
-            </div>
-
-
+<!-- -->
+ 
+<div class="question_sign_area">
+<div class="ui basic accordion">
+  <div class="title">
+    <i class="dropdown icon"></i>
+    <span class="question_sign_title">共同發問者</span><div class="ui pointing left label">{{data.signature.length}}</div>
+  </div>
+  <div class="content">
+    <div class="question_sign_block" ng-repeat="n in data.signature">
+      <div class="question_sign_order_block">
+        <div class="question_sign_push">推</div>
+        <div class="question_sign_order">#{{n.order|number:0}}</div>
+      </div>
+      <div class="question_sign_name">
+        {{n.name}} | {{n.date.year}}-{{n.date.month}}-{{n.date.day}}
+      </div>
+     </div><!-- end of sign_block -->
+      <div class="load_signature link"><i class="add icon"></i>顯示更多推文</div>
+   </div><!-- end of content -->
+</div><!-- end of accordion -->
+</div><!-- end of question_sign_area -->
 
 <!-- Dispaly responses -->  
     <div class="response_start_divider"></div>   
