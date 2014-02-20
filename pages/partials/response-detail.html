@@ -134,34 +134,35 @@
         <div class="response_title">
              <h2>{{n.title}}</h2>
              <div class="response_subtitle">
-             臺北市長候選人<a class="link" href="#/candidate/{{n.candidate_id}}">{{candidates[n.candidate_id].name}}</a>的回應
+             臺北市長候選人<a class="link" href="#/candidate/{{n.responser}}">{{candidates[n.responser].name}}</a>的回應
              </div>
         </div>
 
+        {{n.$id}}
        <div class="response_detail_votes">
           <div class="ui pointing below label" ng-hide="voted(n.$id)">
           <div class="response_detail_push" ng-click="voteUpResponse(n.$id)">推</div>
-          <div class="response_detail_text">{{n.up_vote_count|number:0}}</div>
+          <div class="response_detail_text">{{n.upVotesCount|number:0}}</div>
           </div>
           <div class="ui pointing below label" ng-hide="voted(n.$id)">
           <div class="response_detail_booing" ng-click="voteDownResponse(n.$id)">噓</div>
-          <div class="response_detail_text">{{n.down_vote_count|number:0}}</div>
+          <div class="response_detail_text">{{n.downVotesCount|number:0}}</div>
           </div>
        </div>
 
 
         <div class="response_photo">
           <div class="circleborder">
-          <a href="#/candidate/{{n.candidate_id}}">
+          <a href="#/candidate/{{n.responser}}">
           <img class="circular ui image face response_candidate_face" 
-               ng-src="images/candidates/{{n.candidate_id}}.jpg"></a>
+               ng-src="images/candidates/{{n.responser}}.jpg"></a>
           </div>
         </div>
       </div>
       <div class="response_main_text">
           <p ng-repeat="c in n.content">{{c}}</p>
           <div class="response_meta">
-          <p>回應日期： {{n.post_date.year}}-{{n.post_date.month}}-{{n.post_date.date}} ｜ <a href="#" class="link">分享</a></p>
+          <p>回應日期： {{n.postDate.year}}-{{n.postDate.month}}-{{n.postDate.day}} ｜ <a href="#" class="link">分享</a></p>
           </div>
 
       </div>
@@ -180,7 +181,7 @@
             <li ng-repeat="n in data.responses">
                <div class="right_menu_go_to_candidate" id="right_menu_{{n.$id}}"
                 ng-click="goToCandidate(n.$id)">
-                {{n.responser.name}}：{{n.abstract}}
+                {{candidates[n.responser].name}}：{{n.abstract}}
                </div>
             </li>
           </ul>
