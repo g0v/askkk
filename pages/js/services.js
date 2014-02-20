@@ -80,8 +80,52 @@ askServices.factory('questionService', ['$firebase'].concat(function($firebase){
     var snapshot, prevChild;
     snapshot = arg$.snapshot, prevChild = arg$.prevChild;
     service[snapshot.name].addressing = service.$child(snapshot.name + "/addressing");
-    return service[snapshot.name].asker = $firebase(ref.child("users/" + snapshot.value.asker));
+    service[snapshot.name].asker = $firebase(ref.child("users/" + snapshot.value.asker));
+    return service[snapshot.name].postResponse = function(arg$){
+      var postDate, responser, content;
+      postDate = arg$.postDate, responser = arg$.responser, content = arg$.content;
+      ref.child("questions/" + snapshot.name + "/addressing/" + responser + "/state").set('responded');
+      ref.child("questions/" + snapshot.name + "/responses_count").transaction(function(currentValue){
+        return currentValue + 1;
+      });
+      return service.$child("questions/" + snapshot.name + "/responses").$add({
+        responser: responser,
+        postDate: {
+          year: postDate.getFullYear(),
+          month: postDate.getMonth() + 1,
+          day: postDate.getDate()
+        },
+        content: content.split(/\n\n/)
+      });
+    };
   });
+  x$.get = function(questionId){
+    var x$, questionRef;
+    x$ = questionRef = service.$child(questionId);
+    x$.$on('loaded', function(snap){
+      questionRef.$id = questionId;
+      questionRef.addressing = questionRef.$child("addressing");
+      questionRef.asker = $firebase(ref.child("users/" + questionRef.asker));
+      return questionRef.postResponse = function(arg$){
+        var postDate, responser, content;
+        postDate = arg$.postDate, responser = arg$.responser, content = arg$.content;
+        ref.child("questions/" + questionId + "/addressing/" + responser + "/state").set('responded');
+        ref.child("questions/" + questionId + "/responses_count").transaction(function(currentValue){
+          return currentValue + 1;
+        });
+        return questionRef.$child("responses").$add({
+          responser: responser,
+          postDate: {
+            year: postDate.getFullYear(),
+            month: postDate.getMonth() + 1,
+            day: postDate.getDate()
+          },
+          content: content.split(/\n\n/)
+        });
+      };
+    });
+    return x$;
+  };
   x$.post = function(arg$, onComplete){
     var title, content, category, addressing, post_date, deadline, asker;
     title = arg$.title, content = arg$.content, category = arg$.category, addressing = arg$.addressing, post_date = arg$.post_date, deadline = arg$.deadline, asker = arg$.asker;
@@ -133,16 +177,6 @@ askServices.factory('questionService', ['$firebase'].concat(function($firebase){
         }
       });
     });
-  };
-  x$.get = function(questionId){
-    var x$, questionRef;
-    x$ = questionRef = service.$child(questionId);
-    x$.$on('loaded', function(snap){
-      questionRef.$id = questionId;
-      questionRef.addressing = questionRef.$child("addressing");
-      return questionRef.asker = $firebase(ref.child("users/" + questionRef.asker));
-    });
-    return x$;
   };
   return x$;
 }));

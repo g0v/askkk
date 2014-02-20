@@ -42,6 +42,18 @@ function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candi
      var body = $("html, body");
      body.animate({scrollTop:0}, '500', 'swing');
   };
+
+  $scope.postResponse = function (content) {
+    if (! $scope.detail || !$scope.user.candidate_id) { return; }
+    $scope.detail.postResponse({
+      postDate: new Date(),
+      content: content,
+      responser: $scope.user.candidate_id
+    }).then(function () {
+      $scope.responseContent = null;
+    });
+  };
+
   
   $scope.candidates = candidateService;
   $scope.detail = null;

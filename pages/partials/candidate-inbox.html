@@ -154,9 +154,9 @@
       <div class="ui form">
            <div class="field">
            <label>您對此問題的回答</label>
-           <textarea></textarea>
+           <textarea ng-model="responseContent"></textarea>
            </div>
-           <div class="ui teal small button">回覆</div>
+           <div class="ui teal small button" ng-click="postResponse(responseContent)">回覆</div>
       </div>
 
       <div class="back_to_top" ng-click="goToTop()">

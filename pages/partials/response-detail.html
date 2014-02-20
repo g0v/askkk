@@ -178,9 +178,9 @@
           <div class="response_nav_sub_title">已回答</div>
           <ul>
             <li ng-repeat="n in data.responses">
-               <div class="right_menu_go_to_candidate" id="right_menu_{{n.responseId}}"
-                ng-click="goToCandidate(n.responseId)">
-                {{n.responser.name}}：{{n.responseAbstract}}
+               <div class="right_menu_go_to_candidate" id="right_menu_{{n.$id}}"
+                ng-click="goToCandidate(n.$id)">
+                {{n.responser.name}}：{{n.abstract}}
                </div>
             </li>
           </ul>

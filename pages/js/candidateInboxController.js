@@ -33,7 +33,7 @@ function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candi
 
   $scope.questions = questionService;
   $scope.candidates = candidateService;
-  $scope.detail = null
+  $scope.detail = null;
 
   $scope.inboxAnswered = function(){
     $location.path("/candidate-inbox-replied");
@@ -41,6 +41,17 @@ function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candi
   $scope.displayQuestionDetail = function(questionId){
     $scope.detail = questionService.get(questionId);
   }
+
+  $scope.postResponse = function (content) {
+    if (! $scope.detail || !$scope.user.candidate_id) { return; }
+    $scope.detail.postResponse({
+      postDate: new Date(),
+      content: content,
+      responser: $scope.user.candidate_id
+    }).then(function () {
+      $scope.detail = null;
+    });
+  };
 
   $scope.goToTop = function(){
      var body = $("html, body");

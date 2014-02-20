@@ -163,29 +163,29 @@
       <!-- Dispaly responses -->  
      
      <div class="response_item_short" ng-repeat="n in detail.responses" 
-         id="response_item_{{n.responser.id}}">
+         id="response_item_{{n.responser}}">
       <div class="response_header">
         <div class="response_title">
              <h2>{{detail.title}}</h2>
              <div class="response_subtitle">
-             臺北市長候選人<a class="link" href="#/candidate/{{n.responser.id}}">{{n.responser.name}}</a>的回應
+             臺北市長候選人<a class="link" href="#/candidate/{{n.responser}}">{{candidates[n.responser].name}}</a>的回應
              </div>
         </div>
 
         <div class="response_photo">
           <div class="circleborder">
-          <a href="#/candidate/{{n.responser.id}}">
+          <a href="#/candidate/{{n.responser}}">
           <img class="circular ui image face response_candidate_face" 
-               ng-src="images/candidates/{{n.responser.id}}.jpg"></a>
+               ng-src="images/candidates/{{n.responser}}.jpg"></a>
           </div>
         </div>
       </div><!-- end of response header -->
       <div class="response_main_text_short">
-          <p ng-repeat="i in n.responseContent">{{i}}</p>
+          <p ng-repeat="i in n.content">{{i}}</p>
           <div class="response_meta_short">
-            回應日期： {{n.responseDate.year}}-{{n.responseDate.month}}-{{n.responseDate.day}} ｜ 
-            <div class="candidate_inbox_meta_push">推：{{n.responseVoteUp|number:0}}</div> | 
-            <div class="candidate_inbox_meta_booing">噓：{{n.responseVoteDown|number:0}}</div>
+            回應日期： {{n.postDate.year}}-{{n.postDate.month}}-{{n.postDate.day}} ｜ 
+            <div class="candidate_inbox_meta_push">推：{{n.upVotesCount|number:0}}</div> | 
+            <div class="candidate_inbox_meta_booing">噓：{{n.downVotesCount|number:0}}</div>
           
           </div>
 
@@ -199,9 +199,9 @@
       <div class="ui form">
            <div class="field">
            <label>再次回答此問題</label>
-           <textarea></textarea>
+           <textarea ng-model="responseContent"></textarea>
            </div>
-           <div class="ui teal small button">回覆</div>
+           <div class="ui teal small button" ng-click="postResponse(responseContent)">回覆</div>
       </div>
      
       <div class="back_to_top" ng-click="goToTop()">
