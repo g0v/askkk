@@ -1,6 +1,5 @@
 {values} = require 'prelude-ls'
 
-user-id = 1
 candidate-id = \-JFxrKQo3Qg19zsW73b1
 
 askServices = angular.module \askServices, <[firebase]>
@@ -8,13 +7,13 @@ askServices = angular.module \askServices, <[firebase]>
 ref = new Firebase 'https://askkkkk.firebaseio.com/'
 
 askServices.factory \authService, <[$firebase]> ++ ($firebase) ->
-  {
+  service = {
     on-login: ({uid, id, provider,
     display-name, first_name, last_name, username, verified,
     email, link, birthday}) ->
       user-ref = ref.child "users/#{id}"
       user-ref.update {
-        uid, id, provider,
+        uid, id, provider, user_id: id
         display-name, first_name, last_name, username, verified,
         email, link, birthday
       }
@@ -36,10 +35,11 @@ askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
     ..$on \child_added, ({snapshot, prevChild}) ->
       service[snapshot.name].addressing = for c in snapshot.value.addressing
         $firebase ref.child "candidates/#{c}"
+      service[snapshot.name].asker = $firebase ref.child "users/#{snapshot.value.asker}"
 
-    ..post = ({title, content, category, addressing, post_date, deadline}, on-complete) ->
+    ..post = ({title, content, category, addressing, post_date, deadline, asker}, on-complete) ->
       post-ref <- service.$add {
-        title, content, category, addressing, post_date, deadline,
+        title, content, category, addressing, post_date, deadline, asker
         state:
           collecting: \collecting
         responses_count: 0
@@ -62,6 +62,7 @@ askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
           question-ref.$id = question-id
           question-ref.addressing = for c in question-ref.addressing
             $firebase ref.child "candidates/#{c}"
+          question-ref.asker = $firebase ref.child "users/#{question-ref.asker}"
 
 askServices.factory \signService, <[$firebase]> ++ ($firebase) ->
   {

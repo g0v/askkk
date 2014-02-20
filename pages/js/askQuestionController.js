@@ -162,7 +162,8 @@ $scope.$watch(function(){
       title: $scope.newQuestionTitle,
       content: $scope.newQuestionContent,
       category: $scope.listSelection,
-      addressing: $scope.candidateSelection
+      addressing: $scope.candidateSelection,
+      asker: $scope.auth.user.id
     };
     questionService.post(question, function (post) {
       $location.path('/question/' + post.name()).replace();

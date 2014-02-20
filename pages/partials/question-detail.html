@@ -133,7 +133,7 @@
        </div>
       
       <div class="question_detail_meta">
-      <p>提出人：{{data.asker.name}} | 提出日期： {{data.post_date.year}}-{{data.post_date.month}}-{{data.post_date.day}} </p>
+      <p>提出人：{{data.asker.displayName}} | 提出日期： {{data.post_date.year}}-{{data.post_date.month}}-{{data.post_date.day}} </p>
       類別：
       <div class="question_detail_category" ng-repeat="n in data.category">
         <a class="link" href="#" >{{n}}{{$last ? '' : ', '}} <a>
