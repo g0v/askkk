@@ -1,12 +1,13 @@
-askControllers.controller('candidateDetailCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', '$routeParams', 'candidateService', 
+askControllers.controller('candidateDetailCtrl', ['$scope', '$firebaseSimpleLogin', '$location', 'questionService', 'authService', '$routeParams', 'candidateService', 
 
-function($scope, $firebaseSimpleLogin, authService, $routeParams,candidateService){
+function($scope, $firebaseSimpleLogin, $location, questionService, authService, $routeParams,candidateService){
 
   semanticMenuReady();
   semanticAccordingReady();
 
-  
-  $scope.data = global.responseDataCandidate;
+  $scope.questions = questionService;
+  $scope.data = candidateService.get($routeParams.candidateId);
+  console.log($scope.data);
   
   $scope.candidates = candidateService;
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
@@ -26,13 +27,13 @@ function($scope, $firebaseSimpleLogin, authService, $routeParams,candidateServic
 
 
   $scope.pending=function(){
-    window.location = "#/candidate/"+$routeParams.candidateId+"/pending";
+    $location.path("/candidate/"+$routeParams.candidateId+"/pending");
   }
 
   $scope.showQuestionDetail = function(questionId){
-    event.stopPropagation();
+    //event.stopPropagation();
     console.log("show question detail, id:"+questionId);
-    window.location = "#/question/"+questionId;
+    $location.path("/question/"+questionId);
   };
   $scope.askCandidateJoin = function(candidateId){
     console.log("ask candidate join, id:"+candidateId);
