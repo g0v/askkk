@@ -12,10 +12,11 @@ function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candi
     if (user == null) {
       $location.path("/");
     }
-    authService.isCandidate(user.id).then(function (result) {
-      if (! result) {
+    authService.get(user.id).then(function (user) {
+      if (! user || ! user.candidate_id) {
         $location.path("/");
       }
+      $scope.user = user;
     });
   });
   $scope.login = function () {
@@ -29,6 +30,7 @@ function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candi
     authService.onLogout($scope.auth.user);
     $scope.auth.$logout();
   };
+
   $scope.inboxUnreplied = function(){
     window.location = "#/candidate-inbox"
   }

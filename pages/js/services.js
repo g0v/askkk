@@ -6,10 +6,18 @@ ref = new Firebase('https://askkkkk.firebaseio.com/');
 askServices.factory('authService', ['$firebase', '$q'].concat(function($firebase, $q){
   var service;
   return service = {
-    isCandidate: function(id, onComplete){
+    isCandidate: function(id){
       var deferred;
       deferred = $q.defer();
       ref.child("users/" + id + "/candidate_id").once('value', function(snapshot){
+        return deferred.resolve(snapshot.val());
+      });
+      return deferred.promise;
+    },
+    get: function(id){
+      var deferred;
+      deferred = $q.defer();
+      ref.child("users/" + id).once('value', function(snapshot){
         return deferred.resolve(snapshot.val());
       });
       return deferred.promise;
@@ -181,22 +189,22 @@ askServices.filter('toKeys', function(){
  * Filter questions by candidate responses.
  */
 askServices.filter('respondedByCandidate', function(){
-  return function(input, attributes){
+  return function(input, candidateId){
     switch (false) {
-    case !!attributes:
+    case !!candidateId:
       return null;
     case !angular.isArray(input):
       return input.filter(function(it){
-        return it.addressing[attributes];
+        return it.addressing[candidateId];
       }).filter(function(it){
-        return it.addressing[attributes].state === 'responded';
+        return it.addressing[candidateId].state === 'responded';
       });
     case !!input.addressing:
       return null;
-    case !!input.addressing[attributes]:
+    case !!input.addressing[candidateId]:
       return null;
     default:
-      return input.addressing[attributes].state === 'responded';
+      return input.addressing[candidateId].state === 'responded';
     }
   };
 });
@@ -204,22 +212,22 @@ askServices.filter('respondedByCandidate', function(){
  * Filter questions by candidate responses.
  */
 askServices.filter('pendedByCandidate', function(){
-  return function(input, attributes){
+  return function(input, candidateId){
     switch (false) {
-    case !!attributes:
+    case !!candidateId:
       return null;
     case !angular.isArray(input):
       return input.filter(function(it){
-        return it.addressing[attributes];
+        return it.addressing[candidateId];
       }).filter(function(it){
-        return it.addressing[attributes].state === 'pended';
+        return it.addressing[candidateId].state === 'pending';
       });
     case !!input.addressing:
       return null;
-    case !!input.addressing[attributes]:
+    case !!input.addressing[candidateId]:
       return null;
     default:
-      return input.addressing[attributes].state === 'pended';
+      return input.addressing[candidateId].state === 'pending';
     }
   };
 });

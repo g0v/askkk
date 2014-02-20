@@ -11,6 +11,11 @@ function($scope, $firebaseSimpleLogin, $location, questionService, authService, 
   
   $scope.candidates = candidateService;
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
+  $scope.auth.$getCurrentUser().then(function (user) {
+    authService.get(user.id).then(function (user) {
+      $scope.user = user;
+    });
+  });
   $scope.login = function () {
     $scope.auth.$login('facebook')
     .then(function (user) {

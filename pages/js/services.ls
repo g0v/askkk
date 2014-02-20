@@ -6,9 +6,14 @@ ref = new Firebase 'https://askkkkk.firebaseio.com/'
 
 askServices.factory \authService, <[$firebase $q]> ++ ($firebase, $q) ->
   service = {
-    is-candidate: (id, on-complete) ->
+    is-candidate: (id) ->
       deferred = $q.defer!
       ref.child "users/#{id}/candidate_id" .once \value, (snapshot) ->
+        deferred.resolve snapshot.val!
+      deferred.promise
+    get: (id) ->
+      deferred = $q.defer!
+      ref.child "users/#{id}" .once \value, (snapshot) ->
         deferred.resolve snapshot.val!
       deferred.promise
     on-login: ({uid, id, provider,

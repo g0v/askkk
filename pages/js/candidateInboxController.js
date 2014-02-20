@@ -1,7 +1,7 @@
 
-askControllers.controller('candidateInboxCtrl',['$scope','$firebaseSimpleLogin', '$location', 'authService', '$routeParams','candidateService',
+askControllers.controller('candidateInboxCtrl',['$scope','$firebaseSimpleLogin', '$location', 'authService', '$routeParams','candidateService', 'questionService',
 
-function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candidateService){
+function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candidateService, questionService){
 
   semanticMenuReady();
   semanticAccordingReady();
@@ -12,10 +12,11 @@ function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candi
     if (user == null) {
       $location.path("/");
     }
-    authService.isCandidate(user.id).then(function (result) {
-      if (! result) {
+    authService.get(user.id).then(function (user) {
+      if (! user || ! user.candidate_id) {
         $location.path("/");
       }
+      $scope.user = user;
     });
   });
   $scope.login = function () {
