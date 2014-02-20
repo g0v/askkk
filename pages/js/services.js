@@ -5,6 +5,41 @@ userId = 1;
 candidateId = '-JFxrKQo3Qg19zsW73b1';
 askServices = angular.module('askServices', ['firebase']);
 ref = new Firebase('https://askkkkk.firebaseio.com/');
+askServices.factory('authService', ['$firebase'].concat(function($firebase){
+  return {
+    onLogin: function(arg$){
+      var uid, id, provider, displayName, first_name, last_name, username, verified, email, link, birthday, userRef;
+      uid = arg$.uid, id = arg$.id, provider = arg$.provider, displayName = arg$.displayName, first_name = arg$.first_name, last_name = arg$.last_name, username = arg$.username, verified = arg$.verified, email = arg$.email, link = arg$.link, birthday = arg$.birthday;
+      userRef = ref.child("users/" + id);
+      userRef.update({
+        uid: uid,
+        id: id,
+        provider: provider,
+        displayName: displayName,
+        first_name: first_name,
+        last_name: last_name,
+        username: username,
+        verified: verified,
+        email: email,
+        link: link,
+        birthday: birthday
+      });
+      return userRef.child('online').once('value', function(snapshot){
+        if (snapshot.val()) {
+          return;
+        }
+        userRef.child('online').set(true);
+        return userRef.child('last_login_time').set(new Date().getTime());
+      });
+    },
+    onLogout: function(arg$){
+      var id, userRef;
+      id = arg$.id;
+      userRef = ref.child("users/" + id);
+      return userRef.child('online').set(false);
+    }
+  };
+}));
 askServices.factory('candidateService', ['$firebase'].concat(function($firebase){
   return $firebase(ref.child('candidates'));
 }));

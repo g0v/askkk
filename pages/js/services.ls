@@ -7,6 +7,26 @@ askServices = angular.module \askServices, <[firebase]>
 
 ref = new Firebase 'https://askkkkk.firebaseio.com/'
 
+askServices.factory \authService, <[$firebase]> ++ ($firebase) ->
+  {
+    on-login: ({uid, id, provider,
+    display-name, first_name, last_name, username, verified,
+    email, link, birthday}) ->
+      user-ref = ref.child "users/#{id}"
+      user-ref.update {
+        uid, id, provider,
+        display-name, first_name, last_name, username, verified,
+        email, link, birthday
+      }
+      snapshot <- user-ref.child 'online' .once \value
+      return if snapshot.val!
+      user-ref.child \online .set true
+      user-ref.child \last_login_time .set new Date!.get-time!
+    on-logout: ({id}) ->
+      user-ref = ref.child "users/#{id}"
+      user-ref.child \online .set false
+  }
+
 askServices.factory \candidateService, <[$firebase]> ++ ($firebase) ->
   $firebase ref.child \candidates
 

@@ -1,10 +1,21 @@
-askControllers.controller('askQuestionCtrl', ['$scope', '$firebaseSimpleLogin', '$location', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, $location, candidateService, questionService){
+askControllers.controller('askQuestionCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', '$location', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, authService, $location, candidateService, questionService){
   semanticMenuReady();
   semanticAccordingReady();
   
 
   $scope.candidates = candidateService;
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
+  $scope.login = function () {
+    $scope.auth.$login('facebook')
+    .then(function (user) {
+      authService.onLogin(user);
+    }, function (error) {
+    });
+  };
+  $scope.logout = function () {
+    authService.onLogout($scope.auth.user);
+    $scope.auth.$logout();
+  };
  
   $scope.candidateSelection = [];
   $scope.toggleCandidate = function(selectedId){

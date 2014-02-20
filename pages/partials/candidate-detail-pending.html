@@ -85,8 +85,8 @@
       <div class="right menu">
         <div class="item">
           <span ng-show="auth.user">{{auth.user.displayName}} | </span>
-          <a href="#" ng-click="auth.$login('facebook')" ng-hide="auth.user">登入</a>
-          <a href="#" ng-click="auth.$logout()" ng-show="auth.user">登出</a>
+          <a href="#" ng-click="login()" ng-hide="auth.user">登入</a>
+          <a href="#" ng-click="logout()" ng-show="auth.user">登出</a>
         </div>       
       </div>
     </div>

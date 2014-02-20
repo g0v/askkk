@@ -1,4 +1,4 @@
-askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin', '$location', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, $location, candidateService, questionService){
+askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', '$location', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, authService, $location, candidateService, questionService){
 
 
   semanticMenuReady();
@@ -6,6 +6,17 @@ askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin',
   semanticSidebarReday();
 
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
+  $scope.login = function () {
+    $scope.auth.$login('facebook')
+    .then(function (user) {
+      authService.onLogin(user);
+    }, function (error) {
+    });
+  };
+  $scope.logout = function () {
+    authService.onLogout($scope.auth.user);
+    $scope.auth.$logout();
+  };
   $scope.candidates = candidateService;
   $scope.categories = global.categories;
   $scope.questions = questionService;
