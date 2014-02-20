@@ -125,7 +125,7 @@
 
 <div class="ui segment">
     <div class="tool_bar_holder">
-       <div class="ui small black launch button">
+       <div class="ui small black launch button" id="category_launch_button">
            <i class="list layout icon"></i>類別
        </div>
        <div class="ui small icon input" id="tool_bar_seach">
@@ -142,27 +142,27 @@
     <div class="question_list_item" ng-click="showQuestionDetail(n.$id)"
          ng-repeat="n in questions | orderByPriority | filter:'passed' | filter:query">
         
-        <div ng-show="(n.votes_count >=1000 )" class="question_list_bow">爆</div>
-        <div class="question_list_votes">{{n.votes_count|number:0}}</div>
+        <div ng-show="(n.votes_count >=1000 )" class="question_list_bow web_only">爆</div>
+        <div class="question_list_votes web_only">{{n.votes_count|number:0}}</div>
         <!--
         <div class="question_list_votes"  
              ng-show="({{n.votes_count}}<1000)">{{n.votes_count}}</div>
         <div ng-show="({{n.votes_count}}>=1000)" class="question_list_bow">爆</div>
          -->
         <div class="question_list_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
-        <div class="question_list_asker">{{n.asker.displayName}}</div>
+        <div class="question_list_asker web_only">{{n.asker.displayName}}</div>
         <div class="question_list_title">{{n.title}}</div>
 
-        <div class="candidate_state_block">
-          <div ng-repeat="k in n.addressing|filter:'responded'"
+        <div class="candidate_state_block web_only">
+          <div ng-repeat="k in n.addressing | orderByPriority | filter:'responded'"
                class="candidate_state">
                <img class="ui image ask_who ask_who_responded" 
-                    ng-src="images/candidates_avatar/{{k.id}}.jpg"></img>
+                    ng-src="images/candidates_avatar/{{k.$id}}.jpg"></img>
           </div>
-          <div ng-repeat="k in n.addressing|filter:'pending'"
+          <div ng-repeat="k in n.addressing | orderByPriority |filter:'pending'"
                class="candidate_state">
                <img class="ui image ask_who ask_who_pending" 
-                    ng-src="images/candidates_avatar_bw/{{k.id}}.jpg"></img>
+                    ng-src="images/candidates_avatar_bw/{{k.$id}}.jpg"></img>
           </div>
         </div><!-- end of state_block -->
 

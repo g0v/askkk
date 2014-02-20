@@ -19,8 +19,16 @@ askControllers.controller('questionDetailCtrl', ['$scope', '$firebaseSimpleLogin
   $scope.data = questionService.get($routeParams.questionId);
 
   $scope.signQuestion = function(questionId){
-    signService.sign(1, questionId);
+    signService.sign($scope.auth.user.id, questionId);
   };
+  $scope.signed = function(questionId) {
+    if ($scope.auth.user && $scope.data.signatures) {
+      return $scope.data.signatures[$scope.auth.user.id];
+    } else {
+      return false;
+    }
+  }
+  $scope.signature_threshold = signService.signature_threshold;
   
   $scope.goToTop = function(){
     var body = $("html, body");

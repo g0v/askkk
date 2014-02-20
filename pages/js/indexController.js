@@ -1,4 +1,4 @@
-askControllers.controller('indexCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', 'candidateService', function($scope, $firebaseSimpleLogin, authService, candidateService){
+askControllers.controller('indexCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', 'candidateService', 'signService', function($scope, $firebaseSimpleLogin, authService, candidateService, signService){
 
   semanticMenuReady();
   semanticAccordingReady();
@@ -17,6 +17,7 @@ askControllers.controller('indexCtrl', ['$scope', '$firebaseSimpleLogin', 'authS
     $scope.auth.$logout();
   };
   $scope.candidates = candidateService;
+  $scope.signature_threshold = signService.signature_threshold;
   
   $scope.tabChoose = function(chosed_tab){
   	
