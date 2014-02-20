@@ -302,6 +302,8 @@ display: inline-block;
   padding-top: 10px;
   height:35px;
   font-size: 18px;
+  width:500px;
+
 }
 .why_and_how_content{
   padding-top: 5px;
@@ -309,13 +311,14 @@ display: inline-block;
 }
 .why_and_how_item_collection{
   width:940px;
-  height:350px;
+  height:420px;
   display: block;
 }
 .why_and_how_item{
   float:left;
   width:215px;
   margin-right:20px;
+
 }
 .hightlight{
   display: inline;

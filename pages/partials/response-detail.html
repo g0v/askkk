@@ -6,68 +6,14 @@
         <div class="ui pointing below label">整個城市，都是我的質詢台</div>
       </div>
     </div>
-
-  <div id="announce_board">
- 
-    <div class="header_candidate_collection">
-    <div class="header_candidate" 
-         ng-repeat="n in candidates | orderByPriority | filter:'join'">
-      <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
-      <div class="header_candidate_photo">
-      <div class="header_candidate_circleborder header_candidate_circleborder_{{n.state}}">
-      <a href="#/candidate/{{n.id}}">
-      <img class="ui image header_candidate_face" ng-src="images/candidates_avatar/{{n.id}}.jpg"></img></a>
-      </div>
-      <img class="circular ui image header_candidate_party header_candidate_party_{{n.partyEng}}" 
-           ng-src="images/{{n.partyEng}}.png"></img>
-      <div class="header_candidate_state header_candidate_state_join">已加入</div>
-      </div>
-    </div>
-    
-    <div class="header_candidate" 
-         ng-repeat="n in candidates | orderByPriority | filter:'pending'">
-      <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
-      <div class="header_candidate_photo">
-      <div class="header_candidate_circleborder header_candidate_circleborder_{{n.state}}">
-      <a href="#/candidate/{{n.id}}">
-      <img class="circular ui image header_candidate_face" ng-src="images/candidates_avatar/{{n.id}}.jpg"></img></a>
-      </div>
-      <img class="circular ui image header_candidate_party header_candidate_party_{{n.partyEng}}" 
-           ng-src="images/{{n.partyEng}}.png"></img>
-      <div class="header_candidate_state header_candidate_state_pending">考慮中</div>
-      </div>
-    </div>
-
-
-     
-    <div class="header_candidate" 
-         ng-repeat="n in candidates | orderByPriority | filter:'refused'">
-      <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
-      <div class="header_candidate_photo">
-      <div class="header_candidate_circleborder header_candidate_circleborder_{{n.state}}">
-       <a href="#/candidate/{{n.id}}">
-      <img class="circular ui image header_candidate_face" ng-src="images/candidates_avatar/{{n.id}}.jpg"></img></a>
-      </div>
-      <img class="circular ui image header_candidate_party header_candidate_party_{{n.partyEng}}" 
-           ng-src="images/{{n.partyEng}}.png"></img>
-      <div class="header_candidate_state header_candidate_state_refused">拒絕加入</div>
-      </div>
-    </div>
-
-
-  </div><!-- end of header_candidate_collection -->
-  </div><!-- end of announce_board -->
-
-
-
-
-
+    <div id="announce_board">
+      <div ng-include="'partials/announce-board.html'"></div>
+    </div><!-- end of announce_board -->
   </div>
+  
+  <!-- ////////////////////////////////////////////////////////////// -->
 
-
-      <!-- ////////////////////////////////////////////////////////////// -->
-
-      <div id="navigation">
+  <div id="navigation">
     <div class="ui inverted menu">
       <a class="item" href="index.html">
         <i class="home icon"></i>
