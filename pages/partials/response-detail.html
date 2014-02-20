@@ -168,34 +168,34 @@
         <div class="response_title">
              <h2>{{n.title}}</h2>
              <div class="response_subtitle">
-             臺北市長候選人<a class="link" href="#/candidate/{{n.candidate}}">{{candidates(n.candidate).name}}</a>的回應
+             臺北市長候選人<a class="link" href="#/candidate/{{n.candidate_id}}">{{candidates[n.candidate_id].name}}</a>的回應
              </div>
         </div>
 
        <div class="response_detail_votes">
           <div class="ui pointing below label">
-          <div class="response_detail_push" ng-click="voteUpResponse(n.responseId)">推</div>
-          <div class="response_detail_text">{{n.responseVoteUp|number:0}}</div>
+          <div class="response_detail_push" ng-click="voteUpResponse(n.$id)" ng-hide="voted(n.$id)">推</div>
+          <div class="response_detail_text">{{n.up_vote_count|number:0}}</div>
           </div>
           <div class="ui pointing below label">
-          <div class="response_detail_booing" ng-click="voteDownResponse(n.responseId)">噓</div>
-          <div class="response_detail_text">{{n.responseVoteDown|number:0}}</div>
+          <div class="response_detail_booing" ng-click="voteDownResponse(n.$id)" ng-hide="voted(n.$id)">噓</div>
+          <div class="response_detail_text">{{n.down_vote_count|number:0}}</div>
           </div>
        </div>
 
 
         <div class="response_photo">
           <div class="circleborder">
-          <a href="#/candidate/{{n.responser.id}}">
+          <a href="#/candidate/n.candidate_id}}">
           <img class="circular ui image face response_candidate_face" 
-               ng-src="images/candidates/{{n.responser.id}}.jpg"></a>
+               ng-src="images/candidates/{{n.candidate_id}}.jpg"></a>
           </div>
         </div>
       </div>
       <div class="response_main_text">
-          <p ng-repeat="i in n.responseContent">{{i}}</p>
+          <p>{{n.content}}</p>
           <div class="response_meta">
-          <p>回應日期： {{n.responseDate.year}}-{{n.responseDate.month}}-{{n.responseDate.day}} ｜ <a href="#" class="link">分享</a></p>
+          <p>回應日期： {{n.post_date.year}}-{{n.post_date.month}}-{{n.post_date.day}} ｜ <a href="#" class="link">分享</a></p>
           </div>
 
       </div>

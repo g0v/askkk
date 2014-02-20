@@ -39,7 +39,7 @@ askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
       (snapshot) <- ref.child \candidates .once \value
       candidates = snapshot.val!
       # XXX use := to access addressing in upper block
-      addressing := pairs-to-obj addressing.map -> [it, { state: \pending, name: candidates[it].name } ]
+      addressing := pairs-to-obj addressing.map -> [it, { state: \pending } ]
       post-ref <- service.$add {
         title, content, category, addressing, post_date, deadline, asker
         state:

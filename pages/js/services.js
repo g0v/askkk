@@ -61,8 +61,7 @@ askServices.factory('questionService', ['$firebase'].concat(function($firebase){
       addressing = pairsToObj(addressing.map(function(it){
         return [
           it, {
-            state: 'pending',
-            name: candidates[it].name
+            state: 'pending'
           }
         ];
       }));
