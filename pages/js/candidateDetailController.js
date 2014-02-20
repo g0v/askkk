@@ -1,6 +1,6 @@
-askControllers.controller('candidateDetailCtrl', ['$scope','$routeParams', 'candidateService', 
+askControllers.controller('candidateDetailCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', '$routeParams', 'candidateService', 
 
-function($scope,$routeParams,candidateService){
+function($scope, $firebaseSimpleLogin, authService, $routeParams,candidateService){
 
   semanticMenuReady();
   semanticAccordingReady();
@@ -9,6 +9,19 @@ function($scope,$routeParams,candidateService){
   $scope.data = global.responseDataCandidate;
   
   $scope.candidates = candidateService;
+  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
+  $scope.login = function () {
+    $scope.auth.$login('facebook')
+    .then(function (user) {
+      authService.onLogin(user);
+    }, function (error) {
+    });
+  };
+  $scope.logout = function () {
+    authService.onLogout($scope.auth.user);
+    $scope.auth.$logout();
+  };
+
   $scope.n = global.oneCandidate;
 
 

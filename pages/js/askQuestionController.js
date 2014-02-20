@@ -1,12 +1,22 @@
-askControllers.controller('askQuestionCtrl', ['$scope', '$location', 'candidateService', 'questionService', function($scope, $location, candidateService, questionService){
+askControllers.controller('askQuestionCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', '$location', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, authService, $location, candidateService, questionService){
   semanticMenuReady();
   semanticAccordingReady();
   
 
   $scope.candidates = candidateService;
+  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
+  $scope.login = function () {
+    $scope.auth.$login('facebook')
+    .then(function (user) {
+      authService.onLogin(user);
+    }, function (error) {
+    });
+  };
+  $scope.logout = function () {
+    authService.onLogout($scope.auth.user);
+    $scope.auth.$logout();
+  };
  
-
-
   $scope.candidateSelection = [];
   $scope.toggleCandidate = function(selectedId){
    
@@ -152,7 +162,8 @@ $scope.$watch(function(){
       title: $scope.newQuestionTitle,
       content: $scope.newQuestionContent,
       category: $scope.listSelection,
-      addressing: $scope.candidateSelection
+      addressing: $scope.candidateSelection,
+      asker: $scope.auth.user.id
     };
     questionService.post(question, function (post) {
       $location.path('/question/' + post.name()).replace();

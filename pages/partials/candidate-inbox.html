@@ -92,10 +92,12 @@
       <a class="item" href="#/question-list">集氣中</a>
       <a class="item" href="#/response-list">已達門檻</a>
       <a class="item" href="#/candidate-list">候選人表現</a>
-      <a class="active item" href="#/candidate-list">候選人登入</a>
+      <a class="active item" href="#/candidate-list" ng-show="auth.user.candidateId">候選人登入</a>
       <div class="right menu">
         <div class="item">
-          <a href="#/login">登入</a>
+          <span ng-show="auth.user">{{auth.user.displayName}} | </span>
+          <a href="#" ng-click="login()" ng-hide="auth.user">登入</a>
+          <a href="#" ng-click="logout()" ng-show="auth.user">登出</a>
         </div>       
       </div>
     </div>
@@ -212,7 +214,7 @@
       <p ng-repeat="n in detail.content">{{n}}</p>
 
       <div class="question_detail_meta">
-      <p>提出人： {{detail.asker.name}} | 提出日期： {{detail.date.year}}-{{detail.date.month}}-{{detail.date.day}} | 共同提問人數：{{detail.votes|number:0}} </p>
+      <p>提出人： {{detail.asker.displayName}} | 提出日期： {{detail.date.year}}-{{detail.date.month}}-{{detail.date.day}} | 共同提問人數：{{detail.votes|number:0}} </p>
       </div>
 
      

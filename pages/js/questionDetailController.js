@@ -1,15 +1,25 @@
-askControllers.controller('questionDetailCtrl', ['$scope', '$routeParams', 'candidateService', 'questionService', function($scope, $routeParams, candidateService, questionService){
+askControllers.controller('questionDetailCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', '$routeParams', 'candidateService', 'questionService', 'signService', function($scope, $firebaseSimpleLogin, authService, $routeParams, candidateService, questionService, signService){
 
   semanticMenuReady();
   semanticAccordingReady();
 
+  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
+  $scope.login = function () {
+    $scope.auth.$login('facebook')
+    .then(function (user) {
+      authService.onLogin(user);
+    }, function (error) {
+    });
+  };
+  $scope.logout = function () {
+    authService.onLogout($scope.auth.user);
+    $scope.auth.$logout();
+  };
   $scope.candidates = candidateService;
   $scope.data = questionService.get($routeParams.questionId);
 
-  $scope.voteQuestion = function(){
-    event.stopPropagation();
-    console.log("vote for this detail, id:"+$routeParams.questionId);
-
+  $scope.signQuestion = function(questionId){
+    signService.sign(1, questionId);
   };
   
   $scope.goToTop = function(){

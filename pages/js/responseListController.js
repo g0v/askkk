@@ -1,23 +1,35 @@
-askControllers.controller('responseListCtrl', ['$scope', 'candidateService', function($scope, candidateService){
+askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', '$location', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, authService, $location, candidateService, questionService){
 
 
   semanticMenuReady();
   semanticAccordingReady();
   semanticSidebarReday();
 
+  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
+  $scope.login = function () {
+    $scope.auth.$login('facebook')
+    .then(function (user) {
+      authService.onLogin(user);
+    }, function (error) {
+    });
+  };
+  $scope.logout = function () {
+    authService.onLogout($scope.auth.user);
+    $scope.auth.$logout();
+  };
   $scope.candidates = candidateService;
   $scope.categories = global.categories;
-  $scope.data = global.responseData;
+  $scope.questions = questionService;
 
   $scope.showQuestionDetail = function(questionId){
-    event.stopPropagation();
+    //event.stopPropagation();
     console.log("show question detail, id:"+questionId);
-    window.location = "#/response/"+questionId;
+    $location.path("/response/"+questionId);
     
   };
   $scope.voteQuestion = function(questionId){
     console.log("vote for this detail, id:"+questionId);
-    event.stopPropagation();
+    //event.stopPropagation();
   };
   $scope.sortByTime = function(){
     console.log("sort by time");

@@ -93,7 +93,9 @@
       <a class="item" href="#/candidate-list">候選人表現</a>
       <div class="right menu">
         <div class="item">
-          <a href="#/login">登入</a>
+          <span ng-show="auth.user">{{auth.user.displayName}} | </span>
+          <a href="#" ng-click="login()" ng-hide="auth.user">登入</a>
+          <a href="#" ng-click="logout()" ng-show="auth.user">登出</a>
         </div>       
       </div>
     </div>
@@ -139,15 +141,15 @@
 
 
     <div class="question_list_item" 
-         ng-repeat="n in data | orderByPriority | filter:query"
+         ng-repeat="n in questions | orderByPriority | filter:'collecting' | filter:query"
          ng-click="showQuestionDetail(n.$id)">
         
-        <div class="question_list_bow"><div ng-show="(n.vote.length>=100)">HOT</div></div>
-        <div class="question_list_votes"  
-             ng-show="(n.vote.length < 500)">{{n.vote.length}}</div>
+        <div class="question_list_bow"><div ng-show="(n.signatures_count >= 100)">HOT</div></div>
+        <div class="question_list_signatures"
+             ng-show="(n.signatures_count < 500)">{{n.signatures_count}}</div>
         
         <div class="question_list_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
-        <div class="question_list_asker">{{n.asker.name}}</div>
+        <div class="question_list_asker">{{n.asker.displayName}}</div>
         <div class="question_list_title">{{n.title}}</div>
 
         <div class="candidate_state_block">
@@ -158,9 +160,12 @@
           </div>
         </div><!-- end of state_block -->
 
-        <div class="right floated tiny ui black button qustion_list_push_button"
-             ng-click="voteQuestion(n.$id)">
+        <div class="right floated tiny ui black button qustion_list_push_button" ng-click="signQuestion(n.$id)" ng-hide="n.signatures.1">
           推
+        </div>
+        <div class="right floated tiny ui black button qustion_list_push_button"
+             ng-show="n.signatures.1">
+          已推
         </div>
          <div class="right floated tiny ui button qustion_list_button"
               ng-click="showQuestionDetail(n.$id)">

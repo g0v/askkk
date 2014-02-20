@@ -84,7 +84,9 @@
       <a class="active item" href="#/candidate-list">候選人表現</a>
       <div class="right menu">
         <div class="item">
-          <a href="#/login">登入</a>
+          <span ng-show="auth.user">{{auth.user.displayName}} | </span>
+          <a href="#" ng-click="login()" ng-hide="auth.user">登入</a>
+          <a href="#" ng-click="logout()" ng-show="auth.user">登出</a>
         </div>       
       </div>
     </div>
@@ -164,7 +166,7 @@
           <div ng-show="({{n.votes}}>=1000)" class="question_list_bow">爆</div>
           <div class="candidate_detail_votes">{{n.votes|number:0}}</div>
           <div class="candidate_detail_date">{{n.date.month}}/{{n.date.day}}</div>
-          <div class="candidate_detail_asker">{{n.asker.name}}</div>
+          <div class="candidate_detail_asker">{{n.asker.displayName}}</div>
         <!-- <img class="ui avatar image ask_who" src="images/logo.png"></img> -->
           <div class="candidate_detail_title candidate_detail_title_pending">{{n.title}}</div>
        

@@ -372,7 +372,8 @@ display: inline-block;
 .question_list_item:hover{
   background: rgba(200,200,200,0.8);
 }
-.question_list_votes{
+.question_list_votes,
+.question_list_signatures{
   margin-top: 5px;
   width:40px;
   margin-right: 10px;
@@ -1040,7 +1041,8 @@ display: inline-block;
   margin:0px;
   padding:0px;
 }
-.question_detail_votes{
+.question_detail_votes,
+.question_detail_signatures {
   text-align: center;
   float:right;
   position: absolute;
