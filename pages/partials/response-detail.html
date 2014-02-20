@@ -87,7 +87,7 @@
           <h2 class="question_detail_title">{{data.title}}</h2>
        </div>
        <div class="question_detail_content">
-          <p>{{data.content}}</p>
+          <p ng-repeat="n in data.content">{{n}}</p>
        </div>
       
       <div class="question_detail_meta">
@@ -159,7 +159,7 @@
         </div>
       </div>
       <div class="response_main_text">
-          <p>{{n.content}}</p>
+          <p ng-repeat="c in n.content">{{c}}</p>
           <div class="response_meta">
           <p>回應日期： {{n.post_date.year}}-{{n.post_date.month}}-{{n.post_date.date}} ｜ <a href="#" class="link">分享</a></p>
           </div>

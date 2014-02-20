@@ -81,7 +81,7 @@
         <h2 class="question_detail_title">{{data.title}}</h2>
       </div>
       <div class="question_detail_content">
-        <p>{{data.content}}</p>
+        <p ng-repeat="n in data.content">{{n}}</p>
       </div>
 
       <div class="question_detail_meta">

@@ -4,6 +4,8 @@ askServices = angular.module \askServices, <[firebase]>
 
 ref = new Firebase 'https://askkkkk.firebaseio.com/'
 
+signature_threshold = 500
+
 askServices.factory \authService, <[$firebase $q]> ++ ($firebase, $q) ->
   service = {
     is-candidate: (id) ->
@@ -52,6 +54,7 @@ askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
       candidates = snapshot.val!
       # XXX use := to access addressing in upper block
       addressing := pairs-to-obj addressing.map -> [it, { state: \pending } ]
+      content .:= split /\n\n/
       post-ref <- service.$add {
         title, content, category, addressing, post_date, deadline, asker
         state:
