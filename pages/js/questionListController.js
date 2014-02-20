@@ -42,7 +42,7 @@ askControllers.controller('questionListCtrl', ['$scope', '$firebaseSimpleLogin',
   $scope.sortByVotes = function(){
     console.log("sort by votes");
   };
-
+  $scope.signature_threshold = signService.signature_threshold;
   
   /* --------------------------------------------------- */
   //category checkbox

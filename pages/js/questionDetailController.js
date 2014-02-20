@@ -28,6 +28,7 @@ askControllers.controller('questionDetailCtrl', ['$scope', '$firebaseSimpleLogin
       return false;
     }
   }
+  $scope.signature_threshold = signService.signature_threshold;
   
   $scope.goToTop = function(){
     var body = $("html, body");

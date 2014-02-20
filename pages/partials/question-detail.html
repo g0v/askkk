@@ -176,11 +176,11 @@
             <h1>支持這個提問</h1>
             <p>已有 {{data.signatures_count}} 人推文支持</p>
             <div class="sign-num">
-              <p>截至 {{data.deadline.year}} 年 {{data.deadline.month}} 月 {{data.deadline.day}} 日之前，尚需 {{500-data.signatures_count}} 人推文</p>
+              <p>截至 {{data.deadline.year}} 年 {{data.deadline.month}} 月 {{data.deadline.day}} 日之前，尚需 {{signature_threshold - data.signatures_count}} 人推文</p>
             </div>
             <div class="question-progress">
               <div class="question-bar" 
-                   style="width: {{data.signatures_count/1000*100|number:0}}%;"></div>
+                   style="width: {{data.signatures_count/signature_threshold*100|number:0}}%;"></div>
 
             </div>
 
@@ -194,7 +194,7 @@
                   <i class="check icon"></i>
                   我支持
                 </div>
-                <div class="sign_note">每則提問有 30 天的時間可被連署，若提問在期限內達到 500 人次連署支持，候選人就必須回應。</div>
+                <div class="sign_note">每則提問有 30 天的時間可被連署，若提問在期限內達到 {{signature_threshold}} 人次連署支持，候選人就必須回應。</div>
 
                 <div class="promote_question">
                   分享這個提問：

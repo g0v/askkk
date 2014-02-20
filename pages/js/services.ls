@@ -1,7 +1,5 @@
 {values} = require 'prelude-ls'
 
-candidate-id = \-JFxrKQo3Qg19zsW73b1
-
 askServices = angular.module \askServices, <[firebase]>
 
 ref = new Firebase 'https://askkkkk.firebaseio.com/'
@@ -65,7 +63,8 @@ askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
           question-ref.asker = $firebase ref.child "users/#{question-ref.asker}"
 
 askServices.factory \signService, <[$firebase]> ++ ($firebase) ->
-  {
+  service = {
+    signature_threshold: 500
     sign: (user-id, question-id) ->
       snapshot <- ref.child "questions/#{question-id}/signatures/#{user-id}" .once \value
       return if snapshot.val!
@@ -81,7 +80,7 @@ askServices.factory \signService, <[$firebase]> ++ ($firebase) ->
         ..transaction (current-value) -> current-value + 1
         ..on \value, (snapshot) ->
           console.log snapshot.val!
-          if snapshot.val! >= 500
+          if snapshot.val! >= service.signature_threshold
             ref.child "questions/#{question-id}/state/passed" .set \passed
   }
 
