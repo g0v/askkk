@@ -24,8 +24,18 @@ askControllers.controller('questionListCtrl', ['$scope', '$firebaseSimpleLogin',
     $location.path("/question/" + questionId)
   };
   $scope.signQuestion = function(questionId){
-    signService.sign(1, questionId);
+    signService.sign($scope.auth.user.id, questionId);
   };
+  $scope.signed = function(questionId) {
+    if ($scope.auth.user
+        && $scope.questions[questionId]
+        && $scope.questions[questionId].signatures
+    ) {
+      return $scope.questions[questionId].signatures[$scope.auth.user.id];
+    } else {
+      return false;
+    }
+  }
   $scope.sortByTime = function(){
     console.log("sort by time");
   };

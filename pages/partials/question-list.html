@@ -160,11 +160,11 @@
           </div>
         </div><!-- end of state_block -->
 
-        <div class="right floated tiny ui black button qustion_list_push_button" ng-click="signQuestion(n.$id)" ng-hide="n.signatures.1">
+        <div class="right floated tiny ui black button qustion_list_push_button" ng-click="signQuestion(n.$id)" ng-hide="signed(n.$id)">
           推
         </div>
         <div class="right floated tiny ui black button qustion_list_push_button"
-             ng-show="n.signatures.1">
+             ng-show="signed(n.$id)">
           已推
         </div>
          <div class="right floated tiny ui button qustion_list_button"

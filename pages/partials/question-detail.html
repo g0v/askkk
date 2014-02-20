@@ -119,8 +119,8 @@
        </div><!-- end of state_block -->
        <div class="question_detail_signatures">
           <div class="ui pointing left label">
-          <div class="question_detail_push" ng-hide="data.signatures.1" ng-click="signQuestion(data.$id)">推</div>
-          <div class="question_detail_push" ng-show="data.signatures.1">已推</div>
+          <div class="question_detail_push" ng-hide="signed(data.$id)" ng-click="signQuestion(data.$id)">推</div>
+          <div class="question_detail_push" ng-show="signed(data.$id)">已推</div>
           <div class="question_detail_text">{{data.signatures_count}}</div>
           </div>
        </div>
@@ -186,11 +186,11 @@
 
             <div class="sign_area">
               <div class="field">
-                <div class="ui red small button" ng-click="signQuestion(data.$id)" ng-hide="data.signatures.1">
+                <div class="ui red small button" ng-click="signQuestion(data.$id)" ng-hide="signed(data.$id)">
                   <i class="check icon"></i>
                   我要推文支持
                 </div>
-                <div class="ui green small button" ng-show="data.signatures.1">
+                <div class="ui green small button" ng-show="signed(data.$id)">
                   <i class="check icon"></i>
                   我支持
                 </div>
