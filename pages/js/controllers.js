@@ -314,7 +314,7 @@ function mobileNavPosition(){
   }
 }
 function mobileSideBarSetup(){
-   
+  
    $("#sidebar").addClass("large");
    $("#sidebar").addClass("vertical");
    $("#sidebar").addClass("inverted");

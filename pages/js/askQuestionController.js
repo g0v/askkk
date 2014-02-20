@@ -2,8 +2,20 @@ askControllers.controller('askQuestionCtrl', ['$scope', '$firebaseSimpleLogin', 
   semanticMenuReady();
   semanticAccordingReady();
   semanticSidebarReday();
+  
+  /* --- mobile nav set --- */
   $('.body').removeClass("left");
   $('.body').removeClass("pushed");
+  mobileNavPosition();
+  $("#mobile_nav_button").on("click",function(){
+    mobileNavPosition();
+  });
+  if($(window).width()<400){
+    mobileNavSetup();
+    mobileSideBarSetup();
+  }
+  /* ---------------------- */
+   
   
 
   $scope.candidates = candidateService;

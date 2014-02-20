@@ -13,6 +13,7 @@ askControllers.controller('candidateListCtrl', ['$scope', '$firebaseSimpleLogin'
   });
   if($(window).width()<400){
     mobileNavSetup();
+    mobileSideBarSetup();
   }
   /* ---------------------- */
    

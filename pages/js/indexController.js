@@ -14,6 +14,7 @@ askControllers.controller('indexCtrl', ['$scope', '$firebaseSimpleLogin', 'authS
   });
   if($(window).width()<400){
     mobileNavSetup();
+    mobileSideBarSetup();
   }
   /* ---------------------- */
 
