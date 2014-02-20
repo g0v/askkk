@@ -41,6 +41,12 @@ askServices.factory \candidateService, <[$firebase]> ++ ($firebase) ->
     ..get = (id) ->
       service.$child id
 
+askServices.factory \userService, <[$firebase]> ++ ($firebase) ->
+  service = {
+    get: (id) ->
+      $firebase ref.child "users/#{id}"
+  }
+
 askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
   service = $firebase ref.child \questions
     # XXX arguments of `child_added` callback is different from doc
@@ -83,7 +89,7 @@ askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
 
 askServices.factory \signService, <[$firebase]> ++ ($firebase) ->
   service = {
-    signature_threshold: 500
+    signature_threshold
     sign: (user-id, question-id) ->
       snapshot <- ref.child "questions/#{question-id}/signatures/#{user-id}" .once \value
       return if snapshot.val!
@@ -99,7 +105,7 @@ askServices.factory \signService, <[$firebase]> ++ ($firebase) ->
         ..transaction (current-value) -> current-value + 1
         ..on \value, (snapshot) ->
           console.log snapshot.val!
-          if snapshot.val! >= service.signature_threshold
+          if snapshot.val! >= signature_threshold
             ref.child "questions/#{question-id}/state/passed" .set \passed
   }
 
@@ -132,3 +138,13 @@ askServices.filter \pendedByCandidate, ->
     | not input.addressing => null
     | not input.addressing[candidate-id] => null
     | otherwise => input.addressing[candidate-id].state == \pending
+
+/**
+ * Filter questions by signature threshold.
+ */
+askServices.filter \passedThreshold, ->
+  (input) ->
+    | not input => null
+    | angular.is-array input => input.filter(-> it.state.passed)
+    | input.state.passed => input
+    | otherwise => null

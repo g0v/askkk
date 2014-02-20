@@ -31,22 +31,21 @@ function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candi
     $scope.auth.$logout();
   };
 
+  $scope.questions = questionService;
+  $scope.candidates = candidateService;
+  $scope.detail = null
+
   $scope.inboxAnswered = function(){
-    window.location = "#/candidate-inbox-replied";
+    $location.path("/candidate-inbox-replied");
   }
   $scope.displayQuestionDetail = function(questionId){
-    console.log(questionId);
+    $scope.detail = questionService.get(questionId);
   }
 
   $scope.goToTop = function(){
      var body = $("html, body");
      body.animate({scrollTop:0}, '500', 'swing');
   };
-
-  
-  $scope.candidates = candidateService;
-  $scope.detail = global.questionData[0];
-  $scope.data = global.questionData;
 
 }]);
 

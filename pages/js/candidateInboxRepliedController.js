@@ -1,7 +1,7 @@
 
-askControllers.controller('candidateInboxRepliedCtrl',['$scope','$firebaseSimpleLogin', '$location', 'authService', '$routeParams','candidateService',
+askControllers.controller('candidateInboxRepliedCtrl',['$scope','$firebaseSimpleLogin', '$location', 'authService', '$routeParams','candidateService', 'questionService', 'userService',
 
-function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candidateService){
+function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candidateService, questionService, userService){
 
   semanticMenuReady();
   semanticAccordingReady();
@@ -32,10 +32,10 @@ function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candi
   };
 
   $scope.inboxUnreplied = function(){
-    window.location = "#/candidate-inbox"
+    $location.path("/candidate-inbox");
   }
   $scope.displayQuestionDetail = function(questionId){
-    console.log(questionId);
+    $scope.detail = questionService.get(questionId);
   }
 
   $scope.goToTop = function(){
@@ -44,8 +44,8 @@ function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candi
   };
   
   $scope.candidates = candidateService;
-  $scope.detail = global.responseData[0];
-  $scope.data = global.responseDataCandidate;
+  $scope.detail = null;
+  $scope.questions = questionService;
 
 }]);
 

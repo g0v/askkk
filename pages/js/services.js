@@ -65,6 +65,14 @@ askServices.factory('candidateService', ['$firebase'].concat(function($firebase)
   };
   return x$;
 }));
+askServices.factory('userService', ['$firebase'].concat(function($firebase){
+  var service;
+  return service = {
+    get: function(id){
+      return $firebase(ref.child("users/" + id));
+    }
+  };
+}));
 askServices.factory('questionService', ['$firebase'].concat(function($firebase){
   var x$, service;
   x$ = service = $firebase(ref.child('questions'));
@@ -141,7 +149,7 @@ askServices.factory('questionService', ['$firebase'].concat(function($firebase){
 askServices.factory('signService', ['$firebase'].concat(function($firebase){
   var service;
   return service = {
-    signature_threshold: 500,
+    signature_threshold: signature_threshold,
     sign: function(userId, questionId){
       return ref.child("questions/" + questionId + "/signatures/" + userId).once('value', function(snapshot){
         var today, x$, y$;
@@ -163,7 +171,7 @@ askServices.factory('signService', ['$firebase'].concat(function($firebase){
         });
         y$.on('value', function(snapshot){
           console.log(snapshot.val());
-          if (snapshot.val() >= service.signature_threshold) {
+          if (snapshot.val() >= signature_threshold) {
             return ref.child("questions/" + questionId + "/state/passed").set('passed');
           }
         });
@@ -230,6 +238,25 @@ askServices.filter('pendedByCandidate', function(){
       return null;
     default:
       return input.addressing[candidateId].state === 'pending';
+    }
+  };
+});
+/**
+ * Filter questions by signature threshold.
+ */
+askServices.filter('passedThreshold', function(){
+  return function(input){
+    switch (false) {
+    case !!input:
+      return null;
+    case !angular.isArray(input):
+      return input.filter(function(it){
+        return it.state.passed;
+      });
+    case !input.state.passed:
+      return input;
+    default:
+      return null;
     }
   };
 });

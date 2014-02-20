@@ -23,7 +23,6 @@
       <a class="item" href="#/question-list">集氣中</a>
       <a class="item" href="#/response-list">已達門檻</a>
       <a class="item" href="#/candidate-list">候選人表現</a>
-      <a class="active item" href="#/candidate-list" ng-show="auth.user.candidateId">候選人登入</a>
       <div class="right menu">
         <div class="item">
           <span ng-show="auth.user">{{auth.user.displayName}} | </span>
@@ -39,7 +38,7 @@
 
 <div class="ui large inverted vertical sidebar menu">
     <div class="item">
-      <b>科文哲</b>
+      <b>{{user.displayName}}</b>
        <div class="menu">
         <a class="item">
           臺北市長參選人
@@ -97,10 +96,10 @@
 
       <div id="unreplied">
         <div class="candidate_inbox_list_item" 
-             ng-click="displayQuestionDetail(n.id)"
-             ng-repeat="n in data | filter:query">
-           <div class="candidate_inbox_list_votes">{{n.votes|number:0}}</div>
-           <div class="candidate_inbox_list_date">{{n.date.month}}/{{n.date.day}}</div>
+             ng-click="displayQuestionDetail(n.$id)"
+             ng-repeat="n in questions | orderByPriority | pendedByCandidate:user.candidate_id | passedThreshold | filter:query">
+           <div class="candidate_inbox_list_votes">{{n.signatures_count|number:0}}</div>
+           <div class="candidate_inbox_list_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
            <div class="candidate_inbox_list_title">{{n.title}}</div>
          </div>
       </div> <!-- end of question_list_item -->
@@ -119,33 +118,33 @@
     </div>
 
 <!-- 內容 -->
-    <div class="nine wide right column">
+    <div class="nine wide right column" ng-show="detail">
 
        <div class="addressed_to_candidate_text">本題詢問市長候選人：</div>
           <div class="addressed_to_candidate_collection">
-          <div ng-repeat="k in detail.addressedTo | filter:'answered'"
+          <div ng-repeat="k in detail.addressing | orderByPriority | filter:'responded'"
                class="addressed_to_candidate">
-               <a href="#/candidate/{{k.id}}">
+               <a href="#/candidate/{{k.$id}}">
                <img class="ui image addressed_to" 
-                    ng-src="images/candidates_avatar/{{k.id}}.jpg"></img></a>
+                    ng-src="images/candidates_avatar/{{k.$id}}.jpg"></img></a>
           </div>
-          <div ng-repeat="k in detail.addressedTo | filter:'pending'"
+          <div ng-repeat="k in detail.addressing | orderByPriority | filter:'pending'"
                class="addressed_to_candidate">
-               <a href="#/candidate/{{k.id}}">
+               <a href="#/candidate/{{k.$id}}">
                <img class="ui image addressed_to" 
-                    ng-src="images/candidates_avatar_bw/{{k.id}}.jpg"></img></a>
+                    ng-src="images/candidates_avatar_bw/{{k.$id}}.jpg"></img></a>
           </div>
           </div>
  
       <div class='candidate_inbox_detail_title'>
           <h3 class="ui header">{{detail.title}}</h3>
       </div>
-      類別：<a class="ui label" ng-repeat="n in detail.categories">{{n}}</a> 
+      類別：<a class="ui label" ng-repeat="n in detail.category">{{n}}</a> 
 
       <p ng-repeat="n in detail.content">{{n}}</p>
 
       <div class="question_detail_meta">
-      <p>提出人： {{detail.asker.displayName}} | 提出日期： {{detail.date.year}}-{{detail.date.month}}-{{detail.date.day}} | 共同提問人數：{{detail.votes|number:0}} </p>
+      <p>提出人： {{detail.asker.displayName}} | 提出日期： {{detail.post_date.year}}-{{detail.post_date.month}}-{{detail.post_date.day}} | 共同提問人數：{{detail.signatures_count|number:0}} </p>
       </div>
 
      
