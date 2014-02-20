@@ -298,13 +298,29 @@ global.oneCandidate =
 
 
 var askControllers = angular.module('askControllers',[]);
+function mobileNavSetup(){
+   var value =$(window).width()/2-50;
+   console.log(value);
+   console.log("set");
+   $("#mobile_nav_title").css("left",value+"px");
+   $("#navigation").addClass("navigation_mobile");
+}
+function mobileNavPosition(){
+  if($('.body').hasClass("left")){
+     $('#navigation').removeClass("navigation_mobile");
+  }else{
+     $('#navigation').css("left","0px");
+     $('#navigation').addClass("navigation_mobile");
+  }
+}
 function mobileSideBarSetup(){
    
    $("#sidebar").addClass("large");
    $("#sidebar").addClass("vertical");
    $("#sidebar").addClass("inverted");
    $("#sidebar").addClass("menu");
-    
+
+   
 }
 function semanticSidebarReday(){
   // selector cache

@@ -80,9 +80,18 @@
   </div>
 
   <!-- ////////////////////////////////////////////////////////////// -->
+     
+  <div id="navigation">
 
- <div id="navigation">
-    <div class="ui inverted menu">
+    <!-- mobile navigation -->
+    <div class="ui inverted menu mobile_only" id="mobile_nav">
+      <a class="ui small black launch button item">
+        <i class="list layout icon"></i>
+      </a>
+    </div>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+    <div class="ui inverted menu web_only">
       <a class="item" href="index.html">
         <i class="home icon"></i>
       </a>
@@ -95,16 +104,32 @@
           <span ng-show="auth.user">{{auth.user.displayName}} | </span>
           <a href="#" ng-click="login()" ng-hide="auth.user">登入</a>
           <a href="#" ng-click="logout()" ng-show="auth.user">登出</a>
-        </div>
+        </div> 
+        <div class="item">
+          <a href="#/register">註冊</a>
+        </div>       
       </div>
     </div>
   </div>
-
 
   <!-- ////////////////////////////////////////////////////////////// -->
 
 
   <div id="content">
+
+
+    <!-- mobile sidebar as menu -->
+    <div class="ui thin sidebar" >
+      <div class="ui large vertical inverted labeled icon sidebar menu" id="menu">
+        <div class="item">
+          <a href="#/"><i class="home icon"></i>市長，給問嗎？</a>
+        </div>
+        <div class="active item"><a href="#/ask-question">發問</a></div>
+        <div class="item"><a href="#/question-list">集氣中</a></div>
+        <div class="item"><a href="#/response-list">已達門檻</a></div>
+        <div class="item"><a href="#/candidate-list">候選人表現</a></div>
+      </div>
+    </div><!-- end of ui sidebar -->
 
 
 

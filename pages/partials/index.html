@@ -84,13 +84,14 @@
 
       
   <div id="navigation">
-
     <!-- mobile navigation -->
+    <!-- <div ng-if="mobile" ng-include="'partials/mobile-nav.html'"></div>-->
     <div class="ui inverted menu mobile_only" id="mobile_nav">
-      <a class="ui small black launch button item">
-        <i class="list layout icon"></i>
+      <a class="ui small black launch button item" id="mobile_nav_button">
+         <i class="list layout icon"></i>
       </a>
     </div>
+    <a class="ui item mobile_only" id="mobile_nav_title">市長，給問嗎？</a>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
 
     <div class="ui inverted menu web_only">
@@ -112,6 +113,11 @@
         </div>       
       </div>
     </div>
+    
+    
+   
+   
+   
   </div>
 
 
@@ -120,24 +126,11 @@
     
 
     <!-- mobile sidebar as menu -->
-    <div class="ui thin sidebar page_sidebar" >
+    <div class="ui thin sidebar" >
       <div class="ui large vertical inverted labeled icon sidebar menu" id="menu">
-        <div class="item">
+        <div class="active item">
           <a href="#/"><i class="home icon"></i>市長，給問嗎？</a>
-          <div class="menu">
-             <a class="item" ng-click="tabChoose('about')">關於這個網站</a>
-          </div>
-          <div class="menu">
-             <a class="item" ng-click="tabChoose('how_to_use')">如何使用及參與</a>
-          </div>
-          <div class="menu">
-             <a class="item" ng-click="tabChoose('diff')">和其他平台不同之處</a>
-          </div>
-          <div class="menu">
-             <a class="item" ng-click="tabChoose('announcement')">版規&公告</a>
-          </div>
         </div>
-         
         <div class="item"><a href="#/ask-question">發問</a></div>
         <div class="item"><a href="#/question-list">集氣中</a></div>
         <div class="item"><a href="#/response-list">已達門檻</a></div>
@@ -154,29 +147,35 @@
     <img class="ui avatar image" src="images/logo.png">
     <div class="content">
       <div class="header">關於這個網站</div>
-       why we did this?
     </div>
   </div>
   <div class="item index_tab" id="how_to_use_tab" ng-click="tabChoose('how_to_use')">
     <img class="ui avatar image" src="images/logo.png">
     <div class="content">
       <div class="header">如何使用及參與？</div>
-       how to participate?
     </div>
   </div>
   <div class="item index_tab" id="diff_tab" ng-click="tabChoose('diff')">
     <img class="ui avatar image" src="images/logo.png">
     <div class="content">
       <div class="header">和其他平台不同之處？</div>
-       how we differ from...?
     </div>
   </div>
   <div class="item index_tab" id="announcement_tab" ng-click="tabChoose('announcement')">
-    <img class="ui avatar image" src="images/logo.png">
+    <img class="ui avatar image index_tab_img" src="images/logo.png">
     <div class="content">
-      <div class="header">版規&公告</div>
-       announcement
+      <div class="header">版規 & 公告</div>
     </div>
+  </div>
+</div>
+
+<div class="mobile_only"> 
+  <div class="tab_menu_collection">
+  <div class="tab_menu tab_menu_active" 
+       ng-click="tabChoose('about')" id="about_mobiletab">關於這個網站</div>
+  <div class="tab_menu" ng-click="tabChoose('how_to_use')" id="how_to_use_mobiletab">如何使用及參與</div>
+  <div class="tab_menu" ng-click="tabChoose('diff')" id="diff_mobiletab">其他平台不同之處</div>
+  <div class="tab_menu" ng-click="tabChoose('announcement')" id="announcement_mobiletab">版規<br/>公告</div>
   </div>
 </div>
  

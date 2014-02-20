@@ -3,7 +3,21 @@ askControllers.controller('indexCtrl', ['$scope', '$firebaseSimpleLogin', 'authS
   semanticMenuReady();
   semanticAccordingReady();
   semanticSidebarReday();
+  
  
+  /* --- mobile nav set --- */
+  $('.body').removeClass("left");
+  $('.body').removeClass("pushed");
+  mobileNavPosition();
+  $("#mobile_nav_button").on("click",function(){
+    mobileNavPosition();
+  });
+  if($(window).width()<400){
+    mobileNavSetup();
+  }
+  /* ---------------------- */
+
+
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.login = function () {
     $scope.auth.$login('facebook')
@@ -25,10 +39,19 @@ askControllers.controller('indexCtrl', ['$scope', '$firebaseSimpleLogin', 'authS
   	$(".index_tab").removeClass("index_tab_active");
   	$("#"+chosed_tab).show();
   	$("#"+chosed_tab+"_tab").addClass("index_tab_active");
-    
+
+    //mobiel tab css adjust
+    $(".tab_menu").removeClass("tab_menu_active");
+    $("#"+chosed_tab+"_mobiletab").addClass("tab_menu_active");
+
     //dynamically adjust height
     var height = $("#"+chosed_tab).height()+150;
     $("#why_and_how_segment").css("height",height+"px");
+
+    //hide left side bar menu
+    $('.body').removeClass("left");
+    $('.body').removeClass("pushed");
+    $("#menu").removeClass("active");
   }
  
 }]);

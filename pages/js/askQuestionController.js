@@ -1,6 +1,9 @@
 askControllers.controller('askQuestionCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', '$location', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, authService, $location, candidateService, questionService){
   semanticMenuReady();
   semanticAccordingReady();
+  semanticSidebarReday();
+  $('.body').removeClass("left");
+  $('.body').removeClass("pushed");
   
 
   $scope.candidates = candidateService;

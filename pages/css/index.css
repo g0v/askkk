@@ -36,12 +36,12 @@
 #top{
  height:150px; 
  background-image: url("../images/city.jpg");
- 
 }
 #header{
  /*background-image: url("../images/city.gif");*/
  float:left;
  height:100px;
+
 
 }
 .main_title{ /* 大標：市長，給問嗎 */
@@ -109,9 +109,8 @@
   
 }
 #navigation{
-  margin-top:10px;
+  /* margin-top:5px; */
   width:100%;
-
 }
 #content{
   width:100%;
@@ -525,7 +524,7 @@ display: inline-block;
   padding-left: 12px;
   font-size: 18px;
   border-radius: 5px;
-
+ 
 }
 .candidate_list_title{
    margin-bottom:10px;
