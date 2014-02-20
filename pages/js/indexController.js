@@ -2,6 +2,7 @@ askControllers.controller('indexCtrl', ['$scope', '$firebaseSimpleLogin', 'authS
 
   semanticMenuReady();
   semanticAccordingReady();
+  semanticSidebarReday();
  
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.login = function () {

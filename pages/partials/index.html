@@ -1,6 +1,6 @@
 <div id="wrapper">
   <div id="top">
-    <div id="header">
+  <div id="header">
       <div class="main_title">
         <h1> 市長，給問嗎？</h1>
         <div class="ui pointing below label">整個城市，都是我的質詢台</div>
@@ -84,7 +84,16 @@
 
       
   <div id="navigation">
-    <div class="ui inverted menu">
+
+    <!-- mobile navigation -->
+    <div class="ui inverted menu mobile_only" id="mobile_nav">
+      <a class="ui small black launch button item">
+        <i class="list layout icon"></i>
+      </a>
+    </div>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+    <div class="ui inverted menu web_only">
       <a class="active item" href="index.html">
         <i class="home icon"></i>
       </a>
@@ -108,9 +117,39 @@
 
       <!-- ////////////////////////////////////////////////////////////// -->
 <div id="content">
+    
+
+    <!-- mobile sidebar as menu -->
+    <div class="ui thin sidebar page_sidebar" >
+      <div class="ui large vertical inverted labeled icon sidebar menu" id="menu">
+        <div class="item">
+          <a href="#/"><i class="home icon"></i>市長，給問嗎？</a>
+          <div class="menu">
+             <a class="item" ng-click="tabChoose('about')">關於這個網站</a>
+          </div>
+          <div class="menu">
+             <a class="item" ng-click="tabChoose('how_to_use')">如何使用及參與</a>
+          </div>
+          <div class="menu">
+             <a class="item" ng-click="tabChoose('diff')">和其他平台不同之處</a>
+          </div>
+          <div class="menu">
+             <a class="item" ng-click="tabChoose('announcement')">版規&公告</a>
+          </div>
+        </div>
+         
+        <div class="item"><a href="#/ask-question">發問</a></div>
+        <div class="item"><a href="#/question-list">集氣中</a></div>
+        <div class="item"><a href="#/response-list">已達門檻</a></div>
+        <div class="item"><a href="#/candidate-list">候選人表現</a></div>
+      </div>
+    </div><!-- end of ui sidebar -->
+
+
+
 <div class="ui raised segment" id="why_and_how_segment">
 
-<div class="ui horizontal list">
+<div class="ui horizontal list" id="why_and_how_web_menu">
   <div class="item index_tab index_tab_active" id="about_tab" ng-click="tabChoose('about')">
     <img class="ui avatar image" src="images/logo.png">
     <div class="content">
@@ -175,75 +214,60 @@
 <div class="ui bottom attached segment tab" id="how_to_use">
   <div class="why_and_how_title">如何使用？——市民指南</div>
   <div class="why_and_how_content">
-  
-  <div class="ui four column grid">
-  <div class="equal height row">
-    <div class="column how_to_participate_text">
-      
+    <div class="why_and_how_item_collection">
+    <div class="why_and_how_item">
       <div class="ui label">1. 提出問題</div>
       <img src="images/test.jpg" width="200px">
       <p>每位註冊的使用者都可以對候選人提問：你可以選擇詢問一位候選人、或者數位，當然，你也可以詢問所有候選人。</p>
       <p>爲維持良好的討論品質，請務必閱讀並記得遵守<span class="link" ng-click="tabChoose('announcement')">版規</span>。</p>
     </div>
-    <div class="column">
-      
+    <div class="why_and_how_item">
       <div class="ui label">2. 開始集氣</div>
       <img src="images/test.jpg" width="200px">
       <p>提問送出後，每則提問都有<span class="hightlight">一個月</span>的時間可以被連署（被推、尋找共同發問者）。</p>
       <p><span class="hightlight">連署</span>一個問題，代表你也關注這個議題，並認為候選人對此提出看法及回答是重要的。</p>
-
     </div>
-    <div class="column">
+    <div class="why_and_how_item">
       <div class="ui label">3. 達成門檻</div>
       <img src="images/test.jpg" width="200px">
       <p>當一個提問在時間內達到<span class="hightlight"><b>500</b></span>連署數（被推爆了），候選人就必須回答此問題。</p>
-
       <p>連署門檻會隨著平台參與人數動態調整，請密切注意網站公告。</p>
     </div>
-     <div class="column">
+     <div class="why_and_how_item">
       <div class="ui label">4. 候選人回答</div>
       <img src="images/test.jpg" width="200px">
       <p>針對候選人的回答，民眾可以投票支持（推）或反對（噓）。</p>
       <p>回覆後，便無法修改回覆內容；若有不足或想補充說明之處，可針對同一問題再次回答。</p>
-
     </div>
-  </div><!-- end of row -->
- </div><!-- end of grid -->
+  </div><!-- end of why_and_how_item_collection -->
 </div><!-- end of why_and_how_content -->
 
-<br/><br/>
+
 <div class="why_and_how_title">如何使用？——候選人指南</div>
   <div class="why_and_how_content">
-  
-  <div class="ui four column grid">
-  <div class="equal height row">
-    <div class="column how_to_participate_text">
-      
+  <div class="why_and_how_item_collection">
+    <div class="why_and_how_item">
       <div class="ui label">1. Inbox / 市民心聲</div>
       <img src="images/test.jpg" width="200px">
       <p>候選人登入後，可以看到專屬於自己的「市民心聲」信箱，所有向此候選人提問且已達門檻的問題會出現在這裡。</p>
       <p>你可以想像成這是你的 gmail 信箱，當連數人數達到門檻後，系統就會自動把這個問題寄到你的信箱。</p>
     </div>
-    <div class="column">
-      
+    <div class="why_and_how_item">
       <div class="ui label">2. 已回覆 / 未回覆</div>
       <img src="images/test.jpg" width="200px">
       <p>在「市民心聲」信箱中，可以分別看到「已回覆」和「未回覆」的列表，方便候選人檢視還有哪些問題尚未回覆。</p>
-
     </div>
-    <div class="column">
+    <div class="why_and_how_item">
       <div class="ui label">3. 回覆問題</div>
       <img src="images/test.jpg" width="200px">
       <p>回覆問題很簡單：在每個提問下方都有一欄輸入文字的欄位，候選人只需在此輸入回應後點選「回覆」，就可以完成回覆了。</p>
     </div>
-     <div class="column">
+    <div class="why_and_how_item">
       <div class="ui label">4. 多次回覆</div>
       <img src="images/test.jpg" width="200px">
       <p>候選人回覆後，便無法修改回覆內容；若有不足或想補充說明之處，可針對同一問題再次回答。</p>
-
     </div>
-  </div><!-- end of row -->
- </div><!-- end of grid -->
+  </div><!-- end of why_and_how_item_collection -->
 </div><!-- end of why_and_how_content -->
 
 
