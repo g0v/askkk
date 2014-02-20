@@ -79,7 +79,7 @@
        <div class="question_detail_votes">
           <div class="ui pointing left label">
           <div class="question_detail_push" ng-click="voteQuestion(data.id)">推</div>
-          <div class="question_detail_text">{{data.votes|number:0}}</div>
+          <div class="question_detail_text">{{data.signatures_count|number:0}}</div>
           </div>
        </div>
 
@@ -129,7 +129,7 @@
     <div class="response_start_divider"></div>   
     <div class="response_item" 
          ng-repeat="n in data.responses | orderByPriority" 
-         id="response_item_{{n.$id}}">
+         id="response_item_{{n.id}}">
       <div class="response_header">
         <div class="response_title">
              <h2>{{n.title}}</h2>
@@ -138,14 +138,13 @@
              </div>
         </div>
 
-        {{n.$id}}
        <div class="response_detail_votes">
-          <div class="ui pointing below label" ng-hide="voted(n.$id)">
-          <div class="response_detail_push" ng-click="voteUpResponse(n.$id)">推</div>
+          <div class="ui pointing below label" ng-hide="voted(n.id)">
+          <div class="response_detail_push" ng-click="upVoteResponse(n.id)">推</div>
           <div class="response_detail_text">{{n.upVotesCount|number:0}}</div>
           </div>
-          <div class="ui pointing below label" ng-hide="voted(n.$id)">
-          <div class="response_detail_booing" ng-click="voteDownResponse(n.$id)">噓</div>
+          <div class="ui pointing below label" ng-hide="voted(n.id)">
+          <div class="response_detail_booing" ng-click="downVoteResponse(n.id)">噓</div>
           <div class="response_detail_text">{{n.downVotesCount|number:0}}</div>
           </div>
        </div>

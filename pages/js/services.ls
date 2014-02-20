@@ -47,7 +47,7 @@ askServices.factory \userService, <[$firebase]> ++ ($firebase) ->
       $firebase ref.child "users/#{id}"
   }
 
-askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
+askServices.factory \questionService, <[$firebase $q]> ++ ($firebase, $q) ->
   service = $firebase ref.child \questions
     # XXX arguments of `child_added` callback is different from doc
     ..$on \child_added, ({snapshot, prevChild}) ->
@@ -64,6 +64,8 @@ askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
             year: postDate.getFullYear!
             month: postDate.getMonth! + 1
             day: postDate.getDate!
+          upVotesCount: 0
+          downVotesCount: 0
           content: content.split /\n\n/
         }
 
@@ -73,19 +75,26 @@ askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
           question-ref.$id = question-id
           # orderByPriority only works for ref
           question-ref.addressing = question-ref.$child "addressing"
+          question-ref.responses = question-ref.$child "responses"
           question-ref.asker = $firebase ref.child "users/#{question-ref.asker}"
           question-ref.postResponse = ({postDate, responser, content}) ->
             ref.child "questions/#{question-id}/addressing/#{responser}/state" .set \responded
             ref.child "questions/#{question-id}/responses_count" .transaction (current-value) -> current-value + 1
             # return a promise
-            question-ref.$child "responses" .$add {
+            deferred = $q.defer!
+            r-ref = ref.child "questions/#{question-id}/responses" .push!
+            r-ref.set {
+              id: r-ref.name!
               responser
               postDate:
                 year: postDate.getFullYear!
                 month: postDate.getMonth! + 1
                 day: postDate.getDate!
+              upVotesCount: 0
+              downVotesCount: 0
               content: content.split /\n\n/
-            }
+            }, -> deferred.resolve!
+            deferred.promise
 
     ..post = ({title, content, category, addressing, post_date, deadline, asker}, on-complete) ->
       (snapshot) <- ref.child \candidates .once \value
@@ -110,6 +119,23 @@ askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
         for c in keys addressing
           meta.$child "#{c}/questions/#{post-ref.name!}" .$set true
       on-complete post-ref if on-complete
+
+    ..upVoteResponse = ({questionId, responseId, userId}) ->
+      r-ref = ref.child "questions/#{questionId}/responses/#{responseId}"
+      snapshot <- r-ref.child "votes/#{userId}" .once \value
+      return if snapshot.val!
+      r-ref.child "upVotes/#{userId}" .set new Date!.get-time!
+      r-ref.child "upVotesCount" .transaction -> it + 1
+      r-ref.child "votes/#{userId}" .set new Date!.get-time!
+      r-ref.child "votesCount" .transaction -> it + 1
+    ..downVoteResponse = ({questionId, responseId, userId}) ->
+      r-ref = ref.child "questions/#{questionId}/responses/#{responseId}"
+      snapshot <- r-ref.child "votes/#{userId}" .once \value
+      return if snapshot.val!
+      r-ref.child "downVotes/#{userId}" .set new Date!.get-time!
+      r-ref.child "downVotesCount" .transaction -> it + 1
+      r-ref.child "votes/#{userId}" .set new Date!.get-time!
+      r-ref.child "votesCount" .transaction -> it + 1
 
 askServices.factory \signService, <[$firebase]> ++ ($firebase) ->
   service = {

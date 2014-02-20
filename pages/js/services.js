@@ -73,7 +73,7 @@ askServices.factory('userService', ['$firebase'].concat(function($firebase){
     }
   };
 }));
-askServices.factory('questionService', ['$firebase'].concat(function($firebase){
+askServices.factory('questionService', ['$firebase', '$q'].concat(function($firebase, $q){
   var x$, service;
   x$ = service = $firebase(ref.child('questions'));
   x$.$on('child_added', function(arg$){
@@ -95,6 +95,8 @@ askServices.factory('questionService', ['$firebase'].concat(function($firebase){
           month: postDate.getMonth() + 1,
           day: postDate.getDate()
         },
+        upVotesCount: 0,
+        downVotesCount: 0,
         content: content.split(/\n\n/)
       });
     };
@@ -105,23 +107,32 @@ askServices.factory('questionService', ['$firebase'].concat(function($firebase){
     x$.$on('loaded', function(snap){
       questionRef.$id = questionId;
       questionRef.addressing = questionRef.$child("addressing");
+      questionRef.responses = questionRef.$child("responses");
       questionRef.asker = $firebase(ref.child("users/" + questionRef.asker));
       return questionRef.postResponse = function(arg$){
-        var postDate, responser, content;
+        var postDate, responser, content, deferred, rRef;
         postDate = arg$.postDate, responser = arg$.responser, content = arg$.content;
         ref.child("questions/" + questionId + "/addressing/" + responser + "/state").set('responded');
         ref.child("questions/" + questionId + "/responses_count").transaction(function(currentValue){
           return currentValue + 1;
         });
-        return questionRef.$child("responses").$add({
+        deferred = $q.defer();
+        rRef = ref.child("questions/" + questionId + "/responses").push();
+        rRef.set({
+          id: rRef.name(),
           responser: responser,
           postDate: {
             year: postDate.getFullYear(),
             month: postDate.getMonth() + 1,
             day: postDate.getDate()
           },
+          upVotesCount: 0,
+          downVotesCount: 0,
           content: content.split(/\n\n/)
+        }, function(){
+          return deferred.resolve();
         });
+        return deferred.promise;
       };
     });
     return x$;
@@ -175,6 +186,42 @@ askServices.factory('questionService', ['$firebase'].concat(function($firebase){
         if (onComplete) {
           return onComplete(postRef);
         }
+      });
+    });
+  };
+  x$.upVoteResponse = function(arg$){
+    var questionId, responseId, userId, rRef;
+    questionId = arg$.questionId, responseId = arg$.responseId, userId = arg$.userId;
+    rRef = ref.child("questions/" + questionId + "/responses/" + responseId);
+    return rRef.child("votes/" + userId).once('value', function(snapshot){
+      if (snapshot.val()) {
+        return;
+      }
+      rRef.child("upVotes/" + userId).set(new Date().getTime());
+      rRef.child("upVotesCount").transaction(function(it){
+        return it + 1;
+      });
+      rRef.child("votes/" + userId).set(new Date().getTime());
+      return rRef.child("votesCount").transaction(function(it){
+        return it + 1;
+      });
+    });
+  };
+  x$.downVoteResponse = function(arg$){
+    var questionId, responseId, userId, rRef;
+    questionId = arg$.questionId, responseId = arg$.responseId, userId = arg$.userId;
+    rRef = ref.child("questions/" + questionId + "/responses/" + responseId);
+    return rRef.child("votes/" + userId).once('value', function(snapshot){
+      if (snapshot.val()) {
+        return;
+      }
+      rRef.child("downVotes/" + userId).set(new Date().getTime());
+      rRef.child("downVotesCount").transaction(function(it){
+        return it + 1;
+      });
+      rRef.child("votes/" + userId).set(new Date().getTime());
+      return rRef.child("votesCount").transaction(function(it){
+        return it + 1;
       });
     });
   };

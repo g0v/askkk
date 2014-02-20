@@ -35,21 +35,31 @@ askControllers.controller('responseDetailCtrl', ['$scope', '$firebaseSimpleLogin
     $scope.auth.$logout();
   };
   $scope.candidates = candidateService;
-  $scope.data = questionService.get($routeParams['responseId']);
+  $scope.data = data = questionService.get($routeParams['responseId']);
 
   $scope.voteQuestion = function(questionId){
     event.stopPropagation();
     console.log("vote for this detail, id:"+questionId);
 
   };
-  $scope.voteUpResponse = function(responseId){
-     console.log("vote up response, id:"+responseId);
-
+  $scope.upVoteResponse = function(responseId){
+    questionService.upVoteResponse({
+      questionId: $routeParams['responseId'],
+      responseId: responseId,
+      userId: $scope.user.id
+    });
   };
-  $scope.voteDownResponse = function(responseId){
-    console.log("vote down response, id:"+responseId);
-
+  $scope.downVoteResponse = function(responseId){
+    questionService.downVoteResponse({
+      questionId: $routeParams['responseId'],
+      responseId: responseId,
+      userId: $scope.user.id
+    });
   };
+  $scope.voted = function (responseId) {
+    if (!data.response) { return false; }
+    return (data.responses[responseId].upVotes && data.responses[responseId].upVotes[$scope.user.id]) || (data.responses[responseId].downVotes && data.responses[responseId].downVotes[$scope.user.id]);
+  }
   $scope.goToCandidate = function(id){
      var body = $("html, body");
      var p = $('#response_item_'+id).position();
