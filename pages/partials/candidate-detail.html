@@ -113,45 +113,45 @@
       <div class="right_menu_list">
       <div class="ui divided list">
         <div class="candidate_right_menu_state" 
-             ng-show="{{(n.state=='join')}}">已加入「市長，給問嗎？」</div>
+             ng-show="data.state=='join'">已加入「市長，給問嗎？」</div>
         <div class="candidate_right_menu_state" 
-             ng-hide="{{(n.state=='join')}}">尚未加入「市長，給問嗎？」</div>
+             ng-hide="data.state=='join'">尚未加入「市長，給問嗎？」</div>
 
         <div class="item candidate_right_menu_item">
           <div class="candidate_right_menu_right_text">
-            <p>{{n.bio}}</p>
-            <p><a class="link" href="{{n.bioWiki}}" target="_new">在維基百科上瀏覽更多</a></p>
+            <p>{{data.bio}}</p>
+            <p><a class="link" href="{{data.bio_wiki}}" target="_new">在維基百科上瀏覽更多</a></p>
           </div>
 
           <div class="candidate"> 
-          <a href="#/candidate/{{n.id}}">
+          <a href="#/candidate/{{data.id}}">
           <img class="rounded ui image candidate_img" 
-               ng-src="images/candidates/{{n.id}}.jpg" id="candidate_{{n.id}}"></a>
+               ng-src="images/candidates/{{data.id}}.jpg" id="candidate_{{data.id}}"></a>
           
           <div class="progress_info_floating_candidate_detail">
-            <a href="#/candidate/{{n.id}}">
+            <a href="#/candidate/{{data.id}}">
             <div class="progress_info_floating_text" 
-                 id="candidateName_{{n.id}}"
+                 id="candidateName_{{data.id}}"
                  ng-click="candidateChoose()">{{n.name}}</div></a>
           </div>
           <div class="progress">
-              <div class="bar" style="width: {{n.repliedQuestion / n.addressedQuestion * 100}}%;"> 
+              <div class="bar" style="width: {{data.repliedQuestion / data.addressedQuestion * 100}}%;"> 
           </div>
           </div>
 
           <div class="progress_info_rate">
-            回覆率：{{n.repliedQuestion / n.addressedQuestion * 100 | number:0}}%</div>
-          <div class="progress_info_answered">已回答：{{n.repliedQuestion}} </div>
-          <div class="progress_info_asked">被提問：{{n.addressedQuestion}}</div>
+            回覆率：{{data.repliedQuestion / data.addressedQuestion * 100 | number:0}}%</div>
+          <div class="progress_info_answered">已回答：{{data.repliedQuestion}} </div>
+          <div class="progress_info_asked">被提問：{{data.addressedQuestion}}</div>
           <img class="circular ui image candidate_detail_party" 
-           ng-src="images/{{n.partyEng}}.png"></img>
+           ng-src="images/{{data.partyEng}}.png"></img>
           <div class="ask_to_join_button_candidate_detail"
-               ng-hide="{{(n.state=='join')}}"
-               ng-click="askCandidateJoin(n.id)">要求{{n.name}}參賽</div>
+               ng-hide="data.state=='join'"
+               ng-click="askCandidateJoin(data.id)">要求{{data.name}}參賽</div>
         
           <br/>  
           <div class="askedToJoin_candidate_right_menu"
-               ng-hide="{{(n.state=='join')}}">{{n.askedToJoin|number:0}}人</div>
+               ng-hide="data.state=='join'">{{n.askedToJoin|number:0}}人</div>
         </div>
         </div><!-- end of item -->
       </div>
@@ -173,8 +173,8 @@
        
 
       <div class="candidate_detail_list_item" 
-           ng-click="showQuestionDetail(n.id)"
-           ng-repeat="n in data | filter:query">
+           ng-click="showQuestionDetail(n.$id)"
+           ng-repeat="n in questions | orderByPriority | respondedByCandidate:data.id">
         <div class="candidate_detail_vote">
           <div class="candidate_detail_push">
             {{n.voteUp|number:0}}
@@ -184,14 +184,14 @@
           </div>
         </div>
 
-        <div class="candidate_detail_date">{{n.date.month}}/{{n.date.day}}</div>
+        <div class="candidate_detail_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
         <!-- <img class="ui avatar image ask_who" src="images/logo.png"></img> -->
         <div class="candidate_detail_title">{{n.title}}</div>
        
 
         
         <div class="right floated tiny ui button candidate_detail_button"
-             ng-click="showQuestionDetail(n.id)">完整內容
+             ng-click="showQuestionDetail(n.$id)">完整內容
         </div>
          
         

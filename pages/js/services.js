@@ -41,7 +41,12 @@ askServices.factory('authService', ['$firebase'].concat(function($firebase){
   };
 }));
 askServices.factory('candidateService', ['$firebase'].concat(function($firebase){
-  return $firebase(ref.child('candidates'));
+  var x$, service;
+  x$ = service = $firebase(ref.child('candidates'));
+  x$.get = function(id){
+    return service.$child(id);
+  };
+  return x$;
 }));
 askServices.factory('questionService', ['$firebase'].concat(function($firebase){
   var x$, service;
@@ -161,6 +166,52 @@ askServices.filter('toKeys', function(){
       return keys(input).filter(function(it){
         return it[0] !== '$';
       });
+    }
+  };
+});
+/**
+ * Filter questions by candidate responses.
+ */
+askServices.filter('respondedByCandidate', function(){
+  return function(input, attributes){
+    switch (false) {
+    case !!attributes:
+      return null;
+    case !angular.isArray(input):
+      return input.filter(function(it){
+        return it.addressing[attributes];
+      }).filter(function(it){
+        return it.addressing[attributes].state === 'responded';
+      });
+    case !!input.addressing:
+      return null;
+    case !!input.addressing[attributes]:
+      return null;
+    default:
+      return input.addressing[attributes].state === 'responded';
+    }
+  };
+});
+/**
+ * Filter questions by candidate responses.
+ */
+askServices.filter('pendedByCandidate', function(){
+  return function(input, attributes){
+    switch (false) {
+    case !!attributes:
+      return null;
+    case !angular.isArray(input):
+      return input.filter(function(it){
+        return it.addressing[attributes];
+      }).filter(function(it){
+        return it.addressing[attributes].state === 'pended';
+      });
+    case !!input.addressing:
+      return null;
+    case !!input.addressing[attributes]:
+      return null;
+    default:
+      return input.addressing[attributes].state === 'pended';
     }
   };
 });

@@ -25,7 +25,9 @@ askServices.factory \authService, <[$firebase]> ++ ($firebase) ->
   }
 
 askServices.factory \candidateService, <[$firebase]> ++ ($firebase) ->
-  $firebase ref.child \candidates
+  service = $firebase ref.child \candidates
+    ..get = (id) ->
+      service.$child id
 
 askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
   service = $firebase ref.child \questions
@@ -95,3 +97,25 @@ askServices.filter \toKeys, ->
   (input, attributes) ->
     | not angular.is-object input => input
     | otherwise => keys input .filter -> it[0] != \$
+
+/**
+ * Filter questions by candidate responses.
+ */
+askServices.filter \respondedByCandidate, ->
+  (input, attributes) ->
+    | not attributes => null
+    | angular.is-array input => input.filter(-> it.addressing[attributes]).filter(-> it.addressing[attributes].state == \responded)
+    | not input.addressing => null
+    | not input.addressing[attributes] => null
+    | otherwise => input.addressing[attributes].state == \responded
+
+/**
+ * Filter questions by candidate responses.
+ */
+askServices.filter \pendedByCandidate, ->
+  (input, attributes) ->
+    | not attributes => null
+    | angular.is-array input => input.filter(-> it.addressing[attributes]).filter(-> it.addressing[attributes].state == \pended)
+    | not input.addressing => null
+    | not input.addressing[attributes] => null
+    | otherwise => input.addressing[attributes].state == \pended
