@@ -112,20 +112,20 @@ askServices.filter \toKeys, ->
  * Filter questions by candidate responses.
  */
 askServices.filter \respondedByCandidate, ->
-  (input, attributes) ->
-    | not attributes => null
-    | angular.is-array input => input.filter(-> it.addressing[attributes]).filter(-> it.addressing[attributes].state == \responded)
+  (input, candidate-id) ->
+    | not candidate-id => null
+    | angular.is-array input => input.filter(-> it.addressing[candidate-id]).filter(-> it.addressing[candidate-id].state == \responded)
     | not input.addressing => null
-    | not input.addressing[attributes] => null
-    | otherwise => input.addressing[attributes].state == \responded
+    | not input.addressing[candidate-id] => null
+    | otherwise => input.addressing[candidate-id].state == \responded
 
 /**
  * Filter questions by candidate responses.
  */
 askServices.filter \pendedByCandidate, ->
-  (input, attributes) ->
-    | not attributes => null
-    | angular.is-array input => input.filter(-> it.addressing[attributes]).filter(-> it.addressing[attributes].state == \pended)
+  (input, candidate-id) ->
+    | not candidate-id => null
+    | angular.is-array input => input.filter(-> it.addressing[candidate-id]).filter(-> it.addressing[candidate-id].state == \pending)
     | not input.addressing => null
-    | not input.addressing[attributes] => null
-    | otherwise => input.addressing[attributes].state == \pended
+    | not input.addressing[candidate-id] => null
+    | otherwise => input.addressing[candidate-id].state == \pending
