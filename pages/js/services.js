@@ -55,48 +55,53 @@ askServices.factory('questionService', ['$firebase'].concat(function($firebase){
   x$.post = function(arg$, onComplete){
     var title, content, category, addressing, post_date, deadline, asker;
     title = arg$.title, content = arg$.content, category = arg$.category, addressing = arg$.addressing, post_date = arg$.post_date, deadline = arg$.deadline, asker = arg$.asker;
-    addressing = pairsToObj(addressing.map(function(it){
-      return [
-        it, {
-          state: 'pending'
+    return ref.child('candidates').once('value', function(snapshot){
+      var candidates;
+      candidates = snapshot.val();
+      addressing = pairsToObj(addressing.map(function(it){
+        return [
+          it, {
+            state: 'pending',
+            name: candidates[it].name
+          }
+        ];
+      }));
+      return service.$add({
+        title: title,
+        content: content,
+        category: category,
+        addressing: addressing,
+        post_date: post_date,
+        deadline: deadline,
+        asker: asker,
+        state: {
+          collecting: 'collecting'
+        },
+        responses_count: 0,
+        signatures_count: 0,
+        votes_count: 0
+      }).then(function(postRef){
+        (function(meta){
+          meta.$child("collecting/" + postRef.name()).$set(true);
+        }.call(this, $firebase(ref.child('question_index'))));
+        (function(meta){
+          var i$, ref$, len$, c;
+          for (i$ = 0, len$ = (ref$ = category).length; i$ < len$; ++i$) {
+            c = ref$[i$];
+            meta.$child(c + "/" + postRef.name()).$set(true);
+          }
+        }.call(this, $firebase(ref.child('category'))));
+        (function(meta){
+          var i$, ref$, len$, c;
+          for (i$ = 0, len$ = (ref$ = keys(addressing)).length; i$ < len$; ++i$) {
+            c = ref$[i$];
+            meta.$child(c + "/questions/" + postRef.name()).$set(true);
+          }
+        }.call(this, $firebase(ref.child('candidate_meta'))));
+        if (onComplete) {
+          return onComplete(postRef);
         }
-      ];
-    }));
-    return service.$add({
-      title: title,
-      content: content,
-      category: category,
-      addressing: addressing,
-      post_date: post_date,
-      deadline: deadline,
-      asker: asker,
-      state: {
-        collecting: 'collecting'
-      },
-      responses_count: 0,
-      signatures_count: 0,
-      votes_count: 0
-    }).then(function(postRef){
-      (function(meta){
-        meta.$child("collecting/" + postRef.name()).$set(true);
-      }.call(this, $firebase(ref.child('question_index'))));
-      (function(meta){
-        var i$, ref$, len$, c;
-        for (i$ = 0, len$ = (ref$ = category).length; i$ < len$; ++i$) {
-          c = ref$[i$];
-          meta.$child(c + "/" + postRef.name()).$set(true);
-        }
-      }.call(this, $firebase(ref.child('category'))));
-      (function(meta){
-        var i$, ref$, len$, c;
-        for (i$ = 0, len$ = (ref$ = keys(addressing)).length; i$ < len$; ++i$) {
-          c = ref$[i$];
-          meta.$child(c + "/questions/" + postRef.name()).$set(true);
-        }
-      }.call(this, $firebase(ref.child('candidate_meta'))));
-      if (onComplete) {
-        return onComplete(postRef);
-      }
+      });
     });
   };
   x$.get = function(questionId){
