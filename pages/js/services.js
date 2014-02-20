@@ -139,6 +139,12 @@ askServices.factory('signService', ['$firebase'].concat(function($firebase){
         y$.transaction(function(currentValue){
           return currentValue + 1;
         });
+        y$.on('value', function(snapshot){
+          console.log(snapshot.val());
+          if (snapshot.val() >= 500) {
+            return ref.child("questions/" + questionId + "/state/passed").set('passed');
+          }
+        });
         return y$;
       });
     }

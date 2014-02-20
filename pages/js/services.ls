@@ -79,6 +79,10 @@ askServices.factory \signService, <[$firebase]> ++ ($firebase) ->
         }, today.get-time!
       ref.child "questions/#{question-id}/signatures_count"
         ..transaction (current-value) -> current-value + 1
+        ..on \value, (snapshot) ->
+          console.log snapshot.val!
+          if snapshot.val! >= 500
+            ref.child "questions/#{question-id}/state/passed" .set \passed
   }
 
 /**
