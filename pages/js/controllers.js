@@ -182,44 +182,44 @@ global.oneCandidate =
      /*  --- used in response-detail --- */  
       'responses':
      [ 
-       {'responseId':7, 
-        'responseDate':{'year':'2014','month':'01','day':'30'},
-        'responseAbstract':'落實工時規範',
-        'responseVoteUp':123,
-        'responseVoteDown':32,
-        'responseContent':[
+       {'$id':7, 
+        'postDate':{'year':'2014','month':'01','day':'30'},
+        'abstract':'落實工時規範',
+        'upVotesCount':123,
+        'downVotesCount':32,
+        'content':[
          "台大醫院創傷醫學部主任柯文哲妻子陳佩琪，今接受《蘋果》專訪時說，外界常批評柯亂講話，她有點替老公抱屈，因為重症醫療常得在30秒、1分鐘內做好決定才救得到人，結果也養成柯有話直說的習慣，她會持續鞭策柯「有話慢慢講」，但她也指，柯文哲對台灣權貴醫療的生態也有責任。",
          "陳佩琪表示，柯文哲有些話是實話，例如「民進黨有2個太陽」、「要我(柯文哲)入(民進)黨是趕獅子進籠」，但有些話則不然，例如「連勝文是權貴才會得到台大迅速救治」，連是否權貴，社會自有公評，但他能享權貴式醫療，「是你們台大醫師給的，包括你柯文哲在內」，所以講這句話就不應該。"
          ],
-        'responser':{'name':'柯文哲','id':"-JFuCJcAoUNFQY9NEHZ4"}
+        'responser':"-JFuCJcAoUNFQY9NEHZ4"
 
        },
-       {'responseId':8, 
-        'responseDate':{'year':'2014','month':'01','day':'30'},
-        'responseAbstract':'提高薪水',
-        'responseVoteUp':9003,
-        'responseVoteUpSignature':[],
-        'responseVoteDown':3122,
-        'responseVoteDownSignature':[],
-        'responseContent':[
+       {'$id':8, 
+        'postDate':{'year':'2014','month':'01','day':'30'},
+        'abstract':'提高薪水',
+        'upVotesCount':9003,
+        'upVotes':[],
+        'downVotesCount':3122,
+        'downVotes':[],
+        'content':[
          "台大醫院創傷醫學部主任柯文哲妻子陳佩琪，今接受《蘋果》專訪時說，外界常批評柯亂講話，她有點替老公抱屈，因為重症醫療常得在30秒、1分鐘內做好決定才救得到人，結果也養成柯有話直說的習慣，她會持續鞭策柯「有話慢慢講」，但她也指，柯文哲對台灣權貴醫療的生態也有責任。",
          "陳佩琪表示，柯文哲有些話是實話，例如「民進黨有2個太陽」、「要我(柯文哲)入(民進)黨是趕獅子進籠」，但有些話則不然，例如「連勝文是權貴才會得到台大迅速救治」，連是否權貴，社會自有公評，但他能享權貴式醫療，「是你們台大醫師給的，包括你柯文哲在內」，所以講這句話就不應該。"
          ],
-         'responser':{'name':'丁守中','id':'-JFxrLFtnbu79YNmJR0M'}
+         'responser':'-JFxrLFtnbu79YNmJR0M'
         
        },
-       {'responseId':9, 
-        'responseDate':{'year':'2014','month':'02','day':'18'},
-        'responseAbstract':'增加人力',
-        'responseVoteUp':1103,
-        'responseVoteUpSignature':[],
-        'responseVoteDown':2,
-        'responseVoteDownSignature':[],
-        'responseContent':[
+       {'$id':9, 
+        'postDate':{'year':'2014','month':'02','day':'18'},
+        'abstract':'增加人力',
+        'upVotesCount':1103,
+        'upVotes':[],
+        'downVotesCount':2,
+        'downVotes':[],
+        'content':[
          "台大醫院創傷醫學部主任柯文哲妻子陳佩琪，今接受《蘋果》專訪時說，外界常批評柯亂講話，她有點替老公抱屈，因為重症醫療常得在30秒、1分鐘內做好決定才救得到人，結果也養成柯有話直說的習慣，她會持續鞭策柯「有話慢慢講」，但她也指，柯文哲對台灣權貴醫療的生態也有責任。",
          "陳佩琪表示，柯文哲有些話是實話，例如「民進黨有2個太陽」、「要我(柯文哲)入(民進)黨是趕獅子進籠」，但有些話則不然，例如「連勝文是權貴才會得到台大迅速救治」，連是否權貴，社會自有公評，但他能享權貴式醫療，「是你們台大醫師給的，包括你柯文哲在內」，所以講這句話就不應該。"
          ],
-         'responser':{'name':'丁守中','id':'-JFxrLFtnbu79YNmJR0M'}
+         'responser':'-JFxrLFtnbu79YNmJR0M'
         
        }
      ]
