@@ -219,6 +219,12 @@
   margin: 3px;
   
 }
+.qustion_list_button{
+  display: none;
+}
+.qustion_list_push_button{
+  display: none;
+}
 
 .addressed_to{/* used in 集氣中 */
   cursor: pointer;
@@ -639,7 +645,7 @@
 /* ------------------------------------------------------------ */
 
 #response-content{
-  width:700px;
+  width:100%;
   
 }
 /* question 部分，和 question-detail 共用相同的 css */
@@ -653,7 +659,7 @@
   position: relative;
 }
 .response_main_text{
-  width:650px;
+  /*width:650px;*/
   margin-left:10px;
   margin-right:10px;
   margin-bottom: 60px;
@@ -683,8 +689,8 @@
   float:left;
 }
 .response_candidate_face{
-  height: 60px;
-  width: 60px;
+  height: 40px;
+  width: 40px;
 }
 .face {
   border-radius: 100%;
@@ -701,9 +707,7 @@
 .response_detail_votes{
   text-align: center;
   float:right;
-  position: absolute;
-  top:7px;
-  left:530px;
+  
 }
 .response_detail_point_label{
   
@@ -771,7 +775,17 @@
 /* ------------------------------------------------------------ */
 
 #question_content{
-  width:700px;
+  width:100%;
+}
+
+#question_detail_segment{
+  padding-top: 20px; 
+}
+#response_detail_segment{
+  padding-top: 30px; 
+}
+#response_detail_right_menu{
+  display: none;
 }
 /* --- top --- */
 .addressed_to_block{
@@ -819,9 +833,7 @@
 .question_detail_signatures {
   text-align: center;
   float:right;
-  position: absolute;
-  top:20px;
-  left:600px;
+  margin-right: 0px;
 }
 .question_detail_push{
   border-radius: 5px;
@@ -839,6 +851,10 @@
 .question_detail_text{
   margin:0px;
   padding:0px;
+  text-align: center;
+}
+.question_detail_vote_box{
+  width: 50px;
   text-align: center;
 }
 /* --- content --- */
@@ -907,10 +923,10 @@
 /* --- right menu --- */
 #sign-question{
   width:300px;
-  margin-left:686px;
   float:right;
   display: block;
   z-index: 888;
+  display: none;
  
 }
 .f-nav{  /* To fix main menu container */

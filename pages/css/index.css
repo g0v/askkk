@@ -459,10 +459,12 @@ display: inline-block;
   color:gray; 
 }
 .qustion_list_button{
-  height:28px;
+  display: inline-block;
+  float:right;
 }
 .qustion_list_push_button{
-  height:28px;
+  display: inline-block;
+  float:right;
 }
 
 /* ------------------------------------------------------------ */
@@ -1013,6 +1015,9 @@ display: inline-block;
 #question_content{
   width:700px;
 }
+#question_detail_segment{
+
+}
 /* --- top --- */
 .addressed_to_block{
   display: inline-block;
@@ -1079,6 +1084,10 @@ display: inline-block;
 .question_detail_text{
   margin:0px;
   padding:0px;
+  text-align: center;
+}
+.question_detail_vote_box{
+  width: 50px;
   text-align: center;
 }
 /* --- content --- */

@@ -14,7 +14,15 @@
   <!-- ////////////////////////////////////////////////////////////// -->
 
   <div id="navigation">
-    <div class="ui inverted menu">
+    <!-- mobile navigation -->
+    <div class="ui inverted menu mobile_only" id="mobile_nav">
+      <a class="ui small black launch button item" id="mobile_nav_button">
+        <i class="list layout icon"></i>
+      </a>
+    </div>
+    <a class="ui item mobile_only" id="mobile_nav_title">市長，給問嗎？</a>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <div class="ui inverted menu web_only">
       <a class="item" href="index.html">
         <i class="home icon"></i>
       </a>
@@ -27,128 +35,140 @@
           <span ng-show="auth.user">{{auth.user.displayName}} | </span>
           <a href="#" ng-click="login()" ng-hide="auth.user">登入</a>
           <a href="#" ng-click="logout()" ng-show="auth.user">登出</a>
-        </div>       
+        </div>
       </div>
     </div>
   </div>
 
 
   <!-- ////////////////////////////////////////////////////////////// -->
-  <div id="question_content">
-    <div class="ui segment">
-      
-       <div class="addressed_to_block">
+  <div id="content">
+    <div class="ui labeled icon sidebar page_sidebar" id="sidebar">
+      <div id="mobile_menu">
+        <div class="item">
+          <a href="#/"><i class="home icon"></i>市長，給問嗎？</a>
+        </div>
+        <div class="item"><a href="#/ask-question">發問</a></div>
+        <div class="active item"><a href="#/question-list">集氣中</a></div>
+        <div class="item"><a href="#/response-list">已達門檻</a></div>
+        <div class="item"><a href="#/candidate-list">候選人表現</a></div>
+      </div>
+    </div><!-- end of ui sidebar -->
 
-          <div class="addressed_to_candidate_text">請問市長候選人：</div>
-          <div class="addressed_to_candidate_collection">
+    <div class="ui segment" id="question_detail_segment">
+
+      <div class="addressed_to_block">
+
+        <div class="addressed_to_candidate_text">請問市長候選人：</div>
+        <div class="addressed_to_candidate_collection">
           <div ng-repeat="k in data.addressing | orderByPriority"
-               class="addressed_to_candidate">
-               <img class="ui image addressed_to" 
-                    ng-src="images/candidates_avatar/{{k.$id}}.jpg"></img>
+            class="addressed_to_candidate">
+            <img class="ui image addressed_to"
+            ng-src="images/candidates_avatar/{{k.$id}}.jpg"></img>
           </div>
-          </div>
-         
-       </div><!-- end of state_block -->
-       <div class="question_detail_signatures">
-          <div class="ui pointing left label">
+        </div>
+
+      </div><!-- end of state_block -->
+      <div class="question_detail_signatures">
+        <div class="ui pointing left label">
           <div class="question_detail_push" ng-hide="signed(data.$id)" ng-click="signQuestion(data.$id)">推</div>
           <div class="question_detail_push" ng-show="signed(data.$id)">已推</div>
           <div class="question_detail_text">{{data.signatures_count}}</div>
-          </div>
-       </div>
+        </div>
+      </div>
 
-       <div class="question_detail_header">
-          <h2 class="question_detail_title">{{data.title}}</h2>
-       </div>
-       <div class="question_detail_content">
-          <p>{{data.content}}</p>
-       </div>
-      
+      <div class="question_detail_header">
+        <h2 class="question_detail_title">{{data.title}}</h2>
+      </div>
+      <div class="question_detail_content">
+        <p>{{data.content}}</p>
+      </div>
+
       <div class="question_detail_meta">
-      <p>提出人：{{data.asker.displayName}} | 提出日期： {{data.post_date.year}}-{{data.post_date.month}}-{{data.post_date.day}} </p>
-      類別：
-      <div class="question_detail_category" ng-repeat="n in data.category">
-        <a class="link" href="#" >{{n}}{{$last ? '' : ', '}} <a>
-      </div>
-      </div>
-    
+        <p>提出人：{{data.asker.displayName}} | 提出日期： {{data.post_date.year}}-{{data.post_date.month}}-{{data.post_date.day}} </p>
+        類別：
+        <div class="question_detail_category" ng-repeat="n in data.category">
+          <a class="link" href="#" >{{n}}{{$last ? '' : ', '}} <a>
+            </div>
+          </div>
+
 
           <div class="ui divider"></div>
 
           <div class="question_sign_area">
-            <h2>共同發問者
-              <div class="ui pointing below label">{{data.signatures_count}}</div>
+            <h2>連署人
+              <div class="ui pointing below label question_detail_vote_box">{{data.signatures_count}}</div>
             </h2>
-          
-           
-             <div class="question_sign_block" ng-repeat="n in data.signatures | orderByPriority">
-                <div class="question_sign_order_block">
-                  <div class="question_sign_push">推</div>
-                  <div class="question_sign_order">#{{n.order|number:0}}</div>
-                </div>
-                <div class="question_sign_name">{{n.name}} | {{n.date.year}}-{{n.date.month}}-{{n.date.day}}</div>
-             </div>
-           
-           </div><!-- end of question_sign_area -->
-
-            <div class="load_signature">
-              <a class="link"><i class="add icon"></i>load more signatures...</a>
-            </div>
-          
-       
 
 
-
-
-
-
-<div id="sign-question" class="f-fix">
-
-          <div class="ui small form segment sign-penal">
-            <h1>支持這個提問</h1>
-            <p>已有 {{data.signatures_count}} 人推文支持</p>
-            <div class="sign-num">
-              <p>截至 {{data.deadline.year}} 年 {{data.deadline.month}} 月 {{data.deadline.day}} 日之前，尚需 {{signature_threshold - data.signatures_count}} 人推文</p>
-            </div>
-            <div class="question-progress">
-              <div class="question-bar" 
-                   style="width: {{data.signatures_count/signature_threshold*100|number:0}}%;"></div>
-
-            </div>
-
-            <div class="sign_area">
-              <div class="field">
-                <div class="ui red small button" ng-click="signQuestion(data.$id)" ng-hide="signed(data.$id)">
-                  <i class="check icon"></i>
-                  我要推文支持
-                </div>
-                <div class="ui green small button" ng-show="signed(data.$id)">
-                  <i class="check icon"></i>
-                  我支持
-                </div>
-                <div class="sign_note">每則提問有 30 天的時間可被連署，若提問在期限內達到 {{signature_threshold}} 人次連署支持，候選人就必須回應。</div>
-
-                <div class="promote_question">
-                  分享這個提問：
-                  <img src="images/facebook_circle.png" width="30">
-                  <img src="images/twitter_circle.png" width="30">
-                  <img src="images/google_circle.png" width="31">
-                </div>
-
+            <div class="question_sign_block" ng-repeat="n in data.signatures | orderByPriority">
+              <div class="question_sign_order_block">
+                <div class="question_sign_push">推</div>
+                <div class="question_sign_order">#{{n.order|number:0}}</div>
               </div>
-            </div><!-- end of sign_area -->
-          </div> <!-- end of ui small form segment sign-penal -->
-          <div class="back_to_top" ng-click="goToTop()">
-            <i class="angle up icon"></i> 回到頁首
+              <div class="question_sign_name">{{n.name}} | {{n.date.year}}-{{n.date.month}}-{{n.date.day}}</div>
+            </div>
+
+          </div><!-- end of question_sign_area -->
+
+          <div class="load_signature">
+            <a class="link"><i class="add icon"></i>load more signatures...</a>
           </div>
 
-        </div><!-- end of sign-petition -->
-
-     
- </div><!-- end of question conent-->
 
 
 
 
-</div><!-- end of wrapper-->
+
+
+
+          <div id="sign-question" class="f-fix">
+
+            <div class="ui small form segment sign-penal">
+              <h1>支持這個提問</h1>
+              <p>已有 {{data.signatures_count}} 人連署支持</p>
+              <div class="sign-num">
+                <p>截至 {{data.deadline.year}} 年 {{data.deadline.month}} 月 {{data.deadline.day}} 日之前，尚需 {{signature_threshold - data.signatures_count}} 人連署</p>
+              </div>
+              <div class="question-progress">
+                <div class="question-bar"
+                  style="width: {{data.signatures_count/signature_threshold*100|number:0}}%;"></div>
+
+              </div>
+
+              <div class="sign_area">
+                <div class="field">
+                  <div class="ui red small button" ng-click="signQuestion(data.$id)" ng-hide="signed(data.$id)">
+                    <i class="check icon"></i>
+                    我要連署
+                  </div>
+                  <div class="ui green small button" ng-show="signed(data.$id)">
+                    <i class="check icon"></i>
+                    我支持
+                  </div>
+                  <div class="sign_note">每則提問有 30 天的時間可被連署，若提問在期限內達到 {{signature_threshold}} 人次連署支持，候選人就必須回應。</div>
+
+                  <div class="promote_question">
+                    分享這個提問：
+                    <img src="images/facebook_circle.png" width="30">
+                    <img src="images/twitter_circle.png" width="30">
+                    <img src="images/google_circle.png" width="31">
+                  </div>
+
+                </div>
+              </div><!-- end of sign_area -->
+            </div> <!-- end of ui small form segment sign-penal -->
+            <div class="back_to_top" ng-click="goToTop()">
+              <i class="angle up icon"></i> 回到頁首
+            </div>
+
+          </div><!-- end of sign-petition -->
+
+
+        </div><!-- end of content-->
+
+
+
+
+      </div><!-- end of wrapper-->
 

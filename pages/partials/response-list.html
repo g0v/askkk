@@ -91,7 +91,7 @@
     <div class="question_list_item" ng-click="showQuestionDetail(n.$id)"
          ng-repeat="n in questions | orderByPriority | filter:'passed' | filter:query">
         
-        <div ng-show="(n.votes_count >=1000 )" class="question_list_bow web_only">爆</div>
+        <div ng-show="(n.votes_count >= 500)" class="question_list_bow web_only">爆</div>
         <div class="question_list_votes web_only">{{n.votes_count|number:0}}</div>
         <!--
         <div class="question_list_votes"  
@@ -115,6 +115,25 @@
           </div>
         </div><!-- end of state_block -->
 
+        <div class="qustion_list_push_button">
+             <div class="right floated tiny ui black button" 
+                  ng-click="signQuestion(n.$id)" ng-hide="signed(n.$id)">
+               推
+             </div>
+             <div class="right floated tiny ui black button"
+                  ng-show="signed(n.$id)">
+               已推
+             </div>
+        </div>
+        <div class="qustion_list_button">
+             <div class="right floated tiny ui button"
+                  ng-click="showQuestionDetail(n.$id)">
+               完整內容
+             </div>
+        </div>
+
+        <!-- old version -->
+        <!--
         <div class="right floated tiny ui black button qustion_list_push_button"
              ng-click="voteQuestion(n.$id)">
           推
@@ -123,6 +142,7 @@
               ng-click="showQuestionDetail(n.id)">
           完整內容
         </div>
+        -->
         
     </div> <!-- end of question_list_item -->
 

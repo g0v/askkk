@@ -298,14 +298,15 @@ global.oneCandidate =
 
 
 var askControllers = angular.module('askControllers',[]);
-function mobileNavSetup(){
+
+function mobileNavSetup(){//title position
    var value =$(window).width()/2-50;
    console.log(value);
    console.log("set");
    $("#mobile_nav_title").css("left",value+"px");
    $("#navigation").addClass("navigation_mobile");
 }
-function mobileNavPosition(){
+function mobileNavPosition(){//side menu position
   if($('.body').hasClass("left")){
      $('#navigation').removeClass("navigation_mobile");
   }else{
@@ -315,7 +316,7 @@ function mobileNavPosition(){
 }
 function mobileSideBarSetup(){
   
-   $("#sidebar").addClass("large");
+   //$("#sidebar").addClass("large");
    $("#sidebar").addClass("vertical");
    $("#sidebar").addClass("inverted");
    $("#sidebar").addClass("menu");

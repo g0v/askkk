@@ -4,7 +4,6 @@ askControllers.controller('indexCtrl', ['$scope', '$firebaseSimpleLogin', 'authS
   semanticAccordingReady();
   semanticSidebarReday();
   
- 
   /* --- mobile nav set --- */
   $('.body').removeClass("left");
   $('.body').removeClass("pushed");

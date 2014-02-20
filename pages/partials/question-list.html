@@ -101,7 +101,7 @@
           <div ng-show="(n.signatures_count >= 100)" class="web_only">HOT</div></div>
         <div class="question_list_signatures web_only">{{n.signatures_count}}</div>
         
-        <div class="question_list_date web_only">{{n.post_date.month}}/{{n.post_date.day}}</div>
+        <div class="question_list_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
         <div class="question_list_asker web_only">{{n.asker.displayName}}</div>
         <div class="question_list_title">{{n.title}}</div>
 
@@ -113,17 +113,22 @@
                     ng-src="images/candidates_avatar/{{k.$id}}.jpg"></img>
           </div>
         </div><!-- end of state_block -->
-
-        <div class="right floated tiny ui black button qustion_list_push_button" ng-click="signQuestion(n.$id)" ng-hide="signed(n.$id)">
-          推
+        
+        <div class="qustion_list_push_button">
+             <div class="right floated tiny ui black button" 
+                  ng-click="signQuestion(n.$id)" ng-hide="signed(n.$id)">
+               推
+             </div>
+             <div class="right floated tiny ui black button"
+                  ng-show="signed(n.$id)">
+               已推
+             </div>
         </div>
-        <div class="right floated tiny ui black button qustion_list_push_button"
-             ng-show="signed(n.$id)">
-          已推
-        </div>
-         <div class="right floated tiny ui button qustion_list_button"
-              ng-click="showQuestionDetail(n.$id)">
-          完整內容
+        <div class="qustion_list_button">
+             <div class="right floated tiny ui button"
+                  ng-click="showQuestionDetail(n.$id)">
+               完整內容
+             </div>
         </div>
         
     </div> <!-- end of question_list_item -->
