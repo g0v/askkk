@@ -4,8 +4,13 @@ askServices = angular.module \askServices, <[firebase]>
 
 ref = new Firebase 'https://askkkkk.firebaseio.com/'
 
-askServices.factory \authService, <[$firebase]> ++ ($firebase) ->
+askServices.factory \authService, <[$firebase $q]> ++ ($firebase, $q) ->
   service = {
+    is-candidate: (id, on-complete) ->
+      deferred = $q.defer!
+      ref.child "users/#{id}/candidate_id" .once \value, (snapshot) ->
+        deferred.resolve snapshot.val!
+      deferred.promise
     on-login: ({uid, id, provider,
     display-name, first_name, last_name, username, verified,
     email, link, birthday}) ->

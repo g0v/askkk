@@ -1,13 +1,23 @@
 
-askControllers.controller('candidateInboxCtrl',['$scope','$firebaseSimpleLogin', 'authService', '$routeParams','candidateService',
+askControllers.controller('candidateInboxCtrl',['$scope','$firebaseSimpleLogin', '$location', 'authService', '$routeParams','candidateService',
 
-function($scope,$firebaseSimpleLogin, authService, $routeParams,candidateService){
+function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candidateService){
 
   semanticMenuReady();
   semanticAccordingReady();
   semanticSidebarReday();
   
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
+  $scope.auth.$getCurrentUser().then(function (user) {
+    if (user == null) {
+      $location.path("/");
+    }
+    authService.isCandidate(user.id).then(function (result) {
+      if (! result) {
+        $location.path("/");
+      }
+    });
+  });
   $scope.login = function () {
     $scope.auth.$login('facebook')
     .then(function (user) {
@@ -19,6 +29,7 @@ function($scope,$firebaseSimpleLogin, authService, $routeParams,candidateService
     authService.onLogout($scope.auth.user);
     $scope.auth.$logout();
   };
+
   $scope.inboxAnswered = function(){
     window.location = "#/candidate-inbox-replied";
   }

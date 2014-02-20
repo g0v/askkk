@@ -3,9 +3,17 @@ var ref$, values, pairsToObj, objToPairs, askServices, ref;
 ref$ = require('prelude-ls'), values = ref$.values, pairsToObj = ref$.pairsToObj, objToPairs = ref$.objToPairs;
 askServices = angular.module('askServices', ['firebase']);
 ref = new Firebase('https://askkkkk.firebaseio.com/');
-askServices.factory('authService', ['$firebase'].concat(function($firebase){
+askServices.factory('authService', ['$firebase', '$q'].concat(function($firebase, $q){
   var service;
   return service = {
+    isCandidate: function(id, onComplete){
+      var deferred;
+      deferred = $q.defer();
+      ref.child("users/" + id + "/candidate_id").once('value', function(snapshot){
+        return deferred.resolve(snapshot.val());
+      });
+      return deferred.promise;
+    },
     onLogin: function(arg$){
       var uid, id, provider, displayName, first_name, last_name, username, verified, email, link, birthday, userRef;
       uid = arg$.uid, id = arg$.id, provider = arg$.provider, displayName = arg$.displayName, first_name = arg$.first_name, last_name = arg$.last_name, username = arg$.username, verified = arg$.verified, email = arg$.email, link = arg$.link, birthday = arg$.birthday;

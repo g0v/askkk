@@ -1,13 +1,23 @@
 
-askControllers.controller('candidateInboxRepliedCtrl',['$scope','$firebaseSimpleLogin', 'authService', '$routeParams','candidateService',
+askControllers.controller('candidateInboxRepliedCtrl',['$scope','$firebaseSimpleLogin', '$location', 'authService', '$routeParams','candidateService',
 
-function($scope,$firebaseSimpleLogin, authService, $routeParams,candidateService){
+function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candidateService){
 
   semanticMenuReady();
   semanticAccordingReady();
   semanticSidebarReday();
   
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
+  $scope.auth.$getCurrentUser().then(function (user) {
+    if (user == null) {
+      $location.path("/");
+    }
+    authService.isCandidate(user.id).then(function (result) {
+      if (! result) {
+        $location.path("/");
+      }
+    });
+  });
   $scope.login = function () {
     $scope.auth.$login('facebook')
     .then(function (user) {
