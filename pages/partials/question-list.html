@@ -153,10 +153,10 @@
         <div class="question_list_title">{{n.title}}</div>
 
         <div class="candidate_state_block">
-          <div ng-repeat="k in n.addressing"
+          <div ng-repeat="k in n.addressing | orderByPriority"
                class="candidate_state">
                <img class="ui image addressed_to" 
-                    ng-src="images/candidates_avatar/{{k.id}}.jpg"></img>
+                    ng-src="images/candidates_avatar/{{k.$id}}.jpg"></img>
           </div>
         </div><!-- end of state_block -->
 

@@ -1,4 +1,4 @@
-{values} = require 'prelude-ls'
+{values, pairs-to-obj, obj-to-pairs} = require 'prelude-ls'
 
 askServices = angular.module \askServices, <[firebase]>
 
@@ -31,11 +31,12 @@ askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
   service = $firebase ref.child \questions
     # XXX arguments of `child_added` callback is different from doc
     ..$on \child_added, ({snapshot, prevChild}) ->
-      service[snapshot.name].addressing = for c in snapshot.value.addressing
-        $firebase ref.child "candidates/#{c}"
+      # orderByPriority only works for ref
+      service[snapshot.name].addressing = service.$child "#{snapshot.name}/addressing"
       service[snapshot.name].asker = $firebase ref.child "users/#{snapshot.value.asker}"
 
     ..post = ({title, content, category, addressing, post_date, deadline, asker}, on-complete) ->
+      addressing = pairs-to-obj addressing.map -> [it, { state: \pending } ]
       post-ref <- service.$add {
         title, content, category, addressing, post_date, deadline, asker
         state:
@@ -50,7 +51,7 @@ askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
         for c in category
           meta.$child "#{c}/#{post-ref.name!}" .$set true
       let meta = $firebase ref.child \candidate_meta
-        for c in addressing
+        for c in keys addressing
           meta.$child "#{c}/questions/#{post-ref.name!}" .$set true
       on-complete post-ref if on-complete
 
@@ -58,8 +59,8 @@ askServices.factory \questionService, <[$firebase]> ++ ($firebase) ->
       question-ref = service.$child question-id
         ..$on \loaded, (snap) ->
           question-ref.$id = question-id
-          question-ref.addressing = for c in question-ref.addressing
-            $firebase ref.child "candidates/#{c}"
+          # orderByPriority only works for ref
+          question-ref.addressing = question-ref.$child "addressing"
           question-ref.asker = $firebase ref.child "users/#{question-ref.asker}"
 
 askServices.factory \signService, <[$firebase]> ++ ($firebase) ->
