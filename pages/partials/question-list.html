@@ -83,7 +83,16 @@
   <!-- ////////////////////////////////////////////////////////////// -->
 
   <div id="navigation">
-    <div class="ui inverted menu">
+
+    <!-- mobile navigation button -->
+    <div class="ui inverted menu mobile_only" id="mobile_nav">
+      <a class="ui small black launch button item">
+        <i class="list layout icon"></i>
+      </a>
+    </div>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+    <div class="ui inverted menu web_only">
       <a class="item" href="index.html">
         <i class="home icon"></i>
       </a>
@@ -103,29 +112,51 @@
 
 
   <!-- ////////////////////////////////////////////////////////////// -->
-<div id="content">
-    
-    <div class="ui thin sidebar page_sidebar">
-      <div class="ui tertiary inverted segment">
-         
+  <div id="content">
+      <div class="ui labeled icon sidebar page_sidebar" id="sidebar">
+      <div class="ui tertiary inverted segment" id="category_sidebar">
         <div class="item" ng-repeat="n in categories">
         <div class="ui checkbox category_checkbox" >
-        
            <input type="checkbox">
            <label>{{n}}</label>
-
          </div>
        </div>
+      </div>
 
+     <!-- -->
+     
+       <div id="mobile_menu">
+        <div class="item">
+          <a href="#/"><i class="home icon"></i>市長，給問嗎？</a>
+          <div class="menu">
+             <a class="item" ng-click="tabChoose('about')">關於這個網站</a>
+          </div>
+          <div class="menu">
+             <a class="item" ng-click="tabChoose('how_to_use')">如何使用及參與</a>
+          </div>
+          <div class="menu">
+             <a class="item" ng-click="tabChoose('diff')">和其他平台不同之處</a>
+          </div>
+          <div class="menu">
+             <a class="item" ng-click="tabChoose('announcement')">版規&公告</a>
+          </div>
+        </div>
+        <div class="item"><a href="#/ask-question">發問</a></div>
+        <div class="active item"><a href="#/question-list">集氣中</a></div>
+        <div class="item"><a href="#/response-list">已達門檻</a></div>
+        <div class="item"><a href="#/candidate-list">候選人表現</a></div>
       </div>
     </div><!-- end of ui sidebar -->
+
+
+
 
     
 
 
 <div class="ui segment">
     <div class="tool_bar_holder">
-       <div class="ui small black launch button">
+       <div class="ui small black launch button" id="category_launch_button">
            <i class="list layout icon"></i>類別
        </div>
        <div class="ui small icon input" id="tool_bar_seach">
@@ -144,15 +175,15 @@
          ng-repeat="n in questions | orderByPriority | filter:'collecting' | filter:query"
          ng-click="showQuestionDetail(n.$id)">
         
-        <div class="question_list_bow"><div ng-show="(n.signatures_count >= 100)">HOT</div></div>
-        <div class="question_list_signatures"
-             ng-show="(n.signatures_count < 500)">{{n.signatures_count}}</div>
+        <div class="question_list_bow web_only">
+          <div ng-show="(n.signatures_count >= 100)" class="web_only">HOT</div></div>
+        <div class="question_list_signatures web_only">{{n.signatures_count}}</div>
         
-        <div class="question_list_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
-        <div class="question_list_asker">{{n.asker.displayName}}</div>
+        <div class="question_list_date web_only">{{n.post_date.month}}/{{n.post_date.day}}</div>
+        <div class="question_list_asker web_only">{{n.asker.displayName}}</div>
         <div class="question_list_title">{{n.title}}</div>
 
-        <div class="candidate_state_block">
+        <div class="candidate_state_block web_only">
           <div ng-repeat="k in n.addressing"
                class="candidate_state">
                <img class="ui image addressed_to" 

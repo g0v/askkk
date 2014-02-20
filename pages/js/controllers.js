@@ -1,5 +1,6 @@
 $(document)
   .ready(function() {
+   
 
 
   });
@@ -297,6 +298,14 @@ global.oneCandidate =
 
 
 var askControllers = angular.module('askControllers',[]);
+function mobileSideBarSetup(){
+   
+   $("#sidebar").addClass("large");
+   $("#sidebar").addClass("vertical");
+   $("#sidebar").addClass("inverted");
+   $("#sidebar").addClass("menu");
+    
+}
 function semanticSidebarReday(){
   // selector cache
   var

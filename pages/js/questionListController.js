@@ -3,6 +3,7 @@ askControllers.controller('questionListCtrl', ['$scope', '$firebaseSimpleLogin',
   semanticMenuReady();
   semanticAccordingReady();
   semanticSidebarReday();
+  if($(window).width()<400) mobileSideBarSetup();
 
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.login = function () {

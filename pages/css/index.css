@@ -325,7 +325,9 @@ display: inline-block;
   color:#a50f15;
 
 }
-
+#mobile_menu{
+  display: none;
+}
 
 /* ------------------------------------------------------------ */
 /* question-list.html */
