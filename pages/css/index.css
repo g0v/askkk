@@ -33,6 +33,11 @@
   color:#ABA7A7;
   /*background-color: #bdbdbd;*/
 }
+.footer_link,.footer_link:hover,.footer_link:visited{
+  color:#ABA7A7;
+  font-size: 12px;
+}
+
 #top{
  height:150px; 
  background-image: url("../images/city.jpg");
@@ -1130,6 +1135,7 @@ display: inline-block;
    margin-bottom:5px;
 }
 .question_sign_block{
+
   width:100%;
   margin:2px;
   font-size: 10px;
@@ -1143,6 +1149,9 @@ display: inline-block;
 .question_sign_order_block{
   float:left;
   width:80px;
+  height:10px;
+  
+
 }
 .question_sign_push{
   display: inline-block;
@@ -1152,6 +1161,7 @@ display: inline-block;
   width:18px;
   height:18px;
   text-align: center;
+
 }
 .question_sign_order{
  font-size: 10px;
@@ -1159,8 +1169,10 @@ display: inline-block;
 
 }
 .question_sign_name{
-  width:100%;
+  width:80%;
+  display: inline-block;
   padding-top:4px; 
+  
   
 }
 .load_signature{

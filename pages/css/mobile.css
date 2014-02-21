@@ -18,6 +18,21 @@
   margin-right: auto;
   background: white;
 }
+
+#footer{
+  margin-left: 10px;
+  margin-right: 10px;
+  height:80px;
+  width:90%;
+  float:left;
+  color:#ABA7A7;
+  /*background-color: #bdbdbd;*/
+}
+.footer_link,.footer_link:hover,.footer_link:visited{
+  color:#ABA7A7;
+  font-size: 12px;
+}
+
 #top{
  display: none;
  background-image: url("../images/city-mobile.jpg");
@@ -922,6 +937,7 @@
 .question_sign_order_block{
   float:left;
   width:80px;
+  height:10px;
 }
 .question_sign_push{
   display: inline-block;
