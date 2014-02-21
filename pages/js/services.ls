@@ -4,7 +4,7 @@ askServices = angular.module \askServices, <[firebase]>
 
 ref = new Firebase 'https://askkkkk.firebaseio.com/'
 
-signature_threshold = 500
+const signature_threshold = 1
 
 askServices.factory \authService, <[$firebase $q]> ++ ($firebase, $q) ->
   service = {
