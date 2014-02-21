@@ -24,8 +24,8 @@ askServices.factory('authService', ['$firebase', '$q'].concat(function($firebase
       return deferred.promise;
     },
     onLogin: function(arg$){
-      var uid, id, provider, displayName, first_name, last_name, username, verified, email, link, birthday, userRef;
-      uid = arg$.uid, id = arg$.id, provider = arg$.provider, displayName = arg$.displayName, first_name = arg$.first_name, last_name = arg$.last_name, username = arg$.username, verified = arg$.verified, email = arg$.email, link = arg$.link, birthday = arg$.birthday;
+      var uid, id, provider, displayName, ref$, first_name, last_name, username, verified, email, link, birthday, userRef;
+      uid = arg$.uid, id = arg$.id, provider = arg$.provider, displayName = (ref$ = arg$.displayName) != null ? ref$ : '', first_name = (ref$ = arg$.first_name) != null ? ref$ : '', last_name = (ref$ = arg$.last_name) != null ? ref$ : '', username = (ref$ = arg$.username) != null ? ref$ : '', verified = (ref$ = arg$.verified) != null ? ref$ : '', email = (ref$ = arg$.email) != null ? ref$ : '', link = (ref$ = arg$.link) != null ? ref$ : '', birthday = (ref$ = arg$.birthday) != null ? ref$ : '';
       userRef = ref.child("users/" + id);
       userRef.update({
         uid: uid,
