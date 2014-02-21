@@ -3,7 +3,7 @@ var ref$, values, pairsToObj, objToPairs, askServices, ref, signature_threshold;
 ref$ = require('prelude-ls'), values = ref$.values, pairsToObj = ref$.pairsToObj, objToPairs = ref$.objToPairs;
 askServices = angular.module('askServices', ['firebase']);
 ref = new Firebase('https://askkkkk.firebaseio.com/');
-signature_threshold = 1;
+signature_threshold = 500;
 askServices.factory('authService', ['$firebase', '$q'].concat(function($firebase, $q){
   var service;
   return service = {
