@@ -19,8 +19,8 @@ askServices.factory \authService, <[$firebase $q]> ++ ($firebase, $q) ->
         deferred.resolve snapshot.val!
       deferred.promise
     on-login: ({uid, id, provider,
-    display-name, first_name, last_name, username, verified,
-    email, link, birthday}) ->
+    display-name = '', first_name = '', last_name = '', username = '', verified = '',
+    email = '', link = '', birthday = ''}) ->
       user-ref = ref.child "users/#{id}"
       user-ref.update {
         uid, id, provider, user_id: id
