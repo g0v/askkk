@@ -970,6 +970,20 @@ display: inline-block;
 .response_detail_point_label{
   
 }
+
+.response_detail_push_top{
+  border-radius: 5px;
+  margin-left:0px;
+  padding-left:0px;
+  font-size: 20px;
+  width:40px;
+  color:gray;
+  display: inline-block;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  
+
+}
 .response_detail_push{
   border-radius: 5px;
   margin-left:0px;
@@ -981,6 +995,7 @@ display: inline-block;
   padding-bottom: 0px;
   margin-bottom: 0px;
   cursor: pointer;
+  
 
 }
 .response_detail_booing{
@@ -1088,6 +1103,8 @@ display: inline-block;
   top:5px;
   left:600px;
 }
+
+
 .question_detail_push{
   border-radius: 5px;
   margin-left:0px;

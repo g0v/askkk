@@ -41,11 +41,6 @@ askControllers.controller('responseDetailCtrl', ['$scope', '$firebaseSimpleLogin
   $scope.candidates = candidateService;
   $scope.data = data = questionService.get($routeParams['responseId']);
 
-  $scope.voteQuestion = function(questionId){
-    event.stopPropagation();
-    console.log("vote for this detail, id:"+questionId);
-
-  };
   $scope.upVoteResponse = function(responseId){
     questionService.upVoteResponse({
       questionId: $routeParams['responseId'],
