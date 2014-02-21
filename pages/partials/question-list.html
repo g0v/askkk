@@ -103,7 +103,7 @@
         
         <div class="question_list_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
         <div class="question_list_asker web_only">{{n.asker.displayName}}</div>
-        <div class="question_list_title">{{n.title}}</div>
+        <div class="question_list_title">{{n.title|limitTo:titleLimit }}{{(n.title.length>titleLimit ?'...':'')}}</div>
 
 
         <div class="candidate_state_block web_only">

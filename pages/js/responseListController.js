@@ -5,6 +5,8 @@ askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin',
   semanticAccordingReady();
   semanticSidebarReday();
 
+  $scope.titleLimit=global.titleLimit;
+  
   /* --- mobile nav set --- */
   $('.body').removeClass("left");
   $('.body').removeClass("pushed");
@@ -15,6 +17,7 @@ askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin',
   if($(window).width()<400){
     mobileNavSetup();
     mobileSideBarSetup();
+    $scope.titleLimit=global.titleLimitMobile;
   }
   /* ---------------------- */
 

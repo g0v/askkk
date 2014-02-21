@@ -163,10 +163,10 @@
 }
 .question_list_item{
   display: block;
-  height:36px;
+  height:30px;
   width: 100%;
   border-bottom:1px rgba(189,189,189,0.7) solid;
-  padding-top: 6px;
+  padding-top: 2px;
   cursor: pointer;
   padding-right: 5px; 
 
@@ -201,11 +201,12 @@
   margin-right: 10px;
 }
 .question_list_asker{
-  margin-top: 5px;
+  margin-top: 1px;
   float: left;
 }
 .question_list_title{
   margin-top: 5px;
+  font-size: 10px;
   display: inline-block;
 }
 .candidate_state_block{
@@ -666,17 +667,18 @@
 
 }
 .response_header{
+  height:70px;
   margin-bottom: 30px;
   margin-left: 5px;
   background: rgba(230,230,230,0.3);
   padding: 5px;
   border-radius: 5px;
-  height:60px;
 
 }
 .response_title{
   margin-left:10px;
   display: inline-block;
+  
 }
 .response_header h2{
   margin: 0px;
@@ -684,6 +686,8 @@
 .response_subtitle{/* 臺北市長候選人OOO的回應 */
   padding-top: 2px;
   padding-bottom: 2px;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 .response_photo{
   float:left;
@@ -791,6 +795,7 @@
 .addressed_to_block{
   display: inline-block;
   border-bottom: 1px rgba(200,200,200,0.5) solid;
+  padding-top: 5px;
   
 }
 .addressed_to_candidate_collection{
@@ -816,11 +821,10 @@
   float:left;
   top:5px;
   left:0px;
-
+  font-size: 12px;
 }
 .question_detail_header{
   display: block;
-  height:32px;
   margin-top: 8px;
   margin-bottom:0px;
  
@@ -828,6 +832,7 @@
 .question_detail_title{
   margin:0px;
   padding:0px;
+  font-size: 16px;
 }
 .question_detail_votes,
 .question_detail_signatures {
@@ -852,6 +857,7 @@
   margin:0px;
   padding:0px;
   text-align: center;
+
 }
 .question_detail_vote_box{
   width: 50px;
@@ -860,6 +866,7 @@
 /* --- content --- */
 .question_detail_content{
   display: block;
+  font-size: 12px;
 }
 .question_detail_meta{
   font-size: 10px;

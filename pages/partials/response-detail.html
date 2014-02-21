@@ -132,7 +132,7 @@
          id="response_item_{{n.id}}">
       <div class="response_header">
         <div class="response_title">
-             <h2>{{n.title}}</h2>
+             <!--<h2>{{data.title}}</h2>-->
              <div class="response_subtitle">
              臺北市長候選人<a class="link" href="#/candidate/{{n.responser}}">{{candidates[n.responser].name}}</a>的回應
              </div>
@@ -180,7 +180,7 @@
             <li ng-repeat="n in data.responses">
                <div class="right_menu_go_to_candidate" id="right_menu_{{n.$id}}"
                 ng-click="goToCandidate(n.$id)">
-                {{candidates[n.responser].name}}：{{n.abstract}}
+                {{candidates[n.responser].name}}
                </div>
             </li>
           </ul>

@@ -7,6 +7,8 @@ $(document)
 
 /*----------------------------------------------------------*/
 var global = {};
+global.titleLimit = 20;
+global.titleLimitMobile = 15;
 
 /* https://watchouttw.hackpad.com/oXPyRx5NQfX */
 global.categories = [
@@ -298,6 +300,7 @@ global.oneCandidate =
 
 
 var askControllers = angular.module('askControllers',[]);
+
 
 function mobileNavSetup(){//title position
    var value =$(window).width()/2-50;

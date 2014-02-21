@@ -919,7 +919,10 @@ display: inline-block;
 }
 .response_subtitle{/* 臺北市長候選人OOO的回應 */
   padding-top: 2px;
+  margin-top: 20px;
+  font-size: 18px;
   padding-bottom: 2px;
+
 }
 .response_photo{
   float:left;
@@ -1051,7 +1054,6 @@ display: inline-block;
 }
 .question_detail_header{
   display: block;
-  height:32px;
   margin-top: 8px;
   margin-bottom:0px;
  
@@ -1059,13 +1061,14 @@ display: inline-block;
 .question_detail_title{
   margin:0px;
   padding:0px;
+  display: block;
 }
 .question_detail_votes,
 .question_detail_signatures {
   text-align: center;
   float:right;
   position: absolute;
-  top:20px;
+  top:5px;
   left:600px;
 }
 .question_detail_push{
