@@ -140,7 +140,7 @@
               </div>
               <div class="question-progress">
                 <div class="question-bar"
-                  style="width: {{data.signatures_count/signature_threshold*100|number:0}}%;"></div>
+                  style="width: {{(data.signatures_count/signature_threshold*100|number:0)>100?100:(data.signatures_count/signature_threshold*100|number:0)}}%;"></div>
 
               </div>
 
