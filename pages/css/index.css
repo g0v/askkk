@@ -227,6 +227,14 @@ border: 3px solid rgba(166,166,166,1);
 padding:2px;
 border-radius: 100%;
 }
+
+.header_candidate_circleborder_unknown {
+border: 3px solid #ff8073;
+padding:2px;
+border-radius: 100%;
+display: inline-block;
+
+}
 .header_candidate_circleborder_refused {
 border: 3px solid #ff8073;
 padding:2px;

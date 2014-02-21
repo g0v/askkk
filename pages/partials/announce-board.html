@@ -25,11 +25,24 @@
       </div>
       <img class="circular ui image header_candidate_party header_candidate_party_{{n.partyEng}}" 
            ng-src="images/{{n.partyEng}}.png"></img>
-      <div class="header_candidate_state header_candidate_state_pending">考慮中</div>
+      <div class="header_candidate_state header_candidate_state_pending">接洽中</div>
       </div>
     </div>
 
-
+    
+    <div class="header_candidate" 
+         ng-repeat="n in candidates | orderByPriority | filter:'unknown'">
+      <div class="header_candidate_name" id="candidateName_{{n.id}}">{{n.name}}</div>
+      <div class="header_candidate_photo">
+      <div class="header_candidate_circleborder header_candidate_circleborder_{{n.state}}">
+       <a href="#/candidate/{{n.id}}">
+      <img class="circular ui image header_candidate_face" ng-src="images/candidates_avatar/{{n.id}}.jpg"></img></a>
+      </div>
+      <img class="circular ui image header_candidate_party header_candidate_party_{{n.partyEng}}" 
+           ng-src="images/{{n.partyEng}}.png"></img>
+      <div class="header_candidate_state header_candidate_state_refused">尚未確認</div>
+      </div>
+    </div>
      
     <div class="header_candidate" 
          ng-repeat="n in candidates | orderByPriority | filter:'refused'">
