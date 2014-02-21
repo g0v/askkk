@@ -37,6 +37,7 @@ askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin',
   
 
   $scope.titleLimit=global.titleLimit;
+  $scope.askerNameLimit=global.askerNameLimit;
   $scope.categorySelection = [];
   /* --- mobile nav set --- */
   $('.body').removeClass("left");
@@ -56,9 +57,11 @@ askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin',
 
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.auth.$getCurrentUser().then(function (user) {
-    authService.get(user.id).then(function (user) {
-      $scope.user = user;
-    });
+    if (user) {
+      authService.get(user.id).then(function (user) {
+        $scope.user = user;
+      });
+    }
   });
   $scope.login = function () {
     event.preventDefault();

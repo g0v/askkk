@@ -35,6 +35,7 @@ askControllers.controller('questionListCtrl', ['$scope', '$firebaseSimpleLogin',
   };
   
   $scope.titleLimit=global.titleLimit;
+  $scope.askerNameLimit=global.askerNameLimit;
   $scope.signature_threshold = signService.signature_threshold;
   $scope.categorySelection = [];
   
@@ -59,9 +60,11 @@ askControllers.controller('questionListCtrl', ['$scope', '$firebaseSimpleLogin',
   
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.auth.$getCurrentUser().then(function (user) {
-    authService.get(user.id).then(function (user) {
-      $scope.user = user;
-    });
+    if (user) {
+      authService.get(user.id).then(function (user) {
+        $scope.user = user;
+      });
+    }
   });
   $scope.login = function () {
     event.preventDefault();
