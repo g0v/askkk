@@ -1,4 +1,23 @@
 askControllers.controller('askQuestionCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', '$location', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, authService, $location, candidateService, questionService){
+  
+  
+  $scope.candidates = candidateService;
+  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
+  $scope.auth.$getCurrentUser().then(function (user) {
+    
+    try{
+         authService.get(user.id).then(function (user) {
+           $scope.user = user;
+           
+         });
+    }catch(error){
+       window.location = "#/login-check";
+
+    }
+  });
+
+
+
   semanticMenuReady();
   //semanticAccordingReady();
   semanticSidebarReday();
@@ -16,15 +35,7 @@ askControllers.controller('askQuestionCtrl', ['$scope', '$firebaseSimpleLogin', 
   }
   /* ---------------------- */
    
-  
-
-  $scope.candidates = candidateService;
-  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
-  $scope.auth.$getCurrentUser().then(function (user) {
-    authService.get(user.id).then(function (user) {
-      $scope.user = user;
-    });
-  });
+ 
   $scope.login = function () {
     event.preventDefault();
     $scope.auth.$login('facebook')

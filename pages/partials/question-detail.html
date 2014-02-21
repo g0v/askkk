@@ -27,7 +27,7 @@
         </div>     
       </div>
     </div>
-    <a class="ui item mobile_only" id="mobile_nav_title">市長，給問嗎？</a>
+    <!--<a class="ui item mobile_only" id="mobile_nav_title">市長，給問嗎？</a>-->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <div class="ui inverted menu web_only">
       <a class="item" href="index.html">
@@ -135,7 +135,7 @@
               <h1>支持這個提問</h1>
               <p>已有 {{data.signatures_count}} 人連署支持</p>
               <div class="sign-num">
-                <p>截至 {{data.deadline.year}} 年 {{data.deadline.month}} 月 {{data.deadline.day}} 日之前，尚需 {{signature_threshold - data.signatures_count}} 人連署</p>
+                <p>截至 {{data.deadline.year}} 年 {{data.deadline.month}} 月 {{data.deadline.day}} 日之前，尚需 {{(signature_threshold - data.signatures_count)>0?(signature_threshold - data.signatures_count):0}} 人連署</p>
               </div>
               <div class="question-progress">
                 <div class="question-bar"
@@ -153,8 +153,8 @@
                     <i class="check icon"></i>
                     我支持
                   </div>
-                  <div class="sign_note">每則提問有 30 天的時間可被連署，若提問在期限內達到 {{signature_threshold}} 人次連署支持，候選人就必須回應。</div>
-
+                  <div class="sign_note">每則提問有 30 天的時間可被連署，若提問在期限內達到 {{signature_threshold}} 人次連署支持，候選人就必須回應。<span class="highlight">請注意：連署後無法取消。</span></div>
+                  <br/><br/>
                   <div class="promote_question">
                     分享這個提問：
                     <img src="images/facebook_circle.png" width="30">
