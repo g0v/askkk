@@ -7,6 +7,8 @@ $(document)
 
 /*----------------------------------------------------------*/
 var global = {};
+global.userNameLimitMobile = 15;
+
 global.titleLimit = 20;
 global.titleLimitMobile = 15;
 global.titleLimitCandidateInbox = 15;

@@ -21,7 +21,7 @@
       </a>
       <div class="right menu">
         <div class="item">
-          <span ng-show="auth.user">{{auth.user.displayName}} | </span>
+          <span ng-show="auth.user">{{auth.user.displayName|limitTo:userNameLimitMobile}}{{(auth.user.displayName.length>userNameLimitMobile?'...':'')}}| </span>
           <a href="#" ng-click="login()" ng-hide="auth.user">登入</a>
           <a href="#" ng-click="logout()" ng-show="auth.user">登出</a>
         </div>     
@@ -102,7 +102,8 @@
       <p>提出人：{{data.asker.displayName}} | 提出日期： {{data.post_date.year}}-{{data.post_date.month}}-{{data.post_date.day}} </p>
       類別：
       <div class="question_detail_category" ng-repeat="n in data.category">
-        <a class="link" href="#" >{{n}}{{$last ? '' : ', '}} <a>
+        <!-- <a class="link" href="#" >{{n}}{{$last ? '' : ', '}} <a> -->
+        <span>{{n}}{{$last ? '' : '、'}}</span>
       </div>
       </div>
     
@@ -123,13 +124,14 @@
     <div class="question_sign_block" ng-repeat="n in data.signatures | orderByPriority">
       <div class="question_sign_order_block">
         <div class="question_sign_push">推</div>
-        <div class="question_sign_order">#{{n.order|number:0}}</div>
+        <div class="question_sign_order">#{{($index)+1|number:0}}</div>
+        <!--<div class="question_sign_order">#{{n.order|number:0}}</div>-->
       </div>
       <div class="question_sign_name">
         {{n.name}} | {{n.date.year}}-{{n.date.month}}-{{n.date.day}}
       </div>
      </div><!-- end of sign_block -->
-      <div class="load_signature link"><i class="add icon"></i>顯示更多推文</div>
+     <!-- <div class="load_signature link"><i class="add icon"></i>顯示更多推文</div>-->
    </div><!-- end of content -->
 </div><!-- end of accordion -->
 </div><!-- end of question_sign_area -->
@@ -171,7 +173,8 @@
       <div class="response_main_text">
           <p ng-repeat="c in n.content">{{c}}</p>
           <div class="response_meta">
-          <p>回應日期： {{n.postDate.year}}-{{n.postDate.month}}-{{n.postDate.day}} ｜ <a href="#" class="link">分享</a></p>
+          <p>回應日期： {{n.postDate.year}}-{{n.postDate.month}}-{{n.postDate.day}} 
+            <!--｜ <a href="#" class="link">分享</a></p>-->
           </div>
 
       </div>

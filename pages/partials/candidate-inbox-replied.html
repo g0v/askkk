@@ -25,7 +25,7 @@
       <a class="item" href="#/candidate-inbox" ng-show="user.candidate_id">回答選民問題</a>
       <div class="right menu">
         <div class="item">
-          <span ng-show="auth.user">{{auth.user.displayName}} | </span>
+          <span ng-show="auth.user">{{auth.user.displayName|limitTo:userNameLimitMobile}}{{(auth.user.displayName.length>userNameLimitMobile?'...':'')}}| </span>
           <a href="#" ng-click="login()" ng-hide="auth.user">登入</a>
           <a href="#" ng-click="logout()" ng-show="auth.user">登出</a>
         </div>       

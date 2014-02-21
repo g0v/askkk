@@ -7,6 +7,7 @@ function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candi
   semanticAccordingReady();
   semanticSidebarReday();
   $scope.titleLimit=global.titleLimitCandidateInbox;
+  $scope.userNameLimitMobile = global.userNameLimitMobile;
   
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.auth.$getCurrentUser().then(function (user) {

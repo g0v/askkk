@@ -4,6 +4,7 @@ askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin',
   semanticMenuReady();
   //semanticAccordingReady();
   semanticSidebarReday();
+  $scope.userNameLimitMobile = global.userNameLimitMobile;
   
   $scope.categoryCheckboxSetup = function(){
       //category checkbox
