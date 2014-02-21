@@ -35,6 +35,7 @@ askControllers.controller('questionListCtrl', ['$scope', '$firebaseSimpleLogin',
   };
   
   $scope.titleLimit=global.titleLimit;
+  $scope.askerNameLimit=global.askerNameLimit;
   $scope.signature_threshold = signService.signature_threshold;
   $scope.categorySelection = [];
   

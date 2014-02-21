@@ -39,6 +39,8 @@
       <a class="item" href="#/question-list">集氣中</a>
       <a class="item" href="#/response-list">已達門檻</a>
       <a class="item" href="#/candidate-list">候選人表現</a>
+      <a class="item" href="#/candidate-inbox" ng-show="user.candidate_id">回答選民問題</a>
+
       <div class="right menu">
         <div class="item">
           <span ng-show="auth.user">{{auth.user.displayName}} | </span>
@@ -129,9 +131,9 @@
        <p>我們相信，你有權利也有義務參與這一次的討論，選出最符合你價值理念的候選人。<br/>
           因為政治不是「政治人物」或「社運人士」的事，<br/>
           政治關乎你我的生活，政治是我們的事。</p>
-
+<!-- 
         <a href="#/candidate-inbox" class="link" ng-show="user.candidate_id">回答選民問題 / </a>
-        <a href="#/user-list" class="link" ng-show="user">我問過的問題</a> 
+        <a href="#/user-list" class="link" ng-show="user">我問過的問題</a> -->
 
   </div>
 </div> <!-- end of about data-tab -->

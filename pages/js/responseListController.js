@@ -37,6 +37,7 @@ askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin',
   
 
   $scope.titleLimit=global.titleLimit;
+  $scope.askerNameLimit=global.askerNameLimit;
   $scope.categorySelection = [];
   /* --- mobile nav set --- */
   $('.body').removeClass("left");

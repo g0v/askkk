@@ -39,6 +39,7 @@
       <a class="item" href="#/question-list">集氣中</a>
       <a class="item" href="#/response-list">已達門檻</a>
       <a class="active item" href="#/candidate-list">候選人表現</a>
+      <a class="item" href="#/candidate-inbox" ng-show="user.candidate_id">回答選民問題</a>
       <div class="right menu">
         <div class="item">
           <span ng-show="auth.user">{{auth.user.displayName}} | </span>
@@ -124,6 +125,7 @@
                  id="candidateName_{{n.id}}"
                 ng-click="candidateChoose()">{{n.name}}</div></a>
           </div>
+<!--
           <div class="progress">
               <div class="bar" style="width: {{n.repliedQuestion / n.addressedQuestion * 100}}%;"> 
           </div>
@@ -131,6 +133,7 @@
           <div class="progress_info_rate">回覆率：{{n.repliedQuestion / n.addressedQuestion * 100 | number:0}}%</div>
           <div class="progress_info_answered">已回答：{{n.repliedQuestion}} </div>
           <div class="progress_info_asked">被提問：{{n.addressedQuestion}}</div>
+ -->
           <img class="circular ui image candidate_list_party_join" 
            ng-src="images/{{n.partyEng}}.png"></img>
 
@@ -161,15 +164,17 @@
             ng-click="candidateChoose()">{{n.name}}</div></a>
           </div>
 
+<!--
           <div class="ask_to_join_button"
                ng-click="askCandidateJoin(n.id)">要求{{n.name}}參賽</div>
 
           <div class="progress_info_askToJoin">要求參賽
             <div class="progress_info_askToJoin_text">{{n.askedToJoin|number:0}}人</div>
           </div>
+--> 
           <img class="circular ui image candidate_list_party" 
            ng-src="images/{{n.partyEng}}.png"></img>
-   
+ 
       </div>
       </div>
 

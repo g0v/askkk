@@ -9,6 +9,8 @@ $(document)
 var global = {};
 global.titleLimit = 20;
 global.titleLimitMobile = 15;
+global.titleLimitCandidateInbox = 15;
+global.askerNameLimit = 10;
 
 /* https://watchouttw.hackpad.com/oXPyRx5NQfX */
 global.categories = [

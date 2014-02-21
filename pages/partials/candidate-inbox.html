@@ -23,6 +23,7 @@
       <a class="item" href="#/question-list">集氣中</a>
       <a class="item" href="#/response-list">已達門檻</a>
       <a class="item" href="#/candidate-list">候選人表現</a>
+      <a class="active item" href="#/candidate-inbox" ng-show="user.candidate_id">回答選民問題</a>
       <div class="right menu">
         <div class="item">
           <span ng-show="auth.user">{{auth.user.displayName}} | </span>
@@ -45,7 +46,7 @@
         </a>
       </div>
     </div>
-
+<!--
     <div class="item">
       <b><i class="settings icon"></i>修改密碼</b>
       
@@ -74,7 +75,7 @@
       </div>
       <div class="ui submit tiny teal button" ng-click="changePassword()">確認修改</div>
     </div>
-    </div>
+    </div>-->
    
   </div><!-- end of side menu -->
 
@@ -100,11 +101,11 @@
              ng-repeat="n in questions | orderByPriority | pendedByCandidate:user.candidate_id | passedThreshold | filter:query">
            <div class="candidate_inbox_list_votes">{{n.signatures_count|number:0}}</div>
            <div class="candidate_inbox_list_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
-           <div class="candidate_inbox_list_title">{{n.title}}</div>
+           <div class="candidate_inbox_list_title">{{n.title|limitTo:titleLimit }}{{(n.title.length>titleLimit ?'...':'')}}</div>
          </div>
       </div> <!-- end of question_list_item -->
 
-
+<!--
 
       <div class="candidate_inbox_page">
            <div class="ui pagination menu">
@@ -114,7 +115,7 @@
              <a class="item">3</a>
              <a class="icon item"><i class="icon right arrow"></i></a>
            </div>
-      </div>
+      </div>-->
     </div>
 
 <!-- 內容 -->

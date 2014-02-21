@@ -38,6 +38,7 @@
       <a class="item" href="#/question-list">集氣中</a>
       <a class="active item" href="#/response-list">已達門檻</a>
       <a class="item" href="#/candidate-list">候選人表現</a>
+      <a class="item" href="#/candidate-inbox" ng-show="user.candidate_id">回答選民問題</a>
       <div class="right menu">
         <div class="item">
           <span ng-show="auth.user">{{auth.user.displayName}} | </span>
@@ -80,32 +81,32 @@
 
 <div class="ui segment">
     <div class="tool_bar_holder">
+      <!--
        <div class="ui small black launch button" id="category_launch_button">
            <i class="list layout icon"></i>類別
-       </div>
+       </div>-->
        <div class="ui small icon input" id="tool_bar_seach">
          <input type="text" placeholder="關鍵字搜尋" ng-model="query">
        </div>
     </div><!-- end of tool_bar_holder-->
 
-
+<!--
     <div class="ui tabular filter menu">
       <a class="active item" ng-click="sortByTime()">依時間排序</a>
       <a class="item" ng-click="sortByVotes()">依熱門程度</a>
     </div>
-
+-->
     <div class="question_list_item" ng-click="showQuestionDetail(n.$id)"
          ng-repeat="n in questions | orderByPriority | filter:'passed' | filter:query">
         
+        <div ng-show="(n.signatures_count >= 500)" class="question_list_bow web_only">爆</div>
+        <div class="question_list_votes web_only">{{n.signatures_count|number:0}}</div>
+        <!--
         <div ng-show="(n.votes_count >= 500)" class="question_list_bow web_only">爆</div>
         <div class="question_list_votes web_only">{{n.votes_count|number:0}}</div>
-        <!--
-        <div class="question_list_votes"  
-             ng-show="({{n.votes_count}}<1000)">{{n.votes_count}}</div>
-        <div ng-show="({{n.votes_count}}>=1000)" class="question_list_bow">爆</div>
          -->
         <div class="question_list_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
-        <div class="question_list_asker web_only">{{n.asker.displayName}}</div>
+        <div class="question_list_asker web_only">{{n.asker.displayName|limitTo:askerNameLimit }}{{(n.asker.displayName.length>askerNameLimit ?'...':'')}}</div>
         <div class="question_list_title">{{n.title|limitTo:titleLimit }}{{(n.title.length>titleLimit ?'...':'')}}</div>
 
         <div class="candidate_state_block web_only">
@@ -151,7 +152,7 @@
         -->
         
     </div> <!-- end of question_list_item -->
-
+<!--
     <br/><br/><center>
       <div class="ui pagination menu">
         <a class="icon item"><i class="icon left arrow"></i></a>
@@ -167,7 +168,7 @@
         <a class="icon item"><i class="icon right arrow"></i></a>
       </div>
     </center>
-
+-->
 
 
 </div><!-- end of ui segment-->

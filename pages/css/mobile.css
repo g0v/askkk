@@ -355,7 +355,8 @@
 .candidate_list_party{
   float:left;
   position: absolute;
-  top: -105px; 
+  /*top: -105px; */
+  top: -30px;
   left: 2px;
   z-index: 1001;
   width:30px;
@@ -368,7 +369,8 @@
 }
 .candidate_list_party_join{
   position: absolute;
-  top: -108px; 
+  /*top: -108px; */
+  top: -30px;
   left: 2px;
   z-index: 1001;
   width:30px;
