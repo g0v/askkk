@@ -15,11 +15,17 @@
 
   <div id="navigation">
     <!-- mobile navigation -->
-    <!-- <div ng-if="mobile" ng-include="'partials/mobile-nav.html'"></div>-->
     <div class="ui inverted menu mobile_only" id="mobile_nav">
       <a class="ui small black launch button item" id="mobile_nav_button">
          <i class="list layout icon"></i>
       </a>
+      <div class="right menu">
+        <div class="item">
+          <span ng-show="auth.user">{{auth.user.displayName}} | </span>
+          <a href="#" ng-click="login()" ng-hide="auth.user">登入</a>
+          <a href="#" ng-click="logout()" ng-show="auth.user">登出</a>
+        </div>     
+      </div>
     </div>
     <a class="ui item mobile_only" id="mobile_nav_title">市長，給問嗎？</a>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
