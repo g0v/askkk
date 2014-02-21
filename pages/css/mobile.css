@@ -40,7 +40,16 @@
 #mobile_nav{
   height:36px;
 }
-
+/* mobile */
+#taipei_candidates{
+  display: none;
+}
+#candidate_segment{
+  padding-top: 30px;
+}
+.candidate_detail_mobile {
+  margin:10px;
+}
 /* ------------------------------------------------------------ */
 /* indext.html */
 /* ------------------------------------------------------------ */
@@ -514,7 +523,8 @@
 
   display: block;
   height:32px;
-  width: 600px;
+  font-size: 12px;
+ 
   border-bottom:1px rgba(189,189,189,0.7) solid;
   padding-top: 6px;
   cursor: pointer;
@@ -526,18 +536,15 @@
 }
 .candidate_detail_vote{
   margin-top: 3px;
-  width:120px;
   display: inline-block;
   float: left;
   font-size: 14px;
   text-align: right;
-  border-right:1px gray solid;
   margin-right: 12px;
 }
 
 .candidate_detail_push{
   margin-top: 3px;
-  width:50px;
   height:25px;
   color:#a50f15;
   float:left;
@@ -545,7 +552,6 @@
 }
 .candidate_detail_booing{
   margin-top: 3px;
-  width:50px;
   height:25px;
   
   color:green;
@@ -575,13 +581,11 @@
 }
 .candidate_detail_title{
   margin-top: 4px;
-  width:250px;
   float:left;
   
 }
 .candidate_detail_title_pending{
    padding-left: 10px;
-   border-left: 1px gray solid;
 
 }
 #candidate_detail_searchbar{
@@ -664,33 +668,40 @@
   margin-left:10px;
   margin-right:10px;
   margin-bottom: 60px;
+  font-size: 12px;
+
 
 }
 .response_header{
-  height:70px;
-  margin-bottom: 30px;
+  
+  margin-bottom: 5px;
   margin-left: 5px;
   background: rgba(230,230,230,0.3);
   padding: 5px;
   border-radius: 5px;
+ 
 
 }
 .response_title{
-  margin-left:10px;
   display: inline-block;
+  margin-top: 15px;
+  margin-left: 5px;
   
 }
 .response_header h2{
   margin: 0px;
+
 }
 .response_subtitle{/* 臺北市長候選人OOO的回應 */
   padding-top: 2px;
   padding-bottom: 2px;
   font-size: 14px;
   margin-bottom: 10px;
+  float:left;
 }
 .response_photo{
   float:left;
+
 }
 .response_candidate_face{
   height: 40px;
@@ -709,19 +720,19 @@
 
 /* 針對回應的推跟噓 */
 .response_detail_votes{
-  text-align: center;
+  text-align: right;
   float:right;
-  
-}
-.response_detail_point_label{
-  
+  display: inline-block;
+  width:100%;  
 }
 .response_detail_push{
+  float:right;
+  text-align: center;
   border-radius: 5px;
-  margin-left:0px;
+  margin-left:2px;
   padding-left:0px;
-  font-size: 20px;
-  width:40px;
+  font-size: 16px;
+  width:38px;
   color:#a50f15;
   display: inline-block;
   padding-bottom: 0px;
@@ -730,11 +741,13 @@
 
 }
 .response_detail_booing{
+  float:right;
+  text-align: center;
   border-radius: 5px;
-  margin-left:0px;
+  margin-left:2px;
   padding-left:0px;
-  font-size: 20px;
-  width:40px;
+  font-size: 16px;
+  width:38px;
   color:green;
   display: inline-block;
   padding-bottom: 0px;
@@ -746,6 +759,7 @@
   margin:0px;
   padding:0px;
   text-align: center;
+
 }
 
 
@@ -780,13 +794,16 @@
 
 #question_content{
   width:100%;
+
 }
 
 #question_detail_segment{
   padding-top: 20px; 
+
 }
 #response_detail_segment{
   padding-top: 30px; 
+
 }
 #response_detail_right_menu{
   display: none;
@@ -796,10 +813,11 @@
   display: inline-block;
   border-bottom: 1px rgba(200,200,200,0.5) solid;
   padding-top: 5px;
-  
+  width:100%;
 }
 .addressed_to_candidate_collection{
   float:left;
+  display: inline-block;
 }
 .addressed_to_candidate{
   display: inline-block;

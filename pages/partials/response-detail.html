@@ -108,7 +108,8 @@
 <div class="ui basic accordion">
   <div class="title">
     <i class="dropdown icon"></i>
-    <span class="question_sign_title">共同發問者</span><div class="ui pointing left label">{{data.signatures_count}}</div>
+    <span class="question_sign_title">連署人</span>
+    <div class="ui pointing left label question_detail_vote_box">{{data.signatures_count}}</div>
   </div>
   <div class="content">
     <div class="question_sign_block" ng-repeat="n in data.signatures | orderByPriority">
@@ -131,12 +132,22 @@
          ng-repeat="n in data.responses | orderByPriority" 
          id="response_item_{{n.id}}">
       <div class="response_header">
+
+         <div class="response_photo">
+          <div class="circleborder">
+          <a href="#/candidate/{{n.responser}}">
+          <img class="circular ui image face response_candidate_face" 
+               ng-src="images/candidates/{{n.responser}}.jpg"></a>
+          </div>
+        </div>
+
         <div class="response_title">
              <!--<h2>{{data.title}}</h2>-->
              <div class="response_subtitle">
              臺北市長候選人<a class="link" href="#/candidate/{{n.responser}}">{{candidates[n.responser].name}}</a>的回應
              </div>
         </div>
+      </div>
 
        <div class="response_detail_votes">
           <div class="ui pointing below label" ng-hide="voted(n.id)">
@@ -149,15 +160,6 @@
           </div>
        </div>
 
-
-        <div class="response_photo">
-          <div class="circleborder">
-          <a href="#/candidate/{{n.responser}}">
-          <img class="circular ui image face response_candidate_face" 
-               ng-src="images/candidates/{{n.responser}}.jpg"></a>
-          </div>
-        </div>
-      </div>
       <div class="response_main_text">
           <p ng-repeat="c in n.content">{{c}}</p>
           <div class="response_meta">

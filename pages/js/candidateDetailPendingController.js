@@ -4,6 +4,23 @@ askControllers.controller('candidateDetailPendingCtrl', ['$scope', '$firebaseSim
   semanticMenuReady();
   semanticAccordingReady();
 
+
+  /* --- mobile nav set --- */
+  $('.body').removeClass("left");
+  $('.body').removeClass("pushed");
+  mobileNavPosition();
+  $("#mobile_nav_button").on("click",function(){
+    mobileNavPosition();
+  });
+  if($(window).width()<400){
+    mobileNavSetup();
+    mobileSideBarSetup();
+  }
+  /* ---------------------- */
+  
+  
+  $scope.n = candidateService.get($routeParams.candidateId);
+
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.auth.$getCurrentUser().then(function (user) {
     authService.get(user.id).then(function (user) {
@@ -11,6 +28,7 @@ askControllers.controller('candidateDetailPendingCtrl', ['$scope', '$firebaseSim
     });
   });
   $scope.login = function () {
+    event.preventDefault();
     $scope.auth.$login('facebook')
     .then(function (user) {
       authService.onLogin(user);
@@ -22,8 +40,8 @@ askControllers.controller('candidateDetailPendingCtrl', ['$scope', '$firebaseSim
     $scope.auth.$logout();
   };
   $scope.candidates = candidateService;
-  $scope.data = global.responseData;
-  $scope.n = global.oneCandidate;
+  //$scope.data = global.responseData;
+  //$scope.n = global.oneCandidate;
 
   $scope.answered=function(){
     window.location = "#/candidate/"+$routeParams.candidateId;

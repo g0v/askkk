@@ -3,10 +3,27 @@ askControllers.controller('candidateDetailCtrl', ['$scope', '$firebaseSimpleLogi
 function($scope, $firebaseSimpleLogin, $location, questionService, authService, $routeParams,candidateService){
 
   semanticMenuReady();
-  semanticAccordingReady();
+  //semanticAccordingReady();
+  semanticSidebarReday();
+  $scope.titleLimit=global.titleLimit;
+  
+  /* --- mobile nav set --- */
+  $('.body').removeClass("left");
+  $('.body').removeClass("pushed");
+  mobileNavPosition();
+  $("#mobile_nav_button").on("click",function(){
+    mobileNavPosition();
+  });
+  if($(window).width()<400){
+    mobileNavSetup();
+    mobileSideBarSetup();
+    $scope.titleLimit=global.titleLimitMobile;
+  }
+  /* ---------------------- */
 
   $scope.questions = questionService;
   $scope.data = candidateService.get($routeParams.candidateId);
+  $scope.n = candidateService.get($routeParams.candidateId);
   console.log($scope.data);
   
   $scope.candidates = candidateService;
@@ -17,6 +34,7 @@ function($scope, $firebaseSimpleLogin, $location, questionService, authService, 
     });
   });
   $scope.login = function () {
+    event.preventDefault();
     $scope.auth.$login('facebook')
     .then(function (user) {
       authService.onLogin(user);
@@ -28,7 +46,7 @@ function($scope, $firebaseSimpleLogin, $location, questionService, authService, 
     $scope.auth.$logout();
   };
 
-  $scope.n = global.oneCandidate;
+  //$scope.n = global.oneCandidate;
 
 
   $scope.pending=function(){

@@ -810,8 +810,9 @@ display: inline-block;
 }
 .candidate_detail_title{
   margin-top: 4px;
-  width:250px;
+  width:300px;
   float:left;
+ 
   
 }
 .candidate_detail_title_pending{

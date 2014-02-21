@@ -1,7 +1,7 @@
 askControllers.controller('indexCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', 'candidateService', 'signService', function($scope, $firebaseSimpleLogin, authService, candidateService, signService){
 
   semanticMenuReady();
-  semanticAccordingReady();
+  //semanticAccordingReady();
   semanticSidebarReday();
   
   /* --- mobile nav set --- */
@@ -25,6 +25,7 @@ askControllers.controller('indexCtrl', ['$scope', '$firebaseSimpleLogin', 'authS
     });
   });
   $scope.login = function () {
+    event.preventDefault();
     $scope.auth.$login('facebook')
     .then(function (user) {
       authService.onLogin(user);
