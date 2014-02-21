@@ -1,6 +1,6 @@
 askControllers.controller('askQuestionCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', '$location', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, authService, $location, candidateService, questionService){
   
-  
+  $scope.userNameLimitMobile = global.userNameLimitMobile;
   $scope.candidates = candidateService;
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.auth.$getCurrentUser().then(function (user) {

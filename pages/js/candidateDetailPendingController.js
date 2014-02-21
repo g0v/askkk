@@ -3,6 +3,7 @@ askControllers.controller('candidateDetailPendingCtrl', ['$scope', '$firebaseSim
 
   semanticMenuReady();
   semanticAccordingReady();
+  $scope.userNameLimitMobile = global.userNameLimitMobile;
 
 
   /* --- mobile nav set --- */

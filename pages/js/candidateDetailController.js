@@ -6,6 +6,7 @@ function($scope, $firebaseSimpleLogin, $location, questionService, authService, 
   //semanticAccordingReady();
   semanticSidebarReday();
   $scope.titleLimit=global.titleLimit;
+  $scope.userNameLimitMobile = global.userNameLimitMobile;
   
   /* --- mobile nav set --- */
   $('.body').removeClass("left");

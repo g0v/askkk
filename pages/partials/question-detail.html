@@ -21,7 +21,7 @@
       </a>
       <div class="right menu">
         <div class="item">
-          <span ng-show="auth.user">{{auth.user.displayName}} | </span>
+          <span ng-show="auth.user">{{auth.user.displayName|limitTo:userNameLimitMobile}}{{(auth.user.displayName.length>userNameLimitMobile?'...':'')}}| </span>
           <a href="#" ng-click="login()" ng-hide="auth.user">登入</a>
           <a href="#" ng-click="logout()" ng-show="auth.user">登出</a>
         </div>     
@@ -96,7 +96,7 @@
         <p>提出人：{{data.asker.displayName}} | 提出日期： {{data.post_date.year}}-{{data.post_date.month}}-{{data.post_date.day}} </p>
         類別：
         <div class="question_detail_category" ng-repeat="n in data.category">
-          <a class="link" href="#" >{{n}}{{$last ? '' : ', '}} <a>
+          <span>{{n}}{{$last ? '' : '、'}}</span>
             </div>
           </div>
 
@@ -112,17 +112,17 @@
             <div class="question_sign_block" ng-repeat="n in data.signatures | orderByPriority">
               <div class="question_sign_order_block">
                 <div class="question_sign_push">推</div>
-                <div class="question_sign_order">#{{n.order|number:0}}</div>
+                <div class="question_sign_order">#{{($index)+1|number:0}}</div>
               </div>
               <div class="question_sign_name">{{n.name}} | {{n.date.year}}-{{n.date.month}}-{{n.date.day}}</div>
             </div>
 
           </div><!-- end of question_sign_area -->
-
+<!--
           <div class="load_signature">
             <a class="link"><i class="add icon"></i>load more signatures...</a>
           </div>
-
+-->
 
 
 
@@ -155,13 +155,14 @@
                     我支持
                   </div>
                   <div class="sign_note">每則提問有 30 天的時間可被連署，若提問在期限內達到 {{signature_threshold}} 人次連署支持，候選人就必須回應。<span class="highlight">請注意：連署後無法取消。</span></div>
-                  <br/><br/>
+                  <!--<br/><br/>
+
                   <div class="promote_question">
                     分享這個提問：
                     <img src="images/facebook_circle.png" width="30">
                     <img src="images/twitter_circle.png" width="30">
                     <img src="images/google_circle.png" width="31">
-                  </div>
+                  </div>-->
 
                 </div>
               </div><!-- end of sign_area -->

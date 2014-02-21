@@ -3,6 +3,7 @@ askControllers.controller('candidateListCtrl', ['$scope', '$firebaseSimpleLogin'
   semanticMenuReady();
   //semanticAccordingReady();
   semanticSidebarReday();
+  $scope.userNameLimitMobile = global.userNameLimitMobile;
   
   /* --- mobile nav set --- */
   $('.body').removeClass("left");
