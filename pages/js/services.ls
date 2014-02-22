@@ -78,7 +78,7 @@ askServices.factory \questionService, <[$firebase $q]> ++ ($firebase, $q) ->
           question-ref.$id = question-id
           # orderByPriority only works for ref
           question-ref.$addressing = question-ref.$child "addressing"
-          question-ref.responses = question-ref.$child "responses"
+          question-ref.$responses = question-ref.$child "responses"
           question-ref.asker = $firebase ref.child "users/#{question-ref.asker}"
           question-ref.postResponse = ({postDate, responser, content}) ->
             ref.child "questions/#{question-id}/addressing/#{responser}/state" .set \responded

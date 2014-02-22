@@ -139,7 +139,7 @@
 <!-- Dispaly responses -->  
     <div class="response_start_divider"></div>   
     <div class="response_item" 
-         ng-repeat="n in data.responses | orderByPriority" 
+         ng-repeat="n in data.$responses | orderByPriority"
          id="response_item_{{n.id}}">
       <div class="response_header">
 
@@ -190,7 +190,7 @@
           <div class="response_nav_block">     
           <div class="response_nav_sub_title">已回答</div>
           <ul>
-            <li ng-repeat="n in data.responses">
+            <li ng-repeat="n in data.$responses">
                <div class="right_menu_go_to_candidate" id="right_menu_{{n.$id}}"
                 ng-click="goToCandidate(n.$id)">
                 {{candidates[n.responser].name}}
