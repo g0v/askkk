@@ -109,7 +109,7 @@
         <div class="question_list_signatures web_only">{{n.signatures_count}}</div>
         
         <div class="question_list_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
-        <div class="question_list_asker web_only">{{n.asker.displayName|limitTo:askerNameLimit }}{{(n.asker.displayName.length>askerNameLimit ?'...':'')}}</div>
+        <div class="question_list_asker web_only">{{n.$asker.displayName|limitTo:askerNameLimit }}{{(n.$asker.displayName.length>askerNameLimit ?'...':'')}}</div>
         <div class="question_list_title">{{n.title|limitTo:titleLimit }}{{(n.title.length>titleLimit ?'...':'')}}</div>
 
 

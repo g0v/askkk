@@ -53,7 +53,7 @@ askServices.factory \questionService, <[$firebase $q]> ++ ($firebase, $q) ->
     ..$on \child_added, ({snapshot, prevChild}) ->
       # orderByPriority only works for ref
       service[snapshot.name].$addressing = service.$child "#{snapshot.name}/addressing"
-      service[snapshot.name].asker = $firebase ref.child "users/#{snapshot.value.asker}"
+      service[snapshot.name].$asker = $firebase ref.child "users/#{snapshot.value.asker}"
       service[snapshot.name].postResponse = ({postDate, responser, content}) ->
         ref.child "questions/#{snapshot.name}/addressing/#{responser}/state" .set \responded
         ref.child "questions/#{snapshot.name}/responses_count" .transaction (current-value) -> current-value + 1
@@ -71,6 +71,7 @@ askServices.factory \questionService, <[$firebase $q]> ++ ($firebase, $q) ->
 
     ..$on \child_changed, ({snapshot, prevChild}) ->
         service[snapshot.name].$addressing = service.$child "#{snapshot.name}/addressing"
+        service[snapshot.name].$asker = $firebase ref.child "users/#{snapshot.value.asker}"
 
     ..get = (question-id) ->
       question-ref = service.$child question-id
@@ -79,7 +80,7 @@ askServices.factory \questionService, <[$firebase $q]> ++ ($firebase, $q) ->
           # orderByPriority only works for ref
           question-ref.$addressing = question-ref.$child "addressing"
           question-ref.$responses = question-ref.$child "responses"
-          question-ref.asker = $firebase ref.child "users/#{question-ref.asker}"
+          question-ref.$asker = $firebase ref.child "users/#{question-ref.asker}"
           question-ref.postResponse = ({postDate, responser, content}) ->
             ref.child "questions/#{question-id}/addressing/#{responser}/state" .set \responded
             ref.child "questions/#{question-id}/responses_count" .transaction (current-value) -> current-value + 1

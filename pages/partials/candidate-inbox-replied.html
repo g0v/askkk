@@ -154,7 +154,7 @@
       <p ng-repeat="n in detail.content">{{n}}</p>
 
       <div class="question_detail_meta">
-      <p>提出人： {{detail.asker.displayName}} | 提出日期： {{detail.post_date.year}}-{{detail.post_date.month}}-{{detail.post_date.day}} | 共同提問人數：{{detail.signatures_count|number:0}} </p>
+      <p>提出人： {{detail.$asker.displayName}} | 提出日期： {{detail.post_date.year}}-{{detail.post_date.month}}-{{detail.post_date.day}} | 共同提問人數：{{detail.signatures_count|number:0}} </p>
       </div>
 
      

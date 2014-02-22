@@ -106,7 +106,7 @@
         <div class="question_list_votes web_only">{{n.votes_count|number:0}}</div>
          -->
         <div class="question_list_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
-        <div class="question_list_asker web_only">{{n.asker.displayName|limitTo:askerNameLimit }}{{(n.asker.displayName.length>askerNameLimit ?'...':'')}}</div>
+        <div class="question_list_asker web_only">{{n.$asker.displayName|limitTo:askerNameLimit }}{{(n.$asker.displayName.length>askerNameLimit ?'...':'')}}</div>
         <div class="question_list_title">{{n.title|limitTo:titleLimit }}{{(n.title.length>titleLimit ?'...':'')}}</div>
 
         <div class="candidate_state_block web_only">

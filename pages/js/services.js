@@ -80,7 +80,7 @@ askServices.factory('questionService', ['$firebase', '$q'].concat(function($fire
     var snapshot, prevChild;
     snapshot = arg$.snapshot, prevChild = arg$.prevChild;
     service[snapshot.name].$addressing = service.$child(snapshot.name + "/addressing");
-    service[snapshot.name].asker = $firebase(ref.child("users/" + snapshot.value.asker));
+    service[snapshot.name].$asker = $firebase(ref.child("users/" + snapshot.value.asker));
     return service[snapshot.name].postResponse = function(arg$){
       var postDate, responser, content;
       postDate = arg$.postDate, responser = arg$.responser, content = arg$.content;
@@ -104,7 +104,8 @@ askServices.factory('questionService', ['$firebase', '$q'].concat(function($fire
   x$.$on('child_changed', function(arg$){
     var snapshot, prevChild;
     snapshot = arg$.snapshot, prevChild = arg$.prevChild;
-    return service[snapshot.name].$addressing = service.$child(snapshot.name + "/addressing");
+    service[snapshot.name].$addressing = service.$child(snapshot.name + "/addressing");
+    return service[snapshot.name].$asker = $firebase(ref.child("users/" + snapshot.value.asker));
   });
   x$.get = function(questionId){
     var x$, questionRef;
@@ -113,7 +114,7 @@ askServices.factory('questionService', ['$firebase', '$q'].concat(function($fire
       questionRef.$id = questionId;
       questionRef.$addressing = questionRef.$child("addressing");
       questionRef.$responses = questionRef.$child("responses");
-      questionRef.asker = $firebase(ref.child("users/" + questionRef.asker));
+      questionRef.$asker = $firebase(ref.child("users/" + questionRef.asker));
       return questionRef.postResponse = function(arg$){
         var postDate, responser, content, deferred, rRef;
         postDate = arg$.postDate, responser = arg$.responser, content = arg$.content;
