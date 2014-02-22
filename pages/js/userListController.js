@@ -1,10 +1,11 @@
-askControllers.controller('userListCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', 'candidateService', function($scope, $firebaseSimpleLogin, authService, candidateService){
+askControllers.controller('userListCtrl', ['$scope', '$firebaseSimpleLogin', 'conf', 'authService', 'candidateService', function($scope, $firebaseSimpleLogin, conf, authService, candidateService){
 
 
   semanticMenuReady();
   semanticAccordingReady();
   semanticSidebarReday();
 
+   $scope.conf = conf;
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.auth.$getCurrentUser().then(function (user) {
     if (user) {

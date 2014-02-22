@@ -1,6 +1,7 @@
-askControllers.controller('loginCheckCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', '$location', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, authService, $location, candidateService, questionService){
+askControllers.controller('loginCheckCtrl', ['$scope', '$firebaseSimpleLogin', 'conf', 'authService', '$location', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, conf, authService, $location, candidateService, questionService){
   
   
+  $scope.conf = conf;
    $scope.candidates = candidateService;
    $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   

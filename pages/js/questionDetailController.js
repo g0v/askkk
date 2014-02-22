@@ -1,8 +1,9 @@
-askControllers.controller('questionDetailCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', '$routeParams', 'candidateService', 'questionService', 'signService', function($scope, $firebaseSimpleLogin, authService, $routeParams, candidateService, questionService, signService){
+askControllers.controller('questionDetailCtrl', ['$scope', '$firebaseSimpleLogin', 'conf', 'authService', '$routeParams', 'candidateService', 'questionService', 'signService', function($scope, $firebaseSimpleLogin, conf, authService, $routeParams, candidateService, questionService, signService){
 
   semanticMenuReady();
   semanticAccordingReady();
   semanticSidebarReday();
+  $scope.conf = conf;
   $scope.userNameLimitMobile = global.userNameLimitMobile;
 
   /* --- mobile nav set --- */
