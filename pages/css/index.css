@@ -375,6 +375,13 @@ display: inline-block;
 #tool_bar_seach{
   width:350px;
 }
+
+/* ------------------------------------------------------------ */
+.response-list-notice{
+  width: 100%;
+  border-bottom: 1px gray solid;
+}
+/* ------------------------------------------------------------ */
 .tool_bar_candidate_filter{
   display: inline-block;
   
@@ -877,7 +884,6 @@ display: inline-block;
   background: rgba(200,200,200,0.4);
   cursor: pointer;
 }
-
 
 /* ------------------------------------------------------------ */
 
