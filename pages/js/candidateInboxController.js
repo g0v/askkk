@@ -22,7 +22,7 @@ function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candi
     });
   });
   $scope.login = function () {
-    event.preventDefault();
+    //event.preventDefault();
     $scope.auth.$login('facebook')
     .then(function (user) {
       authService.onLogin(user);

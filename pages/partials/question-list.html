@@ -100,11 +100,15 @@
     </div>
 -->
 <!-- 
-  orderByPriority:true - newest on top
+  orderByPriority:true
   orderBy:'signatures_count':true - hotest on top -->
+    
+   
     <div class="question_list_item" 
          ng-repeat="n in questions | orderByPriority | filter:'collecting' | filter:query"
          ng-click="showQuestionDetail(n.$id)">
+
+
         
         <div class="question_list_bow web_only">
           <div ng-show="(n.signatures_count >= 100)" class="web_only">HOT</div></div>

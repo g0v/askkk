@@ -4,6 +4,12 @@ askControllers.controller('questionListCtrl', ['$scope', '$firebaseSimpleLogin',
   //semanticAccordingReady();
   semanticSidebarReday();
   $scope.userNameLimitMobile = global.userNameLimitMobile;
+  $scope.listOrderBy = "orderByPriority:true"; //- newest on top
+  $scope.hottestTop = "| orderBy:'signatures_count':true" //- add hottest on top
+  
+  //$scope.mode = 'normal';
+  $scope.mode = 'latest';
+  
 
 
 /*
@@ -70,7 +76,7 @@ askControllers.controller('questionListCtrl', ['$scope', '$firebaseSimpleLogin',
     }
   });
   $scope.login = function () {
-    event.preventDefault();
+    //event.preventDefault();
     $scope.auth.$login('facebook')
     .then(function (user) {
       authService.onLogin(user);

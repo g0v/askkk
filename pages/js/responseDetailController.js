@@ -27,7 +27,7 @@ askControllers.controller('responseDetailCtrl', ['$scope', '$firebaseSimpleLogin
     }
   });
   $scope.login = function () {
-    event.preventDefault();
+    //event.preventDefault();
     $scope.auth.$login('facebook')
     .then(function (user) {
       authService.onLogin(user);
