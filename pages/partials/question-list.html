@@ -55,14 +55,14 @@
   <!-- ////////////////////////////////////////////////////////////// -->
   <div id="content">
       <div class="ui labeled icon sidebar page_sidebar" id="sidebar">
-      <div class="ui tertiary inverted segment" id="category_sidebar">
+      <!--<div class="ui tertiary inverted segment" id="category_sidebar">
         <div class="item" ng-repeat="n in categories">
         <div class="ui checkbox category_checkbox" >
            <input type="checkbox">
            <label>{{n}}</label>
          </div>
        </div>
-      </div>
+      </div>-->
 
      <!-- -->
      
@@ -91,6 +91,7 @@
        <div class="ui small icon input" id="tool_bar_seach">
          <input type="text" placeholder="關鍵字搜尋" ng-model="query">
        </div>
+       
 
     </div><!-- end of tool_bar_holder-->
 
@@ -100,6 +101,7 @@
      </div>
 
 <!-- 
+<<<<<<< HEAD
   orderByPriority:true - newest on top 
   orderBy:'signatures_count':true - hotest on top -->
   
@@ -110,6 +112,18 @@
 
 
     
+=======
+  orderByPriority:true
+  orderBy:'signatures_count':true - hotest on top -->
+    
+   
+    <div class="question_list_item" 
+         ng-repeat="n in questions | orderByPriority | filter:'collecting' | filter:query"
+         ng-click="showQuestionDetail(n.$id)">
+
+
+        
+>>>>>>> gh-pages
         <div class="question_list_bow web_only">
           <div ng-show="(n.signatures_count >= 100)" class="web_only">HOT</div></div>
         <div class="question_list_signatures web_only">{{n.signatures_count}}</div>

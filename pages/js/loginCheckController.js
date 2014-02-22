@@ -18,7 +18,7 @@ askControllers.controller('loginCheckCtrl', ['$scope', '$firebaseSimpleLogin', '
   });
 
   $scope.login = function () {
-    event.preventDefault();
+    //event.preventDefault();
     $scope.auth.$login('facebook')
     .then(function (user) {
       try{

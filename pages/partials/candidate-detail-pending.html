@@ -68,37 +68,37 @@
     </div><!-- end of ui sidebar -->
 
   <div class="ui raised segment" id="candidate_segment" >
-    <div class="candidate_detail_mobile mobile_only">有關{{n.name}}的問題</div>
+    <div class="candidate_detail_mobile mobile_only">有關{{data.name}}的問題</div>
 
       <div class="right_menu fc-fix" id="taipei_candidates">
         <div class="right_menu_city_header">候選人摘要</div>
 
       <div class="right_menu_list">
       <div class="ui divided list">
+         <div class="candidate_right_menu_state" 
+             ng-show="data.state=='join'">已加入「市長，給問嗎？」</div>
         <div class="candidate_right_menu_state" 
-             ng-show="{{(n.state=='join')}}">已加入「市長，給問嗎？」</div>
-        <div class="candidate_right_menu_state" 
-             ng-hide="{{(n.state=='join')}}">尚未加入「市長，給問嗎？」</div>
+             ng-hide="data.state=='join'">尚未加入「市長，給問嗎？」</div>
 
         <div class="item candidate_right_menu_item">
           <div class="candidate_right_menu_right_text">
-            <p>{{n.bio}}</p>
-            <p><a class="link" href="{{n.bioWiki}}" target="_new">在維基百科上瀏覽更多</a></p>
+            <p>{{data.bio}}</p>
+            <p><a class="link" href="{{data.bioWiki}}" target="_new">在維基百科上瀏覽更多</a></p>
           </div>
 
           <div class="candidate"> 
-          <a href="#/candidate/{{n.id}}">
+          <a href="#/candidate/{{data.id}}">
           <img class="rounded ui image candidate_img" 
-               ng-src="images/candidates/{{n.id}}.jpg" id="candidate_{{n.id}}"></a>
+               ng-src="images/candidates/{{data.id}}.jpg" id="candidate_{{data.id}}"></a>
           
           <div class="progress_info_floating_candidate_detail">
-            <a href="#/candidate/{{n.id}}">
+            <a href="#/candidate/{{data.id}}">
             <div class="progress_info_floating_text" 
-                 id="candidateName_{{n.id}}"
-                 ng-click="candidateChoose()">{{n.name}}</div></a>
+                 id="candidateName_{{data.id}}"
+                 ng-click="candidateChoose()">{{data.name}}</div></a>
           </div>
            <img class="circular ui image candidate_detail_party" 
-           ng-src="images/{{n.partyEng}}.png"></img>
+           ng-src="images/{{data.partyEng}}.png"></img>
 
           <!--
           <div class="progress">
@@ -124,7 +124,7 @@
 
 
     
-    <div class="candidate_list"><!-- join -->
+    <div class="candidate_list">
       
       <div class="ui tabular filter menu">
         <div class="candidate_detail_tab" ng-click="answered()"><a class="item">已回答</a></div>
@@ -136,21 +136,22 @@
        <div class="ui small icon input" id="candidate_detail_searchbar">
          <input type="text" placeholder="關鍵字搜尋" ng-model="query">
        </div>
-      
 
-
-      <div class="candidate_detail_list_item" ng-repeat="n in data | filter:query">
-          <div ng-show="({{n.votes}}>=1000)" class="question_list_bow">爆</div>
-          <div class="candidate_detail_votes">{{n.votes|number:0}}</div>
-          <div class="candidate_detail_date">{{n.date.month}}/{{n.date.day}}</div>
-          <div class="candidate_detail_asker">{{n.$asker.displayName}}</div>
+      <div class="candidate_detail_list_item" 
+      ng-repeat="n in questions | orderByPriority | filter:'passed' | pendedByCandidate:data.id | filter:query" ng-click="showQuestionDetail(n.$id)">
+          <div ng-show="({{n.votes}}>=500)" class="question_list_bow">爆</div>
+          <div class="candidate_detail_votes web_only">{{n.signatures_count|number:0}}</div>
+          <div class="candidate_detail_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
+          <!--<div class="candidate_detail_asker">{{n.$asker.displayName}}</div>-->
         <!-- <img class="ui avatar image ask_who" src="images/logo.png"></img> -->
-          <div class="candidate_detail_title candidate_detail_title_pending">{{n.title}}</div>
+          <div class="candidate_detail_title candidate_detail_title_pending">{{n.title|limitTo:titleLimit}}{{(n.title.length>titleLimit ?'...':'')}}</div>
        
 
-        
-        <div class="right floated tiny ui button candidate_detail_button">
-          <a href="#/response/{{n.id}}" class="question_list_a">完整內容</a>
+        <div class="candidate_detail_button_area">
+             <div class="right floated tiny ui button"
+                  ng-click="showQuestionDetail(n.$id)">
+               完整內容
+             </div>
         </div>
          
         

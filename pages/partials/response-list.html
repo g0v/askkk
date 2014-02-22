@@ -54,6 +54,7 @@
 <div id="content">
     
     <div class="ui labeled icon sidebar page_sidebar" id="sidebar">
+      <!--
       <div class="ui tertiary inverted segment" id="category_sidebar">
         <div class="item" ng-repeat="n in categories">
         <div class="ui checkbox category_checkbox" >
@@ -62,6 +63,7 @@
          </div>
        </div>
       </div>
+      -->
 
      <!-- -->
      
@@ -88,6 +90,7 @@
        <div class="ui small icon input" id="tool_bar_seach">
          <input type="text" placeholder="關鍵字搜尋" ng-model="query">
        </div>
+       
     </div><!-- end of tool_bar_holder-->
 
 <!--
@@ -96,6 +99,9 @@
       <a class="item" ng-click="sortByVotes()">依熱門程度</a>
     </div>
 -->
+    <div class="response-list-notice">
+         <p>目前正在儘速安排與候選人團隊碰面，現場教學如何使用回覆功能後台，預計週三 (2/26) 後會有回應，請大家持續關注！</p>
+    </div>
     <div class="question_list_item" ng-click="showQuestionDetail(n.$id)"
          ng-repeat="n in questions | orderByPriority | filter:'passed' | filter:query">
         

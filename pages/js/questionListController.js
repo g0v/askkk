@@ -4,6 +4,12 @@ askControllers.controller('questionListCtrl', ['$scope', '$firebaseSimpleLogin',
   //semanticAccordingReady();
   semanticSidebarReday();
   $scope.userNameLimitMobile = global.userNameLimitMobile;
+  $scope.listOrderBy = "orderByPriority:true"; //- newest on top
+  $scope.hottestTop = "| orderBy:'signatures_count':true" //- add hottest on top
+  
+  //$scope.mode = 'normal';
+  $scope.mode = 'latest';
+  
 
   $scope.mode = '$id';//'signatures_count';
   //$scope.mode = 'popular';//'signatures_count';
