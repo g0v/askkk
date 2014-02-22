@@ -69,13 +69,13 @@
      <div class="addressed_to_block">
           <div class="addressed_to_candidate_text">請問市長候選人：</div>
           <div class="addressed_to_candidate_collection">
-          <div ng-repeat="k in data.addressing | orderByPriority | filter:'responded'"
+          <div ng-repeat="k in data.$addressing | orderByPriority | filter:'responded'"
                class="addressed_to_candidate">
                <a href="#/candidate/{{k.$id}}">
                <img class="ui image addressed_to" 
                     ng-src="images/candidates_avatar/{{k.$id}}.jpg"></img></a>
           </div>
-          <div ng-repeat="k in data.addressing | orderByPriority | filter:'pending'"
+          <div ng-repeat="k in data.$addressing | orderByPriority | filter:'pending'"
                class="addressed_to_candidate">
                <a href="#/candidate/{{k.$id}}">
                <img class="ui image addressed_to" 
@@ -202,7 +202,7 @@
           <div class="response_nav_block">
              <div class="response_nav_sub_title">尚未回答</div>
              <ul>
-             <li ng-repeat="n in data.addressing | orderByPriority | filter:'pending'">{{candidates[n.$id].name}}</li>
+             <li ng-repeat="n in data.$addressing | orderByPriority | filter:'pending'">{{candidates[n.$id].name}}</li>
              </ul>
           </div>
          

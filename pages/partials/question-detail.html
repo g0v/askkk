@@ -69,7 +69,7 @@
 
         <div class="addressed_to_candidate_text">請問市長候選人：</div>
         <div class="addressed_to_candidate_collection">
-          <div ng-repeat="k in data.addressing | orderByPriority"
+          <div ng-repeat="k in data.$addressing | orderByPriority"
             class="addressed_to_candidate">
             <img class="ui image addressed_to"
             ng-src="images/candidates_avatar/{{k.$id}}.jpg"></img>
