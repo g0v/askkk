@@ -14,6 +14,9 @@ global.titleLimitMobile = 15;
 global.titleLimitCandidateInbox = 15;
 global.askerNameLimit = 10;
 
+global.titleLimitCandidateDetail = 18;
+global.titleLimitCandidateDetailMobile = 0;
+
 /* https://watchouttw.hackpad.com/oXPyRx5NQfX */
 global.categories = [
 '農業','土地','居住','社會住宅','都市更新',
