@@ -99,7 +99,9 @@
       <a class="item" ng-click="sortByVotes()">依熱門程度</a>
     </div>
 -->
-
+<!-- 
+  orderByPriority:true - newest on top
+  orderBy:'signatures_count':true - hotest on top -->
     <div class="question_list_item" 
          ng-repeat="n in questions | orderByPriority | filter:'collecting' | filter:query"
          ng-click="showQuestionDetail(n.$id)">

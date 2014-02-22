@@ -6,6 +6,7 @@ askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin',
   semanticSidebarReday();
   $scope.userNameLimitMobile = global.userNameLimitMobile;
   
+  /*
   $scope.categoryCheckboxSetup = function(){
       //category checkbox
       $scope.toggleCategory = function(){
@@ -36,7 +37,7 @@ askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin',
   
   };
   
-
+  */
   $scope.titleLimit=global.titleLimit;
   $scope.askerNameLimit=global.askerNameLimit;
   $scope.categorySelection = [];
@@ -52,7 +53,7 @@ askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin',
     mobileSideBarSetup();
     $scope.titleLimit=global.titleLimitMobile;
   }else{
-    $scope.categoryCheckboxSetup();
+    //$scope.categoryCheckboxSetup();
   }
   /* ---------------------- */
 
