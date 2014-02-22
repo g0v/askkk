@@ -1,8 +1,9 @@
-askControllers.controller('registerCtrl',['$scope', '$firebaseSimpleLogin', 'authService', '$routeParams','candidateService',
+askControllers.controller('registerCtrl',['$scope', '$firebaseSimpleLogin', 'conf', 'authService', '$routeParams','candidateService',
 
 
- function($scope,$firebaseSimpleLogin, authService, $routeParams,candidateService){
+ function($scope,$firebaseSimpleLogin, conf, authService, $routeParams,candidateService){
 
+   $scope.conf = conf;
   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
   $scope.auth.$getCurrentUser().then(function (user) {
     authService.get(user.id).then(function (user) {

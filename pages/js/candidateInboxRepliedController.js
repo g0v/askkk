@@ -1,11 +1,12 @@
 
-askControllers.controller('candidateInboxRepliedCtrl',['$scope','$firebaseSimpleLogin', '$location', 'authService', '$routeParams','candidateService', 'questionService', 'userService',
+askControllers.controller('candidateInboxRepliedCtrl',['$scope','$firebaseSimpleLogin', 'conf', '$location', 'authService', '$routeParams','candidateService', 'questionService', 'userService',
 
-function($scope,$firebaseSimpleLogin, $location, authService, $routeParams,candidateService, questionService, userService){
+function($scope,$firebaseSimpleLogin, conf, $location, authService, $routeParams,candidateService, questionService, userService){
 
   semanticMenuReady();
   semanticAccordingReady();
   semanticSidebarReday();
+  $scope.conf = conf;
   $scope.titleLimit=global.titleLimitCandidateInbox;
   $scope.userNameLimitMobile = global.userNameLimitMobile;
   

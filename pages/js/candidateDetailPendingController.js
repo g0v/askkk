@@ -1,8 +1,9 @@
-askControllers.controller('candidateDetailPendingCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', '$routeParams', 'candidateService', 
-  function($scope, $firebaseSimpleLogin, authService, $routeParams, candidateService){
+askControllers.controller('candidateDetailPendingCtrl', ['$scope', '$firebaseSimpleLogin', 'conf', 'authService', '$routeParams', 'candidateService', 
+  function($scope, $firebaseSimpleLogin, conf, authService, $routeParams, candidateService){
 
   semanticMenuReady();
   semanticAccordingReady();
+  $scope.conf = conf;
   $scope.userNameLimitMobile = global.userNameLimitMobile;
 
 

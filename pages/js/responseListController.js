@@ -1,9 +1,10 @@
-askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin', 'authService', '$location', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, authService, $location, candidateService, questionService){
+askControllers.controller('responseListCtrl', ['$scope', '$firebaseSimpleLogin', 'conf', 'authService', '$location', 'candidateService', 'questionService', function($scope, $firebaseSimpleLogin, conf, authService, $location, candidateService, questionService){
 
 
   semanticMenuReady();
   //semanticAccordingReady();
   semanticSidebarReday();
+   $scope.conf = conf;
   $scope.userNameLimitMobile = global.userNameLimitMobile;
   
   /*
