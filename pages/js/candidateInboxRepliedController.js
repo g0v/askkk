@@ -10,7 +10,7 @@ function($scope,$firebaseSimpleLogin, conf, $location, authService, $routeParams
   $scope.titleLimit=global.titleLimitCandidateInbox;
   $scope.userNameLimitMobile = global.userNameLimitMobile;
   
-  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
+  $scope.auth = $firebaseSimpleLogin(new Firebase(conf.firebase));
   $scope.auth.$getCurrentUser().then(function (user) {
     if (user == null) {
       $location.path("/");

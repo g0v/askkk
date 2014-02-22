@@ -3,7 +3,7 @@ askControllers.controller('loginCheckCtrl', ['$scope', '$firebaseSimpleLogin', '
   
   $scope.conf = conf;
    $scope.candidates = candidateService;
-   $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
+   $scope.auth = $firebaseSimpleLogin(new Firebase(conf.firebase));
   
    $scope.auth.$getCurrentUser().then(function (user) {
     
