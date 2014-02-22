@@ -93,19 +93,23 @@
        </div>
 
     </div><!-- end of tool_bar_holder-->
-<!--
+
      <div class="ui tabular filter menu">
-      <a class="active item" ng-click="sortByTime()">依時間排序</a>
-      <a class="item" ng-click="sortByVotes()">依熱門程度</a>
-    </div>
--->
+      <a class="active item" ng-click="orderBy('time')">依時間排序</a>
+      <a class="item" ng-click="orderBy('popular')">依熱門程度</a>
+     </div>
+
 <!-- 
-  orderByPriority:true - newest on top
+  orderByPriority:true - newest on top 
   orderBy:'signatures_count':true - hotest on top -->
-    <div class="question_list_item" 
-         ng-repeat="n in questions | orderByPriority | filter:'collecting' | filter:query"
+  
+    <div ng-show="($index<15)" class="question_list_item" 
+         ng-repeat="n in questions | orderByPriority | filter:'collecting' | filter:query | orderBy:mode:true"
          ng-click="showQuestionDetail(n.$id)">
-        
+    
+
+
+    
         <div class="question_list_bow web_only">
           <div ng-show="(n.signatures_count >= 100)" class="web_only">HOT</div></div>
         <div class="question_list_signatures web_only">{{n.signatures_count}}</div>

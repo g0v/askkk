@@ -6,6 +6,7 @@ var askApp = angular.module("askApp", [
   'askServices'
 ]);
 
+
 askApp.config(['$routeProvider','$locationProvider',
   function($routeProvider,$locationProvider){
     $routeProvider.
@@ -67,5 +68,4 @@ askApp.config(['$routeProvider','$locationProvider',
       controller: 'indexCtrl'
     });
   }]);
-
 

@@ -1,9 +1,5 @@
 $(document)
-  .ready(function() {
-   
-
-
-  });
+  .ready(function() {});
 
 /*----------------------------------------------------------*/
 var global = {};
@@ -34,6 +30,139 @@ global.categories = [
 ];
 
 /*----------------------------------------------------------*/
+
+
+var askControllers = angular.module('askControllers',[]);
+
+function mobileNavSetup(){//title position
+   var value =$(window).width()/2-50;
+   console.log(value);
+   console.log("set");
+   $("#mobile_nav_title").css("left",value+"px");
+   $("#navigation").addClass("navigation_mobile");
+}
+function mobileNavPosition(){//side menu position
+  if($('.body').hasClass("left")){
+     $('#navigation').removeClass("navigation_mobile");
+  }else{
+     $('#navigation').css("left","0px");
+     $('#navigation').addClass("navigation_mobile");
+  }
+}
+function mobileSideBarSetup(){
+  
+   //$("#sidebar").addClass("large");
+   $("#sidebar").addClass("vertical");
+   $("#sidebar").addClass("inverted");
+   $("#sidebar").addClass("menu");
+
+   
+}
+function semanticSidebarReday(){
+  // selector cache
+  var
+    // alias
+    handler
+  ;
+  $('.variation .button')
+    .on('click', function() {
+      $(this)
+        .toggleClass('active')
+        .siblings()
+        .removeClass('active')
+      ;
+      $('.sidebar')
+        .filter($(this).data('variation') ).first()
+        .sidebar('toggle')
+      ;
+    })
+  ;
+  $('.styled.sidebar').first()
+    .sidebar('attach events', '.styled.example .button')
+  ;
+
+  $('.floating.sidebar').first()
+    .sidebar('attach events', '.floating.example .button')
+  ;
+
+  $('.filter.menu .item')
+      .tab()
+    ;
+
+    $('.ui.rating')
+      .rating({
+        clearable: true
+      })
+    ;
+
+    $('.ui.sidebar')
+      .sidebar('attach events', '.launch.button')
+    ;
+
+    $('.ui.dropdown')
+      .dropdown()
+    ;
+}
+function semanticMenuReady(){
+
+  $('.dropdown').dropdown();
+
+  // selector cache
+  var menuItem = $('.menu a.item, .menu .link.item');
+  var dropdown = $('.main.container .menu .dropdown');
+  // alias
+  handler = {
+
+    activate: function() {
+      if(!$(this).hasClass('dropdown')) {
+        $(this)
+        .addClass('active')
+        .closest('.ui.menu')
+        .find('.item')
+        .not($(this))
+        .removeClass('active')
+        ;
+      }
+    }
+
+  }
+  ;
+
+  dropdown
+  .dropdown({
+    on: 'hover'
+  })
+  ;
+
+  menuItem
+  .on('click', handler.activate)
+  ;
+
+}
+function semanticAccordingReady(){
+
+  // selector cache
+  var
+    $accordion     = $('.ui.accordion'),
+    $menuAccordion = $('.ui.menu.accordion'),
+    $checkbox      = $('.ui.checkbox'),
+    // alias
+    handler
+  ;
+  $accordion
+    .accordion()
+  ;
+  $menuAccordion
+    .accordion({
+     exclusive: false
+    })
+  ;
+  $checkbox
+    .checkbox()
+  ;
+}
+
+
 
 global.candidates = [
 
@@ -300,140 +429,6 @@ global.oneCandidate =
       {'title':'如何解決台北市空氣品質的問題？', 'voteUp':2000,'voteDown':1, 'id':8, 
        'date':{'year':'2014','month':'02','day':'05'},'asker':{'name':'郭俊麟','id':240}}];
 
-
-
-
-
-var askControllers = angular.module('askControllers',[]);
-
-
-function mobileNavSetup(){//title position
-   var value =$(window).width()/2-50;
-   console.log(value);
-   console.log("set");
-   $("#mobile_nav_title").css("left",value+"px");
-   $("#navigation").addClass("navigation_mobile");
-}
-function mobileNavPosition(){//side menu position
-  if($('.body').hasClass("left")){
-     $('#navigation').removeClass("navigation_mobile");
-  }else{
-     $('#navigation').css("left","0px");
-     $('#navigation').addClass("navigation_mobile");
-  }
-}
-function mobileSideBarSetup(){
-  
-   //$("#sidebar").addClass("large");
-   $("#sidebar").addClass("vertical");
-   $("#sidebar").addClass("inverted");
-   $("#sidebar").addClass("menu");
-
-   
-}
-function semanticSidebarReday(){
-  // selector cache
-  var
-    // alias
-    handler
-  ;
-  $('.variation .button')
-    .on('click', function() {
-      $(this)
-        .toggleClass('active')
-        .siblings()
-        .removeClass('active')
-      ;
-      $('.sidebar')
-        .filter($(this).data('variation') ).first()
-        .sidebar('toggle')
-      ;
-    })
-  ;
-  $('.styled.sidebar').first()
-    .sidebar('attach events', '.styled.example .button')
-  ;
-
-  $('.floating.sidebar').first()
-    .sidebar('attach events', '.floating.example .button')
-  ;
-
-  $('.filter.menu .item')
-      .tab()
-    ;
-
-    $('.ui.rating')
-      .rating({
-        clearable: true
-      })
-    ;
-
-    $('.ui.sidebar')
-      .sidebar('attach events', '.launch.button')
-    ;
-
-    $('.ui.dropdown')
-      .dropdown()
-    ;
-}
-function semanticMenuReady(){
-
-  $('.dropdown').dropdown();
-
-  // selector cache
-  var menuItem = $('.menu a.item, .menu .link.item');
-  var dropdown = $('.main.container .menu .dropdown');
-  // alias
-  handler = {
-
-    activate: function() {
-      if(!$(this).hasClass('dropdown')) {
-        $(this)
-        .addClass('active')
-        .closest('.ui.menu')
-        .find('.item')
-        .not($(this))
-        .removeClass('active')
-        ;
-      }
-    }
-
-  }
-  ;
-
-  dropdown
-  .dropdown({
-    on: 'hover'
-  })
-  ;
-
-  menuItem
-  .on('click', handler.activate)
-  ;
-
-}
-function semanticAccordingReady(){
-
-  // selector cache
-  var
-    $accordion     = $('.ui.accordion'),
-    $menuAccordion = $('.ui.menu.accordion'),
-    $checkbox      = $('.ui.checkbox'),
-    // alias
-    handler
-  ;
-  $accordion
-    .accordion()
-  ;
-  $menuAccordion
-    .accordion({
-     exclusive: false
-    })
-  ;
-  $checkbox
-    .checkbox()
-  ;
-}
 
 
 
