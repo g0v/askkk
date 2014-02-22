@@ -1,6 +1,7 @@
 /* App Module */
 
 var askApp = angular.module("askApp", [
+  'conf',
   'ngRoute',
   'askControllers',
   'askServices'
