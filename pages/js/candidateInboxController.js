@@ -1,7 +1,7 @@
 
 askControllers.controller('candidateInboxCtrl',['$scope','$firebaseSimpleLogin', 'conf', '$location', 'authService', '$routeParams','candidateService', 'questionService',
 
-function($scope,$firebaseSimpleLogin, conf', $location, authService, $routeParams,candidateService, questionService){
+function($scope,$firebaseSimpleLogin, conf, $location, authService, $routeParams,candidateService, questionService){
 
   semanticMenuReady();
   semanticAccordingReady();
@@ -10,7 +10,7 @@ function($scope,$firebaseSimpleLogin, conf', $location, authService, $routeParam
   $scope.titleLimit=global.titleLimitCandidateInbox;
   $scope.userNameLimitMobile = global.userNameLimitMobile;
   
-  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
+  $scope.auth = $firebaseSimpleLogin(new Firebase(conf.firebase));
   $scope.auth.$getCurrentUser().then(function (user) {
     if (user == null) {
       $location.path("/");

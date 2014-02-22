@@ -23,7 +23,7 @@ askControllers.controller('candidateDetailPendingCtrl', ['$scope', '$firebaseSim
   
   $scope.n = candidateService.get($routeParams.candidateId);
 
-  $scope.auth = $firebaseSimpleLogin(new Firebase('https://askkkkk.firebaseio.com/'));
+  $scope.auth = $firebaseSimpleLogin(new Firebase(conf.firebase));
   $scope.auth.$getCurrentUser().then(function (user) {
     if (user) {
       authService.get(user.id).then(function (user) {

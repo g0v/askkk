@@ -1,12 +1,11 @@
 {values, pairs-to-obj, obj-to-pairs} = require 'prelude-ls'
 
-askServices = angular.module \askServices, <[firebase]>
-
-ref = new Firebase 'https://askkkkk.firebaseio.com/'
+askServices = angular.module \askServices, <[firebase conf]>
 
 const signature_threshold = 500
 
-askServices.factory \authService, <[$firebase $q]> ++ ($firebase, $q) ->
+askServices.factory \authService, <[$firebase $q conf]> ++ ($firebase, $q, conf) ->
+  ref = new Firebase conf.firebase
   service = {
     is-candidate: (id) ->
       deferred = $q.defer!
@@ -36,18 +35,21 @@ askServices.factory \authService, <[$firebase $q]> ++ ($firebase, $q) ->
       user-ref.child \online .set false
   }
 
-askServices.factory \candidateService, <[$firebase]> ++ ($firebase) ->
+askServices.factory \candidateService, <[$firebase conf]> ++ ($firebase, conf) ->
+  ref = new Firebase conf.firebase
   service = $firebase ref.child \candidates
     ..get = (id) ->
       service.$child id
 
-askServices.factory \userService, <[$firebase]> ++ ($firebase) ->
+askServices.factory \userService, <[$firebase conf]> ++ ($firebase, conf) ->
+  ref = new Firebase conf.firebase
   service = {
     get: (id) ->
       $firebase ref.child "users/#{id}"
   }
 
-askServices.factory \questionService, <[$firebase $q]> ++ ($firebase, $q) ->
+askServices.factory \questionService, <[$firebase $q conf]> ++ ($firebase, $q, conf) ->
+  ref = new Firebase conf.firebase
   service = $firebase ref.child \questions
     # XXX arguments of `child_added` callback is different from doc
     ..$on \child_added, ({snapshot, prevChild}) ->
@@ -141,7 +143,8 @@ askServices.factory \questionService, <[$firebase $q]> ++ ($firebase, $q) ->
       r-ref.child "votes/#{userId}" .set new Date!.get-time!
       r-ref.child "votesCount" .transaction -> it + 1
 
-askServices.factory \signService, <[$firebase]> ++ ($firebase) ->
+askServices.factory \signService, <[$firebase conf]> ++ ($firebase, conf) ->
+  ref = new Firebase conf.firebase
   service = {
     signature_threshold
     sign: (user-id, question-id) ->
