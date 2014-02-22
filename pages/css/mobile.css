@@ -166,6 +166,13 @@
   position: relative;
  
 }
+
+/* ------------------------------------------------------------ */
+.response-list-notice{
+  width: 100%;
+  border-bottom: 1px gray solid;
+}
+
 #category_launch_button{
   display: none;
 }
@@ -175,6 +182,7 @@
 #tool_bar_seach{
   width:100%;
 }
+
 .tool_bar_candidate_filter{
   display: inline-block;
   
@@ -231,7 +239,9 @@
 .question_list_title{
   margin-top: 5px;
   font-size: 10px;
+  width:250px;
   display: inline-block;
+  
 }
 .candidate_state_block{
   float:left;
