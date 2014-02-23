@@ -434,7 +434,8 @@ display: inline-block;
 }
 .question_list_asker{
   margin-top: 5px;
-  width:90px;
+  /* width:90px; */
+  width:40px;
   float: left;
 }
 .question_list_title{
@@ -443,6 +444,7 @@ display: inline-block;
   width:370px;
   padding-left: 10px;
   border-left: 1px gray solid;
+  
 
 }
 .candidate_state_block{
