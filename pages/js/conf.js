@@ -3,12 +3,12 @@ var x$;
 x$ = angular.module('conf', []);
 x$.factory('conf', function(){
   return {
-    siteTitle: '零時．全民記者會',
-    siteSlogan: '寫程式改造社會．拆政府原地重建',
+    siteTitle: '市長，給問嗎？',
+    siteSlogan: '整個城市，都是我的質詢台',
     footerLink: {
-      link: 'http://g0v.tw/',
-      title: 'g0v'
+      link: 'http://watchout.tw/',
+      title: 'Watchout 沃草'
     },
-    firebase: ''
+    firebase: 'https://askkkkk.firebaseio.com/'
   };
 });
