@@ -1,0 +1,42 @@
+{
+    "rules": {
+        "candidate_meta": {
+            ".read": true        },
+        "candidates": {
+            ".read": true
+        },
+        "category": {
+            ".read": true
+        },
+        "question_index": {
+            ".read": true
+        },
+        "questions": {
+            ".read": true
+        },
+        "users": {
+            "$user": {
+                "displayName": {
+                    ".read": true
+                },
+                "id": {
+                    ".read": true
+                },
+                "uid": {
+                    ".read": true
+                },
+                "online": {
+                    ".read": true
+                },
+                "user_id": {
+                    ".read": true
+                },
+                "candidate_id": {
+                    ".read": true
+                },
+                ".read": "$user == auth.id",
+                ".write": "$user == auth.id"
+            }
+        }
+    }
+}
