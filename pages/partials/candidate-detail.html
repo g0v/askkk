@@ -99,7 +99,7 @@
             <a href="#/candidate/{{data.id}}">
             <div class="progress_info_floating_text" 
                  id="candidateName_{{data.id}}"
-                 ng-click="candidateChoose()">{{n.name}}</div></a>
+                 ng-click="candidateChoose()">{{data.name}}</div></a>
           </div>
           <img class="circular ui image candidate_detail_party" 
            ng-src="images/{{data.partyEng}}.png"></img>
@@ -145,7 +145,7 @@
 
       <div class="candidate_detail_list_item" 
            ng-click="showQuestionDetail(n.$id)"
-           ng-repeat="n in questions | orderByPriority | respondedByCandidate:data.id">
+           ng-repeat="n in questions | orderByPriority| respondedByCandidate:data.id">
         <div class="candidate_detail_vote web_only">
           <div class="candidate_detail_push web_only">
             {{n.voteUp|number:0}}
@@ -153,7 +153,7 @@
            <div class="candidate_detail_booing web_only">
             {{n.voteDown|number:0}}
           </div>
-        </div>
+        </div> 
 
         <div class="candidate_detail_date">{{n.post_date.month}}/{{n.post_date.day}}</div>
         <!-- <img class="ui avatar image ask_who" src="images/logo.png"></img> -->

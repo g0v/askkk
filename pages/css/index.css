@@ -375,6 +375,13 @@ display: inline-block;
 #tool_bar_seach{
   width:350px;
 }
+
+/* ------------------------------------------------------------ */
+.response-list-notice{
+  width: 100%;
+  border-bottom: 1px gray solid;
+}
+/* ------------------------------------------------------------ */
 .tool_bar_candidate_filter{
   display: inline-block;
   
@@ -427,7 +434,8 @@ display: inline-block;
 }
 .question_list_asker{
   margin-top: 5px;
-  width:90px;
+  /* width:90px; */
+  width:40px;
   float: left;
 }
 .question_list_title{
@@ -436,6 +444,7 @@ display: inline-block;
   width:370px;
   padding-left: 10px;
   border-left: 1px gray solid;
+  
 
 }
 .candidate_state_block{
@@ -835,6 +844,7 @@ display: inline-block;
    padding-left: 10px;
    border-left: 1px gray solid;
 
+
 }
 #candidate_detail_searchbar{
   width:100%;
@@ -877,7 +887,6 @@ display: inline-block;
   background: rgba(200,200,200,0.4);
   cursor: pointer;
 }
-
 
 /* ------------------------------------------------------------ */
 

@@ -1,11 +1,11 @@
-askControllers.controller('candidateDetailPendingCtrl', ['$scope', '$firebaseSimpleLogin', 'conf', 'authService', '$routeParams', 'candidateService', 
-  function($scope, $firebaseSimpleLogin, conf, authService, $routeParams, candidateService){
+askControllers.controller('candidateDetailPendingCtrl', ['$scope', '$firebaseSimpleLogin', 'conf', 'authService', '$location', '$routeParams', 'candidateService', 'questionService',
+  function($scope, $firebaseSimpleLogin, conf, authService, $location, $routeParams, candidateService, questionService){
 
   semanticMenuReady();
   semanticAccordingReady();
   $scope.conf = conf;
   $scope.userNameLimitMobile = global.userNameLimitMobile;
-
+  $scope.titleLimit=global.titleLimitCandidateDetail;
 
   /* --- mobile nav set --- */
   $('.body').removeClass("left");
@@ -17,11 +17,14 @@ askControllers.controller('candidateDetailPendingCtrl', ['$scope', '$firebaseSim
   if($(window).width()<400){
     mobileNavSetup();
     mobileSideBarSetup();
+    $scope.titleLimit = titleLimitCandidateDetailMobile;
   }
   /* ---------------------- */
   
-  
-  $scope.n = candidateService.get($routeParams.candidateId);
+  $scope.data = candidateService.get($routeParams.candidateId);
+  $scope.candidates = candidateService;
+  $scope.categories = global.categories;
+  $scope.questions = questionService;
 
   $scope.auth = $firebaseSimpleLogin(new Firebase(conf.firebase));
   $scope.auth.$getCurrentUser().then(function (user) {
@@ -32,7 +35,7 @@ askControllers.controller('candidateDetailPendingCtrl', ['$scope', '$firebaseSim
     }
   });
   $scope.login = function () {
-    event.preventDefault();
+    //event.preventDefault();
     $scope.auth.$login('facebook')
     .then(function (user) {
       authService.onLogin(user);
@@ -43,9 +46,12 @@ askControllers.controller('candidateDetailPendingCtrl', ['$scope', '$firebaseSim
     authService.onLogout($scope.auth.user);
     $scope.auth.$logout();
   };
-  $scope.candidates = candidateService;
-  //$scope.data = global.responseData;
-  //$scope.n = global.oneCandidate;
+  $scope.showQuestionDetail = function(questionId){
+    //event.stopPropagation();
+    console.log("show question detail, id:"+questionId);
+    $location.path("/response/"+questionId);
+    
+  };
 
   $scope.answered=function(){
     window.location = "#/candidate/"+$routeParams.candidateId;

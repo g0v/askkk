@@ -25,8 +25,8 @@ function($scope, $firebaseSimpleLogin, conf, $location, questionService, authSer
 
   $scope.questions = questionService;
   $scope.data = candidateService.get($routeParams.candidateId);
-  $scope.n = candidateService.get($routeParams.candidateId);
-  console.log($scope.data);
+  
+  //console.log($scope.data);
   
   $scope.candidates = candidateService;
   $scope.auth = $firebaseSimpleLogin(new Firebase(conf.firebase));
@@ -38,7 +38,7 @@ function($scope, $firebaseSimpleLogin, conf, $location, questionService, authSer
     }
   });
   $scope.login = function () {
-    event.preventDefault();
+    //event.preventDefault();
     $scope.auth.$login('facebook')
     .then(function (user) {
       authService.onLogin(user);
