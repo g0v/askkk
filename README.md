@@ -13,7 +13,7 @@ This was the codebase of <http://wethepeople.tw/>, which was a web site launched
 
 To run this project, just launch any static http server. for example
 
-    $ python -mSimpleHTTPServer
+    $ python -m SimpleHTTPServer
 
 # License
 
